@@ -1,7 +1,7 @@
-# PokeRoll Project 🟥⚫⬜
-### Created by Magnet Studio 🧲
+# 🟥⚫⬜ PokeRoll Project 🟥⚫⬜
+### 🧲 Created by Magnet Studio 🧲
 
-# 🧲 Magnet Studio is...
+# 📜 Magnet Studio is formed by... 📜
 - [Mario Cortés Herrera](https://github.com/SimulationOfMario)
 - [Javier Molina Colmenero](https://github.com/CreatorBeastGD)
 - [Nicoló Melley](https://github.com/Mel-Nicolo)
