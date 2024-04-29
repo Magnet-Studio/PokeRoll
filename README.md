@@ -12,6 +12,6 @@
 - [Jose Canto Peral](https://github.com/Anon2148)
 
 > [!WARNING]
-> Extra react libraries used:
+> ###Extra react libraries used:
 > - React Router Dom: npm install react-router-dom
-> - MUI Icons Material: nom install @mui/icons-material
+> - MUI Icons Material: npm install @mui/icons-material
