@@ -14,19 +14,19 @@ function MainPanel()
             <div id='mainPanelContainer'>
                 <div id='mainPanel'>
 
-                    <div id='coinsPanelContainer'>
+                    <div id='coinsPanelContainer' className='subpanelContainer'>
                         <CoinsPanel/>
                     </div>
                     
-                    <div id='logoContainer'>
+                    <div id='logoContainer' className='subpanelContainer'>
                         <Logo/>
                     </div>
 
-                    <div id='userPanelContainer'>
-                        <UserPanel/>
+                    <div id='usernamePanelContainer' className='subpanelContainer'>
+                        <UsernamePanel/>
                     </div>
 
-                    <div id='rouletteContainer'> 
+                    <div id='rouletteContainer' className='subpanelContainer'> 
 
                     </div>
                     
@@ -51,9 +51,9 @@ function CoinsPanel()
 
 
 /**
- * Este es el panel que contiene el user account
+ * Este es el panel que contiene el username
  */
-function UserPanel()
+function UsernamePanel()
 {
     return (
         <div className='subpanel'>

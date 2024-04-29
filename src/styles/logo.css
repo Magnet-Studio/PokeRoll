@@ -1,6 +1,10 @@
 
+/* Propiedades de la imagen */
 #logoImage
 {
-    width: 60%;
+    width: 80%;
     height: auto;
+    position: absolute;
+    top: -70%;
+    z-index: inherit;
 }

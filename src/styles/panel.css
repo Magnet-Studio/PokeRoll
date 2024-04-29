@@ -37,24 +37,24 @@
     border: 3px solid #5eccfc;
     border-radius: 40px;
     width: 90%;
-    height: 750px;
+    height: auto;
     margin: 40px 0;
 
     /* Tenemos 3 columnas dentro del panel */
     display: grid;
-    grid-template-columns: auto auto auto; 
+    grid-template-columns: 25% 50% 25%; 
+    gap: 10px;
 
     position: relative;
     z-index: 0;
 }
 
-/* Coin Panel y User Panel */
+/* Coin Panel y Username Panel */
 .subpanel
 {
     background: #283a6c;
     border: 3px solid #001f76;
     border-radius: 40px;
-    width: 250px;
     height: 80px;
     margin: 10px;
 
@@ -64,12 +64,22 @@
     z-index: 2;
 }
 
-/* Coin Panel position */
-#coinPanelContainer 
+/* Centraliza los subpaneles en su subcontenedor */
+.subpanelContainer
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Coins Panel position */
+#coinsPanelContainer 
 {
     /* Solo en columna 1 está */
     grid-column-start: 1;
     grid-column-end: 1;
+    margin-top: 30px;
+    margin-left: 20px;
 }
 
 /* Logo position */
@@ -78,14 +88,18 @@
     /* Solo en columna 2 está */
     grid-column-start: 2;
     grid-column-end: 2;
+    position: relative;
+    z-index: 3;
 }
 
-/* User Panel position */
-#userPanelContainer
+/* Username Panel position */
+#usernamePanelContainer
 {
     /* Solo en columna 3 está */
     grid-column-start: 3;
     grid-column-end: 3;
+    margin-top: 30px;
+    margin-right: 20px;
 }
 
 /* Roulette position */
@@ -94,4 +108,7 @@
     /* Todas las columnas */
     grid-column-start: 1;
     grid-column-end: 3;
+    margin-left: 40px;
+    margin-right: 40px;
+    height: 500px;
 }
