@@ -5,9 +5,9 @@ import LogoImage from '../images/logo.png';
 function Logo()
 {
     return (
-        <div className='logo'>
-            <img id='logoImage' src={LogoImage}/>
-        </div>
+        
+        <img id='logoImage' src={LogoImage}/>
+        
     );
 }
 

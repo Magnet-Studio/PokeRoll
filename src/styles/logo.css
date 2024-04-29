@@ -1,27 +1,4 @@
 
-.logo 
-{
-    background: #2596be;
-    border-top: 5px solid #5eccfc;
-    border-left: 3px solid #5eccfc;
-    border-right: 3px solid #5eccfc;
-    border-radius: 20px 20px 0 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 60%;
-    height: 60px;
-    margin: 0px;
-    position: absolute;
-    top: -98px;
-    left: 50%;
-    transform: translate(-50%, 50%);
-    z-index: 1;
-
-}
-
 #logoImage
 {
     width: 60%;

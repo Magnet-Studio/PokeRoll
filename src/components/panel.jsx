@@ -5,9 +5,14 @@ import Logo from './logo';
 function Panel()
 {
     return (
-        <div className='panel'>
-            <Logo/>
-        </div>
+        <>
+            <div id='bordeSuperior'></div>
+            <div id='panelContainer'>
+                <div id='panel'>
+                    
+                </div>
+            </div>
+        </>
     );
 }
 
