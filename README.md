@@ -15,4 +15,5 @@
 > - Use ```npm install``` for install all the project libraries
 > ### Extra React libraries used:
 > - React Router Dom: ```npm install react-router-dom```
+> - MUI defaults: ```npm install @mui/material @emotion/react @emotion/styled```
 > - MUI Icons Material: ```npm install @mui/icons-material```
