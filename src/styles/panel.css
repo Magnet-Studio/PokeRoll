@@ -1,6 +1,7 @@
 /* Estilos y comportamiento de los paneles */
 
 /* Borde superior del panel main */
+/* ACTUALMENTE EN DESHUSO
 #topBorder
 {
     background: #2596be;
@@ -21,6 +22,7 @@
     position: relative;
     z-index: 1;
 }
+*/
 
 /* Centraliza el main panel */
 #mainPanelContainer
@@ -38,25 +40,28 @@
     border-radius: 40px;
     width: 90%;
     height: auto;
-    margin: 40px 0;
+    margin: 30px 0;
 
     /* Tenemos 3 columnas dentro del panel */
     display: grid;
     grid-template-columns: 25% 50% 25%; 
-    gap: 10px;
 
     position: relative;
     z-index: 1;
 }
 
-/* Coin Panel y Username Panel */
+/* Coin Panel, Username Panel y Game State Panel */
 .subpanel
 {
     background: #283a6c;
     border: 3px solid #001f76;
     border-radius: 40px;
-    height: 80px;
-    margin: 10px;
+
+    height: 50px;
+    width: 150px;
+
+    padding: 10px 10px;
+    margin: 10px 10px;
 
     display: inline-grid;
 
@@ -64,11 +69,17 @@
     z-index: 2;
 }
 
+/* Game State Panel (valores sobreescritos) */
+#gameState
+{
+    height: 400px;
+    width: 95%;
+}
+
 /* Centraliza los subpaneles en su subcontenedor */
 .subpanelContainer
 {
     display: flex;
-    align-items: center;
     justify-content: center;
 }
 
@@ -78,16 +89,14 @@
     /* Solo en columna 1 está */
     grid-column-start: 1;
     grid-column-end: 1;
-    margin-top: 30px;
-    margin-left: 20px;
+    margin-left: 10px;
 }
 
 /* Logo position */
 #logoContainer
 {
-    /* Solo en columna 2 está */
-    grid-column-start: 2;
-    grid-column-end: 2;
+    /* En todas las columnas */
+    grid-column: 1 / -1;
     position: relative;
 }
 
@@ -97,16 +106,14 @@
     /* Solo en columna 3 está */
     grid-column-start: 3;
     grid-column-end: 3;
-    margin-top: 30px;
-    margin-right: 20px;
+    margin-right: 10px;
 }
 
-/* Roulette position */
-#rouletteContainer
+/* Game State Panel position */
+#gamestatePanelContainer
 {
     /* Todas las columnas */
-    grid-column-start: 1;
-    grid-column-end: 3;
+    grid-column: 1 / -1;
     margin-left: 40px;
     margin-right: 40px;
     height: 500px;

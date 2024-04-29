@@ -2,11 +2,7 @@
 /* Propiedades de la imagen */
 #logoImage
 {
-    width: 80%;
+    width: 25%;
     height: auto;
-    position: relative;
-    top: -70%;
-    left: 50%;
-    transform: translateX(-60%);
     z-index: 2;
 }
