@@ -40,7 +40,7 @@
     border-radius: 40px;
     width: 90%;
     height: auto;
-    margin: 30px 0;
+    margin: 3vh 0;
 
     /* Tenemos 3 columnas dentro del panel */
     display: grid;
@@ -57,11 +57,9 @@
     border: 3px solid #001f76;
     border-radius: 40px;
 
-    height: 50px;
-    width: 150px;
-
-    padding: 10px 10px;
-    margin: 10px 10px;
+    height: 5vh;
+    width: 80%;
+    margin: 1vw 1vh;
 
     display: inline-grid;
 
@@ -70,9 +68,9 @@
 }
 
 /* Game State Panel (valores sobreescritos) */
-#gameState
+#gamestatePanel
 {
-    height: 400px;
+    border-color: #5eccfc;
     width: 95%;
 }
 
@@ -89,7 +87,7 @@
     /* Solo en columna 1 está */
     grid-column-start: 1;
     grid-column-end: 1;
-    margin-left: 10px;
+    margin-left: 1vw;
 }
 
 /* Logo position */
@@ -106,7 +104,7 @@
     /* Solo en columna 3 está */
     grid-column-start: 3;
     grid-column-end: 3;
-    margin-right: 10px;
+    margin-right: 1vw;
 }
 
 /* Game State Panel position */
@@ -114,7 +112,7 @@
 {
     /* Todas las columnas */
     grid-column: 1 / -1;
-    margin-left: 40px;
-    margin-right: 40px;
-    height: 500px;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    height: 70%;
 }

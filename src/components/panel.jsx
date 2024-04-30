@@ -21,7 +21,6 @@ function MainPanel()
                     <div id='coinsPanelContainer' className='subpanelContainer'>
                         <CoinsPanel/>
                     </div>
-                    
 
                     <div id='usernamePanelContainer' className='subpanelContainer'>
                         <UsernamePanel/>
@@ -29,6 +28,10 @@ function MainPanel()
 
                     <div id='gamestatePanelContainer' className='subpanelContainer'> 
                         <GameStatePanel/>
+                    </div>
+
+                    <div id='inferiorelementsPanelContainer' className='subpanelContainer'>
+                        <InferiorElementsPanel/>
                     </div>
                     
                 </div>
@@ -69,12 +72,24 @@ function UsernamePanel()
 function GameStatePanel()
 {
     return (
-        <div className='subpanel' id='gameState'>
+        <div className='subpanel' id='gamestatePanel'>
 
         </div>
     );
 }
 
+
+/**
+ * Este es el panel que contiene los botones de navegación / el botón de Tirar / la pokéball
+ */
+function InferiorElementsPanel()
+{
+    return (
+        <div id='inferiorElementsPanel'>
+
+        </div>
+    );
+}
 
 /* Lo único que hace falta exportar */
 export default MainPanel;

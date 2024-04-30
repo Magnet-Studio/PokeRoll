@@ -1,16 +1,21 @@
 
-#helpButton
+#helpButtonContainer
 {
-    border-radius: 100px;
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    margin-bottom: 10px;
-    margin-right: 10px;
-    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 5vw;
+    height: 5vh;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 0.5vh;
+    margin-right: 0.5vw;
+}
+
+#helpButton
+{
+    cursor: pointer;
+    width: 120%;
+    height: 120%;
 }

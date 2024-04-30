@@ -6,7 +6,9 @@ import { grey } from '@mui/material/colors';
 function HelpButton()
 {
     return (
-        <HelpIcon id="helpButton" sx={{color: grey[100]}}/>
+        <div id="helpButtonContainer">
+            <HelpIcon id="helpButton" sx={{color: grey[100]}}/>
+        </div>
     );
 }
 

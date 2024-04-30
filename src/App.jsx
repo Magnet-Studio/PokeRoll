@@ -5,10 +5,10 @@ import './styles/App.css';
 
 function App() {
   return (
-    <div id='background'>
-      <MainPanel/>
-      <HelpButton/>
-    </div>
+      <>
+        <MainPanel/>
+        <HelpButton/>
+      </>
   );
 }
 
