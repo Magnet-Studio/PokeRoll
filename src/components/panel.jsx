@@ -15,11 +15,15 @@ function MainPanel()
                 <div id='mainPanel'>
 
                     <div id='logoContainer' className='subpanelContainer'>
-                        <Logo/>
+                        <LogoPanel/>
                     </div>
 
                     <div id='coinsPanelContainer' className='subpanelContainer'>
                         <CoinsPanel/>
+                    </div>
+
+                    <div id='topelementsPanelContainer' className='subpanelContainer'>
+                        <TopElementsPanel/>
                     </div>
 
                     <div id='usernamePanelContainer' className='subpanelContainer'>
@@ -30,8 +34,8 @@ function MainPanel()
                         <GameStatePanel/>
                     </div>
 
-                    <div id='inferiorelementsPanelContainer' className='subpanelContainer'>
-                        <InferiorElementsPanel/>
+                    <div id='bottomelementsPanelContainer' className='subpanelContainer'>
+                        <BottomElementsPanel/>
                     </div>
                     
                 </div>
@@ -40,6 +44,17 @@ function MainPanel()
     );
 }
 
+/**
+ * Este es el panel que contiene el logo
+ */
+function LogoPanel()
+{
+    return (
+        <div className='subpanel' id='logoPanel'>
+            <Logo/>
+        </div>
+    );
+}
 
 /**
  * Este es el panel que contiene el número de monedas
@@ -48,6 +63,18 @@ function CoinsPanel()
 {
     return (
         <div className='subpanel'>
+
+        </div>
+    );
+}
+
+/**
+ * Este es el panel que contiene el título de dónde te encuentras
+ */
+function TopElementsPanel()
+{
+    return (
+        <div className='subpanel' id='topelementsPanel'>
 
         </div>
     );
@@ -82,10 +109,10 @@ function GameStatePanel()
 /**
  * Este es el panel que contiene los botones de navegación / el botón de Tirar / la pokéball
  */
-function InferiorElementsPanel()
+function BottomElementsPanel()
 {
     return (
-        <div id='inferiorElementsPanel'>
+        <div className='subpanel' id='bottomelementsPanel'>
 
         </div>
     );

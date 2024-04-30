@@ -1,11 +1,63 @@
+html 
+{
+    height: 100%;
+}
+
 body 
 {
     margin: 0;
     padding: 0;
     background-color: black;
     background-image: url('../images/bg.jpg'); 
-    background-size: cover; 
+    background-size: 100vw 100vh; /* Responsivo */
     background-repeat: no-repeat; 
     background-position: center;
     overflow: hidden; /* No scrolling */
 }
+
+
+/* EN DESHUSO
+
+@media screen and (max-width: 1330px) and (min-height: 620px)
+{
+    body
+    {
+        background-size: 140vh auto;
+    }
+}
+
+@media screen and (max-width: 760px)
+{
+    body 
+    { 
+        height: 100%;
+        background-size: 120vh auto;
+    }
+}
+
+
+@media screen and (max-width: 380px)
+{   
+    body 
+    { 
+        background-size: 100vh auto;
+    }
+}
+
+@media screen and (max-height: 620px)
+{
+    body 
+    {
+        background-size: auto 100vw;
+    }
+}
+
+@media screen and (min-height: 620px) and (max-width: )
+{
+    body 
+    {
+        background-size: auto 100vw;
+    }
+}
+
+*/

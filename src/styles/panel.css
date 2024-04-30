@@ -36,8 +36,8 @@
 #mainPanel
 {
     background: #2596be;
-    border: 3px solid #5eccfc;
-    border-radius: 40px;
+    border: 0.2em solid #5eccfc;
+    border-radius: 1em;
     width: 90%;
     height: auto;
     margin: 3vh 0;
@@ -45,26 +45,50 @@
     /* Tenemos 3 columnas dentro del panel */
     display: grid;
     grid-template-columns: 25% 50% 25%; 
+    grid-row-gap: 1em;
 
     position: relative;
     z-index: 1;
 }
 
+/* SUBPANELES */
+
 /* Coin Panel, Username Panel y Game State Panel */
 .subpanel
 {
     background: #283a6c;
-    border: 3px solid #001f76;
-    border-radius: 40px;
+    border: 0.2em solid #001f76;
+    border-radius: 1em;
 
-    height: 5vh;
+    height: 90%;
     width: 80%;
-    margin: 1vw 1vh;
+    margin: 1vh 1vw;
 
     display: inline-grid;
 
     position: relative;
     z-index: 2;
+}
+
+#logoPanel
+{
+    background: none;
+    border: none;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    height: auto;
+}
+
+
+/* Top Elements Panel (valores sobreescritos) */
+#topelementsPanel
+{
+    background: none;
+    border: none;
+    border-radius: 0;
 }
 
 /* Game State Panel (valores sobreescritos) */
@@ -73,6 +97,18 @@
     border-color: #5eccfc;
     width: 95%;
 }
+
+/* Bottom Elements Panel (valores sobreescritos) */
+#bottomelementsPanel
+{
+    background: none;
+    border: none;
+    border-radius: 0;
+    width: 95%;
+}
+
+
+/* CONTENEDORES DE LOS SUBPANELES */
 
 /* Centraliza los subpaneles en su subcontenedor */
 .subpanelContainer
@@ -95,7 +131,7 @@
 {
     /* En todas las columnas */
     grid-column: 1 / -1;
-    position: relative;
+    margin-bottom: -1em;
 }
 
 /* Username Panel position */
@@ -114,5 +150,16 @@
     grid-column: 1 / -1;
     margin-left: 1vw;
     margin-right: 1vw;
-    height: 70%;
+    height: auto;
+}
+
+/* Bottom Elements Panel position */
+#bottomelementsPanelContainer
+{
+    /* Todas las columnas */
+    grid-column: 1 / -1;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    margin-bottom: 1.5vh;
+    height: auto;
 }
