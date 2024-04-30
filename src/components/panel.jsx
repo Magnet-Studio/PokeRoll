@@ -1,7 +1,6 @@
 import React from 'react';
 import '../styles/panel.css';
-import Logo from './logo';
-import { BrowserRouter } from 'react-router-dom';
+import Logo from './subcomponents/logo';
 
 /** 
  * Este es el panel principal azul donde se contiene todo
