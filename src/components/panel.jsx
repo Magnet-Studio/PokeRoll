@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles/panel.css';
 import Logo from './subcomponents/logo';
 import Coins from './subcomponents/coins';
+import Username from './subcomponents/username';
 
 /** 
  * Este es el panel principal azul donde se contiene todo
@@ -88,7 +89,7 @@ function UsernamePanel()
 {
     return (
         <div className='subpanel'>
-
+            <Username/>
         </div>
     );
 }

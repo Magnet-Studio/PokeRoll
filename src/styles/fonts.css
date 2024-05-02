@@ -3,7 +3,20 @@
 * Importa este archivo en otros css para usarlo
 */
 
-@font-face {
+@font-face 
+{
     font-family: komikazoom;
     src: url('../fonts/komikazoom.ttf');
-  }
+}
+
+@font-face 
+{
+  font-family: ptarmigan;
+  src: url('../fonts/ptarmigan.ttf');
+}
+
+@font-face 
+{
+  font-family: vanilla-regular;
+  src: url('../fonts/vanilla-regular.ttf');
+}

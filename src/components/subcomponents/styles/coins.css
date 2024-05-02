@@ -20,7 +20,7 @@
 
 #coins p 
 {
-    margin: 0.001em 0.4em 0.001em 0;
+    margin: 0 0.4em 0 0;
     justify-self: right;
     align-self: center;
     color: white;
