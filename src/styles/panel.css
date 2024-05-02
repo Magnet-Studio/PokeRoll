@@ -57,7 +57,7 @@
 .subpanel
 {
     background: #283a6c;
-    border: 0.2em solid #001f76;
+    border: 0.18em solid #001f76;
     border-radius: 1em;
 
     height: 90%;
@@ -94,6 +94,7 @@
 /* Game State Panel (valores sobreescritos) */
 #gamestatePanel
 {
+    border-width: 0.18em;
     border-color: #5eccfc;
     width: 95%;
 }
@@ -124,6 +125,8 @@
     grid-column-start: 1;
     grid-column-end: 1;
     margin-left: 1vw;
+    position: absolute;
+    top: 10%;
 }
 
 /* Logo position */
@@ -141,6 +144,8 @@
     grid-column-start: 3;
     grid-column-end: 3;
     margin-right: 1vw;
+    position: absolute;
+    top: 10%;
 }
 
 /* Game State Panel position */

@@ -1,0 +1,9 @@
+/*  
+* Este archivo es solo para importar fonts  
+* Importa este archivo en otros css para usarlo
+*/
+
+@font-face {
+    font-family: komikazoom;
+    src: url('../fonts/komikazoom.ttf');
+  }
