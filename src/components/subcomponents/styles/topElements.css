@@ -1,0 +1,10 @@
+@import url('../../../styles/fonts.css');
+
+/* Título del actual game status */
+#topElementTitle 
+{
+    font-family: vanilla-regular;
+    color: white;
+    margin: 0;
+    font-size: 2vw;
+}

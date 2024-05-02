@@ -3,6 +3,9 @@ import '../styles/panel.css';
 import Logo from './subcomponents/logo';
 import Coins from './subcomponents/coins';
 import Username from './subcomponents/username';
+import TopElements from './subcomponents/topElements';
+import BottomElements from './subcomponents/bottomElements';
+import { BrowserRouter } from 'react-router-dom';
 
 /** 
  * Este es el panel principal azul donde se contiene todo
@@ -76,7 +79,9 @@ function TopElementsPanel()
 {
     return (
         <div className='subpanel' id='topelementsPanel'>
-
+            <BrowserRouter>
+                <TopElements/>
+            </BrowserRouter>
         </div>
     );
 }
@@ -101,7 +106,8 @@ function GameStatePanel()
 {
     return (
         <div className='subpanel' id='gamestatePanel'>
-
+            <BrowserRouter>
+            </BrowserRouter>
         </div>
     );
 }
@@ -114,7 +120,9 @@ function BottomElementsPanel()
 {
     return (
         <div className='subpanel' id='bottomelementsPanel'>
-
+            <BrowserRouter>
+                <BottomElements/>
+            </BrowserRouter>
         </div>
     );
 }
