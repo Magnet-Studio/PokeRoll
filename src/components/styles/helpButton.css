@@ -9,8 +9,8 @@
     position: absolute;
     bottom: 0;
     right: 0;
-    margin-bottom: 0.2em;
-    margin-right: 0.2em;
+    margin-bottom: 0.4vh;
+    margin-right: 0.1vw;
 }
 
 #helpButton

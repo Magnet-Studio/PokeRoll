@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/helpButton.css';
+import './styles/helpButton.css';
 import HelpIcon from '@mui/icons-material/Help';
 
 function HelpButton()

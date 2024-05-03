@@ -36,8 +36,8 @@
 #mainPanel
 {
     background: #2596be;
-    border: 0.2em solid #5eccfc;
-    border-radius: 1em;
+    border: 0.5vw solid #5eccfc;
+    border-radius: 0.8vw;
     width: 90%;
     height: auto;
     margin: 3vh 0;
@@ -57,12 +57,16 @@
 .subpanel
 {
     background: #283a6c;
-    border: 0.18em solid #001f76;
-    border-radius: 1em;
+    border: 0.4vw solid #001f76;
+    border-radius: 0.8vw;
 
     height: 90%;
     width: 80%;
     margin: 1vh 1vw;
+    min-height: 25px;
+    /*
+    min-width: 120px;
+    */
 
     display: inline-grid;
 
@@ -99,7 +103,7 @@
 /* Game State Panel (valores sobreescritos) */
 #gamestatePanel
 {
-    border-width: 0.18em;
+    border-width: 0.3vw;
     border-color: #5eccfc;
     width: 95%;
 }
@@ -111,6 +115,10 @@
     border: none;
     border-radius: 0;
     width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
 }
 
 

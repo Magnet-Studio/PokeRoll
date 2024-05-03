@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/panel.css';
+import './styles/panel.css';
 import Logo from './subcomponents/logo';
 import Coins from './subcomponents/coins';
 import Username from './subcomponents/username';
@@ -18,29 +18,33 @@ function MainPanel()
             <div id='mainPanelContainer'>
                 <div id='mainPanel'>
 
-                    <div id='logoContainer' className='subpanelContainer'>
-                        <LogoPanel/>
-                    </div>
+                    <BrowserRouter>
 
-                    <div id='coinsPanelContainer' className='subpanelContainer'>
-                        <CoinsPanel/>
-                    </div>
+                        <div id='logoContainer' className='subpanelContainer'>
+                            <LogoPanel/>
+                        </div>
 
-                    <div id='topelementsPanelContainer' className='subpanelContainer'>
-                        <TopElementsPanel/>
-                    </div>
+                        <div id='coinsPanelContainer' className='subpanelContainer'>
+                            <CoinsPanel/>
+                        </div>
 
-                    <div id='usernamePanelContainer' className='subpanelContainer'>
-                        <UsernamePanel/>
-                    </div>
+                        <div id='topelementsPanelContainer' className='subpanelContainer'>
+                            <TopElementsPanel/>
+                        </div>
 
-                    <div id='gamestatePanelContainer' className='subpanelContainer'> 
-                        <GameStatePanel/>
-                    </div>
+                        <div id='usernamePanelContainer' className='subpanelContainer'>
+                            <UsernamePanel/>
+                        </div>
 
-                    <div id='bottomelementsPanelContainer' className='subpanelContainer'>
-                        <BottomElementsPanel/>
-                    </div>
+                        <div id='gamestatePanelContainer' className='subpanelContainer'> 
+                            <GameStatePanel/>
+                        </div>
+
+                        <div id='bottomelementsPanelContainer' className='subpanelContainer'>
+                            <BottomElementsPanel/>
+                        </div>
+
+                    </BrowserRouter>
                     
                 </div>
             </div>
@@ -79,9 +83,7 @@ function TopElementsPanel()
 {
     return (
         <div className='subpanel' id='topelementsPanel'>
-            <BrowserRouter>
-                <TopElements/>
-            </BrowserRouter>
+            <TopElements/>
         </div>
     );
 }
@@ -106,8 +108,6 @@ function GameStatePanel()
 {
     return (
         <div className='subpanel' id='gamestatePanel'>
-            <BrowserRouter>
-            </BrowserRouter>
         </div>
     );
 }
@@ -120,9 +120,7 @@ function BottomElementsPanel()
 {
     return (
         <div className='subpanel' id='bottomelementsPanel'>
-            <BrowserRouter>
-                <BottomElements/>
-            </BrowserRouter>
+            <BottomElements/>
         </div>
     );
 }
