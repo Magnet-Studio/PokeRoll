@@ -1,29 +1,5 @@
 /* Estilos y comportamiento de los paneles */
 
-/* Borde superior del panel main */
-/* ACTUALMENTE EN DESHUSO
-#topBorder
-{
-    background: #2596be;
-    border-top: 5px solid #5eccfc;
-    border-left: 3px solid #5eccfc;
-    border-right: 3px solid #5eccfc;
-    border-radius: 60px 60px 0 0;
-
-    width: 50%;
-    height: 100px;
-    margin: 0px;
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    transform: translate(-50%, 50%);
-    padding-bottom: 5px;
-
-    position: relative;
-    z-index: 1;
-}
-*/
-
 /* Centraliza el main panel */
 #mainPanelContainer
 {
@@ -45,7 +21,6 @@
     /* Tenemos 3 columnas dentro del panel */
     display: grid;
     grid-template-columns: 25% 50% 25%; 
-    grid-row-gap: 1em;
 
     position: relative;
     z-index: 1;
@@ -106,6 +81,10 @@
     border-width: 0.3vw;
     border-color: #5eccfc;
     width: 95%;
+    display: grid;
+    grid-template-columns: 1% 98% 1%;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Bottom Elements Panel (valores sobreescritos) */
@@ -185,6 +164,8 @@
     grid-column: 1 / -1;
     margin-left: 1vw;
     margin-right: 1vw;
-    margin-bottom: 1.5vh;
+    margin-bottom: 2vh;
     height: auto;
+    align-items: center;
+    justify-content: center;
 }

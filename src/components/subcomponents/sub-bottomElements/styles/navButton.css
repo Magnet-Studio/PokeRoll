@@ -1,3 +1,4 @@
+@import url('../../../../styles/fonts.css');
 
 /* Contenedor del botón */
 .navButton
@@ -32,4 +33,86 @@
 .selected > svg 
 {
     color: #fecb02;
+}
+
+.navButtonTitle 
+{
+    color: white;
+    font-family: vanilla-regular;
+    position: absolute;
+    font-size: 0;
+    opacity: 0;
+}
+
+/* Animación del title */
+@keyframes moveDown {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(3vw); }
+}
+
+/* Animación del botón */
+@keyframes moveUp {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-0.3vw); }
+}
+
+/* Opacidad del title */
+@keyframes changeOpacity {
+    0% { opacity: 0; }
+    100% { opacity: 100; }
+}
+
+/* Tamaño del title */
+@keyframes changeFontSize {
+    0% { font-size: 0.2vw; }
+    100% { font-size: 0.9vw; }
+}
+
+.navButton:hover
+{
+    animation: moveUp 0.5s ease-in-out forwards alternate;
+}
+
+.navButton:hover .navButtonTitle
+{
+    animation: changeOpacity 0.5s ease-in-out forwards alternate, 
+                moveDown 0.5s ease-in-out forwards alternate,
+                changeFontSize 0.5s ease-in-out forwards alternate;
+}
+
+.navButton.mouseleave
+{
+    animation: moveUp-Reverse 0.5s ease-in-out forwards alternate;
+}
+
+.navButton.mouseleave .navButtonTitle
+{
+    animation: changeOpacity-Reverse 0.5s ease-in-out forwards alternate, 
+                moveDown-Reverse 0.5s ease-in-out forwards alternate,
+                changeFontSize-Reverse 0.5s ease-in-out forwards alternate;;
+}
+
+
+/* Animación del title invertida */
+@keyframes moveDown-Reverse {
+    0% { transform: translateY(3vw); }
+    100% { transform: translateY(0); }
+}
+
+/* Animación del botón */
+@keyframes moveUp-Reverse {
+    0% { transform: translateY(-0.3vw); }
+    100% { transform: translateY(0); }
+}
+
+/* Opacidad del title */
+@keyframes changeOpacity-Reverse {
+    0% { opacity: 100; }
+    100% { opacity: 0; }
+}
+
+/* Tamaño del title */
+@keyframes changeFontSize-Reverse {
+    0% { font-size: 0.9vw; }
+    100% { font-size: 0.2vw; }
 }

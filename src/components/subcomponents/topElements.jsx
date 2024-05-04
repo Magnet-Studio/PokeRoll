@@ -15,7 +15,7 @@ function TopElements()
 {
     return (
         <Routes>
-            <Route path='/' element={<TitleGameStatus titleName='Hapter'/>} />
+            <Route path='/ruleta' element={<TitleGameStatus titleName='Ruleta'/>} />
 
             <Route path='/almacen' element={<TitleGameStatus titleName='Mi almacén de Pokémon'/>} />
 

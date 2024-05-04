@@ -1,0 +1,39 @@
+.externalArrowContainer
+{
+    position: relative;
+    height: 10%;
+}
+
+.externalArrow 
+{
+    background-color: #fecb02;
+    border: 0.3vw solid #ba9712;
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    top: 50%;
+    left: -0.65vw;
+}
+
+.externalArrow.reversed
+{
+    left: 0.62vw;
+}
+
+.boxes
+{
+    display: grid;
+    grid-template-columns: 20% 20% 20%;
+    grid-column-gap: 5%;
+    align-items: center;
+    justify-content: center;
+    height: 25vw;
+}
+
+.ruletaBox
+{
+    background-color: white;
+    border : 0.3vw solid black;
+    height: 80%;
+    border-radius: 1vw;
+}

@@ -20,7 +20,7 @@ function BottomElements()
 {
     return (
         <Routes>
-            <Route path='/' element={<ButtonsRuletaStatus/>} />
+            <Route path='/ruleta' element={<ButtonsRuletaStatus/>} />
 
             <Route path='/almacen' element={<ButtonsAlmacenStatus/>} />
 
@@ -40,11 +40,11 @@ function ButtonsRuletaStatus()
 {
     return(
         <>
-            <NavButton link='/' selected="selected" icon={<RuletaIcon/>}/>
-            <NavButton link='/almacen' icon={<AlmacenIcon/>}/>
-            <NavButton link='/pokedex' icon={<PokedexIcon/>}/>
-            <NavButton link='/marcadores' icon={<MarcadoresIcon/>}/>
-            <NavButton link='/intercambio' icon={<IntercambioIcon/>}/>
+            <NavButton link='/ruleta' selected="selected" icon={<RuletaIcon/>} title="Ruleta"/>
+            <NavButton link='/almacen' icon={<AlmacenIcon/>} title="Almacén"/>
+            <NavButton link='/pokedex' icon={<PokedexIcon/>} title="Pokédex"/>
+            <NavButton link='/marcadores' icon={<MarcadoresIcon/>} title="Marcadores"/>
+            <NavButton link='/intercambio' icon={<IntercambioIcon/>} title="Intercambio"/>
         </>
     );
 }
@@ -53,11 +53,11 @@ function ButtonsAlmacenStatus()
 {
     return(
         <>
-            <NavButton link='/' icon={<RuletaIcon/>}/>
-            <NavButton link='/almacen' selected="selected" icon={<AlmacenIcon/>}/>
-            <NavButton link='/pokedex' icon={<PokedexIcon/>}/>
-            <NavButton link='/marcadores' icon={<MarcadoresIcon/>}/>
-            <NavButton link='/intercambio' icon={<IntercambioIcon/>}/>
+            <NavButton link='/ruleta' icon={<RuletaIcon/>} title="Ruleta"/>
+            <NavButton link='/almacen' selected="selected" icon={<AlmacenIcon/>} title="Almacén"/>
+            <NavButton link='/pokedex' icon={<PokedexIcon/>} title="Pokédex"/>
+            <NavButton link='/marcadores' icon={<MarcadoresIcon/>} title="Marcadores"/>
+            <NavButton link='/intercambio' icon={<IntercambioIcon/>} title="Intercambio"/>
         </>
     );
 }
@@ -66,11 +66,11 @@ function ButtonsPokedexStatus()
 {
     return(
         <>
-            <NavButton link='/' icon={<RuletaIcon/>}/>
-            <NavButton link='/almacen' icon={<AlmacenIcon/>}/>
-            <NavButton link='/pokedex' selected="selected" icon={<PokedexIcon/>}/>
-            <NavButton link='/marcadores' icon={<MarcadoresIcon/>}/>
-            <NavButton link='/intercambio' icon={<IntercambioIcon/>}/>
+            <NavButton link='/ruleta' icon={<RuletaIcon/>} title="Ruleta"/>
+            <NavButton link='/almacen' icon={<AlmacenIcon/>} title="Almacén"/>
+            <NavButton link='/pokedex' selected="selected" icon={<PokedexIcon/>} title="Pokédex"/>
+            <NavButton link='/marcadores' icon={<MarcadoresIcon/>} title="Marcadores"/>
+            <NavButton link='/intercambio' icon={<IntercambioIcon/>} title="Intercambio"/>
         </>
     );
 }
@@ -79,11 +79,11 @@ function ButtonsMarcadoresStatus()
 {
     return(
         <>
-            <NavButton link='/' icon={<RuletaIcon/>}/>
-            <NavButton link='/almacen' icon={<AlmacenIcon/>}/>
-            <NavButton link='/pokedex' icon={<PokedexIcon/>}/>
-            <NavButton link='/marcadores' selected="selected" icon={<MarcadoresIcon/>}/>
-            <NavButton link='/intercambio' icon={<IntercambioIcon/>}/>
+            <NavButton link='/ruleta'  icon={<RuletaIcon/>} title="Ruleta"/>
+            <NavButton link='/almacen' icon={<AlmacenIcon/>} title="Almacén"/>
+            <NavButton link='/pokedex' icon={<PokedexIcon/>} title="Pokédex"/>
+            <NavButton link='/marcadores' selected="selected" icon={<MarcadoresIcon/>} title="Marcadores"/>
+            <NavButton link='/intercambio' icon={<IntercambioIcon/>} title="Intercambio"/>
         </>
     );
 }
@@ -92,11 +92,11 @@ function ButtonsIntercambioStatus()
 {
     return(
         <>
-            <NavButton link='/' icon={<RuletaIcon/>}/>
-            <NavButton link='/almacen' icon={<AlmacenIcon/>}/>
-            <NavButton link='/pokedex' icon={<PokedexIcon/>}/>
-            <NavButton link='/marcadores' icon={<MarcadoresIcon/>}/>
-            <NavButton link='/intercambio' selected="selected" icon={<IntercambioIcon/>}/>
+            <NavButton link='/ruleta' icon={<RuletaIcon/>} title="Ruleta"/>
+            <NavButton link='/almacen' icon={<AlmacenIcon/>} title="Almacén"/>
+            <NavButton link='/pokedex' icon={<PokedexIcon/>} title="Pokédex"/>
+            <NavButton link='/marcadores' icon={<MarcadoresIcon/>} title="Marcadores"/>
+            <NavButton link='/intercambio' selected="selected" icon={<IntercambioIcon/>} title="Intercambio"/>
         </>
     );
 }

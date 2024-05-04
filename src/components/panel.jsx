@@ -6,6 +6,7 @@ import Username from './subcomponents/username';
 import TopElements from './subcomponents/topElements';
 import BottomElements from './subcomponents/bottomElements';
 import { BrowserRouter } from 'react-router-dom';
+import GameState from './subcomponents/gameState';
 
 /** 
  * Este es el panel principal azul donde se contiene todo
@@ -108,6 +109,7 @@ function GameStatePanel()
 {
     return (
         <div className='subpanel' id='gamestatePanel'>
+            <GameState />
         </div>
     );
 }
