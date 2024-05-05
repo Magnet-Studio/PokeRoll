@@ -8,32 +8,43 @@
 {
     background-color: #fecb02;
     border: 0.3vw solid #ba9712;
-    width: 50%;
-    height: 50%;
+    width: 100%;
+    height: 100%;
     position: absolute;
     top: 50%;
     left: -0.65vw;
 }
 
+/* Triángulo */
+/*
+.externalArrow > div 
+{
+    
+}
+*/
+
 .externalArrow.reversed
 {
-    left: 0.62vw;
+    left: 0.2vw;
+    transform: scaleX(-1);
 }
 
 .boxes
 {
     display: grid;
     grid-template-columns: 20% 20% 20%;
-    grid-column-gap: 5%;
+    grid-column-gap: 2%;
+    grid-row-end: 5%;
     align-items: center;
     justify-content: center;
-    height: 25vw;
+    height: 50vh;
+    width: 100%;
 }
 
 .ruletaBox
 {
     background-color: white;
     border : 0.3vw solid black;
-    height: 80%;
+    height: 90%;
     border-radius: 1vw;
 }

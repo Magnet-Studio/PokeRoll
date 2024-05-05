@@ -34,7 +34,7 @@ function ExternalArrow(props)
 
     return (
         <div className={'externalArrow ' + direction}>
-            
+            <div></div>
         </div>
     );
 }
@@ -43,7 +43,6 @@ function RuletaBox()
 {
     return (
         <div className="ruletaBox">
-            
         </div>
     );
 }

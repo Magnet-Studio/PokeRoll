@@ -1,6 +1,7 @@
 import React from 'react';
 import {Routes, Route} from 'react-router-dom';
 import Ruleta from './sub-gameStatus/ruleta';
+import Almacen from './sub-gameStatus/almacen';
 
 function GameState() {
     return (
@@ -27,7 +28,9 @@ function RuletaGameState() {
 }
 
 function AlmacenGameState() {
-    
+    return (
+        <Almacen />
+    );
 }
 
 function PokedexGameState() {

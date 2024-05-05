@@ -1,11 +1,15 @@
 /* Estilos y comportamiento de los paneles */
 
 /* Centraliza el main panel */
+
+
 #mainPanelContainer
 {
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 96%;
+    margin-top: 1vw;
 }
 
 /* Main Panel */
@@ -15,7 +19,7 @@
     border: 0.5vw solid #5eccfc;
     border-radius: 0.8vw;
     width: 90%;
-    height: auto;
+    height: 100%;
     margin: 3vh 0;
 
     /* Tenemos 3 columnas dentro del panel */
@@ -81,10 +85,13 @@
     border-width: 0.3vw;
     border-color: #5eccfc;
     width: 95%;
+    height: 50vh;
     display: grid;
     grid-template-columns: 1% 98% 1%;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+    pointer-events: auto;
 }
 
 /* Bottom Elements Panel (valores sobreescritos) */
@@ -93,7 +100,7 @@
     background: none;
     border: none;
     border-radius: 0;
-    width: 95%;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -154,7 +161,7 @@
     grid-column: 1 / -1;
     margin-left: 1vw;
     margin-right: 1vw;
-    height: auto;
+    height: 90%;
 }
 
 /* Bottom Elements Panel position */
@@ -165,7 +172,7 @@
     margin-left: 1vw;
     margin-right: 1vw;
     margin-bottom: 2vh;
-    height: auto;
+    height: 40%;
     align-items: center;
     justify-content: center;
 }

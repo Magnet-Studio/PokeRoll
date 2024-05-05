@@ -12,7 +12,7 @@ const HelpMenu = ({ active }) => {
     <>
       <div className="modal">
         <section className="modal-main">
-          <img src={LogoImage} alt="Help 1" />
+          <img id="logoModal" src={LogoImage} alt="Help 1" />
           <p>Texto imagen 1</p>
         </section>
       </div>
@@ -35,5 +35,6 @@ function HelpButton() {
     </>
   );
 }
+
 
 export default HelpButton;
