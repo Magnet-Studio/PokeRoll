@@ -1,5 +1,30 @@
 @import url("../../../../styles/fonts.css");
 
+/* width */
+::-webkit-scrollbar {
+    position: absolute;
+    width: 1vw;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f105;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    height: 1.5vw;
+    background: rgb(73, 100, 255);
+    border-radius: 0.3vw;
+}
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    
+    background: rgb(130, 220, 255);
+}
+  
+
 #previousGenContainer
 {
     grid-column: 1;
