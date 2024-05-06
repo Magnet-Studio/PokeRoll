@@ -43,6 +43,11 @@
     height: 6vh;
 }
 
+option 
+{
+    font-family: vanilla-regular; /* No parece afectar (?)*/
+}
+
 .inputElemSmall {
     max-height: 80%;
     margin-right: 1em;

@@ -1,7 +1,10 @@
+@import url('./fonts.css');
+
 *
 {
     user-select: none;
     pointer-events: none;
+    font-family: vanilla-regular;
 }
 
 html 
