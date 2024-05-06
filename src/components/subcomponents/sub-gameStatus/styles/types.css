@@ -1,0 +1,70 @@
+.entryBox.known.normal {
+    background-color: rgba(255, 255, 255, 0.539);
+}
+
+.entryBox.known.fire {
+    background-color: rgba(255, 64, 0, 0.539);
+}
+
+.entryBox.known.water
+{
+    background-color: rgba(70, 138, 255, 0.747);
+}
+
+.entryBox.known.grass
+{
+    background-color: rgba(53, 255, 34, 0.539);
+}
+
+.entryBox.known.bug
+{
+    background-color: rgba(136, 255, 125, 0.539);
+}
+
+.entryBox.known.poison {
+    background-color: rgba(173, 67, 255, 0.539);
+}
+
+.entryBox.known.electric {
+    background-color: rgb(204, 178, 45);
+}
+
+.entryBox.known.ground {
+    background-color: rgba(234, 181, 49, 0.539);
+}
+
+.entryBox.known.rock {
+    background-color: rgba(180, 132, 27, 0.539);
+}
+
+.entryBox.known.fairy {
+    background-color: rgba(204, 165, 214, 0.884);
+}
+
+.entryBox.known.fighting {
+    background-color: rgba(255, 89, 0, 0.539);
+}
+
+.entryBox.known.psychic {
+    background-color: rgba(250, 153, 252, 0.539);
+}
+
+.entryBox.known.ghost {
+    background-color: rgba(88, 0, 90, 0.539);
+}
+
+.entryBox.known.ice {
+    background-color: rgba(183, 250, 255, 0.779);
+}
+
+.entryBox.known.dragon {
+    background-color: rgba(12, 14, 86, 0.779);
+}
+
+.entryBox.known.steel {
+    background-color: rgba(114, 114, 114, 0.779);
+}
+
+.entryBox.known.dark {
+    background-color: rgba(47, 47, 47, 0.779);
+}

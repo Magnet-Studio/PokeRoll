@@ -22,19 +22,19 @@ function FiltrosAlmacen() {
     return(
         <>
             <FilterAltIcon />
-            <select className="inputElem" name="generalFilter">
-                <option selected value="0">Selecciona un filtro...</option>
+            <select className="inputElem" name="generalFilter" defaultValue="0">
+                <option value="0">Selecciona un filtro...</option>
                 <option value="1">Pokémon más raro</option>
                 <option value="2">Por número de Pokédex</option>
             </select>
             
-            <select className="inputElemSmall" name="tier">
-                <option selected value="0">Tier...</option>
+            <select className="inputElemSmall" name="tier" defaultValue="0">
+                <option value="0">Tier...</option>
                 <option value="1">Tier 1</option>
                 <option value="2">Tier 2</option>
             </select>
 
-            <select className="inputElemSmall" name="type">
+            <select className="inputElemSmall" name="type" defaultValue="0">
                 <option value="0">Tipo...</option>
                 <option value="1">Normal</option>
                 <option value="2">Bicho</option>
@@ -42,13 +42,13 @@ function FiltrosAlmacen() {
 
             <div id="checkBoxContainer">
                 <div>
-                    <input type="checkbox" id="checkbox1" name="especial" value="checkbox1" />
-                    <label for="checkbox1">Especial</label>
+                    <input type="checkbox" id="checkboxEspecial" name="especial" value="checkboxEspecial" />
+                    <label htmlFor="checkbox1">Especial</label>
                 </div>
 
                 <div>
-                    <input type="checkbox" id="checkbox2" name="variocolor" value="checkbox2" />
-                    <label for="checkbox2">Variocolor</label>
+                    <input type="checkbox" id="checkboxShiny" name="variocolor" value="checkboxShiny" />
+                    <label htmlFor="checkboxShiny">Shiny</label>
                 </div>
             </div>
 
