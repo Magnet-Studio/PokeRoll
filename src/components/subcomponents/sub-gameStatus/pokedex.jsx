@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles/pokedex.css'
-import {GetDataByDexNum, GetFirstType} from './PokeAPI/PokemonData';
+import {GetDataByDexNum, GetFirstType, GetName, GetSecondType} from './PokeAPI/PokemonData';
 import {GetSpeciesDataByDexNum, GetSpanishName} from './PokeAPI/PokemonSpeciesData';
 import {useState, useEffect} from 'react';
 
@@ -8,7 +8,7 @@ import {useState, useEffect} from 'react';
  * Array con todos los ID de pokémon que hay.
  * @warn Quizás usemos otro método
  */
-const dexNumber = Array.from({length: 151}, (_, index) => index + 1);
+const dexNumber = Array.from({length: 1025}, (_, index) => index + 1);
 
 /**
  * Función principal que se exporta.
@@ -85,12 +85,22 @@ function PokemonEntry(props) {
 
         const name = GetSpanishName(pokemonSpeciesData);
         firstType = GetFirstType(pokemonData);
+        const imageName = GetName(pokemonData);
+
+        const secondType = GetSecondType(pokemonData);
+        const secondcontainer = secondType !== null ? (<div className="pokemonType">{prettyTypeNameSpanish(secondType)}</div>) : (<></>);
         
 
         pokemon = (
         <>
+            <img className="pokemonImg" src={"https://img.pokemondb.net/sprites/home/normal/" + imageName + ".png"} alt={name}></img>
+            
+            <div className='types'>
+                <div className="pokemonType">{prettyTypeNameSpanish(firstType)}</div>
+                {secondcontainer}
+            </div>
             <p className='pokemonName'>{name}</p>
-            <p className="pokemonType">{firstType}</p>
+            
         </>);
     }
     else 
@@ -122,6 +132,47 @@ function NavGenArrow(props)
 
         </div>
     );
+}
+
+function prettyTypeNameSpanish(name) {
+    switch (name) {
+        case "normal":
+            return "Normal";
+        case "fire":
+            return "Fuego";
+        case "water":
+            return "Agua";
+        case "grass":
+            return "Planta"
+        case "poison":
+            return "Veneno"
+        case "bug":
+            return "Bicho"
+        case "flying":
+            return "Volador"
+        case "electric":
+            return "Eléctrico"
+        case "ground":
+            return "Tierra"
+        case "fairy":
+            return "Hada"
+        case "fighting":
+            return "Lucha"
+        case "rock":
+            return "Roca"
+        case "psychic":
+            return "Psíquico"
+        case "steel":
+            return "Acero"
+        case "ice":
+            return "Hielo"
+        case "ghost":
+            return "Fantasma"
+        case "dragon":
+            return "Dragón"
+        case "dark":
+            return "Siniestro"
+    }
 }
 
 

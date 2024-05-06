@@ -68,3 +68,7 @@
 .entryBox.known.dark {
     background-color: rgba(47, 47, 47, 0.779);
 }
+
+.entryBox.known.flying {
+    background-color: rgba(149, 193, 246, 0.779);
+}

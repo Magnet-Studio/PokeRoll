@@ -49,6 +49,7 @@
     margin-bottom: 2vw;
     background-color: rgba(0, 0, 0, 1);
     border-radius: 2vw;
+    position: relative;
 }
 
 /* Número del Pokémon */
@@ -56,24 +57,53 @@
 {
     font-family: vanilla-regular;
     font-size: 1.3vw;
+    margin-top: 0.5vw;
     margin-left: 1vw;
     color: white;
+    position: absolute;
+    z-index: 4;
 }
 
 .pokemonName 
 {
     font-family: vanilla-regular;
-    font-size: 1.3vw;
-    margin-left: 1vw;
+    font-size: 1.1vw;
+    padding-top: 2vw;
+    width: 100%;
+    text-align: center;
     color: white;
+    margin-top: 5.5vw;
+}
+
+.types
+{
+    position:absolute;
+    max-width: 4vw;
+    margin-top: 3.2vw;
 }
 
 .pokemonType 
 {
     font-family: vanilla-regular;
-    font-size: 1.3vw;
+    position: relative;
+    font-size: 0.7vw;
+    text-align: center;
     margin-left: 1vw;
+    margin-bottom: 0.3vw;
+    border-radius: 0.5vw;
+    max-width: 4vw;
     color: white;
+    background-color: rgba(0, 0, 0, 0.1);
+
+}
+
+.pokemonImg
+{
+    width: 5.5vw;
+    height: auto;
+    position: absolute;
+    margin-left: 4vw;
+    margin-top: 1.7vw
 }
 
 /* Letras ??? de pokémon no descubierto */
@@ -84,5 +114,7 @@
     color: white;
     text-align: center;
 }
+
+
 
 @import url("./types.css");
