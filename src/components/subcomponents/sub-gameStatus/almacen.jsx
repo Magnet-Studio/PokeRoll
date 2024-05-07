@@ -14,7 +14,7 @@ function Almacen() {
                 </div>
 
                 <div id="pokemon-cards-container">
-                    <PokemonCard />
+                    <CompletePokemonList />
                 </div>
             </div>
         </>
@@ -76,7 +76,8 @@ function CompletePokemonList() {
 
 }
 
-function PokemonCard(data) {
+// SKILL ISSUE BUT IT'S NORMAL WHEN YOU ARE LEARNING
+function PokemonCard({data}) {
     /* Esto habria que hacerlo con un array de pokemon? */
     const [pokemonData, setPokemonData] = useState(null);
     const [pokemonSpeciesData, setPokemonSpeciesData] = useState(null);
@@ -109,7 +110,7 @@ function PokemonCard(data) {
         
     pokemon = (
         <>
-            {GetImage(pokemonData, false)}    
+            {GetImage(pokemonData, (data.shiny === "shiny"))}    
                 <div className='types'>
                     <div className="pokemonType">{GetPrettyTypeNameSpanish(firstType)}</div>
                     {secondTypeContainer}
