@@ -117,6 +117,8 @@ function PokemonEntry(props)
         fetchDataAndUpdateState();
     }, [props.num]);
 
+    let knownCond= '';
+
     let pokemon, firstType = ''; 
     if(props.known === 'known')
     {
@@ -129,6 +131,7 @@ function PokemonEntry(props)
         {
             secondTypeContainer = (<div className="pokemonType">{GetPrettyTypeNameSpanish(secondType)}</div>);
         }  
+        knownCond = props.known + " " + firstType;
         
         pokemon = (
             <>
@@ -152,7 +155,7 @@ function PokemonEntry(props)
 
 
     return (
-        <div className={"entryBox " + props.known + " " + firstType} key={"pokemon-" + props.num}>
+        <div className={"entryBox " + knownCond} key={"pokemon-" + props.num}>
             <p className="dexNumber">Nº {props.num}</p>
             {pokemon}
         </div>

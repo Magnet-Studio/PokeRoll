@@ -40,11 +40,20 @@ export const GetDataByName = async (pokemonName) =>
 export const GetName = (data) =>
 {
     if(data != undefined && data != null)
-    {
-        return data.species.name;   
-    }
-    return null;
+        {
+            return data.species.name;   
+        }
+        return null;
 }
+
+export const GetDexNum = (data) =>
+    {
+    if(data != undefined && data != null)
+        {
+            return data.id;   
+        }
+        return null;
+    }
 
 /**
  * Devuelve el sprite del pokémon en objeto <img/>

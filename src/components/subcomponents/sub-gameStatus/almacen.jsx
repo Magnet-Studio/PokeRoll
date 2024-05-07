@@ -3,7 +3,7 @@ import './styles/almacen.css';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import FakeData from "./userdata/pokemonList";
 import {GetSpeciesDataByName, GetSpanishName} from './PokeAPI/PokemonSpeciesData';
-import {GetDataByName, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish, GetImage} from './PokeAPI/PokemonData';
+import {GetDataByName, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish, GetImage, GetDexNum} from './PokeAPI/PokemonData';
 
 function Almacen() {
     return (
@@ -26,21 +26,43 @@ function FiltrosAlmacen() {
         <>
             <FilterAltIcon />
             <select className="inputElem" name="generalFilter" defaultValue="0">
-                <option value="0">Selecciona un filtro...</option>
+                <option value="0">Selecciona un orden</option>
                 <option value="1">Pokémon más raro</option>
                 <option value="2">Por número de Pokédex</option>
+                <option value="3">Por Tier más alto</option>
+                <option value="4">Variocolores primero</option>
             </select>
             
             <select className="inputElemSmall" name="tier" defaultValue="0">
-                <option value="0">Tier...</option>
-                <option value="1">Tier 1</option>
-                <option value="2">Tier 2</option>
+                <option value="0">Filtrar Tier...</option>
+                <option value="1">Común</option>
+                <option value="2">Infrecuente</option>
+                <option value="3">Raro</option>
+                <option value="4">Épico</option>
+                <option value="5">Legendario</option>
+                <option value="6">Singular</option>
             </select>
 
             <select className="inputElemSmall" name="type" defaultValue="0">
                 <option value="0">Tipo...</option>
-                <option value="1">Normal</option>
-                <option value="2">Bicho</option>
+                <option value="1">Acero</option>
+                <option value="2">Agua</option>
+                <option value="3">Bicho</option>
+                <option value="4">Dragón</option>
+                <option value="5">Eléctrico</option>
+                <option value="6">Fantasma</option>
+                <option value="7">Fuego</option>
+                <option value="8">Hada</option>
+                <option value="9">Hielo</option>
+                <option value="10">Lucha</option>
+                <option value="11">Normal</option>
+                <option value="12">Planta</option>
+                <option value="13">Psíquico</option>
+                <option value="14">Roca</option>
+                <option value="15">Siniestro</option>
+                <option value="16">Tierra</option>
+                <option value="17">Veneno</option>
+                <option value="18">Volador</option>
             </select>
 
             <div id="checkBoxContainer">
@@ -98,9 +120,10 @@ function PokemonCard({data}) {
 
     let pokemon, firstType = '';
 
-    const name = GetSpanishName(pokemonSpeciesData);
+    const name = data.nametag === null ? GetSpanishName(pokemonSpeciesData) : data.nametag;
     firstType = GetFirstType(pokemonData);
     const secondType = GetSecondType(pokemonData);
+    const dexNum = GetDexNum(pokemonData);
     
     let secondTypeContainer = (<></>); 
     if(secondType !== null)
@@ -120,7 +143,8 @@ function PokemonCard({data}) {
     );
 
     return (
-        <div className={"entryBox " + firstType} key={data.id}>
+        <div className={"entryBox " + firstType + " " + data.shiny} key={data.id}>
+            <p className="dexNumber">Nº {dexNum}</p>
             {pokemon}
         </div>
     );
