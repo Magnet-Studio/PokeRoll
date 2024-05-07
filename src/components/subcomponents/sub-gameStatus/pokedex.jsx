@@ -1,107 +1,147 @@
 import React from 'react';
 import './styles/pokedex.css'
-import {GetDataByDexNum, GetFirstType, GetName, GetSecondType} from './PokeAPI/PokemonData';
-import {GetSpeciesDataByDexNum, GetSpanishName} from './PokeAPI/PokemonSpeciesData';
 import {useState, useEffect} from 'react';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import {GetSpeciesDataByDexNum, GetSpanishName} from './PokeAPI/PokemonSpeciesData';
+import {GetDataByDexNum, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish, GetImage} from './PokeAPI/PokemonData';
 
-/**
- * Array con todos los ID de pokémon que hay.
- * @warn Quizás usemos otro método
- */
-const dexNumber = Array.from({length: 1025}, (_, index) => index + 1);
 
 /**
  * Función principal que se exporta.
  */
-function Pokedex() {
+function Pokedex() 
+{
+    const initGenerationNum = sessionStorage.getItem("generationNum");
+    // El número de generación actual
+    const [generationNum, setGenerationNum] = useState(initGenerationNum ? parseInt(initGenerationNum) : 1);
+    // La lista de dexNum de la actual generación mostrada
+    const [dexNumbers, setDexNumbers] = useState(MakeDexNumByGeneration(generationNum));
+
+    useEffect(() => {
+        setDexNumbers(MakeDexNumByGeneration(generationNum));
+    }, [generationNum]);
+
     return (
         <>
             <div id="previousGenContainer">
-                <NavGenArrow previous />
+                <NavGenArrow reversed setGenerationNum={setGenerationNum} generationNum={generationNum}/>
             </div>
 
             <div id="pokedexBigBox">
-                <CompleteEntryList />
+                <CompleteEntryList setGenerationNum={setGenerationNum} generationNum={generationNum} setDexNumbers={setDexNumbers} dexNumbers={dexNumbers}/>
             </div>
 
             <div id="nextGenContainer"> 
-                <NavGenArrow />
+                <NavGenArrow setGenerationNum={setGenerationNum} generationNum={generationNum}/>
             </div>
         </>
     );
 }
 
 /**
- * Lista completa de la Pokédex.
+ * Botones de navegación entre generaciones.
+ * @param reversed [Boolean] True si es la flecha izquierda
+ * @param generationNum [Obligatorio]
+ * @param setGenerationNum [Obligatorio]
  */
-function CompleteEntryList()
+function NavGenArrow(props)
 {
-    const known = 'known'
-    const list = dexNumber.map((num) => 
+    // Handler del botón para que cambie de generación
+    const handler = () => {
+        const newGenerationNum = props.reversed ? props.generationNum - 1 : props.generationNum + 1;
+        if (newGenerationNum >= 1 && newGenerationNum <= MAX_GENERATION_NUM) 
+        {
+            sessionStorage.setItem("generationNum", newGenerationNum);
+            props.setGenerationNum(newGenerationNum);
+        }
+    };
+
+    // Estado desactivado del botón
+    const disabled = props.reversed ? props.generationNum <= 1 : props.generationNum >= MAX_GENERATION_NUM;
+
+    return (
+        <div className={'nextGenArrow ' + (props.reversed ? 'reversed ' : '') + (disabled ? 'disabled' : '')} onClick={handler}>
+            <ArrowRightIcon />
+        </div>
+    );
+}
+
+/**
+ * Lista de la Pokédex.
+ * @param setGenerationNum [Obligatorio]
+ * @param generationNum [Obligatorio]
+ * @param setDexNumbers [Obligatorio]
+ * @param dexNumbers [Obligatorio]
+ */
+function CompleteEntryList(props)
+{
+    
+    const known = 'known';  // Only test
+
+    const list = props.dexNumbers.map((num) => 
         <PokemonEntry num={num} known={known} key={num} />
     );
 
     return (
         <>
+            <p>
+                {props.generationNum + "º Generación"}
+            </p>
             {list}
         </>
     );
 }
 
+
 /**
  * Un solo contenedor de un pokémon.
  * @param num [Integer | Obligatorio] El número de registro del pokémon
  * @param known [String] "known" si se ha descubierto
- */
-function PokemonEntry(props) {
-    
-    let num = 0;
-    if(props.num != undefined)
-    {
-        num = props.num;
-    }
-
-    let pokemon, known, firstType = ''; 
-
+*/
+function PokemonEntry(props) 
+{
+    // Data
     const [pokemonData, setPokemonData] = useState(null);
     const [pokemonSpeciesData, setPokemonSpeciesData] = useState(null);
 
+    // Actualizador de los datos
     useEffect(() => {
         const fetchDataAndUpdateState = async () => 
         {
-            const data = await GetDataByDexNum(num);
-            const dataSpecies = await GetSpeciesDataByDexNum(num);
+            const data = await GetDataByDexNum(props.num);
+            const dataSpecies = await GetSpeciesDataByDexNum(props.num);
             setPokemonData(data);
             setPokemonSpeciesData(dataSpecies);
         };
 
         fetchDataAndUpdateState();
-    }, [num]);
+    }, [props.num]);
 
+    let pokemon, firstType = ''; 
     if(props.known === 'known')
     {
-        // Caso de pokémon descubierto
-        known = "known";
-
         const name = GetSpanishName(pokemonSpeciesData);
         firstType = GetFirstType(pokemonData);
-        const imageName = GetName(pokemonData);
-
         const secondType = GetSecondType(pokemonData);
-        const secondcontainer = secondType !== null ? (<div className="pokemonType">{prettyTypeNameSpanish(secondType)}</div>) : (<></>);
-        
 
+        let secondTypeContainer = (<></>); 
+        if(secondType !== null)
+        {
+            secondTypeContainer = (<div className="pokemonType">{GetPrettyTypeNameSpanish(secondType)}</div>);
+        }  
+        
         pokemon = (
-        <>
-            <img className="pokemonImg" src={"https://img.pokemondb.net/sprites/home/normal/" + imageName + ".png"} alt={name}></img>
-            
-            <div className='types'>
-                <div className="pokemonType">{prettyTypeNameSpanish(firstType)}</div>
-                {secondcontainer}
-            </div>
-            <p className='pokemonName'>{name}</p>
-            
-        </>);
+            <>
+                {GetImage(pokemonData, false)}    
+
+                <div className='types'>
+                    <div className="pokemonType">{GetPrettyTypeNameSpanish(firstType)}</div>
+                    {secondTypeContainer}
+                </div>
+
+                <p className='pokemonName'>{name}</p>
+            </>
+        );
     }
     else 
     {
@@ -112,69 +152,47 @@ function PokemonEntry(props) {
 
 
     return (
-        <div className={"entryBox " + known + " " + firstType} key={"pokemon-" + num}>
-            <p className="dexNumber">Nº {num}</p>
+        <div className={"entryBox " + props.known + " " + firstType} key={"pokemon-" + props.num}>
+            <p className="dexNumber">Nº {props.num}</p>
             {pokemon}
         </div>
     );
 }
 
-function NavGenArrow(props)
+/**
+ * Devuelve un array con los dexNum de los pokémon de la generación indicada
+ * @param numGen [Integer | Obligatorio] El número de la generación que deseas
+ */
+const MakeDexNumByGeneration = (numGen) =>
 {
-    let previous = '';
-    if(props.previous === true)
+    if(numGen <= 0 || numGen > MAX_GENERATION_NUM)
     {
-        previous = props.previous;
+        return null;
     }
 
-    return (
-        <div className={'nextGenArrow ' + previous}>
-
-        </div>
-    );
-}
-
-function prettyTypeNameSpanish(name) {
-    switch (name) {
-        case "normal":
-            return "Normal";
-        case "fire":
-            return "Fuego";
-        case "water":
-            return "Agua";
-        case "grass":
-            return "Planta"
-        case "poison":
-            return "Veneno"
-        case "bug":
-            return "Bicho"
-        case "flying":
-            return "Volador"
-        case "electric":
-            return "Eléctrico"
-        case "ground":
-            return "Tierra"
-        case "fairy":
-            return "Hada"
-        case "fighting":
-            return "Lucha"
-        case "rock":
-            return "Roca"
-        case "psychic":
-            return "Psíquico"
-        case "steel":
-            return "Acero"
-        case "ice":
-            return "Hielo"
-        case "ghost":
-            return "Fantasma"
-        case "dragon":
-            return "Dragón"
-        case "dark":
-            return "Siniestro"
+    function ArrayFrom(first, last)
+    {
+        return Array.from({ length: last - first + 1 }, (_, index) => index + first);
     }
+
+    // Obtenemos el intervalo de dexNums de la generación indicada
+    const interval = generationDexNums[numGen];
+
+    return ArrayFrom(interval[0], interval[1]);
 }
 
+const MAX_GENERATION_NUM = 9;
+const generationDexNums = {
+    1: [1, 151],
+    2: [152, 251],
+    3: [252, 386],
+    4: [387, 493],
+    5: [494, 649],
+    6: [650, 721],
+    7: [722, 809],
+    8: [810, 905],
+    9: [906, 1025]
+};
 
 
 export default Pokedex;

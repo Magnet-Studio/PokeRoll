@@ -47,6 +47,34 @@ export const GetName = (data) =>
 }
 
 /**
+ * Devuelve el sprite del pokémon en objeto <img/>
+ * @param data [JSON | Obligatorio] Datos del pokémon
+ * @param isShiny [Boolean] True si es shiny
+ */
+export function GetImage(data, isShiny)
+{
+    const name = GetName(data);
+    let image = (<></>);
+    if(name != null)        
+    {
+        let shiny = "normal";
+        if(isShiny === true)
+        {
+            shiny = "shiny";
+        }
+
+        const url = "https://img.pokemondb.net/sprites/home/" + shiny + "/" + name + ".png";
+
+        image = (<img className="pokemonImg" src={url} alt={name}></img>);
+    }
+    return (
+        <>
+            {image}
+        </>
+    );
+}
+
+/**
  * Devuelve el primer tipo del pokémon
  * @param data [JSON | Obligatorio] Datos del pokémon
  */
@@ -74,3 +102,36 @@ export const GetSecondType = (data) =>
     }
     return null;
 }
+
+/**
+ * Devuelve el tipo indicado traducido al español y con la primera letra mayúscula
+ * @param name Nombre del tipo (obtenido del getNºType())
+ */
+export const GetPrettyTypeNameSpanish = (name) => 
+{
+    return types[name] || null;
+}
+
+/*
+* Traducción de los tipos
+*/
+const types = {
+    "normal":   "Normal",
+    "fire":     "Fuego",
+    "water":    "Agua",
+    "grass":    "Planta",
+    "poison":   "Veneno",
+    "bug":      "Bicho",
+    "flying":   "Volador",
+    "electric": "Eléctrico",
+    "ground":   "Tierra",
+    "fairy":    "Hada",
+    "fighting": "Lucha",
+    "rock":     "Roca",
+    "psychic":  "Psíquico",
+    "steel":    "Acero",
+    "ice":      "Hielo",
+    "ghost":    "Fantasma",
+    "dragon":   "Dragón",
+    "dark":     "Siniestro"
+};

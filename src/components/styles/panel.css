@@ -151,7 +151,7 @@
 #topelementsPanelContainer
 {
     grid-column: 1 / -1;
-    margin: 1vh 1vw 0 1vw;
+    margin: 0 1vw 0 1vw;
 }
 
 /* Game State Panel position */
@@ -175,4 +175,5 @@
     height: 40%;
     align-items: center;
     justify-content: center;
+    margin-top: 0.6vh;
 }
