@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import "./styles/mainInfo.css";
 import HelpIcon from "@mui/icons-material/Help";
+import CloseIcon from '@mui/icons-material/Close';
+
 
 function MainInfoButton() {
 
@@ -39,7 +41,7 @@ function ExitMainInfoButton(props)
 {
   return (
     <div id="exitMainInfoButton" onClick={props.exitHandler}>
-
+      <CloseIcon />
     </div>
   );
 }
