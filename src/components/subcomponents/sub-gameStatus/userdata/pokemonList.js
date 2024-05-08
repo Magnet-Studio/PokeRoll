@@ -10,9 +10,9 @@ export let FakeData =
             "iv": {
                 "hp":31,
                 "atq":31,
-                "def":31,
-                "spatq":10,
-                "spdef":31,
+                "def":21,
+                "spatq":3,
+                "spdef":25,
                 "spe":31
             }
         },
@@ -67,7 +67,7 @@ export let FakeData =
         {
             "id":5,
             "name": "mewtwo",
-            "nametag":null,
+            "nametag":"Mewtwo",
             "shiny": "normal",
             "originaltrainer": "CreatorBeastGD",
             "datefound":"07/05/2024",
@@ -83,7 +83,7 @@ export let FakeData =
         {
             "id":6,
             "name": "arcanine",
-            "nametag":null,
+            "nametag":"Arcanine",
             "shiny": "normal",
             "originaltrainer": "joseCP",
             "datefound":"07/05/2024",
@@ -99,7 +99,7 @@ export let FakeData =
         {
             "id":7,
             "name": "terapagos",
-            "nametag":null,
+            "nametag":"Terapagos",
             "shiny": "normal",
             "originaltrainer": "CreatorBeastGD",
             "datefound":"07/05/2024",
@@ -115,7 +115,7 @@ export let FakeData =
         {
             "id":8,
             "name": "dialga",
-            "nametag":null,
+            "nametag":"Dialga",
             "shiny": "shiny",
             "originaltrainer": "SparaOPS",
             "datefound":"07/05/2024",
@@ -147,23 +147,23 @@ export let FakeData =
         {
             "id":10,
             "name": "rattata",
-            "nametag":null,
+            "nametag":"Rattata",
             "shiny": "normal",
             "originaltrainer": "CreatorBeastGD",
             "datefound":"07/05/2024",
             "iv": {
                 "hp":31,
-                "atq":0,
-                "def":0,
-                "spatq":0,
-                "spdef":0,
-                "spe":0
+                "atq":5,
+                "def":5,
+                "spatq":5,
+                "spdef":5,
+                "spe":5
             }
         },
         {
             "id":11,
             "name": "lugia",
-            "nametag":null,
+            "nametag":"Lugia",
             "shiny": "normal",
             "originaltrainer": "CreatorBeastGD",
             "datefound":"07/05/2024",
@@ -196,7 +196,7 @@ export let FakeData =
         {
             "id":13,
             "name": "chespin",
-            "nametag":null,
+            "nametag":"Chespin",
             "shiny": "normal",
             "originaltrainer": "CreatorBeastGD",
             "datefound":"07/05/2024",
@@ -212,7 +212,7 @@ export let FakeData =
         {
             "id":14,
             "name": "umbreon",
-            "nametag":null,
+            "nametag":"Umbreon",
             "shiny": "shiny",
             "originaltrainer": "SimulationOfMario",
             "datefound":"07/05/2024",
@@ -228,7 +228,7 @@ export let FakeData =
         {
             "id":15,
             "name": "487", /* Por alguna razón, poner "giratina" no funciona */
-            "nametag":null,
+            "nametag":"Giratina",
             "shiny": "normal",
             "originaltrainer": "SimulationOfMario",
             "datefound":"07/05/2024",

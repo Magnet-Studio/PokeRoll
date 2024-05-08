@@ -57,25 +57,26 @@ function VerPokemonAlmacen() {
 const SetRareza = (rareza) => {
     switch (rareza) {
         case 1:
-            return 0.2;
-        case 2:
-            return 0.4;
-        case 3:
-            return 0.6;
-        case 4:
-            return 1;
-        case 5:
             return 2;
+        case 2:
+            return 4;
+        case 3:
+            return 6;
+        case 4:
+            return 10;
+        case 5:
+            return 20;
         case 6:
-            return 2.5;
+            return 25;
     }
 }
 
 const GetRareza = ({ ivs , shiny, rareza}) => {
     const rarity = SetRareza(rareza);
+    const finalValue = Math.trunc(rarity * ((shiny === "shiny" ? 500 : 10) * rarity + (Math.pow(ivs.hp + ivs.atq + ivs.def + ivs.spatq + ivs.spdef + ivs.spe , 1.7))));
     return (
         <>
-            <p>{Math.trunc(rarity * (shiny === "shiny" ? 1.01642 : 0.101645) * (Math.pow(ivs.hp + ivs.atq + ivs.def + ivs.spatq + ivs.spdef + ivs.spe , 2.2)))}</p>
+            <p>{finalValue < 10 ? 10 : finalValue}</p>
         </>
     )
 }
