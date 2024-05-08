@@ -12,6 +12,7 @@
   margin-right: 0.1vw;
   z-index: 4;
   pointer-events: all;
+  cursor: pointer;
 }
 
 #mainInfoButtonContainer.disabled
@@ -21,7 +22,6 @@
 
 #mainInfoButton 
 {
-  cursor: pointer;
   width: 120%;
   height: 120%;
   color: white;

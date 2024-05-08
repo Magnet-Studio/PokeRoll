@@ -3,7 +3,12 @@ import React from "react";
 
 /**
  * Librería para obtener datos de la PokeAPI y deserializarlos.
- * Útil para obtener los tipos de un pokémon.
+ * Útil para obtener los tipos de un pokémon o su sprite imagen.
+ */
+
+/**
+ * Devuelve los datos (JSON) del pokémon
+ * @param dexNum [Integer | Obligatorio] DexNum del pokémon
  */
 export const GetDataByDexNum = async (dexNum) =>
 {
@@ -19,6 +24,10 @@ export const GetDataByDexNum = async (dexNum) =>
     }
 }
 
+/**
+ * Devuelve los datos (JSON) del pokémon
+ * @param pokemonName [String | Obligatorio] Nombre del pokémon
+ */
 export const GetDataByName = async (pokemonName) =>
 {   
     try 
@@ -39,21 +48,25 @@ export const GetDataByName = async (pokemonName) =>
  */
 export const GetName = (data) =>
 {
-    if(data != undefined && data != null)
-        {
-            return data.species.name;   
-        }
-        return null;
+    if(data !== undefined && data !== null)
+    {
+        return data.species.name;   
+    }
+    return null;
 }
 
+/**
+ * Devuelve el dexNum del pokémon
+ * @param data [JSON | Obligatorio] Datos del pokémon
+ */
 export const GetDexNum = (data) =>
+{
+    if(data !== undefined && data !== null)
     {
-    if(data != undefined && data != null)
-        {
-            return data.id;   
-        }
-        return null;
+        return data.id;   
     }
+    return null;
+}
 
 /**
  * Devuelve el sprite del pokémon en objeto <img/>
@@ -64,7 +77,7 @@ export function GetImage(data, isShiny)
 {
     const name = GetName(data);
     let image = (<></>);
-    if(name != null)        
+    if(name !== null)        
     {
         let shiny = "normal";
         if(isShiny === true)
@@ -89,7 +102,7 @@ export function GetImage(data, isShiny)
  */
 export const GetFirstType = (data) =>
 {
-    if (data != undefined && data != null) 
+    if (data !== undefined && data !== null) 
     {
         return data.types[0].type.name;
     }
@@ -102,7 +115,7 @@ export const GetFirstType = (data) =>
  */
 export const GetSecondType = (data) =>
 {
-    if (data != undefined && data != null) 
+    if (data !== undefined && data !== null) 
     {
         if (data.types[1] != null) 
         {

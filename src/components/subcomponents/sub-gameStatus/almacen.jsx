@@ -76,16 +76,12 @@ function FiltrosAlmacen() {
                     <label htmlFor="checkboxShiny">Shiny</label>
                 </div>
             </div>
-
-           
-
-            
-            
         </>
     )
 }
 
-function CompletePokemonList() {
+function CompletePokemonList() 
+{
     const list = FakeData.map((datos) =>
         <PokemonCard data={datos} key={datos.id}/>
     );
@@ -98,16 +94,15 @@ function CompletePokemonList() {
 
 }
 
-// SKILL ISSUE BUT IT'S NORMAL WHEN YOU ARE LEARNING
-function PokemonCard({data}) {
+function PokemonCard({data}) 
+{
+
     /* Esto habria que hacerlo con un array de pokemon? */
     const [pokemonData, setPokemonData] = useState(null);
     const [pokemonSpeciesData, setPokemonSpeciesData] = useState(null);
 
-    console.log(data);
-
     useEffect(() => {
-        const fetchDataAndUpdateState = async () =>
+        const fetchDataAndUpdateState = async () => 
             {
                 const dataNormal = await GetDataByName(data.name);
                 const dataSpecies = await GetSpeciesDataByName(data.name);
