@@ -820,7 +820,7 @@ let pokemonTiers = [
             {"name": "Meowscarada"},
             {"name": "Fuecoco"},
             {"name": "Crocalor"},
-            {"name": "Skeledirge"},
+            
             {"name": "Quaxly"},
             {"name": "Quaxwell"},
             {"name": "Quaquaval"},
@@ -914,6 +914,7 @@ let pokemonTiers = [
     /* Tier 2 */ [],
     /* Tier 3 */ [],
     /* Tier 4 */ [
+        {"name": "Skeledirge"},
         {"name": "Kingambit"},
         {"name": "Colmilargo"},
         {"name": "Colagrito"},
