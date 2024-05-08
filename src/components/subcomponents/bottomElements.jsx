@@ -22,11 +22,11 @@ function BottomElements()
         <Routes>
             <Route path='/ruleta' element={<ButtonsRuletaStatus/>} />
 
-            <Route path='/almacen' element={<ButtonsAlmacenStatus/>} />
+            <Route path='/almacen/*' element={<ButtonsAlmacenStatus/>} />
 
-            <Route path='/pokedex' element={<ButtonsPokedexStatus/>} />
+            <Route path='/pokedex/*' element={<ButtonsPokedexStatus/>} />
 
-            <Route path='/marcadores' element={<ButtonsMarcadoresStatus/>} />
+            <Route path='/marcadores/*' element={<ButtonsMarcadoresStatus/>} />
 
             <Route path='/intercambio' element={<ButtonsIntercambioStatus/>} />
 

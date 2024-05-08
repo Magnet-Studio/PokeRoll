@@ -14,6 +14,10 @@
     
 }
 
+a {
+    pointer-events: all;
+}
+
 #pokemon-cards-container {
     width: 100%;
     height: 96%;

@@ -1,4 +1,4 @@
-const FakeData = 
+export let FakeData = 
     [
         {
             "id":1,
@@ -20,7 +20,7 @@ const FakeData =
             "id":2,
             "name": "meowscarada",
             "nametag":"Michi",
-            "shiny": "normal",
+            "shiny": "shiny",
             "originaltrainer": "CreatorBeastGD",
             "datefound":"07/05/2024",
             "iv": {
@@ -242,7 +242,10 @@ const FakeData =
             }
         }
         
-    ]
+    ];
 
-
-export default FakeData;
+export const GetPokemonByID = (id) => {
+    return FakeData.find((pokemon) => {
+        return (pokemon.id === parseInt(id));
+    });
+}

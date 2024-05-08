@@ -1,9 +1,10 @@
 import React, { useState , useEffect } from "react";
 import './styles/almacen.css';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
-import FakeData from "./userdata/pokemonList";
+import { FakeData } from "./userdata/pokemonList";
 import {GetSpeciesDataByName, GetSpanishName} from './PokeAPI/PokemonSpeciesData';
 import {GetDataByName, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish, GetImage, GetDexNum} from './PokeAPI/PokemonData';
+import { Link } from "react-router-dom";
 
 function Almacen() {
     return (
@@ -138,10 +139,12 @@ function PokemonCard({data})
     );
 
     return (
-        <div className={"entryBox " + firstType + " " + data.shiny} key={data.id}>
-            <p className="dexNumber">Nº {dexNum}</p>
-            {pokemon}
-        </div>
+        <Link to={"ver-pokemon?id=" + data.id}>
+            <div className={"entryBox " + firstType + " " + data.shiny} key={data.id}>
+                <p className="dexNumber">Nº {dexNum}</p>
+                {pokemon}
+            </div>
+        </Link>
     );
 }
 

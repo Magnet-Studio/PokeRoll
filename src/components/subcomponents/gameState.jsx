@@ -3,6 +3,7 @@ import {Routes, Route} from 'react-router-dom';
 import Ruleta from './sub-gameStatus/ruleta';
 import Almacen from './sub-gameStatus/almacen';
 import Pokedex from './sub-gameStatus/pokedex';
+import VerPokemonAlmacen from './sub-gameStatus/verPokemonAlmacen';
 
 function GameState() {
     return (
@@ -10,6 +11,8 @@ function GameState() {
             <Route path='/ruleta' element={<RuletaGameState/>} />
 
             <Route path='/almacen' element={<AlmacenGameState/>} />
+
+            <Route path='/almacen/ver-pokemon' element={<VerPokemonAlmacenGameState/>} />
 
             <Route path='/pokedex' element={<PokedexGameState/>} />
 
@@ -31,6 +34,12 @@ function RuletaGameState() {
 function AlmacenGameState() {
     return (
         <Almacen />
+    );
+}
+
+function VerPokemonAlmacenGameState() {
+    return (
+        <VerPokemonAlmacen />
     );
 }
 
