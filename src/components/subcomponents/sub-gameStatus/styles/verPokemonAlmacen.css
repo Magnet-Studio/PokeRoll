@@ -15,23 +15,68 @@
     position: relative;
 }
 
+.statsFullStructure 
+{
+    position:relative;
+}
+
 .stats
 {
     position: absolute;
-    align-items: center;
-    align-content: center;
-    text-align: center;
     z-index: 4;
 }
 
 .statsTemplate {
     position: absolute;
-    align-items: center;
-    align-content: center;
-    text-align: center;
     z-index: 3;
 }
 
 .elemTexts {
     z-index: 5;
 }
+
+p {
+    color: white;
+    text-align: center;
+    font-size: 1.7vw;
+}
+
+.nombrePokemon {
+    position: absolute;
+    text-align: center;
+    margin-top: 17vw;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+    
+}
+
+#infoGeneral {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+
+#infoGeneral > img {
+    position: absolute;
+    width: 15vw;
+    height: 15vw;
+    right: 0;
+    left: 0;
+    margin-right: auto;
+    margin-left: auto;
+    height: auto;
+}
+
+.nombreEO {
+    color: rgb(182, 220, 254);
+}
+
+.ValorRareza {
+    color: rgb(182, 220, 254);
+    margin-top: 0;
+    font-size: 3vw;
+}
+
+@import url("./types.css");

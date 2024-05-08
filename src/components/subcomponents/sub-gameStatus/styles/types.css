@@ -1,89 +1,89 @@
-.entryBox.normal 
+.normal 
 {
     background-color: rgba(255, 255, 255, 0.539);
 }
 
-.entryBox.fire 
+.fire 
 {
     background-color: rgba(255, 64, 0, 0.539);
 }
 
-.entryBox.water
+.water
 {
     background-color: rgba(70, 138, 255, 0.747);
 }
 
-.entryBox.grass
+.grass
 {
     background-color: rgba(53, 255, 34, 0.539);
 }
 
-.entryBox.bug
+.bug
 {
     background-color: rgba(136, 255, 125, 0.539);
 }
 
-.entryBox.poison 
+.poison 
 {
     background-color: rgba(173, 67, 255, 0.539);
 }
 
-.entryBox.electric 
+.electric 
 {
     background-color: rgb(204, 178, 45);
 }
 
-.entryBox.ground 
+.ground 
 {
     background-color: rgba(234, 181, 49, 0.539);
 }
 
-.entryBox.rock 
+.rock 
 {
     background-color: rgba(180, 132, 27, 0.539);
 }
 
-.entryBox.fairy 
+.fairy 
 {
     background-color: rgba(204, 165, 214, 0.884);
 }
 
-.entryBox.fighting 
+.fighting 
 {
     background-color: rgba(255, 89, 0, 0.539);
 }
 
-.entryBox.psychic 
+.psychic 
 {
     background-color: rgba(250, 153, 252, 0.539);
 }
 
-.entryBox.ghost 
+.ghost 
 {
     background-color: rgba(88, 0, 90, 0.539);
 }
 
-.entryBox.ice 
+.ice 
 {
     background-color: rgba(183, 250, 255, 0.779);
 }
 
-.entryBox.dragon 
+.dragon 
 {
     background-color: rgba(12, 14, 86, 0.779);
 }
 
-.entryBox.steel 
+.steel 
 {
     background-color: rgba(114, 114, 114, 0.779);
 }
 
-.entryBox.dark 
+.dark 
 {
     background-color: rgba(47, 47, 47, 0.779);
 }
 
-.entryBox.flying 
+.flying 
 {
     background-color: rgba(149, 193, 246, 0.779);
 }

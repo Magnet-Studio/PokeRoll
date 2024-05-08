@@ -5,7 +5,6 @@ let pokemonTiers = [
             {"name": "Venusaur"},
             {"name": "Charmander"},
             {"name": "Charmeleon"},
-            {"name": "Charizard"},
             {"name": "Squirtle"},
             {"name": "Wartortle"},
             {"name": "Blastoise"},
@@ -56,7 +55,6 @@ let pokemonTiers = [
             {"name": "Mankey"},
             {"name": "Primeape"},
             {"name": "Growlithe"},
-            {"name": "Arcanine"},
             {"name": "Poliwag"},
             {"name": "Poliwhirl"},
             {"name": "Poliwrath"},
@@ -192,8 +190,6 @@ let pokemonTiers = [
             {"name": "Yanma"},
             {"name": "Wooper"},
             {"name": "Quagsire"},
-            {"name": "Espeon"},
-            {"name": "Umbreon"},
             {"name": "Murkrow"},
             {"name": "Slowking"},
             {"name": "Misdreavus"},
@@ -604,7 +600,6 @@ let pokemonTiers = [
             {"name": "Hydreigon"},
             {"name": "Larvesta"},
             {"name": "Volcarona"},
-            {"name": "Chespin"},
             {"name": "Quilladin"},
             {"name": "Chesnaught"},
             {"name": "Fennekin"},
@@ -817,7 +812,6 @@ let pokemonTiers = [
             {"name": "Overqwil"},
             {"name": "Sprigatito"},
             {"name": "Floragato"},
-            {"name": "Meowscarada"},
             {"name": "Fuecoco"},
             {"name": "Crocalor"},
             
@@ -892,7 +886,6 @@ let pokemonTiers = [
             {"name": "Clodsire"},
             {"name": "Farigiraf"},
             {"name": "Dudunsparce"},
-
             {"name": "Frigibax"},
             {"name": "Arctibax"},
             {"name": "Baxcalibur"},
@@ -906,14 +899,24 @@ let pokemonTiers = [
             {"name": "Okidogi"},
             {"name": "Munkidori"},
             {"name": "Fezandipiti"},
-            {"name": "Ogerpon"},
             {"name": "Archaludon"},
             {"name": "Hydrapple"},
             
     ],
-    /* Tier 2 */ [],
-    /* Tier 3 */ [],
+    /* Tier 2 */ [
+        
+        {"name": "Chespin"},
+    ],
+    /* Tier 3 */ [
+        
+        {"name": "Arcanine"},
+    ],
     /* Tier 4 */ [
+        
+        {"name": "Meowscarada"},
+        {"name": "Espeon"},
+        {"name": "Umbreon"},
+        {"name": "Charizard"},
         {"name": "Skeledirge"},
         {"name": "Kingambit"},
         {"name": "Colmilargo"},
@@ -1010,6 +1013,7 @@ let pokemonTiers = [
             {"name": "Electrofuria"},
             {"name": "Ferromole"},
             {"name": "Ferrotesta"},
+            {"name": "Ogerpon"},
             {"name": "Terapagos"}
     ],
     /* Tier 6 */ [
