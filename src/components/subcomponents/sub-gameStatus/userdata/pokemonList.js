@@ -11,7 +11,7 @@ export let FakeData =
                 "hp":31,
                 "atq":31,
                 "def":31,
-                "spatq":31,
+                "spatq":10,
                 "spdef":31,
                 "spe":31
             }
@@ -24,11 +24,11 @@ export let FakeData =
             "originaltrainer": "CreatorBeastGD",
             "datefound":"07/05/2024",
             "iv": {
-                "hp":31,
+                "hp":10,
                 "atq":31,
-                "def":31,
+                "def":22,
                 "spatq":31,
-                "spdef":31,
+                "spdef":10,
                 "spe":31
             }
         },
@@ -153,11 +153,11 @@ export let FakeData =
             "datefound":"07/05/2024",
             "iv": {
                 "hp":31,
-                "atq":31,
-                "def":31,
-                "spatq":31,
-                "spdef":31,
-                "spe":31
+                "atq":0,
+                "def":0,
+                "spatq":0,
+                "spdef":0,
+                "spe":0
             }
         },
         {

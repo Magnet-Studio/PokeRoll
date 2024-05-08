@@ -18,10 +18,13 @@ function TopElements()
     const location = useLocation();
     let pokenametag = "";
     if (location.pathname === "/almacen/ver-pokemon") {
+
+        
         const searchParams = new URLSearchParams(location.search);
         const id = searchParams.get("id");
         const pokemon = GetPokemonByID(id);
-        pokenametag = pokemon.nametag;
+        
+        pokenametag = pokemon.nametag === null ? pokemon.name : pokemon.nametag;
     }
 
     return (
