@@ -6,6 +6,10 @@ import { GetFrequency } from "./userdata/pokemonFrequency";
 import { GetDataByName, GetImage, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish } from "./PokeAPI/PokemonData";
 import { GetSpeciesDataByName, GetSpanishName } from "./PokeAPI/PokemonSpeciesData";
 import { GetRareza } from "./userdata/rareza";
+import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
+import Popover from '@mui/material/Popover';
+import Typography from '@mui/material/Typography';
+
 
 function VerPokemonAlmacen() {
 
@@ -47,12 +51,16 @@ function VerPokemonAlmacen() {
     
 
     const nombrePKM = pokemon.nametag === null ? name : pokemon.nametag;
+    const shinyCond = (pokemon.shiny === "shiny") ? <MouseOverPopover content={<AutoAwesomeIcon />} shown={<>¡Felicidades! ¡Has conseguido un Pokémon Variocolor!<br/>Obtendrás una bonificación de puntos de rareza por ello :)</>}/> : <></>;
 
     return (
         <div id="verPokemonAlmacenBigBox">
             <div id="infoGeneral">
                 {GetImage(pokemonData, (pokemon.shiny === "shiny" ? true : false))}
-                <p>{nombrePKM}</p>
+                <div className="inlineContainer">
+                    <p>{nombrePKM}</p>
+                    {shinyCond}
+                </div>
                 <div id="tiposPokemon">
                   {firstTypeContainer}
                   {secondTypeContainer}
@@ -76,6 +84,55 @@ function VerPokemonAlmacen() {
             </div>
         </div>
     );
+}
+
+function MouseOverPopover({ content, shown }) {
+  console.log("Content:", content);
+  console.log("Shown:", shown);
+
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handlePopoverOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handlePopoverClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+
+  return (
+    <div style={{ display: 'inline-block'}}>
+      <Typography
+        className="Typography-hoverContent"
+        aria-owns={open ? 'mouse-over-popover' : undefined}
+        aria-haspopup="true"
+        onMouseEnter={handlePopoverOpen}
+        onMouseLeave={handlePopoverClose}
+      >
+        {content}
+      </Typography>
+      <Popover
+        id="mouse-over-popover"
+        className="TypographyText"
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handlePopoverClose}
+        disableRestoreFocus
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'center',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+      >
+        <Typography sx={{ p: 1 } } >{shown}</Typography>
+      </Popover>
+    </div>
+  );
 }
 
 const nombresRarezas = ['Común', 'Infrecuente', 'Raro', 'Épico', 'Legendario', 'Singular'];
@@ -109,7 +166,7 @@ const HexagonData = ({ size, fillColor, strokeColor, data}) => {
   const pointsString = points.map(point => point.join(',')).join(' ');
 
   return (
-    <svg className="stats" height="25vw" width="25vw"
+    <svg className="stats" height="40vh" width="50vw"
       viewBox={`15 -15 ${size * 2} ${size * Math.sqrt(3) * 2}`}
     >
       <polygon
@@ -149,7 +206,7 @@ const Hexagon = ({ size, fillColor, strokeColor, data }) => {
   const values = [data.def, data.atq, data.hp, data.spatq, data.spdef, data.spe];
 
   return (
-    <svg className="statsTemplate" height="25vw" width="25vw" viewBox={`15 -15 ${size * 2} ${size * Math.sqrt(3) * 2}`}>
+    <svg className="statsTemplate" height="40vh" width="50vw" viewBox={`15 -15 ${size * 2} ${size * Math.sqrt(3) * 2}`}>
 
       {points.map((point, index) => (
         

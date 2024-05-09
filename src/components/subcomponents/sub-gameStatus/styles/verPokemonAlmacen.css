@@ -5,6 +5,12 @@
     grid-column: 2;
 }
 
+.MuiTypography-root {
+    pointer-events: all;
+}
+
+
+
 
 @media screen and (min-width: 800px) {
     #verPokemonAlmacenBigBox 
@@ -69,10 +75,31 @@ p {
     gap: 2vh;
 }
 
-#infoGeneral > p {
-    width: 100%;
+#infoGeneral svg {
+    margin-left: 0.25vw;
+    margin-right: 0.25vw;
+}
+
+#infoGeneral p {
+    font-size: 2vw;
     margin: 0;
     margin-top: 3.5vh;
+}
+
+.TypographyText p {
+    color: black;
+    font-size: 100%;
+}
+
+.Typography-hoverContent {
+    color: rgb(255, 230, 0);
+}
+
+.inlineContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
 }
 
 #infoGeneral > img {
@@ -81,6 +108,7 @@ p {
     transform: translateX(-50%);
     height: auto;
     position: relative;
+    margin-bottom: 2%;
 }
 
 .nombreEO {
@@ -141,12 +169,14 @@ p {
 {
     #verPokemonAlmacenBigBox 
     {
-        display: flex;
+        
+        display:grid;
         justify-content: center;
         flex-direction: column;
-        overflow-y: auto;
-        height: 100%;
-        gap: 1vh;
+        overflow-y: scroll;
+        height:100%;
+        width: 100%;
+        gap: 2vh;
     }
 
     #verPokemonAlmacenBigBox > div 
@@ -161,25 +191,44 @@ p {
         gap: 0.5vh;
     }
 
-    #infoGeneral > img 
+    #infoGeneral p
     {
-        width: 70%;
+        font-size: 100%;
     }
 
-    .statsDiv > p 
+
+
+    #infoGeneral > img 
+    {
+        width: 50%;
+        margin-bottom: 10%;
+    }
+
+    #statsDiv > p 
     {
         margin: 0;
+        font-size: 100%;
+    }
+
+    #infoAdicional > p {
+        font-size: 100%;
     }
     
     #infoGeneral > p 
     {
         margin-top: 1.5vh;
+        font-size: 100%;
     }
 
     #statsFullStructure 
     {
-        height: auto;
+        height: 100%;
     }
+    .TypographyText p {
+        color: black;
+        font-size: 60%;
+    }
+    
 }
 
 @import url("./types.css");
