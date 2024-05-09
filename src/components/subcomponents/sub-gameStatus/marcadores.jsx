@@ -62,11 +62,9 @@ function CompleteRankingList({selectedValue})
     }
 
 
-    let keyNum = 0; 
-    const list = sortedList.map((datos) => {
-        keyNum++;
-        return <RankingCard  data={datos} key={keyNum}/>
-    });
+    const list = sortedList.map((datos, index) => (
+        <RankingCard  data={datos} keyNum={index} selectedValue={selectedValue}/>
+    ));
 
     return (
         <>
@@ -77,13 +75,19 @@ function CompleteRankingList({selectedValue})
 }
 
 
-function RankingCard({data, keyNum})
+function RankingCard({data, keyNum, selectedValue})
 {
+
+    const position = <span className={keyNum + 1 === 1 ? "firstPosition" : keyNum + 1 === 2 ? "secondPosition" : "thirdPosition"}>{keyNum + 1}</span>;
+
     return (
         <>
             <div className="rankBox" key={keyNum} >
                 <div className="rankTitle">
-                    <p>{data.rarestpokemon.nametag} ({data.playername})</p>
+                        <p>
+                            {position}
+                            <span>{" · " + data.rarestpokemon.nametag} ({data.playername})</span>
+                        </p>
                 </div>
                 <div className="rankData">
                     

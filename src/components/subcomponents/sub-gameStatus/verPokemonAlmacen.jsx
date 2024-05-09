@@ -28,7 +28,7 @@ function VerPokemonAlmacen() {
             };
 
             fetchDataAndUpdateState();
-    });
+    }, [pokemon.name]);
 
     const name = GetSpanishName(pokemonSpeciesData);
     const rareza = GetFrequency(name);
@@ -80,9 +80,11 @@ function VerPokemonAlmacen() {
 
 const nombresRarezas = ['Común', 'Infrecuente', 'Raro', 'Épico', 'Legendario', 'Singular'];
 
-const GetRarezaValue = ({ ivs , shiny, rareza}) => {
+function GetRarezaValue({ ivs , shiny, rareza}) 
+{
     
     const finalValue = GetRareza(ivs, shiny, rareza);
+
 
     return (
         <>

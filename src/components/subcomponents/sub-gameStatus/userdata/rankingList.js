@@ -167,23 +167,6 @@ export const PlayerList = [
         'playername': 'BulbasaurFan',
         'score': 600,
         'bestpokemon': {
-            "id":9,
-            "name": "darkrai",
-            "nametag":"Dark ✰",
-            "shiny": "shiny",
-            "originaltrainer": "CreatorBeastGD",
-            "datefound":"07/05/2024",
-            "iv": {
-                "hp":31,
-                "atq":31,
-                "def":31,
-                "spatq":31,
-                "spdef":31,
-                "spe":31
-            },
-            "rareza": 31999
-        },
-        'rarestpokemon': {
             "id":11,
             "name": "lugia",
             "nametag":"Lugia",
@@ -199,6 +182,24 @@ export const PlayerList = [
                 "spe":5
             },
             "rareza": 12853
+        },
+        'rarestpokemon': {
+            "id":9,
+            "name": "darkrai",
+            "nametag":"Dark ✰",
+            "shiny": "shiny",
+            "originaltrainer": "CreatorBeastGD",
+            "datefound":"07/05/2024",
+            "iv": {
+                "hp":31,
+                "atq":31,
+                "def":31,
+                "spatq":31,
+                "spdef":31,
+                "spe":31
+            },
+            "rareza": 31999
+            
         },
         'rolls': 60,
         'pointsspent': 600,

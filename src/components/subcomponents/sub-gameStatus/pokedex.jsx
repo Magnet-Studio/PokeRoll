@@ -4,7 +4,7 @@ import {useState, useEffect} from 'react';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import {GetSpeciesDataByDexNum, GetSpanishName} from './PokeAPI/PokemonSpeciesData';
 import {GetDataByDexNum, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish, GetImage} from './PokeAPI/PokemonData';
-
+import { PokedexRegisters } from './userdata/pokedexRegisters'; 
 
 /**
  * Función principal que se exporta.
@@ -76,10 +76,8 @@ function NavGenArrow(props)
 function CompleteEntryList(props)
 {
     
-    const known = 'known';  // Only test
-
     const list = props.dexNumbers.map((num) => 
-        <PokemonEntry num={num} known={known} key={num} />
+        <PokemonEntry num={num} known={PokedexRegisters[num].known} key={num} />
     );
 
     return (

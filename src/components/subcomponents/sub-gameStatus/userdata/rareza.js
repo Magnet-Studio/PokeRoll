@@ -17,5 +17,5 @@ export const GetRareza = (ivs, shiny, rareza) => {
     const ivFactor = (Math.pow(ivs.hp + ivs.atq + ivs.def + ivs.spatq + ivs.spdef + ivs.spe , 1.4)) * 10
     const finalValue = Math.trunc((Math.pow(shinyFactor + rarity, 1.2) + ivFactor) / 5);
 
-    return finalValue < 10 ? 10 : finalValue;
+    return !isNaN(finalValue) ? (finalValue < 10 ? 10 : finalValue) : "Calculando...";
 }
