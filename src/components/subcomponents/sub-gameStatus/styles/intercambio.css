@@ -1,0 +1,29 @@
+table {
+  width: 100%;
+  height: 100%;
+}
+
+tr {
+  height: 50%;
+}
+
+.primerVistaInicioIntercambioBody {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.intercambioTextoInicio {
+  color: white;
+}
+
+.intercambioInputCodigo {
+  width: 50%;
+  height: 50%;
+  border-radius: 15px;
+}
+
+.intercambioBoton {
+  background-color: green;
+  height: 100%;
+}
