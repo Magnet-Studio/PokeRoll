@@ -140,7 +140,7 @@ function PokemonEntry(props)
                     {secondTypeContainer}
                 </div>
 
-                <p className='pokemonName'>{name}</p>
+                <p className='pokemonName'>{(name === undefined ? "Cargando..." : name)}</p>
             </>
         );
     }

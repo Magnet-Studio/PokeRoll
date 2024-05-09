@@ -71,7 +71,7 @@ function VerPokemonAlmacen() {
                 <p className="fechaEncontrado">{"Encontrado el " + pokemon.datefound}</p>
                 <p className="entrenadorOriginal">Entrenador original:</p>
                 <p className="nombreEO">{pokemon.originaltrainer}</p>
-                <p className={"rareza"}>Rareza: <span className={"rareza" + rareza}>{nombreRareza}</span></p>
+                <p className="rareza">Rareza: <span className={"rareza" + rareza}>{(nombreRareza == undefined ? "Cargando..." : nombreRareza)}</span></p>
                 <GetRarezaValue ivs={pokemon.iv} shiny={pokemon.shiny} rareza={rareza}/>
             </div>
 
