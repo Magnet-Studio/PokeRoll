@@ -1,0 +1,92 @@
+@import url("../../../../styles/fonts.css");
+
+#marcadoresBigBox {
+    width: 100%;
+    height: 96%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    grid-column: 2;
+    display: grid;
+    grid-template-rows: 20% 80%;
+    
+    overflow-y:auto;
+    pointer-events: all;
+    
+}
+
+a {
+    pointer-events: all;
+}
+
+#ranking-cards-container {
+    width: 100%;
+    height: 96%;
+    justify-content: center;
+    flex-direction: row;
+}   
+
+#filtroMarcador {
+    text-align: center;
+    align-content: center;
+    width: 100%;
+    height: 80%;
+    display: flex;
+    font-family: vanilla-regular;
+    color: white;
+    
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+#filtroMarcador > svg {
+    height: 6.3vh;
+    margin-right: 2vw;
+    width: auto;
+}
+
+.inputElem {
+    max-height: 80%;
+    margin-right: 1em;
+    font-family: vanilla-regular;
+    border-radius: 1vw;
+    border: 0.2vw solid gray;
+    color: gray;
+    text-align: center;
+    width: auto;
+    pointer-events: all;
+    width: 15vw;
+    height: 6vh;
+}
+
+option 
+{
+    font-family: vanilla-regular;
+}
+
+@media screen and (max-width: 900px)
+{
+    #ranking-cards-container
+    {
+        grid-template-columns: 12.5vw 12.5vw 12.5vw 12.5vw;
+    }
+    .entryBox 
+    {
+        height: 12.5vw;
+    }
+}
+
+@media screen and (max-width: 700px)
+{
+    #ranking-cards-container
+    {
+        grid-template-columns: 16.66vw 16.66vw 16.66vw;
+    }
+    .entryBox 
+    {
+        height: 16.66vw;
+    }
+}
+
+@import url("./rankingCard.css");
+
+@import url("./types.css");

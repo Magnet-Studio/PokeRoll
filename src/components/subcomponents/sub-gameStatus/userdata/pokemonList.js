@@ -168,12 +168,12 @@ export let FakeData =
             "originaltrainer": "CreatorBeastGD",
             "datefound":"07/05/2024",
             "iv": {
-                "hp":31,
-                "atq":31,
-                "def":31,
-                "spatq":31,
-                "spdef":31,
-                "spe":31
+                "hp":5,
+                "atq":5,
+                "def":5,
+                "spatq":5,
+                "spdef":5,
+                "spe":5
             }
         }
         ,

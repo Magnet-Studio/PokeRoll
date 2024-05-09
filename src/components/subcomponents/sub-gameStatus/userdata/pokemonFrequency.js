@@ -1,4 +1,19 @@
-let pokemonTiers = [
+/**
+ * Devuelve un valor entre 1 y 6 referente al "valor de frecuencia"
+ * @param name 
+ */
+export const GetFrequency = (name) => {
+    for (let i = 0 ; i < pokemonFrequencies.length ; i++) {
+        const foundPokemon = pokemonFrequencies[i].find(pokemon => pokemon.name === name);
+
+        if (foundPokemon) {
+            return i + 1;
+        }
+    }
+    return 0;
+}
+
+let pokemonFrequencies = [
         [
             {"name": "Bulbasaur"},
             {"name": "Ivysaur"},
@@ -1041,15 +1056,4 @@ let pokemonTiers = [
             {"name": "Zarude"},
             {"name": "Pecharunt"}
     ]
-]
-
-export const GetRarityOfPokemon = (name) => {
-    for (let i = 0 ; i < pokemonTiers.length ; i++) {
-        const foundPokemon = pokemonTiers[i].find(pokemon => pokemon.name === name);
-
-        if (foundPokemon) {
-            return i + 1;
-        }
-    }
-    return 0;
-}
+];
