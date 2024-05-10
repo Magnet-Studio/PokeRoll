@@ -25,6 +25,7 @@ tr {
   border-radius: 15px;
   font-size: xx-large;
   text-align: center;
+  pointer-events: all;
 }
 
 .intercambioBoton {
