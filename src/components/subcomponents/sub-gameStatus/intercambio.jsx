@@ -1,23 +1,37 @@
+import React, { useState } from "react";
 import "./styles/intercambio.css";
 import "../../styles/panel.css";
 
 export default function Intercambio() {
+  const [inputValue, setInputValue] = useState("");
+
+  const handleChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert(`Code: ${inputValue}`);
+  };
   return (
     <>
       <div id="gamestatePanelContainer">
-        <table>
-          <tbody className="primerVistaInicioIntercambioBody">
+        <form onSubmit={handleSubmit}>
+          <table>
             <tr>
               <TextoInformativo />
             </tr>
             <tr>
-              <InputCodigoIntercambio />
+              <InputCodigoIntercambio
+                handleChange={handleChange}
+                input={inputValue}
+              />
             </tr>
             <tr>
               <BotonIntercambio />
             </tr>
-          </tbody>
-        </table>
+          </table>
+        </form>
       </div>
     </>
   );
@@ -31,8 +45,15 @@ function TextoInformativo() {
   );
 }
 
-function InputCodigoIntercambio() {
-  return <input className="intercambioInputCodigo"></input>;
+function InputCodigoIntercambio({ input, handleChange }) {
+  return (
+    <input
+      type="text"
+      value={input}
+      onChange={handleChange}
+      className="intercambioInputCodigo"
+    ></input>
+  );
 }
 
 function BotonIntercambio() {
