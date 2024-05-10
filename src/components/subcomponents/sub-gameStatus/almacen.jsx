@@ -10,30 +10,49 @@ import { GetRareza } from "./userdata/rareza";
 
 function Almacen() {
     const [selectedValue, setSelectedValue] = useState('0');
+    const [selectedTier, setSelectedTier] = useState('0');
+    const [selectedType, setSelectedType] = useState('0');
+    const [Name, setName] = useState('');
 
     return (
         <>
             <div id="almacenBigBox">
                 <div id="filtros">
-                    <FiltrosAlmacen selectedValue={selectedValue} setSelectedValue={setSelectedValue} />
+                    <FiltrosAlmacen selectedValue={selectedValue} 
+                                    setSelectedValue={setSelectedValue} 
+                                    selectedTier={selectedTier}
+                                    setSelectedTier={setSelectedTier}
+                                    selectedType={selectedType}
+                                    setSelectedType={setSelectedType}
+                                    Name={Name}
+                                    setName={setName}/>
                 </div>
 
                 <div id="pokemon-cards-container">
-                    <CompletePokemonList selectedValue={selectedValue} />
+                    <CompletePokemonList selectedValue={selectedValue} selectedTier={selectedTier} selectedType={selectedType} Name={Name}/>
                 </div>
             </div>
         </>
     )
 }
 
-function FiltrosAlmacen( {selectedValue, setSelectedValue} ) {
+function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedTier, setSelectedTier, selectedType, setSelectedType, Name, setName} ) {
     const handleSelectChange = (event) => {
         setSelectedValue(event.target.value);
+    };
+    const handleSelectTier = (event) => {
+        setSelectedTier(event.target.value);
+    };
+    const handleSelectType = (event) => {
+        setSelectedType(event.target.value);
+    };
+    const handleName = (event) => {
+        setName(event.target.value);
     };
     return(
         <>
             <FilterAltIcon />
-            <select className="inputElem" name="generalFilter" defaultValue="0" value={selectedValue} onChange={handleSelectChange}>
+            <select className="inputElem" name="generalFilter" value={selectedValue} onChange={handleSelectChange}>
                 <option value="0">Obtenidos más reciente</option>
                 <option value="5">Más antiguos</option>
                 <option value="1">Pokémon más raro</option>
@@ -42,7 +61,7 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue} ) {
                 <option value="4">Variocolores primero</option>
             </select>
             
-            <select className="inputElemSmall" name="tier" defaultValue="0">
+            <select className="inputElemSmall" name="tier" value={selectedTier} onChange={handleSelectTier}>
                 <option value="0">Filtrar Tier...</option>
                 <option value="1">Común</option>
                 <option value="2">Infrecuente</option>
@@ -52,44 +71,36 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue} ) {
                 <option value="6">Singular</option>
             </select>
 
-            <select className="inputElemSmall" name="type" defaultValue="0">
+            <select className="inputElemSmall" name="type" value={selectedType} onChange={handleSelectType}>
                 <option value="0">Tipo...</option>
-                <option value="1">Acero</option>
-                <option value="2">Agua</option>
-                <option value="3">Bicho</option>
-                <option value="4">Dragón</option>
-                <option value="5">Eléctrico</option>
-                <option value="6">Fantasma</option>
-                <option value="7">Fuego</option>
-                <option value="8">Hada</option>
-                <option value="9">Hielo</option>
-                <option value="10">Lucha</option>
-                <option value="11">Normal</option>
-                <option value="12">Planta</option>
-                <option value="13">Psíquico</option>
-                <option value="14">Roca</option>
-                <option value="15">Siniestro</option>
-                <option value="16">Tierra</option>
-                <option value="17">Veneno</option>
-                <option value="18">Volador</option>
+                <option value="steel">Acero</option>
+                <option value="water">Agua</option>
+                <option value="bug">Bicho</option>
+                <option value="dragon">Dragón</option>
+                <option value="electric">Eléctrico</option>
+                <option value="ghost">Fantasma</option>
+                <option value="fire">Fuego</option>
+                <option value="fairy">Hada</option>
+                <option value="ice">Hielo</option>
+                <option value="fighting">Lucha</option>
+                <option value="normal">Normal</option>
+                <option value="grass">Planta</option>
+                <option value="psychic">Psíquico</option>
+                <option value="rock">Roca</option>
+                <option value="dark">Siniestro</option>
+                <option value="ground">Tierra</option>
+                <option value="poison">Veneno</option>
+                <option value="flying">Volador</option>
             </select>
 
-            <div id="checkBoxContainer">
-                <div>
-                    <input type="checkbox" id="checkboxEspecial" name="especial" value="checkboxEspecial" />
-                    <label htmlFor="checkbox1">Especial</label>
-                </div>
-
-                <div>
-                    <input type="checkbox" id="checkboxShiny" name="variocolor" value="checkboxShiny" />
-                    <label htmlFor="checkboxShiny">Shiny</label>
-                </div>
-            </div>
+            <input className="inputElem" value={Name} onChange={handleName}>
+                
+            </input>
         </>
     )
 }
 
-function CompletePokemonList({selectedValue, selectedTier, selectedType, selectedSpecial, selectedShiny}) 
+function CompletePokemonList({selectedValue, selectedTier, selectedType, selectedSpecial, selectedShiny, Name}) 
 {
     let sortedList = [...FakeData];
 
@@ -136,7 +147,12 @@ function CompletePokemonList({selectedValue, selectedTier, selectedType, selecte
     }
 
     // Select de Tier
+    sortedList = sortedList.filter(poke => (selectedTier === "0" ? true : poke.tier === selectedTier));
 
+    // Select de Tipo
+    sortedList = sortedList.filter(poke => (selectedType === "0" ? true : poke.type1 === selectedType || poke.type2 === selectedType));
+
+    sortedList = sortedList.filter(poke => (Name === "" ? true : poke.nametag.toLowerCase().startsWith(Name.toLowerCase())));
 
     const list = sortedList.map((datos, index) =>
         <PokemonCard data={datos} key={index}/>

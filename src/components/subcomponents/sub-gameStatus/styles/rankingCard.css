@@ -51,12 +51,24 @@
     height: 100%;
     display: flex;
     align-items: center;
+    justify-content: center;
+    flex-direction: row;
 }
 
 .rankData > p
 {
     color: black;
     font-size: 1vw;
+}
+
+.rankData > .pokemonImg
+{
+    width: 3.5vw;
+    height: 3.5vw;
+    position: relative;
+    right: 0;
+    top: 0;
+    margin-left: 0.75vw;
 }
 
 /* Media queries for responsiveness */
@@ -74,6 +86,11 @@
     .rankData > p {
         font-size: 2vw;
     }
+
+    .rankData > .pokemonImg {
+        width: 5vw;
+        height: 5vw;
+    }
 }
 @media (max-width: 700px) {
     .rankBox {
@@ -88,5 +105,10 @@
 
     .rankData > p {
         font-size: 2.5vw;
+    }
+
+    .rankData > .pokemonImg {
+        width: 7vw;
+        height: 7vw;
     }
 }

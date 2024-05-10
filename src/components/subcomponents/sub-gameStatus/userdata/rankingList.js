@@ -41,7 +41,7 @@ export const PlayerList = [
         'registers': 340
     },
     {
-        'playername': 'PikachuFan',
+        'playername': 'SimulationOfMario',
         'score': 900,
         'bestpokemon': {
             "id":14,
@@ -82,7 +82,7 @@ export const PlayerList = [
         'registers': 320
     },
     {
-        'playername': 'MewtwoFan',
+        'playername': 'JoseCP',
         'score': 800,
         'bestpokemon': {
             "id":11,
@@ -123,7 +123,7 @@ export const PlayerList = [
         'registers': 400
     },
     {
-        'playername': 'CharizardFan',
+        'playername': 'Andressruiz',
         'score': 700,
         'bestpokemon': {
             "id":10,
@@ -164,7 +164,7 @@ export const PlayerList = [
         'registers': 100
     },
     {
-        'playername': 'BulbasaurFan',
+        'playername': 'SparaOPS',
         'score': 600,
         'bestpokemon': {
             "id":11,
@@ -206,7 +206,7 @@ export const PlayerList = [
         'registers': 800
     },
     {
-        'playername': 'SquirtleFan',
+        'playername': 'alo_oficial',
         'score': 500,
         'bestpokemon': {
             "id":8,
@@ -247,7 +247,7 @@ export const PlayerList = [
         'registers': 103
     },
     {
-        'playername': 'JigglypuffFan',
+        'playername': 'PokeRED',
         'score': 400,
         'bestpokemon': {
             "id":7,
@@ -288,7 +288,7 @@ export const PlayerList = [
         'registers': 200
     },
     {
-        'playername': 'EeveeFan',
+        'playername': 'retard',
         'score': 300,
         'bestpokemon': {
             "id":6,
@@ -329,7 +329,7 @@ export const PlayerList = [
         'registers': 122
     },
     {
-        'playername': 'VaporeonFan',
+        'playername': 'JuanDeDios',
         'score': 200,
         'bestpokemon': {
             "id":5,
@@ -370,7 +370,7 @@ export const PlayerList = [
         'registers': 100,
     },
     {
-        'playername': 'FlareonFan',
+        'playername': 'Hapter Pepe',        
         'score': 100,
         'bestpokemon': {
             "id":4,

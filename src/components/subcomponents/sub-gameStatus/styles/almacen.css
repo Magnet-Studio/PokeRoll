@@ -61,6 +61,10 @@ a {
     height: 6vh;
 }
 
+input.inputElem {
+    max-height: 68%;
+}
+
 option 
 {
     font-family: vanilla-regular; /* No parece afectar (?)*/

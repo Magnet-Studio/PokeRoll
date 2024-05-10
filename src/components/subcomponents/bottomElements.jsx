@@ -12,6 +12,8 @@ import IntercambioIcon from '@mui/icons-material/Autorenew';
 import MarcadoresIcon from '@mui/icons-material/EmojiEvents';
 import PokedexIcon from '@mui/icons-material/Apps';
 import RuletaIcon from '@mui/icons-material/Money';
+import { Pokeball, TirarButton } from './sub-bottomElements/ruletaElements';
+
 
 /**
  * Rutas de todas las posibilidades del elemento inferior (botones de navegación / pokéball / botón de tirada)
@@ -43,8 +45,10 @@ function ButtonsRuletaStatus()
             <NavButton link='/ruleta' selected="selected" icon={<RuletaIcon/>} title="Ruleta"/>
             <NavButton link='/almacen' icon={<AlmacenIcon/>} title="Almacén"/>
             <NavButton link='/pokedex' icon={<PokedexIcon/>} title="Pokédex"/>
+            <Pokeball />
             <NavButton link='/marcadores' icon={<MarcadoresIcon/>} title="Marcadores"/>
             <NavButton link='/intercambio' icon={<IntercambioIcon/>} title="Intercambio"/>
+            <TirarButton cost={100}/>
         </>
     );
 }

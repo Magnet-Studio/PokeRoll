@@ -1,0 +1,40 @@
+
+#tirarButton 
+{
+    background-color: #00DF09;
+    border-radius: 0.7vw;
+    border: 0.3vw solid #89FF8E;
+    color: white;
+    width: 9vw;
+    height: 4vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+    pointer-events: all;
+    right: 0;
+    position: absolute;
+    margin-right: 1vw;
+}
+
+#tirarButton p 
+{
+    font-size: 1vw;
+    margin: 0;
+}
+
+#tirarButton img 
+{
+    width: 1vw;
+    height: 1vw;
+    margin-left: 0.1vw;
+}
+
+#tirarButton div 
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}

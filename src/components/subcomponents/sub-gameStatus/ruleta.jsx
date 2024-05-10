@@ -41,8 +41,14 @@ function ExternalArrow(props)
 
 function RuletaBox()
 {
+
+    
+
+
+
     return (
         <div className="ruletaBox">
+
         </div>
     );
 }
