@@ -36,5 +36,9 @@ function InputCodigoIntercambio() {
 }
 
 function BotonIntercambio() {
-  return <button className="intercambioBoton">Buscar</button>;
+  return (
+    <button className="intercambioBoton">
+      <h2>Buscar</h2>
+    </button>
+  );
 }
