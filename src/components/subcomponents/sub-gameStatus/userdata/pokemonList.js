@@ -3,6 +3,7 @@ export let FakeData =
         {
             "id":1,
             "name": "644",
+            "speciesname":"Zekrom",
             "nametag":"Zed ✰",
             "shiny": "shiny",
             "originaltrainer": "CreatorBeastGD",
@@ -23,6 +24,7 @@ export let FakeData =
         {
             "id":2,
             "name": "908",
+            "speciesname":"Meowscarada",
             "nametag":"Michi",
             "shiny": "shiny",
             "originaltrainer": "CreatorBeastGD",
@@ -43,6 +45,7 @@ export let FakeData =
         {
             "id":3,
             "name": "989",
+            "speciesname":"Pelarena",
             "nametag":"VMagnet ✰",
             "shiny": "shiny",
             "originaltrainer": "PokeROLL",
@@ -62,6 +65,7 @@ export let FakeData =
         {
             "id":4,
             "name": "911",
+            "speciesname":"Skeledirge",
             "nametag":"Llaminem ✰",
             "shiny": "shiny",
             "originaltrainer": "CreatorBeastGD",
@@ -81,6 +85,7 @@ export let FakeData =
         {
             "id":5,
             "name": "150",
+            "speciesname":"Mewtwo",
             "nametag":"Mewtwo",
             "shiny": "normal",
             "originaltrainer": "CreatorBeastGD",
@@ -100,6 +105,7 @@ export let FakeData =
         {
             "id":6,
             "name": "59",
+            "speciesname":"Arcanine",
             "nametag":"Arcanine",
             "shiny": "normal",
             "originaltrainer": "joseCP",
@@ -119,6 +125,7 @@ export let FakeData =
         {
             "id":7,
             "name": "1024",
+            "speciesname":"Terapagos",
             "nametag":"Terapagos",
             "shiny": "normal",
             "originaltrainer": "CreatorBeastGD",
@@ -138,6 +145,7 @@ export let FakeData =
         {
             "id":8,
             "name": "483",
+            "speciesname":"Dialga",
             "nametag":"Dialga",
             "shiny": "shiny",
             "originaltrainer": "SparaOPS",
@@ -157,6 +165,7 @@ export let FakeData =
         {
             "id":9,
             "name": "491",
+            "speciesname":"Darkrai",
             "nametag":"Dark ✰",
             "shiny": "shiny",
             "originaltrainer": "CreatorBeastGD",
@@ -176,6 +185,7 @@ export let FakeData =
         {
             "id":10,
             "name": "19",
+            "speciesname":"Rattata",
             "nametag":"Rattata",
             "shiny": "shiny",
             "originaltrainer": "CreatorBeastGD",
@@ -195,6 +205,7 @@ export let FakeData =
         {
             "id":11,
             "name": "249",
+            "speciesname":"Lugia",
             "nametag":"Lugia",
             "shiny": "normal",
             "originaltrainer": "CreatorBeastGD",
@@ -215,6 +226,7 @@ export let FakeData =
         {
             "id":12,
             "name": "6",
+            "speciesname":"Charizard",
             "nametag":"Chorizord",
             "shiny": "normal",
             "originaltrainer": "CreatorBeastGD",
@@ -234,6 +246,7 @@ export let FakeData =
         {
             "id":13,
             "name": "650",
+            "speciesname":"Chespin",
             "nametag":"Chespin",
             "shiny": "normal",
             "originaltrainer": "CreatorBeastGD",
@@ -253,6 +266,7 @@ export let FakeData =
         {
             "id":14,
             "name": "197",
+            "speciesname":"Umbreon",
             "nametag":"Umbreon",
             "shiny": "shiny",
             "originaltrainer": "SimulationOfMario",
@@ -271,7 +285,8 @@ export let FakeData =
         },
         {
             "id":15,
-            "name": "487", /* Por alguna razón, poner "giratina" no funciona */
+            "name": "487",
+            "speciesname":"Giratina",
             "nametag":"Giratina",
             "shiny": "normal",
             "originaltrainer": "SimulationOfMario",

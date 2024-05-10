@@ -22,6 +22,6 @@ export function TirarButton({cost})
 export function Pokeball() 
 {
     return (
-        <img src={PokeballIcon} />
+        <img className="pokeBall"src={PokeballIcon} />
     );
 }

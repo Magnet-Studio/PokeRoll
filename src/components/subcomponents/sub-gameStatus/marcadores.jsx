@@ -31,7 +31,7 @@ function FiltroMarcador({selectedValue, setSelectedValue}) {
     return(
         <>
             <FilterAltIcon />
-            <select className="inputElem" name="generalFilter" value={selectedValue} onChange={handleSelectChange}>
+            <select className="inputElemRanking" name="generalFilter" value={selectedValue} onChange={handleSelectChange}>
                 <option value="1">Pokémon más raro</option>
                 <option value="2">Más puntos gastados</option>
                 <option value="3">Mayor número de tiradas</option>

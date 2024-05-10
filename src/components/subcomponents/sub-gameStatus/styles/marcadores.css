@@ -44,7 +44,7 @@ a {
     width: auto;
 }
 
-.inputElem {
+.inputElemRanking {
     max-height: 80%;
     margin-right: 1em;
     font-family: vanilla-regular;
@@ -64,13 +64,13 @@ option
 }
 
 @media screen and (max-width: 1100px) {
-    .inputElem {
+    .inputElemRanking {
         width: 30vw;
     }
 }
 
 @media screen and (max-width: 700px) {
-    .inputElem {
+    .inputElemRanking {
         width: 45vw;
     }
 }

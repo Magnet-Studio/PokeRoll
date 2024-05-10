@@ -51,27 +51,33 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedTier, setSele
     };
     return(
         <>
+            <div>
             <FilterAltIcon />
-            <select className="inputElem" name="generalFilter" value={selectedValue} onChange={handleSelectChange}>
-                <option value="0">Obtenidos más reciente</option>
-                <option value="5">Más antiguos</option>
-                <option value="1">Pokémon más raro</option>
-                <option value="2">Por número de Pokédex</option>
-                <option value="3">Por Tier más alto</option>
-                <option value="4">Variocolores primero</option>
-            </select>
+            </div>
+            <div>
+                
+                <select className="inputElem" name="generalFilter" value={selectedValue} onChange={handleSelectChange}>
+                    <option value="0">Obtenidos más reciente</option>
+                    <option value="5">Más antiguos</option>
+                    <option value="1">Pokémon más raro</option>
+                    <option value="2">Por número de Pokédex</option>
+                    <option value="3">Por Tier más alto</option>
+                    <option value="4">Variocolores primero</option>
+                </select>
+            </div>
             
-            <select className="inputElemSmall" name="tier" value={selectedTier} onChange={handleSelectTier}>
-                <option value="0">Filtrar Tier...</option>
-                <option value="1">Común</option>
-                <option value="2">Infrecuente</option>
-                <option value="3">Raro</option>
-                <option value="4">Épico</option>
-                <option value="5">Legendario</option>
-                <option value="6">Singular</option>
-            </select>
+            <div>
+                <select className="inputElemSmall" name="tier" value={selectedTier} onChange={handleSelectTier}>
+                    <option value="0">Filtrar Tier...</option>
+                    <option value="1">Común</option>
+                    <option value="2">Infrecuente</option>
+                    <option value="3">Raro</option>
+                    <option value="4">Épico</option>
+                    <option value="5">Legendario</option>
+                    <option value="6">Singular</option>
+                </select>
 
-            <select className="inputElemSmall" name="type" value={selectedType} onChange={handleSelectType}>
+                <select className="inputElemSmall" name="type" value={selectedType} onChange={handleSelectType}>
                 <option value="0">Tipo...</option>
                 <option value="steel">Acero</option>
                 <option value="water">Agua</option>
@@ -92,10 +98,15 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedTier, setSele
                 <option value="poison">Veneno</option>
                 <option value="flying">Volador</option>
             </select>
+            </div>
 
-            <input className="inputElem" value={Name} onChange={handleName}>
+            
+
+            <div>
+                <input className="inputElem" placeholder="Escribe un nombre..." value={Name} onChange={handleName}>
                 
-            </input>
+                </input>
+            </div>
         </>
     )
 }
@@ -152,7 +163,8 @@ function CompletePokemonList({selectedValue, selectedTier, selectedType, selecte
     // Select de Tipo
     sortedList = sortedList.filter(poke => (selectedType === "0" ? true : poke.type1 === selectedType || poke.type2 === selectedType));
 
-    sortedList = sortedList.filter(poke => (Name === "" ? true : poke.nametag.toLowerCase().startsWith(Name.toLowerCase())));
+    sortedList = sortedList.filter(poke => (Name === "" ? true : poke.nametag.toLowerCase().startsWith(Name.toLowerCase()) ||
+                                                                 poke.speciesname.toLowerCase().startsWith(Name.toLowerCase())));
 
     const list = sortedList.map((datos, index) =>
         <PokemonCard data={datos} key={index}/>

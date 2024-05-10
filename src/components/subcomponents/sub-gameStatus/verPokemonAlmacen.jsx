@@ -9,6 +9,7 @@ import { GetRareza } from "./userdata/rareza";
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 
 
 function VerPokemonAlmacen() {
@@ -54,6 +55,7 @@ function VerPokemonAlmacen() {
     const shinyCond = (pokemon.shiny === "shiny") ? <MouseOverPopover content={<AutoAwesomeIcon />} shown={<>¡Felicidades! ¡Has conseguido un Pokémon Variocolor!<br/>Obtendrás una bonificación de puntos de rareza por ello :)</>}/> : <></>;
 
     return (
+        <>
         <div id="verPokemonAlmacenBigBox">
             <div id="infoGeneral">
                 {GetImage(pokemonData, (pokemon.shiny === "shiny" ? true : false))}
@@ -73,6 +75,9 @@ function VerPokemonAlmacen() {
                 <p className="nombreEO">{pokemon.originaltrainer}</p>
                 <p className="rareza">Rareza: <span className={"rareza" + rareza}>{(nombreRareza === undefined ? "Cargando..." : nombreRareza)}</span></p>
                 <GetRarezaValue ivs={pokemon.iv} shiny={pokemon.shiny} rareza={rareza}/>
+                <div className="botonLiberar">
+                  <CurrencyExchangeIcon />
+                </div>
             </div>
 
             <div id="statsDiv">
@@ -82,7 +87,11 @@ function VerPokemonAlmacen() {
                   <HexagonData size={100} fillColor="rgba(255,255,0,0.3)" strokeColor="rgba(255,255,0,1)" data={pokemon.iv}/>
                 </div>
             </div>
+
+      
         </div>
+        
+        </>
     );
 }
 

@@ -38,3 +38,7 @@
     justify-content: center;
     flex-direction: row;
 }
+
+.pokeBall {
+    width: 30vw;
+}
