@@ -78,19 +78,44 @@ function CompleteRankingList({selectedValue})
 function RankingCard({data, keyNum, selectedValue})
 {
 
-    const position = <span className={keyNum + 1 === 1 ? "firstPosition" : keyNum + 1 === 2 ? "secondPosition" : "thirdPosition"}>{keyNum + 1}</span>;
+    const position = <span className={keyNum + 1 === 1 ? "firstPosition" : keyNum + 1 === 2 ? "secondPosition" : keyNum + 1 === 3 ? "thirdPosition" : ""}>{keyNum + 1} </span>;
+    let title = "";
+    let points = "";
+
+    switch (selectedValue) {
+        case '1':
+            title = data.rarestpokemon.nametag + " (" + data.playername + ")";
+            points = data.rarestpokemon.rareza + " puntos";
+            break;
+        case '2':
+            title = data.playername;
+            points = data.pointsspent + " puntos";
+            break;
+        case '3':
+            title = data.playername;
+            points = data.rolls + " tiradas";
+            break;
+        case '4':
+            title = data.playername;
+            points = data.registers + " registros";
+            break;
+    }
 
     return (
         <>
             <div className="rankBox" key={keyNum} >
-                <div className="rankTitle">
+                <div className="rankContent">
+                    <div className="rankTitle">
+                            <p>
+                                {position}
+                                    · {title}
+                            </p>
+                    </div>
+                    <div className="rankData">
                         <p>
-                            {position}
-                            <span>{" · " + data.rarestpokemon.nametag} ({data.playername})</span>
+                            {points}
                         </p>
-                </div>
-                <div className="rankData">
-                    
+                    </div>
                 </div>
             </div>
         </>
