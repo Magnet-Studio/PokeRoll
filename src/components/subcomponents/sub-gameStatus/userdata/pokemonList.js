@@ -15,6 +15,10 @@ export let FakeData =
                 "spdef":25,
                 "spe":31
             }
+            ,
+            "type1":"dragon",
+            "type2":"electric",
+            "tier":"5"
         },
         {
             "id":2,
@@ -31,6 +35,10 @@ export let FakeData =
                 "spdef":10,
                 "spe":31
             }
+            ,
+            "type1":"grass",
+            "type2":"dark",
+            "tier":"4"
         },
         {
             "id":3,
@@ -46,7 +54,10 @@ export let FakeData =
                 "spatq":31,
                 "spdef":31,
                 "spe":31
-            }
+            },
+            "type1":"electric",
+            "type2":"ground",
+            "tier":"4"
         },
         {
             "id":4,
@@ -62,7 +73,10 @@ export let FakeData =
                 "spatq":31,
                 "spdef":31,
                 "spe":31
-            }
+            },
+            "type1":"fire",
+            "type2":"ghost",
+            "tier":"4"
         },
         {
             "id":5,
@@ -72,13 +86,16 @@ export let FakeData =
             "originaltrainer": "CreatorBeastGD",
             "datefound":"07/05/2024",
             "iv": {
-                "hp":31,
-                "atq":31,
-                "def":31,
-                "spatq":31,
-                "spdef":31,
-                "spe":31
-            }
+                "hp":1,
+                "atq":1,
+                "def":1,
+                "spatq":1,
+                "spdef":1,
+                "spe":1
+            },
+            "type1":"psychic",
+            "type2":null,
+            "tier":"5"
         },
         {
             "id":6,
@@ -94,7 +111,10 @@ export let FakeData =
                 "spatq":31,
                 "spdef":31,
                 "spe":31
-            }
+            },
+            "type1":"fire",
+            "type2":null,
+            "tier":"3"
         },
         {
             "id":7,
@@ -110,7 +130,10 @@ export let FakeData =
                 "spatq":31,
                 "spdef":31,
                 "spe":31
-            }
+            },
+            "type1":"normal",
+            "type2":null,
+            "tier":"5"
         },
         {
             "id":8,
@@ -126,7 +149,10 @@ export let FakeData =
                 "spatq":31,
                 "spdef":31,
                 "spe":31
-            }
+            },
+            "type1":"steel",
+            "type2":"dragon",
+            "tier":"5"
         },
         {
             "id":9,
@@ -142,13 +168,16 @@ export let FakeData =
                 "spatq":31,
                 "spdef":31,
                 "spe":31
-            }
+            },
+            "type1":"dark",
+            "type2":null,
+            "tier":"6"
         },
         {
             "id":10,
             "name": "19",
             "nametag":"Rattata",
-            "shiny": "normal",
+            "shiny": "shiny",
             "originaltrainer": "CreatorBeastGD",
             "datefound":"07/05/2024",
             "iv": {
@@ -158,7 +187,10 @@ export let FakeData =
                 "spatq":1,
                 "spdef":1,
                 "spe":1
-            }
+            },
+            "type1":"normal",
+            "type2":null,
+            "tier":"1"
         },
         {
             "id":11,
@@ -174,7 +206,10 @@ export let FakeData =
                 "spatq":5,
                 "spdef":5,
                 "spe":5
-            }
+            },
+            "type1":"psychic",
+            "type2":"flying",
+            "tier":"5"
         }
         ,
         {
@@ -191,7 +226,10 @@ export let FakeData =
                 "spatq":31,
                 "spdef":31,
                 "spe":31
-            }
+            },
+            "type1":"fire",
+            "type2":"flying",
+            "tier":"4"
         },
         {
             "id":13,
@@ -207,7 +245,10 @@ export let FakeData =
                 "spatq":31,
                 "spdef":31,
                 "spe":31
-            }
+            },
+            "type1":"grass",
+            "type2":null,
+            "tier":"2"
         },
         {
             "id":14,
@@ -223,7 +264,10 @@ export let FakeData =
                 "spatq":31,
                 "spdef":31,
                 "spe":31
-            }
+            },
+            "type1":"dark",
+            "type2":null,
+            "tier":"4"
         },
         {
             "id":15,
@@ -239,7 +283,10 @@ export let FakeData =
                 "spatq":31,
                 "spdef":31,
                 "spe":31
-            }
+            },
+            "type1":"ghost",
+            "type2":"dragon",
+            "tier":"5"
         }
         
     ];

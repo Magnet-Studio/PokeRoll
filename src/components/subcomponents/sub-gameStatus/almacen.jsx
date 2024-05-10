@@ -34,10 +34,11 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue} ) {
         <>
             <FilterAltIcon />
             <select className="inputElem" name="generalFilter" defaultValue="0" value={selectedValue} onChange={handleSelectChange}>
-                <option value="0">Selecciona un orden</option>
-                <option value="1">Pokémon más raro (BROKEN)</option>
+                <option value="0">Obtenidos más reciente</option>
+                <option value="5">Más antiguos</option>
+                <option value="1">Pokémon más raro</option>
                 <option value="2">Por número de Pokédex</option>
-                <option value="3">Por Tier más alto (BROKEN)</option>
+                <option value="3">Por Tier más alto</option>
                 <option value="4">Variocolores primero</option>
             </select>
             
@@ -88,44 +89,32 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue} ) {
     )
 }
 
-function CompletePokemonList({selectedValue}) 
+function CompletePokemonList({selectedValue, selectedTier, selectedType, selectedSpecial, selectedShiny}) 
 {
     let sortedList = [...FakeData];
-    const [Rareza, SetRareza] = useState(0);
 
-    let pokeValue = "1", pokeValue2 = "1";
-
-    // Actualizador de los datos
-    useEffect(() => {
-        const fetchDataAndUpdateState = async () => 
-        {
-            const rarity = await GetFrequencyAsync(await GetSpeciesDataByName(pokeValue)).then(res => {SetRareza(res)});
-            SetRareza(rarity);
-        };
-
-        fetchDataAndUpdateState();
-    }, [pokeValue, pokeValue2]);
-
-
+    // Select de ordenacion
     switch (selectedValue) {
         case '0':
-            sortedList.sort((a, b) => a.id - b.id)
+            sortedList.sort((a, b) => b.id - a.id)
             break;
         case '1':
-            /*
             sortedList.sort((a, b) => {
-                pokeValue = b.name;
-                let rarezaB = GetRareza(b.iv, b.shiny, Rareza);
-                pokeValue2 = a.name;
-                let rarezaA = GetRareza(a.iv, a.shiny, Rareza);
-
-                return rarezaB - rarezaA;
-            })
-            */
+                let rarezaA = GetRareza(a.iv, a.shiny, parseInt(a.tier));
+                let rarezaB = GetRareza(b.iv, b.shiny, parseInt(b.tier));
+                
+                return (rarezaA - rarezaB); // No va bien? q raro xd
+            });
+            sortedList.sort((a,b) => -1);
             break;
         case '2':
             sortedList.sort((a,b) => {
                 return parseInt(a.name) - parseInt(b.name);
+            })
+            break;
+        case '3':
+            sortedList.sort((a, b) => {
+                return parseInt(b.tier) - parseInt(a.tier)
             })
             break;
         case '4':
@@ -139,9 +128,15 @@ function CompletePokemonList({selectedValue})
                 }
             })
             break;
+        case '5':
+            sortedList.sort((a, b) => a.id - b.id)
+            break;
         default:
             break;
     }
+
+    // Select de Tier
+
 
     const list = sortedList.map((datos, index) =>
         <PokemonCard data={datos} key={index}/>
