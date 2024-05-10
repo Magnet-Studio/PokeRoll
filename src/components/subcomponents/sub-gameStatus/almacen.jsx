@@ -2,10 +2,10 @@ import React, { useState , useEffect } from "react";
 import './styles/almacen.css';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import { FakeData } from "./userdata/pokemonList";
-import {GetSpeciesDataByName, GetSpanishName} from './PokeAPI/PokemonSpeciesData';
-import {GetDataByName, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish, GetImage, GetDexNum} from './PokeAPI/PokemonData';
+import { GetSpeciesDataByName, GetSpanishName} from './PokeAPI/PokemonSpeciesData';
+import { GetDataByName, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish, GetImage, GetDexNum} from './PokeAPI/PokemonData';
 import { Link } from "react-router-dom";
-import { GetFrequency, GetFrequencyAsync } from "./userdata/pokemonFrequency";
+import { GetFrequencyAsync } from "./userdata/pokemonFrequency";
 import { GetRareza } from "./userdata/rareza";
 
 function Almacen() {
@@ -35,9 +35,9 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue} ) {
             <FilterAltIcon />
             <select className="inputElem" name="generalFilter" defaultValue="0" value={selectedValue} onChange={handleSelectChange}>
                 <option value="0">Selecciona un orden</option>
-                <option value="1">Pokémon más raro</option>
+                <option value="1">Pokémon más raro (BROKEN)</option>
                 <option value="2">Por número de Pokédex</option>
-                <option value="3">Por Tier más alto</option>
+                <option value="3">Por Tier más alto (BROKEN)</option>
                 <option value="4">Variocolores primero</option>
             </select>
             
@@ -91,27 +91,20 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue} ) {
 function CompletePokemonList({selectedValue}) 
 {
     let sortedList = [...FakeData];
+    const [Rareza, SetRareza] = useState(0);
 
-    const [pokemonData, setPokemonData] = useState(null);
-    const [pokemonSpeciesData, setPokemonSpeciesData] = useState(null);
-    const [Rareza, SetRareza] = useState(null);
-
-    let pokeValue = "";
+    let pokeValue = "1", pokeValue2 = "1";
 
     // Actualizador de los datos
     useEffect(() => {
         const fetchDataAndUpdateState = async () => 
         {
-            const data = await GetDataByName(pokeValue);
-            const dataSpecies = await GetSpeciesDataByName(pokeValue);
-            setPokemonData(data);
-            setPokemonSpeciesData(dataSpecies);
-            const rarity = await GetFrequencyAsync(dataSpecies);
+            const rarity = await GetFrequencyAsync(await GetSpeciesDataByName(pokeValue)).then(res => {SetRareza(res)});
             SetRareza(rarity);
         };
 
         fetchDataAndUpdateState();
-    }, [pokeValue]);
+    }, [pokeValue, pokeValue2]);
 
 
     switch (selectedValue) {
@@ -119,15 +112,20 @@ function CompletePokemonList({selectedValue})
             sortedList.sort((a, b) => a.id - b.id)
             break;
         case '1':
+            /*
             sortedList.sort((a, b) => {
                 pokeValue = b.name;
                 let rarezaB = GetRareza(b.iv, b.shiny, Rareza);
-                console.log("A " + b.nametag + " " + b.iv + " " + b.shiny + " " + (pokemonSpeciesData))
-                pokeValue = a.name;
+                pokeValue2 = a.name;
                 let rarezaA = GetRareza(a.iv, a.shiny, Rareza);
-                console.log("B " + a.nametag + " " + a.iv + " " + a.shiny + " " + pokemonSpeciesData)
 
                 return rarezaB - rarezaA;
+            })
+            */
+            break;
+        case '2':
+            sortedList.sort((a,b) => {
+                return parseInt(a.name) - parseInt(b.name);
             })
             break;
         case '4':
@@ -140,6 +138,8 @@ function CompletePokemonList({selectedValue})
                     return 0; // mantiene el orden actual
                 }
             })
+            break;
+        default:
             break;
     }
 

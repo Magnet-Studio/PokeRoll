@@ -2,7 +2,7 @@ export let FakeData =
     [
         {
             "id":1,
-            "name": "zekrom",
+            "name": "644",
             "nametag":"Zed ✰",
             "shiny": "shiny",
             "originaltrainer": "CreatorBeastGD",
@@ -18,7 +18,7 @@ export let FakeData =
         },
         {
             "id":2,
-            "name": "meowscarada",
+            "name": "908",
             "nametag":"Michi",
             "shiny": "shiny",
             "originaltrainer": "CreatorBeastGD",
@@ -34,7 +34,7 @@ export let FakeData =
         },
         {
             "id":3,
-            "name": "sandy-shocks",
+            "name": "989",
             "nametag":"VMagnet ✰",
             "shiny": "shiny",
             "originaltrainer": "PokeROLL",
@@ -50,7 +50,7 @@ export let FakeData =
         },
         {
             "id":4,
-            "name": "skeledirge",
+            "name": "911",
             "nametag":"Llaminem ✰",
             "shiny": "shiny",
             "originaltrainer": "CreatorBeastGD",
@@ -66,7 +66,7 @@ export let FakeData =
         },
         {
             "id":5,
-            "name": "mewtwo",
+            "name": "150",
             "nametag":"Mewtwo",
             "shiny": "normal",
             "originaltrainer": "CreatorBeastGD",
@@ -82,7 +82,7 @@ export let FakeData =
         },
         {
             "id":6,
-            "name": "arcanine",
+            "name": "59",
             "nametag":"Arcanine",
             "shiny": "normal",
             "originaltrainer": "joseCP",
@@ -98,7 +98,7 @@ export let FakeData =
         },
         {
             "id":7,
-            "name": "terapagos",
+            "name": "1024",
             "nametag":"Terapagos",
             "shiny": "normal",
             "originaltrainer": "CreatorBeastGD",
@@ -114,7 +114,7 @@ export let FakeData =
         },
         {
             "id":8,
-            "name": "dialga",
+            "name": "483",
             "nametag":"Dialga",
             "shiny": "shiny",
             "originaltrainer": "SparaOPS",
@@ -130,7 +130,7 @@ export let FakeData =
         },
         {
             "id":9,
-            "name": "darkrai",
+            "name": "491",
             "nametag":"Dark ✰",
             "shiny": "shiny",
             "originaltrainer": "CreatorBeastGD",
@@ -146,7 +146,7 @@ export let FakeData =
         },
         {
             "id":10,
-            "name": "rattata",
+            "name": "19",
             "nametag":"Rattata",
             "shiny": "normal",
             "originaltrainer": "CreatorBeastGD",
@@ -162,7 +162,7 @@ export let FakeData =
         },
         {
             "id":11,
-            "name": "lugia",
+            "name": "249",
             "nametag":"Lugia",
             "shiny": "normal",
             "originaltrainer": "CreatorBeastGD",
@@ -179,7 +179,7 @@ export let FakeData =
         ,
         {
             "id":12,
-            "name": "charizard",
+            "name": "6",
             "nametag":"Chorizord",
             "shiny": "normal",
             "originaltrainer": "CreatorBeastGD",
@@ -195,7 +195,7 @@ export let FakeData =
         },
         {
             "id":13,
-            "name": "chespin",
+            "name": "650",
             "nametag":"Chespin",
             "shiny": "normal",
             "originaltrainer": "CreatorBeastGD",
@@ -211,7 +211,7 @@ export let FakeData =
         },
         {
             "id":14,
-            "name": "umbreon",
+            "name": "197",
             "nametag":"Umbreon",
             "shiny": "shiny",
             "originaltrainer": "SimulationOfMario",
