@@ -1,3 +1,5 @@
+import { GetSpanishName } from "../PokeAPI/PokemonSpeciesData";
+
 /**
  * Devuelve un valor entre 1 y 6 referente al "valor de frecuencia"
  * @param name 
@@ -11,6 +13,16 @@ export const GetFrequency = (name) => {
         }
     }
     return 0;
+}
+
+export const GetFrequencyAsync = async (data) => {
+    try {
+        const realName = await GetSpanishName(data);
+        return GetFrequency(realName);
+    } catch (error) {
+        console.error("ERROR GetFrequencyAsync: " + error)
+        return null;
+    }
 }
 
 let pokemonFrequencies = [

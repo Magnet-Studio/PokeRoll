@@ -5,28 +5,35 @@ import { FakeData } from "./userdata/pokemonList";
 import {GetSpeciesDataByName, GetSpanishName} from './PokeAPI/PokemonSpeciesData';
 import {GetDataByName, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish, GetImage, GetDexNum} from './PokeAPI/PokemonData';
 import { Link } from "react-router-dom";
+import { GetFrequency, GetFrequencyAsync } from "./userdata/pokemonFrequency";
+import { GetRareza } from "./userdata/rareza";
 
 function Almacen() {
+    const [selectedValue, setSelectedValue] = useState('0');
+
     return (
         <>
             <div id="almacenBigBox">
                 <div id="filtros">
-                    <FiltrosAlmacen />
+                    <FiltrosAlmacen selectedValue={selectedValue} setSelectedValue={setSelectedValue} />
                 </div>
 
                 <div id="pokemon-cards-container">
-                    <CompletePokemonList />
+                    <CompletePokemonList selectedValue={selectedValue} />
                 </div>
             </div>
         </>
     )
 }
 
-function FiltrosAlmacen() {
+function FiltrosAlmacen( {selectedValue, setSelectedValue} ) {
+    const handleSelectChange = (event) => {
+        setSelectedValue(event.target.value);
+    };
     return(
         <>
             <FilterAltIcon />
-            <select className="inputElem" name="generalFilter" defaultValue="0">
+            <select className="inputElem" name="generalFilter" defaultValue="0" value={selectedValue} onChange={handleSelectChange}>
                 <option value="0">Selecciona un orden</option>
                 <option value="1">Pokémon más raro</option>
                 <option value="2">Por número de Pokédex</option>
@@ -81,10 +88,63 @@ function FiltrosAlmacen() {
     )
 }
 
-function CompletePokemonList() 
+function CompletePokemonList({selectedValue}) 
 {
-    const list = FakeData.map((datos) =>
-        <PokemonCard data={datos} key={datos.id}/>
+    let sortedList = [...FakeData];
+
+    const [pokemonData, setPokemonData] = useState(null);
+    const [pokemonSpeciesData, setPokemonSpeciesData] = useState(null);
+    const [Rareza, SetRareza] = useState(null);
+
+    let pokeValue = "";
+
+    // Actualizador de los datos
+    useEffect(() => {
+        const fetchDataAndUpdateState = async () => 
+        {
+            const data = await GetDataByName(pokeValue);
+            const dataSpecies = await GetSpeciesDataByName(pokeValue);
+            setPokemonData(data);
+            setPokemonSpeciesData(dataSpecies);
+            const rarity = await GetFrequencyAsync(dataSpecies);
+            SetRareza(rarity);
+        };
+
+        fetchDataAndUpdateState();
+    }, [pokeValue]);
+
+
+    switch (selectedValue) {
+        case '0':
+            sortedList.sort((a, b) => a.id - b.id)
+            break;
+        case '1':
+            sortedList.sort((a, b) => {
+                pokeValue = b.name;
+                let rarezaB = GetRareza(b.iv, b.shiny, Rareza);
+                console.log("A " + b.nametag + " " + b.iv + " " + b.shiny + " " + (pokemonSpeciesData))
+                pokeValue = a.name;
+                let rarezaA = GetRareza(a.iv, a.shiny, Rareza);
+                console.log("B " + a.nametag + " " + a.iv + " " + a.shiny + " " + pokemonSpeciesData)
+
+                return rarezaB - rarezaA;
+            })
+            break;
+        case '4':
+            sortedList.sort((a, b) => {
+                if (a.shiny === "shiny" && b.shiny !== "shiny") {
+                    return -1; // a viene antes que b
+                } else if (a.shiny !== "shiny" && b.shiny === "shiny") {
+                    return 1; // b viene antes que a
+                } else {
+                    return 0; // mantiene el orden actual
+                }
+            })
+            break;
+    }
+
+    const list = sortedList.map((datos, index) =>
+        <PokemonCard data={datos} key={index}/>
     );
 
     return (
