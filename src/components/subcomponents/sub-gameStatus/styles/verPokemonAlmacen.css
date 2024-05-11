@@ -13,7 +13,10 @@
     position: absolute;
     z-index: 5;
     top: 0;
+    margin-top: 2vh;
     left: 0;
+    width: 15%;
+    height: 15%;
 }
 
 .backButton > a {
@@ -29,6 +32,8 @@
     transform: scaleX(-1);
     color: white;
     font-size: 4vw;
+    width: 100%;
+    height: 100%;
 }
 @media screen and (min-width: 800px) {
     #verPokemonAlmacenBigBox 
@@ -274,8 +279,6 @@ p {
         margin: 0;
         font-size: 100%;
     }
-    
-
 
     #infoAdicional > p {
         font-size: 100%;

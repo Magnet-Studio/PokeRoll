@@ -8,6 +8,9 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import PokemonCard from "../sub-gameStatus/pokemonCard";
 import CoinImage from "../../../images/coin.png";
+import { DeletePokemon } from "../sub-gameStatus/userdata/pokemonList";
+import { Link } from 'react-router-dom';
+
 
 /*
 
@@ -28,21 +31,16 @@ const style = {
   borderRadius: "2vw",
 };
 
-function LiberarButton({ data, selection, t }) {
-  let selected = "selected";
-  if (selection !== "selected") {
-    selected = "";
-  }
+const coinValues = [50, 250, 750, 2000, 5000, 5000]
 
-  let title = "";
-  if (t !== "") {
-    title = t;
-  }
+function LiberarButton({ data }) {
 
   const [isHovered, setIsHovered] = useState(false);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const LiberarPokemon = () => Liberar(data);
 
   return (
     <div>
@@ -63,14 +61,17 @@ function LiberarButton({ data, selection, t }) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+        <Typography id="modal-modal-title" variant="h6" component="h2">
             ¿Quieres liberar a este Pokémon?
+          </Typography>
+          <Typography id="modal-modal-description" variant="h6" component="h2">
+            {"Liberar a " + data.nametag + " supondrá perderlo para siempre, pero recibirás " + coinValues[data.tier-1] + " monedas a cambio. (No perderás su registro en la Pokédex)"}
           </Typography>
           <div className="containerModal">
             <PokemonCard data={data} />
           </div>
           <div className="containerModal moneyCount">
-            <img className="coin" src={CoinImage} alt="coin" /> +33
+            <img className="coin" src={CoinImage} alt="coin" /> {"+" + coinValues[data.tier-1]}
           </div>
           <div className="containerModal">
             <Button
@@ -83,7 +84,7 @@ function LiberarButton({ data, selection, t }) {
                 border: "0.2vw solid #9f4949" /* sin borde */,
                 borderRadius: "1vw" /* bordes redondeados */,
                 cursor: "pointer" /* cursor de mano al pasar por encima */,
-                fontSize: "16px" /* tamaño de la fuente */,
+                fontSize: "calc(0.5vw + 0.9vh)" /* tamaño de la fuente */,
                 width: "8vw",
                 pointerEvents: "all",
                 fontFamily: "vanilla-regular",
@@ -91,9 +92,10 @@ function LiberarButton({ data, selection, t }) {
             >
               Cancelar
             </Button>
+            <Link to="/almacen">
             <Button
               className="confirmarButton"
-              onClick={handleClose}
+              onClick={LiberarPokemon}
               style={{
                 backgroundColor: "#00DF09" /* color de fondo */,
                 color: "#ffffff" /* color del texto */,
@@ -101,7 +103,7 @@ function LiberarButton({ data, selection, t }) {
                 border: "0.2vw solid #89ff8e" /* sin borde */,
                 borderRadius: "1vw" /* bordes redondeados */,
                 cursor: "pointer" /* cursor de mano al pasar por encima */,
-                fontSize: "16px" /* tamaño de la fuente */,
+                fontSize: "calc(0.5vw + 0.9vh)" /* tamaño de la fuente */,
                 width: "8vw",
                 marginLeft: "1.5vw",
                 pointerEvents: "all",
@@ -110,11 +112,18 @@ function LiberarButton({ data, selection, t }) {
             >
               Liberar
             </Button>
+            </Link>
           </div>
         </Box>
       </Modal>
     </div>
   );
 }
+
+function Liberar(data) {
+    const pokeID = data.id;
+    console.log("AAAAAAAA")
+    DeletePokemon(data.id, coinValues[data.tier-1]);
+} 
 
 export default LiberarButton;

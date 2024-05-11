@@ -14,8 +14,8 @@
     margin-right: 1vw;
     margin-left: 1vw;
     pointer-events: auto;
-    min-width: 10px;
-    min-height: 10px;
+    min-width: 30px;
+    min-height: 30px;
 }
 
 /* Icono del botón */

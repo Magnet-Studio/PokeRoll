@@ -1,4 +1,7 @@
-export let FakeData = 
+import { UserData } from "./userData";
+
+
+export var FakeData = 
     [
         {
             "id":1,
@@ -310,4 +313,10 @@ export const GetPokemonByID = (id) => {
     return FakeData.find((pokemon) => {
         return (pokemon.id === parseInt(id));
     });
+}
+
+export function DeletePokemon(id, currency) {
+    FakeData = FakeData.filter(data => data.id !== id);
+    UserData.currency += currency;
+    console.log(UserData.currency);
 }

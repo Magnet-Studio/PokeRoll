@@ -12,8 +12,8 @@
     margin-right: 1vw;
     margin-left: 1vw;
     pointer-events: auto;
-    min-width: 10px;
-    min-height: 10px;
+    min-width: 30px;
+    min-height: 30px;
 }
 
 .liberarButton > svg {
@@ -24,7 +24,7 @@
 }
 
 #modal-modal-title {
-    font-size: 2vw;
+    font-size: calc(0.8vh + 1.2vw);
     text-align: center;
     font-family: vanilla-regular;
     color: #1a437b;
@@ -33,6 +33,9 @@
 #modal-modal-description {
     color: black;
     margin-bottom: 2vh;
+    margin-top: 2vh;
+    text-align: justify;
+    font-size: calc(0.6vh + 1.3vw);
 }
 
 .MuiBox-root .entryBox {
@@ -49,7 +52,6 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin-top: 1vw;
 }
 
 .coin {
@@ -63,6 +65,8 @@
     font-family: vanilla-regular;
     color: #f3b03e;
     display: flex;
+    
+    margin-bottom: 2vw;
     align-items: center;
 }
 

@@ -1,4 +1,4 @@
-export const PlayerList = [
+export var PlayerList = [
     {
         'playername': 'CreatorBeastGD',
         'score': 1000,

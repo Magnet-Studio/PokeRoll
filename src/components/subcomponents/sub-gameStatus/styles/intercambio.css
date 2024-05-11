@@ -80,5 +80,6 @@ tr {
 .botonesIntercambio {
   width: 100%;
   display: flex;
+  grid-column: 2;
 }
 
