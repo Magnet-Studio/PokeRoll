@@ -1,5 +1,18 @@
 @import url('../../../../styles/fonts.css');
 
+#bottomelementsPanel > div 
+{
+    right: 0;
+    position: absolute;
+    margin-right: 1vw;
+}
+
+#bottomelementsPanel > div > button 
+{
+    right: 0;
+    position: relative;
+}
+
 .liberarButton {
     background-color: #fb6c6c;
     border: 0.3vw solid #9f4949;
@@ -9,11 +22,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 1vw;
-    margin-left: 1vw;
     pointer-events: auto;
     min-width: 30px;
     min-height: 30px;
+    right: 0;
 }
 
 .liberarButton > svg {
@@ -76,7 +88,6 @@
     {
         width: 12.5vw;
         height: 12.5vw;
-        
     }
 }
 
@@ -96,6 +107,7 @@
     position: absolute;
     font-size: 0;
     opacity: 0;
+    text-transform: none;
 }
 
 /* Animación del title */
