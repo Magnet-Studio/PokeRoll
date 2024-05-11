@@ -5,7 +5,7 @@ import Almacen from "./sub-gameStatus/almacen";
 import Marcadores from "./sub-gameStatus/marcadores";
 import Pokedex from "./sub-gameStatus/pokedex";
 import VerPokemonAlmacen from "./sub-gameStatus/verPokemonAlmacen";
-import Intercambio from "./sub-gameStatus/intercambio";
+import TipoIntercambio from "./sub-gameStatus/tipointercambio";
 
 function GameState() {
   return (
@@ -51,7 +51,7 @@ function MarcadoresGameState() {
 }
 
 function IntercambioGameState() {
-  return <Intercambio />;
+  return <TipoIntercambio />;
 }
 
 export default GameState;

@@ -49,3 +49,36 @@ tr {
   border-radius: 30px;
   cursor: pointer;
 }
+
+.intercambioBotonConCodigo {
+  width: 300px;
+  height: 100px;
+  padding: 10px 20px;
+  font-size: large;
+  border: 2px solid #333;
+  background-color: green;
+  color: white;
+  border-radius: 30px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.intercambioBotonSinCodigo {
+  width: 300px;
+  height: 100px;
+  padding: 10px 20px;
+  font-size: large;
+  border: 2px solid #333;
+  background-color: blue;
+  color: white;
+  border-radius: 30px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+
+.botonesIntercambio {
+  width: 100%;
+  display: flex;
+}
+

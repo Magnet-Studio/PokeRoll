@@ -13,18 +13,36 @@ import MarcadoresIcon from '@mui/icons-material/EmojiEvents';
 import PokedexIcon from '@mui/icons-material/Apps';
 import RuletaIcon from '@mui/icons-material/Money';
 import { Pokeball, TirarButton } from './sub-bottomElements/ruletaElements';
-
+import { useLocation } from 'react-router-dom';
+import { GetPokemonByID } from './sub-gameStatus/userdata/pokemonList';
+import LiberarButton from './sub-bottomElements/liberarButton';
 
 /**
  * Rutas de todas las posibilidades del elemento inferior (botones de navegación / pokéball / botón de tirada)
  */
 function BottomElements()
 {
+
+    const location = useLocation();
+    let pokenametag = "";
+    let pokemon;
+    if (location.pathname === "/almacen/ver-pokemon") {
+
+        
+        const searchParams = new URLSearchParams(location.search);
+        const id = searchParams.get("id");
+        pokemon = GetPokemonByID(id);
+        
+        pokenametag = id;
+    }
+
     return (
         <Routes>
             <Route path='/ruleta' element={<ButtonsRuletaStatus/>} />
 
-            <Route path='/almacen/*' element={<ButtonsAlmacenStatus/>} />
+            <Route path='/almacen/' element={<ButtonsAlmacenStatus/>} />
+
+            <Route path="/almacen/ver-pokemon" element={<ButtonsVerPokemonAlmacenStatus data={pokemon}/>} />
 
             <Route path='/pokedex/*' element={<ButtonsPokedexStatus/>} />
 
@@ -49,6 +67,20 @@ function ButtonsRuletaStatus()
             <NavButton link='/marcadores' icon={<MarcadoresIcon/>} title="Marcadores"/>
             <NavButton link='/intercambio' icon={<IntercambioIcon/>} title="Intercambio"/>
             <TirarButton cost={100}/>
+        </>
+    );
+}
+
+function ButtonsVerPokemonAlmacenStatus ({data})
+{
+    return (
+        <>
+            <NavButton link='/ruleta' icon={<RuletaIcon/>} title="Ruleta"/>
+            <NavButton link='/almacen' selected="selected" icon={<AlmacenIcon/>} title="Almacén"/>
+            <NavButton link='/pokedex' icon={<PokedexIcon/>} title="Pokédex"/>
+            <NavButton link='/marcadores' icon={<MarcadoresIcon/>} title="Marcadores"/>
+            <NavButton link='/intercambio' icon={<IntercambioIcon/>} title="Intercambio"/>
+            <LiberarButton data={data} />
         </>
     );
 }

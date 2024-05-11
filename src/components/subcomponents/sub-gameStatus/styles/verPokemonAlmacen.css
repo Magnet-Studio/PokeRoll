@@ -9,7 +9,27 @@
     pointer-events: all;
 }
 
+.backButton {
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    left: 0;
+}
 
+.backButton > a {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.backArrow > svg
+{
+    text-align: center;
+    transform: scaleX(-1);
+    color: white;
+    font-size: 4vw;
+}
 @media screen and (min-width: 800px) {
     #verPokemonAlmacenBigBox 
     {

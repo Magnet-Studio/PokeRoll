@@ -9,7 +9,7 @@ import { GetRareza } from "./userdata/rareza";
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
-import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import ForwardIcon from '@mui/icons-material/Forward';
 
 
 function VerPokemonAlmacen() {
@@ -58,6 +58,9 @@ function VerPokemonAlmacen() {
         <>
         <div id="verPokemonAlmacenBigBox">
             <div id="infoGeneral">
+                <div className="backButton">
+                  <a  href="/almacen"><span className="backArrow"><ForwardIcon fontSize="large"/></span></a>
+                </div>
                 {GetImage(pokemonData, (pokemon.shiny === "shiny" ? true : false))}
                 <div className="inlineContainer">
                     <p>{nombrePKM}</p>
@@ -75,9 +78,6 @@ function VerPokemonAlmacen() {
                 <p className="nombreEO">{pokemon.originaltrainer}</p>
                 <p className="rareza">Rareza: <span className={"rareza" + rareza}>{(nombreRareza === undefined ? "Cargando..." : nombreRareza)}</span></p>
                 <GetRarezaValue ivs={pokemon.iv} shiny={pokemon.shiny} rareza={rareza}/>
-                <div className="botonLiberar">
-                  <CurrencyExchangeIcon />
-                </div>
             </div>
 
             <div id="statsDiv">
