@@ -6,6 +6,7 @@ import Marcadores from "./sub-gameStatus/marcadores";
 import Pokedex from "./sub-gameStatus/pokedex";
 import VerPokemonAlmacen from "./sub-gameStatus/verPokemonAlmacen";
 import TipoIntercambio from "./sub-gameStatus/tipointercambio";
+import Intercambio from "./sub-gameStatus/intercambio";
 
 function GameState() {
   return (
@@ -22,6 +23,8 @@ function GameState() {
       <Route path="/pokedex" element={<PokedexGameState />} />
 
       <Route path="/marcadores" element={<MarcadoresGameState />} />
+
+      <Route path="/tipointercambio" element={<TipoIntercambioGameState />} />
 
       <Route path="/intercambio" element={<IntercambioGameState />} />
 
@@ -50,8 +53,12 @@ function MarcadoresGameState() {
   return <Marcadores />;
 }
 
-function IntercambioGameState() {
+function TipoIntercambioGameState() {
   return <TipoIntercambio />;
+}
+
+function IntercambioGameState() {
+  return <Intercambio />;
 }
 
 export default GameState;

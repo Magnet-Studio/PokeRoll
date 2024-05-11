@@ -1,20 +1,65 @@
+import React, { useState } from "react";
 import "./styles/intercambio.css";
-import { Link } from "react-router-dom";
-import Intercambio from "./intercambio";
+import "../../styles/panel.css";
 
 export default function TipoIntercambio() {
+  const [inputValue, setInputValue] = useState("");
+
+  const handleChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert(`Code: ${inputValue}`);
+  };
   return (
-      <div className="botonesIntercambio">
-        <Link to={Intercambio}>
-        <button className="intercambioBotonSinCodigo">
-          No tengo código de intercambio
-        </button>
-        </Link>
-        <Link to={Intercambio}>
-        <button className="intercambioBotonConCodigo">
-          Sí tengo código de intercambio
-        </button>
-        </Link>
+    <>
+      <div id="gamestatePanelContainer">
+        <form onSubmit={handleSubmit}>
+          <table>
+            <tr>
+              <TextoInformativo />
+            </tr>
+            <tr>
+              <InputCodigoIntercambio
+                handleChange={handleChange}
+                input={inputValue}
+              />
+            </tr>
+            <tr>
+              <BotonIntercambio />
+            </tr>
+          </table>
+        </form>
       </div>
+    </>
+  );
+}
+
+function TextoInformativo() {
+  return (
+    <h1 className="intercambioTextoInicio">
+      Introduce el código de intercambio
+    </h1>
+  );
+}
+
+function InputCodigoIntercambio({ input, handleChange }) {
+  return (
+    <input
+      type="text"
+      value={input}
+      onChange={handleChange}
+      className="intercambioInputCodigo"
+    ></input>
+  );
+}
+
+function BotonIntercambio() {
+  return (
+    <button className="intercambioBoton">
+      <h2>Buscar</h2>
+    </button>
   );
 }
