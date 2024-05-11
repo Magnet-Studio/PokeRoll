@@ -41,7 +41,7 @@ function ExternalArrow(props)
 
 function RuletaBox()
 {
-
+    
     
 
 

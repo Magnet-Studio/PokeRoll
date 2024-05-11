@@ -12,13 +12,6 @@ import { DeletePokemon } from "../sub-gameStatus/userdata/pokemonList";
 import { Link } from 'react-router-dom';
 
 
-/*
-
-        <div className="botonLiberar">
-            <CurrencyExchangeIcon />
-        </div>
-*/
-
 const style = {
   position: "absolute",
   top: "50%",
@@ -33,14 +26,14 @@ const style = {
 
 const coinValues = [50, 250, 750, 2000, 5000, 5000]
 
-function LiberarButton({ data }) {
+function LiberarButton({ data , UserData, SetUserData}) {
 
   const [isHovered, setIsHovered] = useState(false);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const LiberarPokemon = () => Liberar(data);
+  const LiberarPokemon = () => Liberar(data, UserData, SetUserData);
 
   return (
     <div>
@@ -120,10 +113,10 @@ function LiberarButton({ data }) {
   );
 }
 
-function Liberar(data) {
-    const pokeID = data.id;
-    console.log("AAAAAAAA")
-    DeletePokemon(data.id, coinValues[data.tier-1]);
+function Liberar(data, UserData, SetUserData) 
+{
+  DeletePokemon(data.id, coinValues[data.tier - 1], UserData, SetUserData);
+  
 } 
 
 export default LiberarButton;

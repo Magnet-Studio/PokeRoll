@@ -1,7 +1,4 @@
-import { UserData } from "./userData";
-
-
-export var FakeData = 
+export let FakeData = 
     [
         {
             "id":1,
@@ -315,8 +312,12 @@ export const GetPokemonByID = (id) => {
     });
 }
 
-export function DeletePokemon(id, currency) {
+export function DeletePokemon(id, currencyAdded, UserData, SetUserData) 
+{
     FakeData = FakeData.filter(data => data.id !== id);
-    UserData.currency += currency;
-    console.log(UserData.currency);
+    SetUserData(prevUserData => {
+        const updatedUserData = { ...prevUserData }; // Crear una copia del estado anterior
+        updatedUserData.currency += currencyAdded; // Modificar la copia
+        return updatedUserData; // Devolver la copia modificada
+    });
 }

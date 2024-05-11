@@ -4,6 +4,7 @@ import MainInfoButton from './components/mainInfo';
 import './styles/App.css';
 
 function App() {
+  
   return (
       <>
         <MainPanel/>

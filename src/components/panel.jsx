@@ -7,12 +7,21 @@ import TopElements from './subcomponents/topElements';
 import BottomElements from './subcomponents/bottomElements';
 import { BrowserRouter } from 'react-router-dom';
 import GameState from './subcomponents/gameState';
+import {useState} from 'react';
+
+const initData = {
+    name:"CreatorBeastGD",
+    pass:"beast",
+    currency: 100
+}
 
 /** 
  * Este es el panel principal azul donde se contiene todo
 */
 function MainPanel()
 {
+    const [UserData, SetUserData] = useState(initData);
+
     return (
         <>
 
@@ -26,7 +35,7 @@ function MainPanel()
                         </div>
 
                         <div id='coinsPanelContainer' className='subpanelContainer'>
-                            <CoinsPanel/>
+                            <CoinsPanel UserData={UserData} />
                         </div>
 
                         <div id='topelementsPanelContainer' className='subpanelContainer'>
@@ -34,15 +43,15 @@ function MainPanel()
                         </div>
 
                         <div id='usernamePanelContainer' className='subpanelContainer'>
-                            <UsernamePanel/>
+                            <UsernamePanel UserData={UserData}/>
                         </div>
 
                         <div id='gamestatePanelContainer' className='subpanelContainer'> 
-                            <GameStatePanel/>
+                            <GameStatePanel SetUserData={SetUserData}/>
                         </div>
 
                         <div id='bottomelementsPanelContainer' className='subpanelContainer'>
-                            <BottomElementsPanel/>
+                            <BottomElementsPanel UserData={UserData} SetUserData={SetUserData}/>
                         </div>
 
                     </BrowserRouter>
@@ -68,11 +77,11 @@ function LogoPanel()
 /**
  * Este es el panel que contiene el número de monedas
  */
-function CoinsPanel()
+function CoinsPanel({UserData})
 {
     return (
         <div className='subpanel'>
-            <Coins />
+            <Coins UserData={UserData}/>
         </div>
     );
 }
@@ -93,11 +102,11 @@ function TopElementsPanel()
 /**
  * Este es el panel que contiene el username
  */
-function UsernamePanel()
+function UsernamePanel({UserData})
 {
     return (
         <div className='subpanel'>
-            <Username/>
+            <Username UserData={UserData}/>
         </div>
     );
 }
@@ -105,11 +114,11 @@ function UsernamePanel()
 /**
  * Este es el panel que contiene el estado actual del juego (game state)
  */
-function GameStatePanel()
+function GameStatePanel({UserData, SetUserData})
 {
     return (
         <div className='subpanel' id='gamestatePanel'>
-            <GameState />
+            <GameState UserData={UserData} SetUserData={SetUserData} />
         </div>
     );
 }
@@ -118,11 +127,11 @@ function GameStatePanel()
 /**
  * Este es el panel que contiene los botones de navegación / el botón de Tirar / la pokéball
  */
-function BottomElementsPanel()
+function BottomElementsPanel({UserData, SetUserData})
 {
     return (
         <div className='subpanel' id='bottomelementsPanel'>
-            <BottomElements/>
+            <BottomElements UserData={UserData} SetUserData={SetUserData}/>
         </div>
     );
 }

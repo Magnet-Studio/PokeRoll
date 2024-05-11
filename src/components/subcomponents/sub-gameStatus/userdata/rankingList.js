@@ -1,4 +1,4 @@
-export var PlayerList = [
+export let PlayerList = [
     {
         'playername': 'CreatorBeastGD',
         'score': 1000,

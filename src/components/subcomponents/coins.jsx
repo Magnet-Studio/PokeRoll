@@ -2,16 +2,18 @@
  * Contenidos del panel que tiene las monedas
  */
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './styles/coins.css';
 import CoinImage from '../../images/coin.png';
-import { UserData } from './sub-gameStatus/userdata/userData';
 
-function Coins()
+function Coins({UserData})
 {
+    const [coinsValue, setCoinsValue] = useState(UserData.currency);
 
+    useEffect(() => {
+        setCoinsValue(UserData.currency);
+    },  [JSON.stringify(UserData.currency)]);
 
-    let coinsValue = UserData.currency;
 
     let numCifras = 1;
 
@@ -27,10 +29,6 @@ function Coins()
             <p id={'cifras-' + numCifras}>{coinsValue}</p>
         </div>
     );
-}
-
-export function reloadCoins() {
-    return Coins();
 }
 
 export default Coins;

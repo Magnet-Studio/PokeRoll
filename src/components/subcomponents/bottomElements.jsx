@@ -20,7 +20,7 @@ import LiberarButton from "./sub-bottomElements/liberarButton";
 /**
  * Rutas de todas las posibilidades del elemento inferior (botones de navegación / pokéball / botón de tirada)
  */
-function BottomElements() {
+function BottomElements({UserData, SetUserData}) {
   const location = useLocation();
   let pokenametag = "";
   let pokemon;
@@ -40,7 +40,7 @@ function BottomElements() {
 
       <Route
         path="/almacen/ver-pokemon"
-        element={<ButtonsVerPokemonAlmacenStatus data={pokemon} />}
+        element={<ButtonsVerPokemonAlmacenStatus data={pokemon} UserData={UserData} SetUserData={SetUserData} />}
       />
 
       <Route path="/pokedex/*" element={<ButtonsPokedexStatus />} />
@@ -83,7 +83,7 @@ function ButtonsRuletaStatus() {
   );
 }
 
-function ButtonsVerPokemonAlmacenStatus({ data }) {
+function ButtonsVerPokemonAlmacenStatus({ data, UserData, SetUserData }) {
   return (
     <>
       <NavButton link="/ruleta" icon={<RuletaIcon />} title="Ruleta" />
@@ -104,7 +104,7 @@ function ButtonsVerPokemonAlmacenStatus({ data }) {
         icon={<IntercambioIcon />}
         title="Intercambio"
       />
-      <LiberarButton data={data} />
+      <LiberarButton data={data} UserData={UserData} SetUserData={SetUserData}/>
     </>
   );
 }

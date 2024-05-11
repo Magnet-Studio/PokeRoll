@@ -16,11 +16,13 @@
     right: 0;
     position: absolute;
     margin-right: 1vw;
+    min-width: 40px;
+    min-height: 30px;
 }
 
 #tirarButton p 
 {
-    font-size: 1vw;
+    font-size: calc(1px + 1vw);
     margin: 0;
 }
 
@@ -40,5 +42,8 @@
 }
 
 .pokeBall {
-    width: 30vw;
+    width: 20vw;
+    position: relative;
+    transform: translateY(50%);
+    bottom: 60%;
 }

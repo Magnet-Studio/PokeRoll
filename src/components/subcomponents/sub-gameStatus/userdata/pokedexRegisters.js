@@ -1,4 +1,4 @@
-export var PokedexRegisters = [ {}, {'known': 'known'},
+export let PokedexRegisters = [ {}, {'known': 'known'},
     {'known': 'known'},
     {'known': 'known'},
     {'known': 'known'},
