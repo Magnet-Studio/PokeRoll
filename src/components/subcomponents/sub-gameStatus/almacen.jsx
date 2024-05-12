@@ -14,6 +14,13 @@ function Almacen() {
     const [selectedType, setSelectedType] = useState('0');
     const [Name, setName] = useState('');
 
+    useEffect(() => {
+        setSelectedValue(localStorage.getItem('selectedValue') || '0');
+        setSelectedTier(localStorage.getItem('selectedTier') || '0');
+        setSelectedType(localStorage.getItem('selectedType') || '0');
+        setName(localStorage.getItem('Name') || '');
+    }, []);
+
     return (
         <>
             <div id="almacenBigBox">
@@ -39,15 +46,19 @@ function Almacen() {
 function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedTier, setSelectedTier, selectedType, setSelectedType, Name, setName} ) {
     const handleSelectChange = (event) => {
         setSelectedValue(event.target.value);
+        localStorage.setItem('selectedValue', event.target.value);
     };
     const handleSelectTier = (event) => {
         setSelectedTier(event.target.value);
+        localStorage.setItem('selectedTier', event.target.value);
     };
     const handleSelectType = (event) => {
         setSelectedType(event.target.value);
+        localStorage.setItem('selectedType', event.target.value);
     };
     const handleName = (event) => {
         setName(event.target.value);
+        localStorage.setItem('Name', event.target.value);
     };
     return(
         <>
