@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { GetPokemonByID } from "./userdata/pokemonList";
 import './styles/verPokemonAlmacen.css'
 import { GetFrequency } from "./userdata/pokemonFrequency";
@@ -10,6 +10,8 @@ import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import ForwardIcon from '@mui/icons-material/Forward';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import { useSpring, animated, config  } from 'react-spring';
 
 
 function VerPokemonAlmacen() {
@@ -50,16 +52,26 @@ function VerPokemonAlmacen() {
         secondTypeContainer = (<div className={"pokemonType " + secondType}>{GetPrettyTypeNameSpanish(secondType)}</div>);
     } 
     
-
+    const rarezas = [100, 400, 1000, 2000, 10000, 15000];
     const nombrePKM = pokemon.nametag === null ? name : pokemon.nametag;
-    const shinyCond = (pokemon.shiny === "shiny") ? <MouseOverPopover content={<AutoAwesomeIcon />} shown={<>¡Felicidades! ¡Has conseguido un Pokémon Variocolor!<br/>Obtendrás una bonificación de puntos de rareza por ello :)</>}/> : <></>;
+    const shinyCond = (pokemon.shiny === "shiny") ? <MouseOverPopover content={<AutoAwesomeIcon />} 
+                                                                      shown={<> ¡Felicidades! ¡Has conseguido un Pokémon Variocolor!<br/>
+                                                                      Obtendrás una bonificación de puntos de rareza por ello.
+                                                                      </>}/> : <></>;
+    const rarityMessage = <MouseOverPopover content={<InfoOutlinedIcon />} 
+                                            shown={<>
+                                              La rareza de un Pokémon contribuye a su valor final. <br/>
+                                              Este Pokémon posee la rareza "{nombreRareza}", por lo <br/>
+                                              cual obtendrá un bonus de {rarezas[rareza-1]} puntos en el <br/>
+                                              cálculo final de Rareza.
+                                              </>} />
 
     return (
         <>
         <div id="verPokemonAlmacenBigBox">
             <div id="infoGeneral">
                 <div className="backButton">
-                  <a  href="/almacen"><span className="backArrow"><ForwardIcon fontSize="large"/></span></a>
+                  <Link to="/almacen"><span className="backArrow"><ForwardIcon fontSize="large"/></span></Link>
                 </div>
                 {GetImage(pokemonData, (pokemon.shiny === "shiny" ? true : false))}
                 <div className="inlineContainer">
@@ -76,7 +88,7 @@ function VerPokemonAlmacen() {
                 <p className="fechaEncontrado">{"Encontrado el " + pokemon.datefound}</p>
                 <p className="entrenadorOriginal">Entrenador original:</p>
                 <p className="nombreEO">{pokemon.originaltrainer}</p>
-                <p className="rareza">Rareza: <span className={"rareza" + rareza}>{(nombreRareza === undefined ? "Cargando..." : nombreRareza)}</span></p>
+                <p className="rareza">Rareza: <span className={"rareza" + rareza}>{(nombreRareza === undefined ? "Cargando..." : nombreRareza + " " )}</span>{rarityMessage}</p>
                 <GetRarezaValue ivs={pokemon.iv} shiny={pokemon.shiny} rareza={rareza}/>
             </div>
 
@@ -159,30 +171,44 @@ function GetRarezaValue({ ivs , shiny, rareza})
 
 const HexagonData = ({ size, fillColor, strokeColor, data}) => {
   // Coordenadas de los vértices del hexágono
-
+  const midX = 25 + (size* Math.sqrt(3) / 2);
+  const midY = size;
   const points = [
-      [25 + (size* Math.sqrt(3) / 2) - (data.def / 31)*(size* Math.sqrt(3) / 2), size + (data.def / 31)*size/2],
-      [25 + (size* Math.sqrt(3) / 2) - (data.atq / 31)*(size* Math.sqrt(3) / 2), size - (data.atq / 31)*size/2], 
-      [25 + size* Math.sqrt(3) / 2, size - (data.hp / 31)*size],
-      [25 + (size* Math.sqrt(3) / 2) + (data.spatq / 31)*(size* Math.sqrt(3) / 2), size - (data.spatq / 31)*size/2],
-      [25 + (size* Math.sqrt(3) / 2) + (data.spdef / 31)*(size* Math.sqrt(3) / 2), size + (data.spdef / 31)*size/2],
-      [25 + size* Math.sqrt(3) / 2, size + (data.spe / 31)*size]
+      [midX - (data.def / 31)*(size* Math.sqrt(3) / 2), midY + (data.def / 31)*size/2],
+      [midX - (data.atq / 31)*(size* Math.sqrt(3) / 2), midY - (data.atq / 31)*size/2], 
+      [midX, midY - (data.hp / 31)*size],
+      [midX + (data.spatq / 31)*(size* Math.sqrt(3) / 2), midY - (data.spatq / 31)*size/2],
+      [midX + (data.spdef / 31)*(size* Math.sqrt(3) / 2), midY + (data.spdef / 31)*size/2],
+      [midX, midY + (data.spe / 31)*size]
   ];
 
   // Convertimos las coordenadas a un string
-  const pointsString = points.map(point => point.join(',')).join(' ');
+  const [animatedProps, set] = useSpring(() => ({
+    points: points.map((point) => point.join(',')).join(' '),
+    from: { points: points.map(() => 25 + size* Math.sqrt(3) / 2 + ',' + size).join(' ') }, // Comienza desde el centro
+    config: { tension: 170, friction: 26 }, // Duración de la animación en milisegundos
+  }));
+
+  useEffect(() => {
+    set({ points: points.map((point) => point.join(',')).join(' ') });
+  }, []);
+
 
   return (
-    <svg className="stats" height="40vh" width="50vw"
+    <animated.svg
+      className="stats"
+      height="40vh"
+      width="50vw"
       viewBox={`15 -15 ${size * 2} ${size * Math.sqrt(3) * 2}`}
+      style={animatedProps}
     >
-      <polygon
-        points={pointsString}
+      <animated.polygon
+        points={animatedProps.points}
         fill={fillColor}
         stroke={strokeColor}
         strokeWidth="2"
       />
-    </svg>
+    </animated.svg>
   );
 };
 

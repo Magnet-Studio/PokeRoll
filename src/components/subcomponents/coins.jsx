@@ -11,19 +11,21 @@ function Coins({UserData})
 {
     const [coinsValue, setCoinsValue] = useState(UserData.currency);
     const [prevCoinsValue, setPrevCoinsValue] = useState(UserData.currency);
+    const [numCifras, setNumCifras] = useState(1);
 
     useEffect(() => {
         setPrevCoinsValue(coinsValue);
         setCoinsValue(UserData.currency);
+        let cif = 0;
+        for(let c = UserData.currency; c > 0; )
+            {
+                c = Math.floor(c / 10);
+                cif++;
+            }
+        setNumCifras(cif);
+        
     },  [JSON.stringify(UserData.currency)]);
 
-    let numCifras = 1;
-
-    for(let c = coinsValue; c > 0; )
-    {
-        c = Math.floor(c / 10);
-        numCifras++;
-    }
 
     return (
         <div id="coins">

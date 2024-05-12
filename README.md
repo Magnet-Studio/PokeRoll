@@ -19,3 +19,4 @@
 > - MUI Icons Material: ```npm install @mui/icons-material```
 > - Bootstrap: ```npm install react-bootstrap bootstrap```
 > - React CountUp: ```npm install react-countup```
+> - React Spring: ```npm install react-spring```
