@@ -187,16 +187,16 @@ export let FakeData =
             "name": "19",
             "speciesname":"Rattata",
             "nametag":"Rattata",
-            "shiny": "shiny",
+            "shiny": "normal",
             "originaltrainer": "CreatorBeastGD",
             "datefound":"07/05/2024",
             "iv": {
-                "hp":1,
-                "atq":1,
-                "def":1,
-                "spatq":1,
-                "spdef":1,
-                "spe":1
+                "hp":0,
+                "atq":0,
+                "def":0,
+                "spatq":0,
+                "spdef":0,
+                "spe":0
             },
             "type1":"normal",
             "type2":null,

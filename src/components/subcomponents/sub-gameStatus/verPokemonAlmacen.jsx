@@ -12,6 +12,7 @@ import Typography from '@mui/material/Typography';
 import ForwardIcon from '@mui/icons-material/Forward';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { useSpring, animated, config  } from 'react-spring';
+import CountUp from 'react-countup';
 
 
 function VerPokemonAlmacen() {
@@ -56,7 +57,8 @@ function VerPokemonAlmacen() {
     const nombrePKM = pokemon.nametag === null ? name : pokemon.nametag;
     const shinyCond = (pokemon.shiny === "shiny") ? <MouseOverPopover content={<AutoAwesomeIcon />} 
                                                                       shown={<> ¡Felicidades! ¡Has conseguido un Pokémon Variocolor!<br/>
-                                                                      Obtendrás una bonificación de puntos de rareza por ello.
+                                                                      Obtendrás una bonificación de 5000 puntos en el cálculo final <br/>
+                                                                      de Rareza por ello.
                                                                       </>}/> : <></>;
     const rarityMessage = <MouseOverPopover content={<InfoOutlinedIcon />} 
                                             shown={<>
@@ -164,7 +166,7 @@ function GetRarezaValue({ ivs , shiny, rareza})
 
     return (
         <>
-            <p className="ValorRareza">{finalValue < 10 ? 10 : finalValue}</p>
+            <p className="ValorRareza">{<CountUp start={0} end={finalValue < 10 ? 10 : finalValue} duration={0.5} separator=""></CountUp>}<span className="pts"> pts.</span></p>
         </>
     )
 }

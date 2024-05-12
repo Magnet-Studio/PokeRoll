@@ -184,6 +184,10 @@ p {
     color: white;
 }
 
+.pts {
+    font-size: 1vw;
+}
+
 #statsDiv
 {
     display: flex;

@@ -58,7 +58,7 @@ function LiberarButton({ data , UserData, SetUserData}) {
             ¿Quieres liberar a este Pokémon?
           </Typography>
           <Typography id="modal-modal-description" variant="h6" component="h2">
-            {"Liberar a " + data.nametag + " supondrá perderlo para siempre, pero recibirás " + coinValues[data.tier-1] + " monedas a cambio. (No perderás su registro en la Pokédex)"}
+            Liberar a <i>{data.nametag}</i> supondrá perderlo para siempre, pero recibirás <i>{coinValues[data.tier-1]} monedas</i> a cambio. (No perderás su registro en la Pokédex)
           </Typography>
           <div className="containerModal">
             <PokemonCard data={data} />
