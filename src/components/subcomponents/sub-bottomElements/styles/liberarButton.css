@@ -48,6 +48,7 @@
     margin-top: 2vh;
     text-align: justify;
     font-size: calc(0.6vh + 1.3vw);
+    font-family: 'Roboto', sans-serif;
 }
 
 .MuiBox-root .entryBox {

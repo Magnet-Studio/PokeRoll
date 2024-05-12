@@ -32,8 +32,8 @@ tr {
   width: 200px;
   height: 100px;
   padding: 10px 20px;
-  border: 2px solid #333;
-  background-color: green;
+  border: 0.3vw solid #89ff8e;
+  background-color: #00df09;
   color: white;
   border-radius: 30px;
   cursor: pointer;
@@ -55,8 +55,8 @@ tr {
   height: 100px;
   padding: 10px 20px;
   font-size: large;
-  border: 2px solid #333;
-  background-color: green;
+  border: 0.3vw solid #89ff8e;
+  background-color: #00df09;
   color: white;
   border-radius: 30px;
   cursor: pointer;
@@ -68,18 +68,21 @@ tr {
   height: 100px;
   padding: 10px 20px;
   font-size: large;
-  border: 2px solid #333;
-  background-color: blue;
+  border: 0.3vw solid #ba9712;
+  background-color: #fecb02;
   color: white;
   border-radius: 30px;
   cursor: pointer;
   margin: 5px;
+  color: #1a437b;
 }
 
 
 .botonesIntercambio {
   width: 100%;
   display: flex;
+  justify-content: center;
+  align-items: center;
   grid-column: 2;
 }
 
