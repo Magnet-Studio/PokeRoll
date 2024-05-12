@@ -98,6 +98,14 @@ option
     pointer-events: all;
 }
 
+.loadingPokemon
+{
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    height: 100%;
+}
+
 @media screen and (max-width: 900px)
 {
     #pokemon-cards-container

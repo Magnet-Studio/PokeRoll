@@ -7,6 +7,7 @@ import { GetDataByName, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish, G
 import { Link } from "react-router-dom";
 import { GetFrequencyAsync } from "./userdata/pokemonFrequency";
 import { GetRareza } from "./userdata/rareza";
+import CircularProgress from '@mui/material/CircularProgress';
 
 function Almacen() {
     const [selectedValue, setSelectedValue] = useState('0');
@@ -232,11 +233,18 @@ function PokemonCard({data})
         </>
     );
 
+    // Si los datos aún se están cargando, muestra CircularProgress dentro de la tarjeta
+    const content = (pokemonData === null || pokemonSpeciesData === null) ? 
+        <div className="loadingPokemon">
+            <CircularProgress />
+        </div> : 
+        pokemon;
+
     return (
         <Link to={"ver-pokemon?id=" + data.id}>
             <div className={"entryBox " + firstType + " " + data.shiny} key={data.id}>
                 <p className="dexNumber">Nº {dexNum}</p>
-                {pokemon}
+                {content}
             </div>
         </Link>
     );
