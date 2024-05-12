@@ -4,7 +4,8 @@ import {useState, useEffect} from 'react';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import {GetSpeciesDataByDexNum, GetSpanishName} from './PokeAPI/PokemonSpeciesData';
 import {GetDataByDexNum, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish, GetImage} from './PokeAPI/PokemonData';
-import { PokedexRegisters } from './userdata/pokedexRegisters'; 
+import { PokedexRegisters } from './userdata/pokedexRegisters';
+import CircularProgress from '@mui/material/CircularProgress';
 
 /**
  * Función principal que se exporta.
@@ -150,12 +151,17 @@ function PokemonEntry(props)
         pokemon = <p className="unknownMessage">???</p>
     }
 
-
+    // Si los datos aún se están cargando, muestra CircularProgress dentro de la tarjeta
+    const content = (pokemonData === null || pokemonSpeciesData === null) ? 
+        <div className="loadingPokemon">
+            <CircularProgress />
+        </div> : 
+        pokemon;
 
     return (
         <div className={"entryBox " + knownCond} key={"pokemon-" + props.num}>
             <p className="dexNumber">Nº {props.num}</p>
-            {pokemon}
+            {content}
         </div>
     );
 }
