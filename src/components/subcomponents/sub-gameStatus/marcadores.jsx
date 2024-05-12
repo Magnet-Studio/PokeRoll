@@ -6,7 +6,7 @@ import { GetDataByName, GetImage } from "./PokeAPI/PokemonData";
 
 
 function Marcadores() {
-    const [selectedValue, setSelectedValue] = useState('1');
+    const [selectedValue, setSelectedValue] = useState(localStorage.getItem('selectedValue') || '1');
     
     return(
         <>
@@ -26,6 +26,7 @@ function FiltroMarcador({selectedValue, setSelectedValue}) {
     
     const handleSelectChange = (event) => {
         setSelectedValue(event.target.value);
+        localStorage.setItem('selectedValue', event.target.value);
     };
     
     return(
