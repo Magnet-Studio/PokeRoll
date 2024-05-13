@@ -20,14 +20,12 @@ import LiberarButton from "./sub-bottomElements/liberarButton";
 /**
  * Rutas de todas las posibilidades del elemento inferior (botones de navegación / pokéball / botón de tirada)
  */
-function BottomElements({UserData, SetUserData}) 
-{
+function BottomElements({ UserData, SetUserData }) {
   const location = useLocation();
   let pokenametag = "";
   let pokemon;
 
-  if (location.pathname === "/almacen/ver-pokemon") 
-  {
+  if (location.pathname === "/almacen/ver-pokemon") {
     const searchParams = new URLSearchParams(location.search);
     const id = searchParams.get("id");
     pokemon = GetPokemonByID(id);
@@ -42,14 +40,20 @@ function BottomElements({UserData, SetUserData})
 
       <Route
         path="/almacen/ver-pokemon"
-        element={<ButtonsVerPokemonAlmacenStatus data={pokemon} UserData={UserData} SetUserData={SetUserData} />}
+        element={
+          <ButtonsVerPokemonAlmacenStatus
+            data={pokemon}
+            UserData={UserData}
+            SetUserData={SetUserData}
+          />
+        }
       />
 
       <Route path="/pokedex/*" element={<ButtonsPokedexStatus />} />
 
       <Route path="/marcadores/*" element={<ButtonsMarcadoresStatus />} />
 
-      <Route path="/tipointercambio" element={<ButtonsIntercambioStatus />} />
+      <Route path="/intercambio/tipo" element={<ButtonsIntercambioStatus />} />
 
       <Route path="/intercambio" element={<ButtonsIntercambioStatus />} />
 
@@ -106,7 +110,11 @@ function ButtonsVerPokemonAlmacenStatus({ data, UserData, SetUserData }) {
         icon={<IntercambioIcon />}
         title="Intercambio"
       />
-      <LiberarButton data={data} UserData={UserData} SetUserData={SetUserData}/>
+      <LiberarButton
+        data={data}
+        UserData={UserData}
+        SetUserData={SetUserData}
+      />
     </>
   );
 }
