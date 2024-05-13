@@ -12,7 +12,7 @@ import IntercambioIcon from "@mui/icons-material/Autorenew";
 import MarcadoresIcon from "@mui/icons-material/EmojiEvents";
 import PokedexIcon from "@mui/icons-material/Apps";
 import RuletaIcon from "@mui/icons-material/Money";
-import { Pokeball, TirarButton } from "./sub-bottomElements/ruletaElements";
+import { Pokeball, TirarButton, ChangeTierButtons } from "./sub-bottomElements/ruletaElements";
 import { useLocation } from "react-router-dom";
 import { GetPokemonByID } from "./sub-gameStatus/userdata/pokemonList";
 import LiberarButton from "./sub-bottomElements/liberarButton";
@@ -20,7 +20,7 @@ import LiberarButton from "./sub-bottomElements/liberarButton";
 /**
  * Rutas de todas las posibilidades del elemento inferior (botones de navegación / pokéball / botón de tirada)
  */
-function BottomElements({UserData, SetUserData}) 
+function BottomElements({UserData, setUserData, TierRuleta, setTierRuleta, tirarButtonDisable, setChangeTierButtonDisable, setTirarButtonDisable, changeTierButtonDisable}) 
 {
   const location = useLocation();
   let pokenametag = "";
@@ -36,14 +36,13 @@ function BottomElements({UserData, SetUserData})
 
   return (
     <Routes>
-      <Route path="/ruleta" element={<ButtonsRuletaStatus />} />
+      <Route path="/ruleta" element={<ButtonsRuletaStatus TierRuleta={TierRuleta} setTierRuleta={setTierRuleta} setUserData={setUserData} 
+                                                tirarButtonDisable={tirarButtonDisable} setTirarButtonDisable={setTirarButtonDisable}
+                                                changeTierButtonDisable={changeTierButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable}/>} />
 
       <Route path="/almacen/" element={<ButtonsAlmacenStatus />} />
 
-      <Route
-        path="/almacen/ver-pokemon"
-        element={<ButtonsVerPokemonAlmacenStatus data={pokemon} UserData={UserData} SetUserData={SetUserData} />}
-      />
+      <Route path="/almacen/ver-pokemon" element={<ButtonsVerPokemonAlmacenStatus data={pokemon} UserData={UserData} setUserData={setUserData} />} />
 
       <Route path="/pokedex/*" element={<ButtonsPokedexStatus />} />
 
@@ -58,34 +57,31 @@ function BottomElements({UserData, SetUserData})
   );
 }
 
-function ButtonsRuletaStatus() {
+const TierCosts = [100, 500, 1500, 4000, 10000];
+
+function ButtonsRuletaStatus({TierRuleta, setTierRuleta, setUserData, tirarButtonDisable, setChangeTierButtonDisable, setTirarButtonDisable, changeTierButtonDisable}) {
+
+  const TierCost = TierCosts[TierRuleta - 1];
+
   return (
     <>
-      <NavButton
-        link="/ruleta"
-        selected="selected"
-        icon={<RuletaIcon />}
-        title="Ruleta"
-      />
-      <NavButton link="/almacen" icon={<AlmacenIcon />} title="Almacén" />
-      <NavButton link="/pokedex" icon={<PokedexIcon />} title="Pokédex" />
-      <Pokeball />
-      <NavButton
-        link="/marcadores"
-        icon={<MarcadoresIcon />}
-        title="Marcadores"
-      />
-      <NavButton
-        link="/intercambio"
-        icon={<IntercambioIcon />}
-        title="Intercambio"
-      />
-      <TirarButton cost={100} />
+      <div id="navButtonsRuletaStatusContainer">
+        <NavButton link="/ruleta" selected="selected" icon={<RuletaIcon />} title="Ruleta"/>
+        <NavButton link="/almacen" icon={<AlmacenIcon />} title="Almacén" />
+        <NavButton link="/pokedex" icon={<PokedexIcon />} title="Pokédex" />
+        <NavButton link="/marcadores" icon={<MarcadoresIcon />} title="Marcadores" />
+        <NavButton link="/intercambio" icon={<IntercambioIcon />} title="Intercambio"/>
+      </div>
+
+      <div id='ruletaSpecialButtonsContainer'>
+        <ChangeTierButtons TierRuleta={TierRuleta} setTierRuleta={setTierRuleta} changeTierButtonDisable={changeTierButtonDisable}  />
+        <TirarButton cost={TierCost} setUserData={setUserData} tirarButtonDisable={tirarButtonDisable} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} />
+      </div>
     </>
   );
 }
 
-function ButtonsVerPokemonAlmacenStatus({ data, UserData, SetUserData }) {
+function ButtonsVerPokemonAlmacenStatus({ data, UserData, setUserData }) {
   return (
     <>
       <NavButton link="/ruleta" icon={<RuletaIcon />} title="Ruleta" />
@@ -106,7 +102,7 @@ function ButtonsVerPokemonAlmacenStatus({ data, UserData, SetUserData }) {
         icon={<IntercambioIcon />}
         title="Intercambio"
       />
-      <LiberarButton data={data} UserData={UserData} SetUserData={SetUserData}/>
+      <LiberarButton data={data} setUserData={setUserData}/>
     </>
   );
 }

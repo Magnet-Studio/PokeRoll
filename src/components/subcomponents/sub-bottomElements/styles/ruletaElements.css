@@ -1,3 +1,14 @@
+#ruletaSpecialButtonsContainer
+{
+    margin-right: 1vw;
+    right: 0;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw;
+}
+
 
 #tirarButton 
 {
@@ -13,9 +24,6 @@
     flex-direction: column;
     cursor: pointer;
     pointer-events: all;
-    right: 0;
-    position: absolute;
-    margin-right: 1vw;
     min-width: 40px;
     min-height: 30px;
 }
@@ -46,4 +54,75 @@
     position: relative;
     transform: translateY(50%);
     bottom: 60%;
+}
+
+#tirarButton.disabled
+{
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+#changeTierButtons
+{
+    display: grid;
+    grid-template-rows: 100%;
+    grid-template-columns: 33% 33% 33%;
+    width: 16vw;
+    justify-content: center;
+    align-items: center;
+}
+
+#changeTierButtons > p 
+{
+    grid-row: 1;
+    grid-column: 2;
+    margin: 0;
+    font-size: calc(1px + 1vw);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#changeTierButtons > div 
+{
+    width: 5vw;
+    height: 4vw;
+    background-color: #00DF09;
+    border: 0.3vw solid #89FF8E;
+    border-radius: 0.7vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: all;
+    cursor: pointer;
+}
+
+#changeTierButtons > div > svg 
+{
+    width: 100%;
+    height: 100%;
+    color: white;
+}
+
+#changeTierButtons > div.disabled
+{
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+#nextTierButton
+{
+    grid-row: 1;
+    grid-column: 3;
+}
+
+#prevTierButton
+{
+    grid-row: 1;
+    grid-column: 1;
+}
+
+#prevTierButton > svg 
+{
+    transform: scaleX(-1);
 }

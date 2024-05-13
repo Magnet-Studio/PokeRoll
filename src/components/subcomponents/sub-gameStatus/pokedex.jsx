@@ -20,22 +20,7 @@ function Pokedex()
     const [generationNum, setGenerationNum] = useState(initGenerationNum ? parseInt(initGenerationNum) : 1);
     // La lista de dexNum de la actual generación mostrada
     const [dexNumbers, setDexNumbers] = useState(MakeDexNumByGeneration(generationNum));
-    // Proceso abort
-    const [abortController, setAbortController] = useState(null);
-
-    // Listener del abortador
-    useEffect(() => {
-        // Creamos un nuevo controlador de aborto cuando cambia el número de generación
-        const controller = new AbortController();
-        setAbortController(controller);
-
-        return () => {
-            // Cuando el componente se desmonta o el número de generación cambia, abortamos las solicitudes en curso
-            if (controller) {
-                controller.abort();
-            }
-        };
-    }, [generationNum]);
+    
 
     useEffect(() => {
         setDexNumbers(MakeDexNumByGeneration(generationNum));
@@ -115,9 +100,9 @@ function CompleteEntryList(props)
                 {props.generationNum + "º Generación"} 
                 <MouseOverPopover content={<InfoOutlinedIcon className="infoGenerationIcon"/>} 
                                 shown={
-                                <> 
+                                <p> 
                                     La generación de un Pokémon es el grupo de Pokémon que se introdujeron en un mismo juego de la saga.
-                                </>
+                                </p>
                                 } />
             </p>
 
@@ -184,12 +169,14 @@ function PokemonEntry(props)
     else 
     {
         // Caso de pokémon desconocido
-        pokemon = <MouseOverPopover content={<p className="unknownMessage">???</p>} 
-                shown={
-                    <> 
-                        Este Pokémon aún no ha sido descubierto.
-                    </>
-                } />
+        pokemon = <div className='unknownMessageContainer'>
+                    <MouseOverPopover content={<p className="unknownMessage">???</p>} 
+                        shown={
+                            <p> 
+                                Este Pokémon aún no ha sido descubierto.
+                            </p>
+                        } />
+                    </div>
     }
 
     // Si los datos aún se están cargando, muestra CircularProgress dentro de la tarjeta

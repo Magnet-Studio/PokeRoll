@@ -312,7 +312,7 @@ export const GetPokemonByID = (id) => {
     });
 }
 
-export function DeletePokemon(id, currencyAdded, UserData, SetUserData) 
+export function DeletePokemon(id, currencyAdded, SetUserData) 
 {
     FakeData = FakeData.filter(data => data.id !== id);
     SetUserData(prevUserData => {

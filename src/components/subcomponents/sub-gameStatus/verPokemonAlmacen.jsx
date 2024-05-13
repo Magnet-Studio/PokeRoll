@@ -56,17 +56,17 @@ function VerPokemonAlmacen() {
     const rarezas = [100, 400, 1000, 2000, 10000, 15000];
     const nombrePKM = pokemon.nametag === null ? name : pokemon.nametag;
     const shinyCond = (pokemon.shiny === "shiny") ? <MouseOverPopover content={<AutoAwesomeIcon />} 
-                                                                      shown={<> ¡Felicidades! ¡Has conseguido un Pokémon Variocolor!<br/>
+                                                                      shown={<p> ¡Felicidades! ¡Has conseguido un Pokémon Variocolor!<br/>
                                                                       Obtendrás una bonificación de 5000 puntos en el cálculo final <br/>
                                                                       de Rareza por ello.
-                                                                      </>}/> : <></>;
+                                                                      </p>}/> : <></>;
     const rarityMessage = <MouseOverPopover content={<InfoOutlinedIcon />} 
-                                            shown={<>
+                                            shown={<p>
                                               La rareza de un Pokémon contribuye a su valor final. <br/>
                                               Este Pokémon posee la rareza "{nombreRareza}", por lo <br/>
                                               cual obtendrá un bonus de {rarezas[rareza-1]} puntos en el <br/>
                                               cálculo final de Rareza.
-                                              </>} />
+                                              </p>} />
 
     const totalSum = pokemon.iv.atq + pokemon.iv.def + pokemon.iv.spatq + pokemon.iv.spdef + pokemon.iv.spe + pokemon.iv.hp;
     const calc = ((totalSum / 186) * 100).toFixed(2);
@@ -98,14 +98,14 @@ function VerPokemonAlmacen() {
 
             <div id="statsDiv">
                 <p>Estadísticas <MouseOverPopover content={<InfoOutlinedIcon />} 
-                                            shown={<>
+                                            shown={<p>
                                               La gráfica de Estadísticas representa los valores individuales (IVs)<br/>
                                               para cada una de sus estadísticas, definiendo genéticamente a un Pokémon<br/>
                                               para que este sea único. <br/>
                                               Cuanto mayores sean estos valores para cada característica, mejor será <br/>
                                               este Pokémon y, en consecuencia, poseerá mayor puntuación en el cálculo.<br/>
                                               final de Rareza.<br/>
-                                              </>} />
+                                              </p>} />
                                               </p>
                 <div id="statsFullStructure">
                   <Hexagon size={100} fillColor="rgba(0,0,0,0.1)" strokeColor="rgba(255,255,255,0.2)" data={pokemon.iv}/>

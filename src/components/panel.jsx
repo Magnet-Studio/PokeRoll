@@ -7,7 +7,7 @@ import TopElements from './subcomponents/topElements';
 import BottomElements from './subcomponents/bottomElements';
 import { BrowserRouter } from 'react-router-dom';
 import GameState from './subcomponents/gameState';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 
 const initData = {
     name:"CreatorBeastGD",
@@ -15,12 +15,50 @@ const initData = {
     currency: 100
 }
 
+const savedData = () => 
+{
+    const savedName = localStorage.getItem("username");
+    const savedPass = localStorage.getItem("pass");
+    const savedCurrency = localStorage.getItem("currency");
+
+
+    if(savedName == undefined || savedPass == undefined || savedCurrency == undefined)
+    {
+        return null;
+    }
+
+    return {
+        name: savedName,
+        pass: savedPass,
+        currency: parseInt(savedCurrency)
+    };
+}
+
 /** 
  * Este es el panel principal azul donde se contiene todo
 */
 function MainPanel()
 {
-    const [UserData, SetUserData] = useState(initData);
+     
+    const [UserData, setUserData] = useState(savedData() || initData);
+
+    useEffect(() => {
+        localStorage.setItem("username", UserData.name);
+        localStorage.setItem("pass", UserData.pass);
+        localStorage.setItem("currency", UserData.currency.toString());
+    }, [UserData]);
+
+    useEffect(() => {
+        const data = savedData();
+        if (data !== null) {
+            setUserData(data);
+        }
+    }, []);
+
+    const [TierRuleta, setTierRuleta] = useState(1);
+
+    const [tirarButtonDisable, setTirarButtonDisable] = useState("");
+    const [changeTierButtonDisable, setChangeTierButtonDisable] = useState("");
 
     return (
         <>
@@ -47,11 +85,14 @@ function MainPanel()
                         </div>
 
                         <div id='gamestatePanelContainer' className='subpanelContainer'> 
-                            <GameStatePanel SetUserData={SetUserData}/>
+                            <GameStatePanel setUserData={setUserData} TierRuleta={TierRuleta} />
                         </div>
 
                         <div id='bottomelementsPanelContainer' className='subpanelContainer'>
-                            <BottomElementsPanel UserData={UserData} SetUserData={SetUserData}/>
+                            <BottomElementsPanel UserData={UserData} setUserData={setUserData} 
+                                                TierRuleta={TierRuleta} setTierRuleta={setTierRuleta} 
+                                                tirarButtonDisable={tirarButtonDisable} setTirarButtonDisable={setTirarButtonDisable}
+                                                changeTierButtonDisable={changeTierButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable}/>
                         </div>
 
                     </BrowserRouter>
@@ -114,11 +155,11 @@ function UsernamePanel({UserData})
 /**
  * Este es el panel que contiene el estado actual del juego (game state)
  */
-function GameStatePanel({UserData, SetUserData})
+function GameStatePanel({UserData, setUserData})
 {
     return (
         <div className='subpanel' id='gamestatePanel'>
-            <GameState UserData={UserData} SetUserData={SetUserData} />
+            <GameState UserData={UserData} setUserData={setUserData} />
         </div>
     );
 }
@@ -127,11 +168,13 @@ function GameStatePanel({UserData, SetUserData})
 /**
  * Este es el panel que contiene los botones de navegación / el botón de Tirar / la pokéball
  */
-function BottomElementsPanel({UserData, SetUserData})
+function BottomElementsPanel({UserData, setUserData, TierRuleta, setTierRuleta, tirarButtonDisable, setChangeTierButtonDisable, setTirarButtonDisable, changeTierButtonDisable})
 {
     return (
         <div className='subpanel' id='bottomelementsPanel'>
-            <BottomElements UserData={UserData} SetUserData={SetUserData}/>
+            <BottomElements UserData={UserData} setUserData={setUserData} TierRuleta={TierRuleta} setTierRuleta={setTierRuleta} 
+                            tirarButtonDisable={tirarButtonDisable} setTirarButtonDisable={setTirarButtonDisable}
+                            changeTierButtonDisable={changeTierButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable}/>
         </div>
     );
 }

@@ -6,18 +6,17 @@ import React, {useState, useEffect} from 'react';
 import './styles/username.css';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
-function Username()
+function Username({UserData})
 {
-    const [name, setName] = useState('Iniciar Sesión');
    
 
     /* Calcula a partir del length del username el font size */
     useEffect(() => {
         const nameTag = document.querySelector('#username p');
 
-        if(name.length > 10)
+        if(UserData.name.length > 10)
         {
-            const newLenght = (15 / name.length).toFixed(3);
+            const newLenght = (15 / UserData.name.length).toFixed(3);
             nameTag.style.setProperty('font-size', 'calc(0.01vw + ' + newLenght + "vw)");
         }
         else // Size mínimo
@@ -25,19 +24,12 @@ function Username()
             nameTag.style.setProperty('font-size', '1.375vw');
         }
         
-    }, [name]);
-
-    /*
-    // Actualmente no en uso
-    const handleChangeName = () => {
-        setName('DragonKiller7719');
-      };
-    */
+    }, [UserData.name]);
 
     return(
         <div id="username">
             <AccountCircleIcon id="icon"/>
-            <p>{name}</p>
+            <p>{UserData.name}</p>
         </div>
     );
 }

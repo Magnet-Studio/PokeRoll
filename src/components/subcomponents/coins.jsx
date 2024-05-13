@@ -18,7 +18,12 @@ function Coins({UserData})
 
         setCoinsValue(UserData.currency);
 
-        setNumCifras(Math.floor(Math.log10(UserData.currency)) + 1);
+        let numC = parseInt(Math.floor(Math.log10(UserData.currency)) + 1);
+        if(numC < 100 || parseInt(UserData.currency) < 0)
+        {
+            numC = 1;
+        }
+        setNumCifras(numC);
         
         // (Esto warning no hace falta corregirlo)
         // eslint-disable-next-line 

@@ -26,17 +26,17 @@ const style = {
 
 const coinValues = [50, 250, 750, 2000, 5000, 5000]
 
-function LiberarButton({ data , UserData, SetUserData}) {
+function LiberarButton({ data, setUserData}) {
 
   const [isHovered, setIsHovered] = useState(false);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const LiberarPokemon = () => Liberar(data, UserData, SetUserData);
+  const LiberarPokemon = () => Liberar(data, setUserData);
 
   return (
-    <div>
+    <div id="liberarButtonContainer">
       <Button onClick={handleOpen}>
         <div
           className={"liberarButton " + (isHovered ? "mouseleave" : "")}
@@ -113,9 +113,9 @@ function LiberarButton({ data , UserData, SetUserData}) {
   );
 }
 
-function Liberar(data, UserData, SetUserData) 
+function Liberar(data, setUserData) 
 {
-  DeletePokemon(data.id, coinValues[data.tier - 1], UserData, SetUserData);
+  DeletePokemon(data.id, coinValues[data.tier - 1], setUserData);
   
 } 
 

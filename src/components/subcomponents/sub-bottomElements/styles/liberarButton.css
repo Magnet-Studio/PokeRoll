@@ -1,10 +1,10 @@
 @import url('../../../../styles/fonts.css');
 
-#bottomelementsPanel > div 
+#liberarButtonContainer
 {
     right: 0;
     position: absolute;
-    margin-right: 1vw;
+    margin-right: 2vw;
 }
 
 #bottomelementsPanel > div > button 

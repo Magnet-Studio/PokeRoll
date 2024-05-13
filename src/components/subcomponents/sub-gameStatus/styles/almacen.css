@@ -41,8 +41,8 @@ a {
     flex-direction: column;
 }
 
-#filtros > svg {
-    height: 6.3vh;
+#filtros svg {
+    height: 5vh;
     margin-right: 2vw;
     width: auto;
 }
@@ -55,14 +55,13 @@ a {
     border: 0.2vw solid gray;
     color: gray;
     text-align: center;
-    width: auto;
     pointer-events: all;
     width: 15vw;
     height: 6vh;
 }
 
 input.inputElem {
-    max-height: 68%;
+    max-height: 63%;
 }
 
 option 
