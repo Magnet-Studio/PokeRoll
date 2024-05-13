@@ -7,6 +7,7 @@ import Pokedex from "./sub-gameStatus/pokedex";
 import VerPokemonAlmacen from "./sub-gameStatus/verPokemonAlmacen";
 import TipoIntercambio from "./sub-gameStatus/tipointercambio";
 import Intercambio from "./sub-gameStatus/intercambio";
+import PantallaCargaIntercambio from "./sub-gameStatus/pantallaCargaIntercambio";
 
 function GameState() {
   return (
@@ -27,6 +28,11 @@ function GameState() {
       <Route path="/intercambio/tipo" element={<TipoIntercambioGameState />} />
 
       <Route path="/intercambio" element={<IntercambioGameState />} />
+
+      <Route
+        path="/intercambio/pantallaCarga"
+        element={<PantallaCargaGameState />}
+      />
 
       <Route path="*" element={<></>} />
     </Routes>
@@ -59,6 +65,10 @@ function TipoIntercambioGameState() {
 
 function IntercambioGameState() {
   return <Intercambio />;
+}
+
+function PantallaCargaGameState() {
+  return <PantallaCargaIntercambio />;
 }
 
 export default GameState;
