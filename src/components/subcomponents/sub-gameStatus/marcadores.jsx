@@ -6,33 +6,33 @@ import { GetDataByName, GetImage } from "./PokeAPI/PokemonData";
 
 
 function Marcadores() {
-    const [selectedValue, setSelectedValue] = useState(localStorage.getItem('selectedValue') || '1');
+    const [selectedValueRank, setselectedValueRank] = useState(sessionStorage.getItem('selectedValueRank') || '1');
     
     return(
         <>
             <div id="marcadoresBigBox">
                 <div id="filtroMarcador">
-                    <FiltroMarcador selectedValue={selectedValue} setSelectedValue={setSelectedValue} />
+                    <FiltroMarcador selectedValueRank={selectedValueRank} setselectedValueRank={setselectedValueRank} />
                 </div>
                 <div id="ranking-cards-container">
-                    <CompleteRankingList selectedValue={selectedValue} />
+                    <CompleteRankingList selectedValueRank={selectedValueRank} />
                 </div>
             </div>
         </>
     );
 }
 
-function FiltroMarcador({selectedValue, setSelectedValue}) {
+function FiltroMarcador({selectedValueRank, setselectedValueRank}) {
     
     const handleSelectChange = (event) => {
-        setSelectedValue(event.target.value);
-        localStorage.setItem('selectedValue', event.target.value);
+        setselectedValueRank(event.target.value);
+        sessionStorage.setItem('selectedValueRank', event.target.value);
     };
     
     return(
         <>
             <FilterAltIcon />
-            <select className="inputElemRanking" name="generalFilter" value={selectedValue} onChange={handleSelectChange}>
+            <select className="inputElemRanking" name="generalFilter" value={selectedValueRank} onChange={handleSelectChange}>
                 <option value="1">Pokémon más raro</option>
                 <option value="2">Más puntos gastados</option>
                 <option value="3">Mayor número de tiradas</option>
@@ -44,12 +44,12 @@ function FiltroMarcador({selectedValue, setSelectedValue}) {
 }
 
 
-function CompleteRankingList({selectedValue}) 
+function CompleteRankingList({selectedValueRank}) 
 {
 
     let sortedList = [...PlayerList];
     
-    switch (selectedValue) {
+    switch (selectedValueRank) {
         case '1':
             sortedList.sort((a, b) => b.rarestpokemon.rareza - a.rarestpokemon.rareza);
             break;
@@ -70,12 +70,12 @@ function CompleteRankingList({selectedValue})
             });
             break;
         default:
-            // No debe pasar por este caso
+            // No debe pasar por aquí
     }
 
 
     const list = sortedList.map((datos, index) => (
-        <RankingCard  data={datos} keyNum={index} selectedValue={selectedValue}/>
+        <RankingCard  data={datos} key={index} keyNum={index} selectedValueRank={selectedValueRank}/>
     ));
 
     return (
@@ -87,7 +87,7 @@ function CompleteRankingList({selectedValue})
 }
 
 
-function RankingCard({data, keyNum, selectedValue})
+function RankingCard({data, keyNum, selectedValueRank})
 {
     const position = <span className={keyNum + 1 === 1 ? "firstPosition" : keyNum + 1 === 2 ? "secondPosition" : keyNum + 1 === 3 ? "thirdPosition" : ""}>{keyNum + 1} </span>;
     let title = "";
@@ -99,7 +99,7 @@ function RankingCard({data, keyNum, selectedValue})
         const fetchData = async () =>
         {
             let pokemon;
-            switch (selectedValue) {
+            switch (selectedValueRank) {
                 case '1':
                     pokemon = await GetDataByName(data.rarestpokemon.name);
                     break;
@@ -113,10 +113,10 @@ function RankingCard({data, keyNum, selectedValue})
         }
 
         fetchData();
-    }, [data.rarestpokemon, data.bestpokemon, selectedValue]);
+    }, [data.rarestpokemon, data.bestpokemon, selectedValueRank]);
 
 
-    switch (selectedValue) {
+    switch (selectedValueRank) {
         case '1':
             title = data.rarestpokemon.nametag + " (" + data.playername + ")";
             points = data.rarestpokemon.rareza + " puntos";

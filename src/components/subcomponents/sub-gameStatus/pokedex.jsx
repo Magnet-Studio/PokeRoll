@@ -6,6 +6,9 @@ import {GetSpeciesDataByDexNum, GetSpanishName} from './PokeAPI/PokemonSpeciesDa
 import {GetDataByDexNum, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish, GetImage} from './PokeAPI/PokemonData';
 import { PokedexRegisters } from './userdata/pokedexRegisters';
 import CircularProgress from '@mui/material/CircularProgress';
+import Popover from '@mui/material/Popover';
+import Typography from '@mui/material/Typography';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 /**
  * Función principal que se exporta.
@@ -17,6 +20,8 @@ function Pokedex()
     const [generationNum, setGenerationNum] = useState(initGenerationNum ? parseInt(initGenerationNum) : 1);
     // La lista de dexNum de la actual generación mostrada
     const [dexNumbers, setDexNumbers] = useState(MakeDexNumByGeneration(generationNum));
+    // Abort boolean
+    const [aborted, setAborted] = useState(false);
 
     useEffect(() => {
         setDexNumbers(MakeDexNumByGeneration(generationNum));
@@ -29,7 +34,7 @@ function Pokedex()
             </div>
 
             <div id="pokedexBigBox">
-                <CompleteEntryList setGenerationNum={setGenerationNum} generationNum={generationNum} setDexNumbers={setDexNumbers} dexNumbers={dexNumbers}/>
+                <CompleteEntryList setGenerationNum={setGenerationNum} generationNum={generationNum} setDexNumbers={setDexNumbers} dexNumbers={dexNumbers} aborted={aborted} setAborted={setAborted} />
             </div>
 
             <div id="nextGenContainer"> 
@@ -47,18 +52,24 @@ function Pokedex()
  */
 function NavGenArrow(props)
 {
+    const [disabled, setDisabled] = useState(props.reversed ? props.generationNum <= 1 : props.generationNum >= MAX_GENERATION_NUM);
+
+    useEffect(() => {
+        // Estado desactivado del botón
+        setDisabled(props.reversed ? props.generationNum <= 1 : props.generationNum >= MAX_GENERATION_NUM);
+    }, [props.generationNum]); // Cambia solo si se cambia de generación
+
     // Handler del botón para que cambie de generación
     const handler = () => {
         const newGenerationNum = props.reversed ? props.generationNum - 1 : props.generationNum + 1;
+            
+
         if (newGenerationNum >= 1 && newGenerationNum <= MAX_GENERATION_NUM) 
         {
             sessionStorage.setItem("generationNum", newGenerationNum);
             props.setGenerationNum(newGenerationNum);
         }
     };
-
-    // Estado desactivado del botón
-    const disabled = props.reversed ? props.generationNum <= 1 : props.generationNum >= MAX_GENERATION_NUM;
 
     return (
         <div className={'nextGenArrow ' + (props.reversed ? 'reversed ' : '') + (disabled ? 'disabled' : '')} onClick={handler}>
@@ -76,16 +87,32 @@ function NavGenArrow(props)
  */
 function CompleteEntryList(props)
 {
-    
-    const list = props.dexNumbers.map((num) => 
-        <PokemonEntry num={num} known={PokedexRegisters[num].known} key={num} />
+
+
+
+    const list = props.dexNumbers.map((num) => {
+        if(false)
+        {
+            console.log("Canceled", num);
+            return(<></>);
+        }
+        const card = (<PokemonEntry num={num} known={PokedexRegisters[num].known} key={num} />);
+        return card;
+        }
     );
 
     return (
         <>
-            <p>
-                {props.generationNum + "º Generación"}
+            <p className="generationTitle">
+                {props.generationNum + "º Generación"} 
+                <MouseOverPopover content={<InfoOutlinedIcon className="infoGenerationIcon"/>} 
+                                shown={
+                                <> 
+                                    La generación de un Pokémon es el grupo de Pokémon que se introdujeron en un mismo juego de la saga.
+                                </>
+                                } />
             </p>
+
             {list}
         </>
     );
@@ -99,6 +126,7 @@ function CompleteEntryList(props)
 */
 function PokemonEntry(props) 
 {
+    
     // Data
     const [pokemonData, setPokemonData] = useState(null);
     const [pokemonSpeciesData, setPokemonSpeciesData] = useState(null);
@@ -148,7 +176,12 @@ function PokemonEntry(props)
     else 
     {
         // Caso de pokémon desconocido
-        pokemon = <p className="unknownMessage">???</p>
+        pokemon = <MouseOverPopover content={<p className="unknownMessage">???</p>} 
+                shown={
+                    <> 
+                        Este Pokémon aún no ha sido descubierto.
+                    </>
+                } />
     }
 
     // Si los datos aún se están cargando, muestra CircularProgress dentro de la tarjeta
@@ -200,6 +233,53 @@ const generationDexNums = {
     8: [810, 905],
     9: [906, 1025]
 };
+
+function MouseOverPopover({ content, shown }) {
+
+    const [anchorEl, setAnchorEl] = useState(null);
+  
+    const handlePopoverOpen = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+  
+    const handlePopoverClose = () => {
+      setAnchorEl(null);
+    };
+  
+    const open = Boolean(anchorEl);
+  
+    return (
+      <div style={{ display: 'inline-block'}}>
+        <Typography
+          className="Typography-hoverContent"
+          aria-owns={open ? 'mouse-over-popover' : undefined}
+          aria-haspopup="true"
+          onMouseEnter={handlePopoverOpen}
+          onMouseLeave={handlePopoverClose}
+        >
+          {content}
+        </Typography>
+        <Popover
+          id="mouse-over-popover"
+          className="TypographyText"
+          open={open}
+          anchorEl={anchorEl}
+          onClose={handlePopoverClose}
+          disableRestoreFocus
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center',
+          }}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'center',
+          }}
+        >
+          <Typography sx={{ p: 1 } } >{shown}</Typography>
+        </Popover>
+      </div>
+    );
+}
 
 
 export default Pokedex;

@@ -68,6 +68,8 @@ function VerPokemonAlmacen() {
                                               cálculo final de Rareza.
                                               </>} />
 
+    const totalSum = pokemon.iv.atq + pokemon.iv.def + pokemon.iv.spatq + pokemon.iv.spdef + pokemon.iv.spe + pokemon.iv.hp;
+    const calc = ((totalSum / 186) * 100).toFixed(2);
     return (
         <>
         <div id="verPokemonAlmacenBigBox">
@@ -95,11 +97,23 @@ function VerPokemonAlmacen() {
             </div>
 
             <div id="statsDiv">
-                <p>Estadísticas</p>
+                <p>Estadísticas <MouseOverPopover content={<InfoOutlinedIcon />} 
+                                            shown={<>
+                                              La gráfica de Estadísticas representa los valores individuales (IVs)<br/>
+                                              para cada una de sus estadísticas, definiendo genéticamente a un Pokémon<br/>
+                                              para que este sea único. <br/>
+                                              Cuanto mayores sean estos valores para cada característica, mejor será <br/>
+                                              este Pokémon y, en consecuencia, poseerá mayor puntuación en el cálculo.<br/>
+                                              final de Rareza.<br/>
+                                              </>} />
+                                              </p>
                 <div id="statsFullStructure">
                   <Hexagon size={100} fillColor="rgba(0,0,0,0.1)" strokeColor="rgba(255,255,255,0.2)" data={pokemon.iv}/>
                   <HexagonData size={100} fillColor="rgba(255,255,0,0.3)" strokeColor="rgba(255,255,0,1)" data={pokemon.iv}/>
+                  <p className={"ivPercentage " + (totalSum === 186 ? "fullivs" : "")}>{calc}%</p>
                 </div>
+                
+                
             </div>
 
       
@@ -251,7 +265,7 @@ const Hexagon = ({ size, fillColor, strokeColor, data }) => {
         y={(point[1] + parseInt(positionOffset[index][1]))}
         dominantBaseline="hanging"
         textAnchor="middle"
-        fill={(values[index] === "31" ? "rgb(255, 241, 50)" : "white")}
+        fill={(values[index] === 31 ? "rgb(255, 241, 50)" : "white")}
         fontSize="12"
         className={"elemTexts"}>
         {labels[index]}

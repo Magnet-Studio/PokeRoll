@@ -9,6 +9,21 @@
     pointer-events: all;
 }
 
+.ivPercentage {
+    position: absolute;
+    width: 18%;
+    align-items: center;
+    justify-content: center;
+    margin-top: 22vh;
+    margin-right: 3vw;
+    text-align: center;
+    font-size: calc(1vh + 1.2vw);
+}
+
+.ivPercentage.fullivs {
+    color: yellow;
+}
+
 .backButton {
     position: absolute;
     z-index: 5;

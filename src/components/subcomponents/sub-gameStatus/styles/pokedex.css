@@ -103,6 +103,24 @@
     pointer-events: all;
 }
 
+.generationTitle
+{
+    display: flex;
+    align-items: center;
+}
+
+.generationTitle > div > p
+{
+    margin-left: 0.5vw;
+    display: flex;
+    align-items: center;
+}
+
+.infoGenerationIcon
+{
+    color: white;
+}
+
 .loadingPokemon
 {
     display: flex;

@@ -19,7 +19,7 @@ export const GetDataByDexNum = async (dexNum) =>
     } 
     catch(error) 
     {
-        console.error("Error al conseguir información del pokémon " + error);
+        // console.error("Error al conseguir información del pokémon " + error);
         return null;
     }
 }
@@ -37,7 +37,7 @@ export const GetDataByName = async (pokemonName) =>
     }
     catch(error)
     {
-        console.error("Error al conseguir información del pokémon " + error);
+        // console.error("Error al conseguir información del pokémon " + error);
         return null;
     }
 }
