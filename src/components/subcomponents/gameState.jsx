@@ -24,7 +24,7 @@ function GameState() {
 
       <Route path="/marcadores" element={<MarcadoresGameState />} />
 
-      <Route path="/tipointercambio" element={<TipoIntercambioGameState />} />
+      <Route path="/intercambio/tipo" element={<TipoIntercambioGameState />} />
 
       <Route path="/intercambio" element={<IntercambioGameState />} />
 

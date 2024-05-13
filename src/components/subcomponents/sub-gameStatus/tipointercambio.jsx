@@ -1,8 +1,21 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import "./styles/intercambio.css";
 import "../../styles/panel.css";
 
 export default function TipoIntercambio() {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const code = searchParams.get("code");
+
+  if (code === "yes") {
+    return <IntercambioConCodigo />;
+  } else {
+    return <IntercambioSinCodigo />;
+  }
+}
+
+function IntercambioConCodigo() {
   const [inputValue, setInputValue] = useState("");
 
   const handleChange = (event) => {
@@ -15,34 +28,40 @@ export default function TipoIntercambio() {
   };
   return (
     <>
-      <div id="gamestatePanelContainer">
-        <form onSubmit={handleSubmit}>
-          <table>
-            <tr>
-              <TextoInformativo />
-            </tr>
-            <tr>
-              <InputCodigoIntercambio
-                handleChange={handleChange}
-                input={inputValue}
-              />
-            </tr>
-            <tr>
-              <BotonIntercambio />
-            </tr>
-          </table>
+      <div className="formularioContainer">
+        <form className="formulario" onSubmit={handleSubmit}>
+          <TextoInformativo text="Introduce el código de intercambio" />
+          <InputCodigoIntercambio
+            handleChange={handleChange}
+            input={inputValue}
+          />
+          <BotonIntercambio />
         </form>
       </div>
     </>
   );
 }
 
-function TextoInformativo() {
+function IntercambioSinCodigo() {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert(`Esperando a amigo`);
+  };
+
   return (
-    <h1 className="intercambioTextoInicio">
-      Introduce el código de intercambio
-    </h1>
+    <>
+      <div className="formularioContainer">
+        <form className="formulario" onSubmit={handleSubmit}>
+          <TextoInformativo text="Este es tu código de intercambio, compártelo con tus amigos para intercambiar pokemons" />
+          <BotonIntercambio />
+        </form>
+      </div>
+    </>
   );
+}
+
+function TextoInformativo({ text }) {
+  return <h1 className="intercambioTextoInicio">{text}</h1>;
 }
 
 function InputCodigoIntercambio({ input, handleChange }) {
