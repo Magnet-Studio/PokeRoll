@@ -15,6 +15,10 @@ export const GetFrequency = (name) => {
     return 0;
 }
 
+/**
+ * Devuelve un valor entre 1 y 6 referente al "valor de frecuencia"
+ * @param data 
+ */
 export const GetFrequencyAsync = async (data) => {
     try {
         const poke = await GetSpeciesDataByName(data);

@@ -27,9 +27,12 @@ function Username()
         
     }, [name]);
 
+    /*
+    // Actualmente no en uso
     const handleChangeName = () => {
         setName('DragonKiller7719');
       };
+    */
 
     return(
         <div id="username">

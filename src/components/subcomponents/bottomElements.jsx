@@ -20,16 +20,18 @@ import LiberarButton from "./sub-bottomElements/liberarButton";
 /**
  * Rutas de todas las posibilidades del elemento inferior (botones de navegación / pokéball / botón de tirada)
  */
-function BottomElements({UserData, SetUserData}) {
+function BottomElements({UserData, SetUserData}) 
+{
   const location = useLocation();
   let pokenametag = "";
   let pokemon;
-  if (location.pathname === "/almacen/ver-pokemon") {
+
+  if (location.pathname === "/almacen/ver-pokemon") 
+  {
     const searchParams = new URLSearchParams(location.search);
     const id = searchParams.get("id");
     pokemon = GetPokemonByID(id);
-
-    pokenametag = id;
+    pokenametag = id; // No se está usando(?)
   }
 
   return (

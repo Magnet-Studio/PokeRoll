@@ -15,28 +15,30 @@ function Coins({UserData})
 
     useEffect(() => {
         setPrevCoinsValue(coinsValue);
-        setCoinsValue(UserData.currency);
-        let cif = 0;
-        for(let c = UserData.currency; c > 0; )
-            {
-                c = Math.floor(c / 10);
-                cif++;
-            }
-        setNumCifras(cif);
-        
-    },  [JSON.stringify(UserData.currency)]);
 
+        setCoinsValue(UserData.currency);
+
+        setNumCifras(Math.floor(Math.log10(UserData.currency)) + 1);
+        
+        // (Esto warning no hace falta corregirlo)
+        // eslint-disable-next-line 
+    },  [UserData.currency]);
+
+
+    const countUp = (
+        <div>
+            <CountUp start={prevCoinsValue} end={coinsValue} duration={2} separator="" >
+                {({ countUpRef }) => (
+                    <p id={'cifras-' + numCifras} ref={countUpRef} />
+                )}
+            </CountUp>
+        </div>
+    );
 
     return (
         <div id="coins">
-            <img src={CoinImage} />
-            <CountUp start={prevCoinsValue} end={coinsValue} duration={1} separator="">
-                {({ countUpRef }) => (
-                    <div>
-                        <p id={'cifras-' + numCifras} ref={countUpRef} />
-                    </div>
-                )}
-            </CountUp>
+            <img src={CoinImage} alt={"Coins"} />
+            {countUp}
         </div>
     );
 }

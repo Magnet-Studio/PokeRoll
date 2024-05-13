@@ -1028,10 +1028,11 @@ export let PokedexRegisters = [ {}, {'known': 'known'},
 export const GetNumberOfKnown = () => 
 {
     let count = 0;
-    PokedexRegisters.map((pokemon) => {
+    PokedexRegisters.forEach((pokemon) => {
         if(pokemon.known === 'known')
         {
             count++;
         }
     })
+    return count;
 }

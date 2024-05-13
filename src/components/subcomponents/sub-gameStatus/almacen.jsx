@@ -5,7 +5,6 @@ import { FakeData } from "./userdata/pokemonList";
 import { GetSpeciesDataByName, GetSpanishName} from './PokeAPI/PokemonSpeciesData';
 import { GetDataByName, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish, GetImage, GetDexNum} from './PokeAPI/PokemonData';
 import { Link } from "react-router-dom";
-import { GetFrequencyAsync } from "./userdata/pokemonFrequency";
 import { GetRareza } from "./userdata/rareza";
 import CircularProgress from '@mui/material/CircularProgress';
 

@@ -11,7 +11,7 @@ import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import ForwardIcon from '@mui/icons-material/Forward';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import { useSpring, animated, config  } from 'react-spring';
+import { useSpring, animated  } from 'react-spring';
 import CountUp from 'react-countup';
 
 
@@ -185,15 +185,15 @@ const HexagonData = ({ size, fillColor, strokeColor, data}) => {
   ];
 
   // Convertimos las coordenadas a un string
-  const [animatedProps, set] = useSpring(() => ({
+  const [animatedProps, setAnimatedProps] = useSpring(() => ({
     points: points.map((point) => point.join(',')).join(' '),
     from: { points: points.map(() => 25 + size* Math.sqrt(3) / 2 + ',' + size).join(' ') }, // Comienza desde el centro
     config: { tension: 170, friction: 26 }, // Duración de la animación en milisegundos
   }));
 
   useEffect(() => {
-    set({ points: points.map((point) => point.join(',')).join(' ') });
-  }, []);
+    setAnimatedProps({ points: points.map((point) => point.join(',')).join(' ') });
+  });
 
 
   return (
@@ -251,7 +251,7 @@ const Hexagon = ({ size, fillColor, strokeColor, data }) => {
         y={(point[1] + parseInt(positionOffset[index][1]))}
         dominantBaseline="hanging"
         textAnchor="middle"
-        fill={(values[index] == "31" ? "rgb(255, 241, 50)" : "white")}
+        fill={(values[index] === "31" ? "rgb(255, 241, 50)" : "white")}
         fontSize="12"
         className={"elemTexts"}>
         {labels[index]}

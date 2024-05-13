@@ -69,6 +69,8 @@ function CompleteRankingList({selectedValue})
                 return sumB - sumA;
             });
             break;
+        default:
+            // No debe pasar por este caso
     }
 
 
@@ -104,12 +106,14 @@ function RankingCard({data, keyNum, selectedValue})
                 case '5':
                     pokemon = await GetDataByName(data.bestpokemon.name);
                     break;
+                default:
+                    // No debe pasar por aquí
             }
             setPokemonData(pokemon);
         }
 
         fetchData();
-    }, [data.rarestpokemon]);
+    }, [data.rarestpokemon, data.bestpokemon, selectedValue]);
 
 
     switch (selectedValue) {
@@ -135,6 +139,8 @@ function RankingCard({data, keyNum, selectedValue})
             points = ((data.bestpokemon.iv.hp + data.bestpokemon.iv.atq + data.bestpokemon.iv.def + data.bestpokemon.iv.spatq + data.bestpokemon.iv.spdef + data.bestpokemon.iv.spe)/186*100).toFixed(2) + "% IVs";
             image = GetImage(pokemonData, data.bestpokemon.shiny === "shiny");
             break;
+        default:
+            // No debe pasar por aquí
     }
 
     return (

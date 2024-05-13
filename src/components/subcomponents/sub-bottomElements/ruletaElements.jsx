@@ -12,7 +12,7 @@ export function TirarButton({cost})
             <p>TIRAR</p>
             <div>
                 <p>{cost}</p>
-                <img src={CoinImage} />
+                <img src={CoinImage} alt={"Coins"} />
             </div>
         </div>
     );
@@ -22,6 +22,6 @@ export function TirarButton({cost})
 export function Pokeball() 
 {
     return (
-        <img className="pokeBall" src={PokeballIcon} />
+        <img className="pokeBall" src={PokeballIcon} alt={"Pokeball"} />
     );
 }
