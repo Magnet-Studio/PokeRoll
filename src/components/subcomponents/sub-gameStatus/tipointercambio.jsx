@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./styles/intercambio.css";
 import "../../styles/panel.css";
-import ForwardIcon from '@mui/icons-material/Forward';
+import ForwardIcon from "@mui/icons-material/Forward";
 import { Link } from "react-router-dom";
 
 export default function TipoIntercambio() {
@@ -31,7 +31,11 @@ function IntercambioConCodigo() {
   return (
     <>
       <div className="backButtonIntercambio">
-                  <Link to="/intercambio"><span className="backArrowIntercambio"><ForwardIcon fontSize="small"/></span></Link>
+        <Link to="/intercambio">
+          <span className="backArrowIntercambio">
+            <ForwardIcon fontSize="small" />
+          </span>
+        </Link>
       </div>
       <div className="formularioContainer">
         <form className="formulario" onSubmit={handleSubmit}>
@@ -53,19 +57,46 @@ function IntercambioSinCodigo() {
     alert(`Esperando a amigo`);
   };
 
+  const generateRandomCode = () => {
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    const codeLength = 8; // Puedes ajustar la longitud del código según tus necesidades
+    let randomCode = "";
+
+    for (let i = 0; i < codeLength; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      randomCode += characters[randomIndex];
+    }
+
+    // Aquí puedes ajustar el formato según tus necesidades
+    const formattedCode = `${randomCode.slice(0, 4)}-${randomCode.slice(4)}`;
+
+    return formattedCode;
+  };
+
+  const userGeneratedCode = generateRandomCode();
+
   return (
     <>
       <div className="backButtonIntercambio">
-                  <Link to="/intercambio"><span className="backArrowIntercambio"><ForwardIcon fontSize="small"/></span></Link>
+        <Link to="/intercambio">
+          <span className="backArrowIntercambio">
+            <ForwardIcon fontSize="small" />
+          </span>
+        </Link>
       </div>
       <div className="formularioContainer">
         <form className="formulario" onSubmit={handleSubmit}>
           <TextoInformativo text="Este es tu código de intercambio, compártelo con tus amigos para intercambiar pokemons" />
+          <CodigoIntercambio code={userGeneratedCode} />
           <BotonIntercambio />
         </form>
       </div>
     </>
   );
+}
+
+function CodigoIntercambio({ code }) {
+  return <h1 color="white">{code}</h1>;
 }
 
 function TextoInformativo({ text }) {

@@ -26,8 +26,7 @@ function BottomElements({UserData, setUserData, TierRuleta, setTierRuleta, tirar
   let pokenametag = "";
   let pokemon;
 
-  if (location.pathname === "/almacen/ver-pokemon") 
-  {
+  if (location.pathname === "/almacen/ver-pokemon") {
     const searchParams = new URLSearchParams(location.search);
     const id = searchParams.get("id");
     pokemon = GetPokemonByID(id);
@@ -48,7 +47,7 @@ function BottomElements({UserData, setUserData, TierRuleta, setTierRuleta, tirar
 
       <Route path="/marcadores/*" element={<ButtonsMarcadoresStatus />} />
 
-      <Route path="/tipointercambio" element={<ButtonsIntercambioStatus />} />
+      <Route path="/intercambio/tipo" element={<ButtonsIntercambioStatus />} />
 
       <Route path="/intercambio" element={<ButtonsIntercambioStatus />} />
 
