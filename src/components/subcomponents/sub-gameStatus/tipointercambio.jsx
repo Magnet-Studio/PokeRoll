@@ -3,17 +3,20 @@ import { useLocation } from "react-router-dom";
 import "./styles/intercambio.css";
 import "../../styles/panel.css";
 import ForwardIcon from "@mui/icons-material/Forward";
+import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
+import DoneOutlinedIcon from "@mui/icons-material/DoneOutlined";
 import { Link } from "react-router-dom";
 
 export default function TipoIntercambio() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const code = searchParams.get("code");
+  const code = searchParams.get("hasCode");
 
   if (code === "yes") {
     return <IntercambioConCodigo />;
   } else {
-    return <IntercambioSinCodigo />;
+    const generatedCode = GenerateRandomCode();
+    return <IntercambioSinCodigo code={generatedCode} />;
   }
 }
 
@@ -24,10 +27,6 @@ function IntercambioConCodigo() {
     setInputValue(event.target.value);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    alert(`Code: ${inputValue}`);
-  };
   return (
     <>
       <div className="backButtonIntercambio">
@@ -38,42 +37,41 @@ function IntercambioConCodigo() {
         </Link>
       </div>
       <div className="formularioContainer">
-        <form className="formulario" onSubmit={handleSubmit}>
+        <div className="formulario">
           <TextoInformativo text="Introduce el código de intercambio" />
           <InputCodigoIntercambio
             handleChange={handleChange}
             input={inputValue}
           />
-          <BotonIntercambio />
-        </form>
+          <BotonIntercambio text="Buscar" code={inputValue} />
+        </div>
       </div>
     </>
   );
 }
 
-function IntercambioSinCodigo() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    alert(`Esperando a amigo`);
-  };
+function IntercambioSinCodigo({ code }) {
+  const [isCopied, setIsCopied] = useState(false);
 
-  const generateRandomCode = () => {
-    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    const codeLength = 8; // Puedes ajustar la longitud del código según tus necesidades
-    let randomCode = "";
-
-    for (let i = 0; i < codeLength; i++) {
-      const randomIndex = Math.floor(Math.random() * characters.length);
-      randomCode += characters[randomIndex];
+  async function copyTextToClipboard(text) {
+    if ("clipboard" in navigator) {
+      return await navigator.clipboard.writeText(text);
+    } else {
+      return document.execCommand("copy", true, text);
     }
+  }
 
-    // Aquí puedes ajustar el formato según tus necesidades
-    const formattedCode = `${randomCode.slice(0, 4)}-${randomCode.slice(4)}`;
-
-    return formattedCode;
+  const handleCopyClick = () => {
+    // Asynchronously call copyTextToClipboard
+    copyTextToClipboard(code)
+      .then(() => {
+        // If successful, update the isCopied state value
+        setIsCopied(true);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
-
-  const userGeneratedCode = generateRandomCode();
 
   return (
     <>
@@ -85,18 +83,51 @@ function IntercambioSinCodigo() {
         </Link>
       </div>
       <div className="formularioContainer">
-        <form className="formulario" onSubmit={handleSubmit}>
+        <div className="formulario">
           <TextoInformativo text="Este es tu código de intercambio, compártelo con tus amigos para intercambiar pokemons" />
-          <CodigoIntercambio code={userGeneratedCode} />
-          <BotonIntercambio />
-        </form>
+          <CodigoIntercambio
+            code={code}
+            isCopied={isCopied}
+            handleCopyClick={handleCopyClick}
+          />
+          <BotonIntercambio text="Iniciar" code={code} />
+        </div>
       </div>
     </>
   );
 }
 
-function CodigoIntercambio({ code }) {
-  return <h1 color="white">{code}</h1>;
+function GenerateRandomCode() {
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  const codeLength = 8; // Puedes ajustar la longitud del código según tus necesidades
+  let randomCode = "";
+
+  for (let i = 0; i < codeLength; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    randomCode += characters[randomIndex];
+  }
+
+  // Aquí puedes ajustar el formato según tus necesidades
+  const formattedCode = `${randomCode.slice(0, 4)}-${randomCode.slice(4)}`;
+
+  return formattedCode;
+}
+
+function CodigoIntercambio({ code, isCopied, handleCopyClick }) {
+  return (
+    <div id="codeAndButtonContainer">
+      <h1 id="intercambioCodeDisplayed" style={{ color: "white" }}>
+        {code}
+      </h1>
+      <button id="buttonCopyClipboard" onClick={handleCopyClick}>
+        {isCopied ? (
+          <DoneOutlinedIcon htmlColor="green" fontSize="large" />
+        ) : (
+          <ContentCopyOutlinedIcon htmlColor="white" fontSize="large" />
+        )}
+      </button>
+    </div>
+  );
 }
 
 function TextoInformativo({ text }) {
@@ -114,10 +145,12 @@ function InputCodigoIntercambio({ input, handleChange }) {
   );
 }
 
-function BotonIntercambio() {
+function BotonIntercambio({ text, code }) {
   return (
-    <button className="intercambioBoton">
-      <h2>Buscar</h2>
-    </button>
+    <Link to={"/intercambio/pantallaCarga?code=" + code}>
+      <button className="intercambioBoton">
+        <h2>{text}</h2>
+      </button>
+    </Link>
   );
 }
