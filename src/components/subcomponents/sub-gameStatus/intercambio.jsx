@@ -5,14 +5,14 @@ export default function Intercambio() {
   return (
     <>
       <div className="botonesIntercambio">
-        <Link to="/tipointercambio">
+        <Link to="tipo?code=no">
           <button className="intercambioBotonSinCodigo">
-            No tengo código de intercambio
+            <h2>No tengo código de intercambio</h2>
           </button>
         </Link>
-        <Link to="/tipointercambio">
+        <Link to="tipo?code=yes">
           <button className="intercambioBotonConCodigo">
-            Tengo código de intercambio
+            <h2>Tengo código de intercambio</h2>
           </button>
         </Link>
       </div>
