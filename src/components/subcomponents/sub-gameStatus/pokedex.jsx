@@ -20,8 +20,22 @@ function Pokedex()
     const [generationNum, setGenerationNum] = useState(initGenerationNum ? parseInt(initGenerationNum) : 1);
     // La lista de dexNum de la actual generación mostrada
     const [dexNumbers, setDexNumbers] = useState(MakeDexNumByGeneration(generationNum));
-    // Abort boolean
-    const [aborted, setAborted] = useState(false);
+    // Proceso abort
+    const [abortController, setAbortController] = useState(null);
+
+    // Listener del abortador
+    useEffect(() => {
+        // Creamos un nuevo controlador de aborto cuando cambia el número de generación
+        const controller = new AbortController();
+        setAbortController(controller);
+
+        return () => {
+            // Cuando el componente se desmonta o el número de generación cambia, abortamos las solicitudes en curso
+            if (controller) {
+                controller.abort();
+            }
+        };
+    }, [generationNum]);
 
     useEffect(() => {
         setDexNumbers(MakeDexNumByGeneration(generationNum));
@@ -30,15 +44,15 @@ function Pokedex()
     return (
         <>
             <div id="previousGenContainer">
-                <NavGenArrow reversed setGenerationNum={setGenerationNum} generationNum={generationNum}/>
+                <NavGenArrow reversed setGenerationNum={setGenerationNum} generationNum={generationNum}  />
             </div>
 
             <div id="pokedexBigBox">
-                <CompleteEntryList setGenerationNum={setGenerationNum} generationNum={generationNum} setDexNumbers={setDexNumbers} dexNumbers={dexNumbers} aborted={aborted} setAborted={setAborted} />
+                <CompleteEntryList setGenerationNum={setGenerationNum} generationNum={generationNum} setDexNumbers={setDexNumbers} dexNumbers={dexNumbers}  />
             </div>
 
             <div id="nextGenContainer"> 
-                <NavGenArrow setGenerationNum={setGenerationNum} generationNum={generationNum}/>
+                <NavGenArrow setGenerationNum={setGenerationNum} generationNum={generationNum}  />
             </div>
         </>
     );
@@ -61,14 +75,15 @@ function NavGenArrow(props)
 
     // Handler del botón para que cambie de generación
     const handler = () => {
-        const newGenerationNum = props.reversed ? props.generationNum - 1 : props.generationNum + 1;
-            
 
+        const newGenerationNum = props.reversed ? props.generationNum - 1 : props.generationNum + 1;
+        
         if (newGenerationNum >= 1 && newGenerationNum <= MAX_GENERATION_NUM) 
         {
             sessionStorage.setItem("generationNum", newGenerationNum);
             props.setGenerationNum(newGenerationNum);
         }
+
     };
 
     return (
@@ -88,14 +103,7 @@ function NavGenArrow(props)
 function CompleteEntryList(props)
 {
 
-
-
     const list = props.dexNumbers.map((num) => {
-        if(false)
-        {
-            console.log("Canceled", num);
-            return(<></>);
-        }
         const card = (<PokemonEntry num={num} known={PokedexRegisters[num].known} key={num} />);
         return card;
         }

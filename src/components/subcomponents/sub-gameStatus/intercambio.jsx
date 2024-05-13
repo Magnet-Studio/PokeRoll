@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 export default function Intercambio() {
   return (
     <>
+      
       <div className="botonesIntercambio">
         <Link to="tipo?code=no">
           <button className="intercambioBotonSinCodigo">

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./styles/intercambio.css";
 import "../../styles/panel.css";
+import ForwardIcon from '@mui/icons-material/Forward';
+import { Link } from "react-router-dom";
 
 export default function TipoIntercambio() {
   const location = useLocation();
@@ -28,6 +30,9 @@ function IntercambioConCodigo() {
   };
   return (
     <>
+      <div className="backButtonIntercambio">
+                  <Link to="/intercambio"><span className="backArrowIntercambio"><ForwardIcon fontSize="small"/></span></Link>
+      </div>
       <div className="formularioContainer">
         <form className="formulario" onSubmit={handleSubmit}>
           <TextoInformativo text="Introduce el código de intercambio" />
@@ -50,6 +55,9 @@ function IntercambioSinCodigo() {
 
   return (
     <>
+      <div className="backButtonIntercambio">
+                  <Link to="/intercambio"><span className="backArrowIntercambio"><ForwardIcon fontSize="small"/></span></Link>
+      </div>
       <div className="formularioContainer">
         <form className="formulario" onSubmit={handleSubmit}>
           <TextoInformativo text="Este es tu código de intercambio, compártelo con tus amigos para intercambiar pokemons" />
