@@ -111,7 +111,7 @@ function MainPanel()
                                     <UsernamePanel UserData={UserData}/>
                                 </div>
                                 <div id='gamestatePanelContainer' className='subpanelContainer'> 
-                                    <GameStatePanel setUserData={setUserData} TierRuleta={TierRuleta} threePokemon={threePokemon} tirarButtonDisable={tirarButtonDisable} />
+                                    <GameStatePanel setUserData={setUserData} TierRuleta={TierRuleta} threePokemon={threePokemon} tirarButtonDisable={tirarButtonDisable} setThreePokemon={setThreePokemon} />
                                 </div>
                                 <div id='bottomelementsPanelContainer' className='subpanelContainer'>
                                     <BottomElementsPanel UserData={UserData} setUserData={setUserData} 
@@ -195,11 +195,11 @@ function UsernamePanel({UserData})
 /**
  * Este es el panel que contiene el estado actual del juego (game state)
  */
-function GameStatePanel({UserData, setUserData, threePokemon, tirarButtonDisable})
+function GameStatePanel({UserData, setUserData, threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon})
 {
     return (
         <div className='subpanel' id='gamestatePanel'>
-            <GameState UserData={UserData} setUserData={setUserData} threePokemon={threePokemon} tirarButtonDisable={tirarButtonDisable} />
+            <GameState UserData={UserData} TierRuleta={TierRuleta} setUserData={setUserData} threePokemon={threePokemon} tirarButtonDisable={tirarButtonDisable} setThreePokemon={setThreePokemon} />
         </div>
     );
 }

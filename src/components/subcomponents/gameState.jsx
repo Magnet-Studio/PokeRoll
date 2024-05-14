@@ -9,13 +9,13 @@ import TipoIntercambio from "./sub-gameStatus/tipointercambio";
 import Intercambio from "./sub-gameStatus/intercambio";
 import PantallaCargaIntercambio from "./sub-gameStatus/pantallaCargaIntercambio";
 
-function GameState({threePokemon, tirarButtonDisable}) {
+function GameState({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon}) {
   return (
     <Routes>
 
-      <Route path="/" element={<RuletaGameState threePokemon={threePokemon} tirarButtonDisable={tirarButtonDisable} />} />
+      <Route path="/" element={<RuletaGameState threePokemon={threePokemon} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setThreePokemon={setThreePokemon}/>} />
 
-      <Route path="/ruleta" element={<RuletaGameState threePokemon={threePokemon} tirarButtonDisable={tirarButtonDisable} />} />
+      <Route path="/ruleta" element={<RuletaGameState threePokemon={threePokemon} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setThreePokemon={setThreePokemon} />} />
 
       <Route path="/almacen" element={<AlmacenGameState />} />
 
@@ -42,8 +42,8 @@ function GameState({threePokemon, tirarButtonDisable}) {
   );
 }
 
-function RuletaGameState({threePokemon, tirarButtonDisable}) {
-  return <Ruleta threePokemon={threePokemon} tirarButtonDisable={tirarButtonDisable} />;
+function RuletaGameState({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon}) {
+  return <Ruleta threePokemon={threePokemon} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setThreePokemon={setThreePokemon}/>;
 }
 
 function AlmacenGameState() {
