@@ -56,7 +56,11 @@ function MainPanel()
     }, []);
 
     // El Tier actual seleccionado de la ruleta
-    const [TierRuleta, setTierRuleta] = useState(sessionStorage.getItem("TierRuleta") || 1);
+    const [TierRuleta, setTierRuleta] = useState(parseInt(sessionStorage.getItem("TierRuleta")) || 1);
+
+    // El estado actual (disabled/enabled) de los botones de Tirar y de Cambiar Tier Ruleta
+    const [tirarButtonDisable, setTirarButtonDisable] = useState("");
+    const [changeTierButtonDisable, setChangeTierButtonDisable] = useState("");
 
     // Guardar en sesión actual Tier de la ruleta
     useEffect(() => {
@@ -68,10 +72,6 @@ function MainPanel()
 
         sessionStorage.setItem("TierRuleta", TierRuleta);
     }, [TierRuleta]);
-
-    // El estado actual (disabled/enabled) de los botones de Tirar y de Cambiar Tier Ruleta
-    const [tirarButtonDisable, setTirarButtonDisable] = useState("");
-    const [changeTierButtonDisable, setChangeTierButtonDisable] = useState("");
 
     return (
         <>
