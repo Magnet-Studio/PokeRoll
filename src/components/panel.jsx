@@ -1,6 +1,7 @@
 import React from 'react';
 import './styles/panel.css';
 import Logo from './subcomponents/logo';
+import Login from './subcomponents/login';
 import Coins from './subcomponents/coins';
 import Username from './subcomponents/username';
 import TopElements from './subcomponents/topElements';
@@ -143,8 +144,8 @@ function LogoPanel()
 function LoginPanel()
 {
     return (
-        <div className='subpanel' id='loginPanel'>
-            <h1>Login</h1>
+        <div id='loginPanel'>
+            <Login/>
         </div>
     );
 }
