@@ -13,7 +13,7 @@ import {useState, useEffect} from 'react';
 const initData = {
     name:"Iniciar sesión",
     pass:"",
-    currency: 100
+    currency: 300
 }
 
 const savedData = () => 
@@ -105,13 +105,13 @@ function MainPanel()
                                     <CoinsPanel UserData={UserData} />
                                 </div>
                                 <div id='topelementsPanelContainer' className='subpanelContainer'>
-                                    <TopElementsPanel/>
+                                    <TopElementsPanel tirarButtonDisable={tirarButtonDisable} />
                                 </div>
                                 <div id='usernamePanelContainer' className='subpanelContainer'>
                                     <UsernamePanel UserData={UserData}/>
                                 </div>
                                 <div id='gamestatePanelContainer' className='subpanelContainer'> 
-                                    <GameStatePanel setUserData={setUserData} TierRuleta={TierRuleta} threePokemon={threePokemon} />
+                                    <GameStatePanel setUserData={setUserData} TierRuleta={TierRuleta} threePokemon={threePokemon} tirarButtonDisable={tirarButtonDisable} />
                                 </div>
                                 <div id='bottomelementsPanelContainer' className='subpanelContainer'>
                                     <BottomElementsPanel UserData={UserData} setUserData={setUserData} 
@@ -170,11 +170,11 @@ function CoinsPanel({UserData})
 /**
  * Este es el panel que contiene el título de dónde te encuentras
  */
-function TopElementsPanel()
+function TopElementsPanel({tirarButtonDisable})
 {
     return (
         <div className='subpanel' id='topelementsPanel'>
-            <TopElements/>
+            <TopElements tirarButtonDisable={tirarButtonDisable}/>
         </div>
     );
 }
@@ -195,11 +195,11 @@ function UsernamePanel({UserData})
 /**
  * Este es el panel que contiene el estado actual del juego (game state)
  */
-function GameStatePanel({UserData, setUserData, threePokemon})
+function GameStatePanel({UserData, setUserData, threePokemon, tirarButtonDisable})
 {
     return (
         <div className='subpanel' id='gamestatePanel'>
-            <GameState UserData={UserData} setUserData={setUserData} threePokemon={threePokemon} />
+            <GameState UserData={UserData} setUserData={setUserData} threePokemon={threePokemon} tirarButtonDisable={tirarButtonDisable} />
         </div>
     );
 }

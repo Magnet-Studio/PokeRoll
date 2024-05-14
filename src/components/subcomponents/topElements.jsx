@@ -3,7 +3,7 @@
  * de los elementos que hay arriba: titulo con/sin botón de cambio de Tier de tirada
  */
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Routes, Route, useLocation } from 'react-router-dom';
 import './styles/topElements.css';
 import TitleGameStatus from './sub-topElements/titleGameStatus';
@@ -12,7 +12,7 @@ import { GetPokemonByID } from './sub-gameStatus/userdata/pokemonList';
 /**
  * Rutas de todas las posibilidades del elemento superior (título / cambiar tier)
  */
-function TopElements()
+function TopElements({tirarButtonDisable})
 {
 
     const location = useLocation();
@@ -27,9 +27,20 @@ function TopElements()
         pokenametag = pokemon.nametag === null ? pokemon.name : pokemon.nametag;
     }
 
+    let ruletaTitle = "Ruleta";
+    if(tirarButtonDisable === "disabled")
+    {
+        ruletaTitle = "¡Elige un Pokémon!"
+    }
+    else
+    {
+        ruletaTitle = "Ruleta";
+    }
+   
+
     return (
         <Routes>
-            <Route path='/ruleta' element={<TitleGameStatus titleName='Ruleta'/>} />
+            <Route path='/ruleta' element={<TitleGameStatus titleName={ruletaTitle}/>} />
 
             <Route path='/almacen' element={<TitleGameStatus titleName='Mi almacén de Pokémon'/>} />
 

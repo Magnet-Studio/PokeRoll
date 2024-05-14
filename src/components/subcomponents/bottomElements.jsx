@@ -3,7 +3,7 @@
  * de los elementos que hay abajo: botones de navegación, pokeball, botón de Tirar
  */
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import NavButton from "./sub-bottomElements/NavButton";
 import "./styles/bottomElements.css";
@@ -65,9 +65,9 @@ function BottomElements({
         }
       />
 
-      <Route path="/" element={<ButtonsLoginStatus />} />
+      <Route path="/" element={<ButtonsLoginStatus UserData={UserData} />} />
 
-      <Route path="/almacen/" element={<ButtonsAlmacenStatus />} />
+      <Route path="/almacen/" element={<ButtonsAlmacenStatus UserData={UserData} />} />
 
       <Route
         path="/almacen/ver-pokemon"
@@ -80,17 +80,17 @@ function BottomElements({
         }
       />
 
-      <Route path="/pokedex/*" element={<ButtonsPokedexStatus />} />
+      <Route path="/pokedex/*" element={<ButtonsPokedexStatus UserData={UserData} />} />
 
-      <Route path="/marcadores/*" element={<ButtonsMarcadoresStatus />} />
+      <Route path="/marcadores/*" element={<ButtonsMarcadoresStatus UserData={UserData} />} />
 
-      <Route path="/intercambio/tipo" element={<ButtonsIntercambioStatus />} />
+      <Route path="/intercambio/tipo" element={<ButtonsIntercambioStatus UserData={UserData} />} />
 
-      <Route path="/intercambio" element={<ButtonsIntercambioStatus />} />
+      <Route path="/intercambio" element={<ButtonsIntercambioStatus UserData={UserData} />} />
 
       <Route
         path="/intercambio/pantallaCarga"
-        element={<ButtonsIntercambioStatus />}
+        element={<ButtonsIntercambioStatus UserData={UserData} />}
       />
 
       <Route path="*" element={<></>} />
@@ -112,6 +112,14 @@ function ButtonsRuletaStatus({
   setThreePokemon
 }) {
   const TierCost = TierCosts[TierRuleta - 1];
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (UserData.name === "Iniciar sesión") {
+      navigate('/');
+    }
+  }, [UserData]);
 
   return (
     <>
@@ -158,6 +166,15 @@ function ButtonsRuletaStatus({
 }
 
 function ButtonsVerPokemonAlmacenStatus({ data, UserData, setUserData }) {
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (UserData.name === "Iniciar sesión") {
+      navigate('/');
+    }
+  }, [UserData]);
+
   return (
     <>
       <NavButton link="/ruleta" icon={<RuletaIcon />} title="Ruleta" />
@@ -183,7 +200,16 @@ function ButtonsVerPokemonAlmacenStatus({ data, UserData, setUserData }) {
   );
 }
 
-function ButtonsAlmacenStatus() {
+function ButtonsAlmacenStatus({ UserData }) {
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (UserData.name === "Iniciar sesión") {
+      navigate('/');
+    }
+  }, [UserData]);
+
   return (
     <>
       <NavButton link="/ruleta" icon={<RuletaIcon />} title="Ruleta" />
@@ -208,7 +234,15 @@ function ButtonsAlmacenStatus() {
   );
 }
 
-function ButtonsLoginStatus() {
+function ButtonsLoginStatus({ UserData }) {
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (UserData.name !== "Iniciar sesión") {
+      navigate('/ruleta');
+    }
+  }, [UserData]);
 
   return (
     <>
@@ -237,7 +271,16 @@ function ButtonsLoginStatus() {
   );
 }
 
-function ButtonsPokedexStatus() {
+function ButtonsPokedexStatus({ UserData }) {
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (UserData.name === "Iniciar sesión") {
+      navigate('/');
+    }
+  }, [UserData]);
+
   return (
     <>
       <NavButton link="/ruleta" icon={<RuletaIcon />} title="Ruleta" />
@@ -262,7 +305,16 @@ function ButtonsPokedexStatus() {
   );
 }
 
-function ButtonsMarcadoresStatus() {
+function ButtonsMarcadoresStatus({ UserData }) {
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (UserData.name === "Iniciar sesión") {
+      navigate('/');
+    }
+  }, [UserData]);
+
   return (
     <>
       <NavButton link="/ruleta" icon={<RuletaIcon />} title="Ruleta" />
@@ -283,7 +335,16 @@ function ButtonsMarcadoresStatus() {
   );
 }
 
-function ButtonsIntercambioStatus() {
+function ButtonsIntercambioStatus({ UserData }) {
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (UserData.name === "Iniciar sesión") {
+      navigate('/');
+    }
+  }, [UserData]);
+
   return (
     <>
       <NavButton link="/ruleta" icon={<RuletaIcon />} title="Ruleta" />

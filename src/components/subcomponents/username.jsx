@@ -5,6 +5,7 @@
 import React, {useState, useEffect} from 'react';
 import './styles/username.css';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { Link } from 'react-router-dom';
 
 function Username({UserData})
 {
@@ -29,7 +30,11 @@ function Username({UserData})
     return(
         <div id="username">
             <AccountCircleIcon id="icon"/>
-            <p>{UserData.name}</p>
+            {
+                UserData.name === "Iniciar sesión" ? 
+                <p><Link to="/login">{UserData.name}</Link></p> : 
+                <p>{UserData.name}</p>
+            }
         </div>
     );
 }

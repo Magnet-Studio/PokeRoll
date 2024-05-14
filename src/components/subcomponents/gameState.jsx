@@ -9,10 +9,13 @@ import TipoIntercambio from "./sub-gameStatus/tipointercambio";
 import Intercambio from "./sub-gameStatus/intercambio";
 import PantallaCargaIntercambio from "./sub-gameStatus/pantallaCargaIntercambio";
 
-function GameState({threePokemon}) {
+function GameState({threePokemon, tirarButtonDisable}) {
   return (
     <Routes>
-      <Route path="/ruleta" element={<RuletaGameState threePokemon={threePokemon} />} />
+
+      <Route path="/" element={<RuletaGameState threePokemon={threePokemon} tirarButtonDisable={tirarButtonDisable} />} />
+
+      <Route path="/ruleta" element={<RuletaGameState threePokemon={threePokemon} tirarButtonDisable={tirarButtonDisable} />} />
 
       <Route path="/almacen" element={<AlmacenGameState />} />
 
@@ -39,8 +42,8 @@ function GameState({threePokemon}) {
   );
 }
 
-function RuletaGameState({threePokemon}) {
-  return <Ruleta threePokemon={threePokemon} />;
+function RuletaGameState({threePokemon, tirarButtonDisable}) {
+  return <Ruleta threePokemon={threePokemon} tirarButtonDisable={tirarButtonDisable} />;
 }
 
 function AlmacenGameState() {

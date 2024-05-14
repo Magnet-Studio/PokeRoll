@@ -26,7 +26,7 @@ const style = {
 
 const coinValues = [50, 250, 750, 2000, 5000, 5000]
 
-function LiberarButton({ data, setUserData}) {
+function LiberarButton({data, setUserData}) {
 
   const [isHovered, setIsHovered] = useState(false);
   const [open, setOpen] = useState(false);
@@ -47,6 +47,7 @@ function LiberarButton({ data, setUserData}) {
           <p className="liberarButtonTitle">Liberar</p>
         </div>
       </Button>
+      
       <Modal
         open={open}
         onClose={handleClose}

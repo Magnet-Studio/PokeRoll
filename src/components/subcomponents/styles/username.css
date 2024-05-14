@@ -19,11 +19,16 @@
     color: white;
 }
 
-#username p 
+#username p
 {
     margin: 0.3em 1em 0.3em 0;
     justify-self: center;
     align-self: center;
     color: white;
     font-family: vanilla-regular;
+}
+
+#username a
+{
+    color: white;
 }

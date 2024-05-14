@@ -32,7 +32,7 @@
 .boxes
 {
     display: grid;
-    grid-template-columns: 20% 20% 20%;
+    grid-template-columns: 23% 23% 23%;
     grid-column-gap: 2%;
     grid-row-end: 5%;
     align-items: center;
@@ -68,4 +68,17 @@
     right: auto;
     position: relative;
     width: 100%;
+}
+
+.pokeballRotar {
+    animation: rotarAnimacion 4s linear infinite;
+}
+
+@keyframes rotarAnimacion {
+    from {
+        transform: rotate(0deg); /* Ángulo de inicio de rotación */
+    }
+    to {
+        transform: rotate(360deg); /* Ángulo final de rotación (1 vuelta completa) */
+    }
 }

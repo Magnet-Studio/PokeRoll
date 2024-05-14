@@ -7,6 +7,13 @@
     grid-row-gap: 0.8em;
 }
 
+#coins > div
+{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
 #coins img 
 {
     top: 50%;

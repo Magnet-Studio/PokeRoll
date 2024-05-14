@@ -18,12 +18,14 @@ function Coins({UserData})
 
         setCoinsValue(UserData.currency);
 
-        let numC = parseInt(Math.floor(Math.log10(UserData.currency)) + 1);
-        if(numC < 100 || parseInt(UserData.currency) < 0 || isNaN(numC))
+        let numCifras = 1;
+        for(let c = coinsValue; c > 0; )
         {
-            numC = 1;
+            c = Math.floor(c / 10);
+            numCifras++;
         }
-        setNumCifras(numC);
+
+        setNumCifras(numCifras);
         
         // (Esto warning no hace falta corregirlo)
         // eslint-disable-next-line 
