@@ -1,75 +1,75 @@
-export let PokedexRegisters = [ {}, {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+export const PokedexRegisters_Default = [ {}, {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
@@ -78,854 +78,854 @@ export let PokedexRegisters = [ {}, {'known': 'known'},
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
@@ -934,96 +934,100 @@ export let PokedexRegisters = [ {}, {'known': 'known'},
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
-    {'known': 'known'},
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''},
     {'known': ''},
     {'known': ''},
-    {'known': 'known'},
-    {'known': 'known'},
+    {'known': ''},          //known
+    {'known': ''},          //known
     {'known': ''}
 ];
+
+
+export let PokedexRegisters = null ? PokedexRegisters_Default : PokedexRegisters_Default; 
+
 
 export const GetNumberOfKnown = () => 
 {
@@ -1035,4 +1039,10 @@ export const GetNumberOfKnown = () =>
         }
     })
     return count;
+}
+
+
+export const Register = (dexNum) => 
+{
+    PokedexRegisters[dexNum].known = "known";
 }

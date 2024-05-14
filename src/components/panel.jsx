@@ -13,7 +13,8 @@ import {useState, useEffect} from 'react';
 const initData = {
     name:"Iniciar sesión",
     pass:"",
-    currency: 300
+    currency: 300,
+    pokemonList: []
 }
 
 const savedData = () => 
@@ -21,17 +22,23 @@ const savedData = () =>
     const savedName = localStorage.getItem("username");
     const savedPass = localStorage.getItem("pass");
     const savedCurrency = localStorage.getItem("currency");
-
+    let savedPokemonList = getProccessPokemonList(localStorage.getItem("pokemonList"));
 
     if(savedName == undefined || savedPass == undefined || savedCurrency == undefined)
     {
         return null;
     }
 
+    if(savedPokemonList == undefined)
+    {
+        savedPokemonList = [];
+    }
+
     return {
         name: savedName,
         pass: savedPass,
-        currency: parseInt(savedCurrency)
+        currency: parseInt(savedCurrency),
+        pokemonList: savedPokemonList
     };
 }
 
@@ -47,6 +54,7 @@ function MainPanel()
         localStorage.setItem("username", UserData.name);
         localStorage.setItem("pass", UserData.pass);
         localStorage.setItem("currency", UserData.currency.toString());
+        localStorage.setItem("pokemonList", setProccessPokemonList(UserData.pokemonList));
     }, [UserData]);
 
     useEffect(() => {
@@ -111,7 +119,7 @@ function MainPanel()
                                     <UsernamePanel UserData={UserData}/>
                                 </div>
                                 <div id='gamestatePanelContainer' className='subpanelContainer'> 
-                                    <GameStatePanel setUserData={setUserData} TierRuleta={TierRuleta} threePokemon={threePokemon} tirarButtonDisable={tirarButtonDisable} setThreePokemon={setThreePokemon} />
+                                    <GameStatePanel UserData={UserData} setUserData={setUserData} TierRuleta={TierRuleta} threePokemon={threePokemon} tirarButtonDisable={tirarButtonDisable} setThreePokemon={setThreePokemon} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} />
                                 </div>
                                 <div id='bottomelementsPanelContainer' className='subpanelContainer'>
                                     <BottomElementsPanel UserData={UserData} setUserData={setUserData} 
@@ -195,11 +203,11 @@ function UsernamePanel({UserData})
 /**
  * Este es el panel que contiene el estado actual del juego (game state)
  */
-function GameStatePanel({UserData, setUserData, threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon})
+function GameStatePanel({UserData, setUserData, threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, setTirarButtonDisable, setChangeTierButtonDisable})
 {
     return (
         <div className='subpanel' id='gamestatePanel'>
-            <GameState UserData={UserData} TierRuleta={TierRuleta} setUserData={setUserData} threePokemon={threePokemon} tirarButtonDisable={tirarButtonDisable} setThreePokemon={setThreePokemon} />
+            <GameState UserData={UserData} TierRuleta={TierRuleta} setUserData={setUserData} threePokemon={threePokemon} tirarButtonDisable={tirarButtonDisable} setThreePokemon={setThreePokemon} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable}/>
         </div>
     );
 }
@@ -219,6 +227,30 @@ function BottomElementsPanel({UserData, setUserData, TierRuleta, setTierRuleta, 
         </div>
     );
 }
+
+export const getProccessPokemonList = (arrayStringed) =>     
+{
+    
+    let array = arrayStringed.split('&');
+
+    console.log(array);
+    if(array != [""] || array != [])
+    {
+        //array.map((str) => {return JSON.parse(str.substring(0, str.length - 1));});
+    }
+
+    return array;
+}
+
+export const setProccessPokemonList = (array) =>     
+{
+    array.map((json) => {return JSON.stringify(json);});
+
+    const string = array.join('&');
+
+    return string;
+}
+
 
 /* Lo único que hace falta exportar */
 export default MainPanel;

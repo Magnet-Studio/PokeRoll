@@ -1,5 +1,6 @@
 export let FakeData = 
     [
+        /*
         {
             "id":1,
             "name": "644",
@@ -303,7 +304,7 @@ export let FakeData =
             "type2":"dragon",
             "frequency":"5"
         }
-        
+        */
     ];
 
 export const GetPokemonByID = (id) => {
@@ -320,4 +321,47 @@ export function DeletePokemon(id, currencyAdded, SetUserData)
         updatedUserData.currency += currencyAdded; // Modificar la copia
         return updatedUserData; // Devolver la copia modificada
     });
+}
+
+/*
+            "id":15,
+            "name": "487",
+            "speciesname":"Giratina",
+            "nametag":"Giratina",
+            "shiny": "normal",
+            "originaltrainer": "SimulationOfMario",
+            "datefound":"07/05/2024",
+            "iv": {
+                "hp":31,
+                "atq":31,
+                "def":31,
+                "spatq":31,
+                "spdef":31,
+                "spe":31
+            },
+            "type1":"ghost",
+            "type2":"dragon",
+            "frequency":"5"
+*/
+
+const TenerDate = () => {
+
+    let fecha = new Date();
+    let dia = String(fecha.getDate()).padStart(2, '0');
+    let mes = String(fecha.getMonth() + 1).padStart(2, '0');
+    let año = fecha.getFullYear();
+    
+    let fechaActual = dia + '/' + mes + '/' + año;
+
+    return (fechaActual);
+}
+
+export function AddNewPokemon({pokemonData, UserData}) {
+    console.log(pokemonData);
+    console.log(UserData);
+    pokemonData.id = FakeData.length + 1;
+    pokemonData.originaltrainer = UserData.name;
+    pokemonData.datefound = TenerDate();
+    
+    FakeData.push(pokemonData);
 }

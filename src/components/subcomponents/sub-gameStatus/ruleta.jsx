@@ -8,10 +8,13 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import CoinImage from "../../../images/coin.png";
 import { GetFrequencyByName } from "./lib/pokemonFrequency";
+import { AddNewPokemon } from './userdata/pokemonList';
+import { Register } from './userdata/pokedexRegisters';
+import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
+import { MouseOverPopover } from './mouseOverPopOver';
 
 
-
-function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon})
+function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, UserData, setTirarButtonDisable, setChangeTierButtonDisable, setUserData})
 {   
     const pokeballImage = (<img src={Pokeball} className="pokeballRotar" />);
     const notPokemon = [(pokeballImage), (pokeballImage), (pokeballImage)];
@@ -38,13 +41,16 @@ function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon})
                 {
                     images[i] = pokeballImage;
                 }
-
-                setThreePokemon(prevThreePokemon => 
+                else
                 {
-                  prevThreePokemon[i].type1 = GetFirstType(data);
-                  prevThreePokemon[i].type2 = GetSecondType(data);
-                  return prevThreePokemon;
-                });
+                  setThreePokemon(prevThreePokemon => 
+                    {
+                      console.log(prevThreePokemon);
+                      prevThreePokemon[i].type1 = GetFirstType(data);
+                      prevThreePokemon[i].type2 = GetSecondType(data);
+                      return prevThreePokemon;
+                    });
+                }
             }
             
             setThreePokemonImages(images);
@@ -52,6 +58,7 @@ function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon})
         
         
         fetchDataAndUpdateState();
+        
     
     }, [threePokemon]);
 
@@ -64,9 +71,9 @@ function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon})
             </div>
         
             <div className="boxes">
-                <RuletaBox pokemonImage={threePokemonImages[0]} pokemonData={threePokemon[0]} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} enabled={enabled} setEnabled={setEnabled}/>
-                <RuletaBox pokemonImage={threePokemonImages[1]} pokemonData={threePokemon[1]} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} enabled={enabled} setEnabled={setEnabled}/>
-                <RuletaBox pokemonImage={threePokemonImages[2]} pokemonData={threePokemon[2]} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} enabled={enabled} setEnabled={setEnabled}/>
+                <RuletaBox setThreePokemon={setThreePokemon} UserData={UserData} pokemonImage={threePokemonImages[0]} pokemonData={threePokemon[0]} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} enabled={enabled} setEnabled={setEnabled} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>
+                <RuletaBox setThreePokemon={setThreePokemon} UserData={UserData} pokemonImage={threePokemonImages[1]} pokemonData={threePokemon[1]} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} enabled={enabled} setEnabled={setEnabled} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>
+                <RuletaBox setThreePokemon={setThreePokemon} UserData={UserData} pokemonImage={threePokemonImages[2]} pokemonData={threePokemon[2]} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} enabled={enabled} setEnabled={setEnabled} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>
             </div>
 
             <div className='externalArrowContainer'>
@@ -80,7 +87,7 @@ function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon})
 
 const TierCosts = [100, 500, 1500, 4000, 10000];
 
-function RuletaBox({pokemonImage, tirarButtonDisable, TierRuleta, pokemonData, enabled, setEnabled})
+function RuletaBox({setThreePokemon, pokemonImage, tirarButtonDisable, TierRuleta, pokemonData, enabled, setEnabled, UserData, setTirarButtonDisable, setChangeTierButtonDisable, setUserData})
 {
     
 
@@ -108,22 +115,28 @@ function RuletaBox({pokemonImage, tirarButtonDisable, TierRuleta, pokemonData, e
         <div className={"ruletaBox " + enabled} onClick={handleOpen}  >
             {pokemonImage}
             
-            <ModalConfirmar open={open} setOpen={setOpen} HalfCost={HalfCost} pokemonImage={pokemonImage} pokemonData={pokemonData} setEnabled={setEnabled}/>
+            <ModalConfirmar setThreePokemon={setThreePokemon} UserData={UserData} open={open} setOpen={setOpen} HalfCost={HalfCost} pokemonImage={pokemonImage} pokemonData={pokemonData} setEnabled={setEnabled} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>
             
         </div>
     );
 }
 
 
-function ModalConfirmar({pokemonData, setOpen, open, setUserData, HalfCost, pokemonImage, setEnabled})
+function ModalConfirmar({setThreePokemon, pokemonData, setOpen, open, UserData, HalfCost, pokemonImage, setEnabled, setTirarButtonDisable, setChangeTierButtonDisable, setUserData})
 {
 
-  const handleClose = () => {
+  const handleClose = (event) => {
+    event.stopPropagation();
     setOpen(false);
     setEnabled("enabled");
   };
 
-  const ReclamarPokemon = () => Reclamar(pokemonData, setUserData);
+  const handleCloseConfirm = (event) => {
+    event.stopPropagation();
+    setOpen(false);
+    setChangeTierButtonDisable("");
+    setTirarButtonDisable("")
+  };
 
   const style = {
     position: "absolute",
@@ -146,8 +159,22 @@ function ModalConfirmar({pokemonData, setOpen, open, setUserData, HalfCost, poke
   } 
 
   const nombresRarezas = ['Común', 'Infrecuente', 'Peculiar', 'Épico', 'Legendario', 'Singular'];
-  const frequency = GetFrequencyByName(pokemonData.frequency);
+  const frequency = GetFrequencyByName(pokemonData.speciesname);
   const nombreRareza = nombresRarezas[frequency-1];
+
+  const ReclamarPokemon = () => Reclamar(pokemonData, UserData, setThreePokemon, setOpen, setUserData, HalfCost);
+
+  const HandleReclamar = (event) => {
+    handleCloseConfirm(event);
+    ReclamarPokemon();
+  }
+
+  let shinyIndication = (<></>);
+  if(pokemonData.shiny === "shiny")
+  { 
+    const shinyMsg = (<p>¡Felicidades! ¡Has conseguido un Pokémon Variocolor!<br/> Obtendrás una bonificación de 5000 puntos en el cálculo final <br/> de Rareza por ello</p>);
+    shinyIndication = (<MouseOverPopover content={<AutoAwesomeIcon />} shown={shinyMsg} />);                                                         
+  }
 
   return(
     
@@ -165,13 +192,16 @@ function ModalConfirmar({pokemonData, setOpen, open, setUserData, HalfCost, poke
         </Typography>
 
         <Typography id="modal-modal-description" variant="h6" component="h2" style={{fontFamily: "vanilla-regular", margin: "0", textAlign: "center"}}>
-          ¡Recibirás además la mitad de las monedas que gastaste en la tirada!
+          El Pokémon elegido será guardado en tu Almacén. ¡Recibirás además la mitad de las monedas que gastaste en la tirada!
         </Typography>
 
         <div className="containerModal">
           {pokemonImage}
           <div>
-            <p style={{color: "black"}}>{pokemonData.speciesname}</p>
+            <p style={{color: "black"}}>
+              {pokemonData.speciesname}
+              {shinyIndication}
+            </p>
             <div id="tiposPokemon">
                 {firstTypeContainer}
                 {secondTypeContainer}
@@ -206,7 +236,7 @@ function ModalConfirmar({pokemonData, setOpen, open, setUserData, HalfCost, poke
           
           <Button
             className="confirmarButton"
-            onClick={ReclamarPokemon}
+            onClick={HandleReclamar}
             style={{
               backgroundColor: "#00DF09" /* color de fondo */,
               color: "#ffffff" /* color del texto */,
@@ -231,9 +261,28 @@ function ModalConfirmar({pokemonData, setOpen, open, setUserData, HalfCost, poke
   );
 }
 
-function Reclamar(pokemonData, setUserData) 
+/**
+ * Reclama tu pokémon
+ */
+function Reclamar(pokemonData, UserData, setThreePokemon, setOpen, setUserData, HalfCost) 
 {
+  setOpen(false);
   
+  Register(pokemonData.name);
+  
+  console.log("RECLAMAR: " + pokemonData);
+  console.log("RECLAMAR: " + UserData);
+  AddNewPokemon({pokemonData, UserData});
+
+  const pokeballImage = (<img src={Pokeball} className="pokeballRotar" />);
+  const notPokemon = [(pokeballImage), (pokeballImage), (pokeballImage)];
+  setThreePokemon(notPokemon);
+
+  setUserData(prevUserData => {
+    prevUserData.currency += HalfCost/2;
+    //prevUserData.pokemonList.append(pokemonData);
+    return prevUserData
+  });
 } 
 
 

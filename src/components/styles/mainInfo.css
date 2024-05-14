@@ -63,7 +63,7 @@
   pointer-events: all;
   box-sizing: border-box;
   padding: 2vw;
-  
+  position: relative;
   border-radius: 2vw;
 }
 
@@ -89,6 +89,9 @@
   height: 60px;
   pointer-events: all;
   cursor: pointer;
+  right: 0;
+  top: 0;
+  position: absolute;
 }
 
 #exitMainInfoButton > svg

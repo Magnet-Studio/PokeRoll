@@ -9,7 +9,7 @@ export const GetThreeRandomPokemon = (TierRuleta) =>
     let winners = [];
 
     /*
-            "id":15, 
+            "id":15, // jsx
             "name": "487",
             "speciesname":"Giratina",
             "nametag":"Giratina",
@@ -24,8 +24,8 @@ export const GetThreeRandomPokemon = (TierRuleta) =>
                 "spdef":31,
                 "spe":31
             },
-            "type1":"ghost",    // jsx
-            "type2":"dragon",   // jsx
+            "type1":"ghost",    // jsx hecho
+            "type2":"dragon",   // jsx hecho
             "frequency":"5" 
     */
 

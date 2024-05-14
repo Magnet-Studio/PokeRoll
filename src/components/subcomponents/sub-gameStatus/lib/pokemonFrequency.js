@@ -63,7 +63,7 @@ const pokemonFrequencies = [
         {"name": "Nidoran♀", "dexNum": 29},
         {"name": "Nidoran♂", "dexNum": 32},
         {"name": "Zubat", "dexNum": 41},
-        {"name": "Poliwag", "dexNum": 59},
+        {"name": "Poliwag", "dexNum": 60},
         {"name": "Bellsprout", "dexNum": 69},
         {"name": "Geodude", "dexNum": 74},
         {"name": "Sandshrew", "dexNum": 27},

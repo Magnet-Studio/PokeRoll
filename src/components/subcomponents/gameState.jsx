@@ -9,13 +9,13 @@ import TipoIntercambio from "./sub-gameStatus/tipointercambio";
 import Intercambio from "./sub-gameStatus/intercambio";
 import PantallaCargaIntercambio from "./sub-gameStatus/pantallaCargaIntercambio";
 
-function GameState({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon}) {
+function GameState({UserData, threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, setTirarButtonDisable, setChangeTierButtonDisable, setUserData}) {
   return (
     <Routes>
 
-      <Route path="/" element={<RuletaGameState threePokemon={threePokemon} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setThreePokemon={setThreePokemon}/>} />
+      <Route path="/" element={<RuletaGameState threePokemon={threePokemon} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setThreePokemon={setThreePokemon} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>} />
 
-      <Route path="/ruleta" element={<RuletaGameState threePokemon={threePokemon} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setThreePokemon={setThreePokemon} />} />
+      <Route path="/ruleta" element={<RuletaGameState UserData={UserData} threePokemon={threePokemon} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setThreePokemon={setThreePokemon} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>} />
 
       <Route path="/almacen" element={<AlmacenGameState />} />
 
@@ -42,8 +42,8 @@ function GameState({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemo
   );
 }
 
-function RuletaGameState({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon}) {
-  return <Ruleta threePokemon={threePokemon} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setThreePokemon={setThreePokemon}/>;
+function RuletaGameState({UserData, threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, setTirarButtonDisable, setChangeTierButtonDisable, setUserData}) {
+  return <Ruleta UserData={UserData} threePokemon={threePokemon} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setThreePokemon={setThreePokemon} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>;
 }
 
 function AlmacenGameState() {

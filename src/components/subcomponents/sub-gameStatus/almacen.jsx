@@ -125,6 +125,7 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedTier, setSele
 function CompletePokemonList({selectedValue, selectedTier, selectedType, selectedSpecial, selectedShiny, Name}) 
 {
     let sortedList = [...FakeData];
+    // console.log(sortedList);
 
     // Select de ordenacion
     switch (selectedValue) {
