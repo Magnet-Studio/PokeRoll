@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { GetPokemonByID } from "./userdata/pokemonList";
 import './styles/verPokemonAlmacen.css'
-import { GetFrequency } from "./userdata/pokemonFrequency";
-import { GetDataByName, GetImage, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish } from "./PokeAPI/PokemonData";
-import { GetSpeciesDataByName, GetSpanishName } from "./PokeAPI/PokemonSpeciesData";
-import { GetRarezaPoints } from "./userdata/rareza";
+import { GetFrequencyByName } from "./lib/pokemonFrequency";
+import { GetDataByName, GetImage, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish } from "./lib/PokemonData";
+import { GetSpeciesDataByName, GetSpanishName } from "./lib/PokemonSpeciesData";
+import { GetRarezaPoints } from "./lib/pokemonRarity";
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
-import Popover from '@mui/material/Popover';
-import Typography from '@mui/material/Typography';
+import { MouseOverPopover } from "./mouseOverPopOver";
 import ForwardIcon from '@mui/icons-material/Forward';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { useSpring, animated  } from 'react-spring';
@@ -39,7 +38,7 @@ function VerPokemonAlmacen() {
     }, [pokemon.name]);
 
     const name = GetSpanishName(pokemonSpeciesData);
-    const frequency = GetFrequency(name);
+    const frequency = GetFrequencyByName(name);
     const nombreRareza = nombresRarezas[frequency-1];
 
     const firstType = GetFirstType(pokemonData);
@@ -123,54 +122,7 @@ function VerPokemonAlmacen() {
     );
 }
 
-function MouseOverPopover({ content, shown }) {
-
-  const [anchorEl, setAnchorEl] = useState(null);
-
-  const handlePopoverOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handlePopoverClose = () => {
-    setAnchorEl(null);
-  };
-
-  const open = Boolean(anchorEl);
-
-  return (
-    <div style={{ display: 'inline-block'}}>
-      <Typography
-        className="Typography-hoverContent"
-        aria-owns={open ? 'mouse-over-popover' : undefined}
-        aria-haspopup="true"
-        onMouseEnter={handlePopoverOpen}
-        onMouseLeave={handlePopoverClose}
-      >
-        {content}
-      </Typography>
-      <Popover
-        id="mouse-over-popover"
-        className="TypographyText"
-        open={open}
-        anchorEl={anchorEl}
-        onClose={handlePopoverClose}
-        disableRestoreFocus
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'center',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'center',
-        }}
-      >
-        <Typography sx={{ p: 1 } } >{shown}</Typography>
-      </Popover>
-    </div>
-  );
-}
-
-const nombresRarezas = ['Común', 'Infrecuente', 'Raro', 'Épico', 'Legendario', 'Singular'];
+const nombresRarezas = ['Común', 'Infrecuente', 'Peculiar', 'Épico', 'Legendario', 'Singular'];
 
 function GetRarezaValue({ ivs , shiny, frequency}) 
 {

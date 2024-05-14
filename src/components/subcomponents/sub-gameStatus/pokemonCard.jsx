@@ -1,7 +1,7 @@
 import React, { useState , useEffect } from "react";
 import './styles/almacen.css';
-import { GetSpeciesDataByName, GetSpanishName} from './PokeAPI/PokemonSpeciesData';
-import { GetDataByName, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish, GetImage, GetDexNum} from './PokeAPI/PokemonData';
+import { GetSpeciesDataByName, GetSpanishName} from './lib/PokemonSpeciesData';
+import { GetDataByName, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish, GetImage, GetDexNum} from './lib/PokemonData';
 import { Link } from "react-router-dom";
 
 

@@ -1,10 +1,26 @@
-import { GetSpeciesDataByName,  GetSpanishName } from "../PokeAPI/PokemonSpeciesData";
+import { GetSpeciesDataByName,  GetSpanishName } from "./PokemonSpeciesData";
+
+/**
+ * Devuelve un valor entre 1 y 6 referente al "valor de frecuencia"
+ * @param dexNum 
+ */
+export const GetFrequencyByDexNum = (dexNum) => {
+    for (let i = 0 ; i < pokemonFrequencies.length ; i++) {
+        const foundPokemon = pokemonFrequencies[i].find(pokemon => pokemon.dexNum === dexNum);
+
+        if (foundPokemon) {
+            return i + 1;
+        }
+    }
+    return 0;
+}
+
 
 /**
  * Devuelve un valor entre 1 y 6 referente al "valor de frecuencia"
  * @param name 
  */
-export const GetFrequency = (name) => {
+export const GetFrequencyByName = (name) => {
     for (let i = 0 ; i < pokemonFrequencies.length ; i++) {
         const foundPokemon = pokemonFrequencies[i].find(pokemon => pokemon.name === name);
 
@@ -23,7 +39,7 @@ export const GetFrequencyAsync = async (data) => {
     try {
         const poke = await GetSpeciesDataByName(data);
         const realName = GetSpanishName(poke);
-        return GetFrequency(realName);
+        return GetFrequencyByName(realName);
     } catch (error) {
         console.error("ERROR GetFrequencyAsync: " + error)
         return null;

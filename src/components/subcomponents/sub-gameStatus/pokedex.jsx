@@ -2,12 +2,11 @@ import React from 'react';
 import './styles/pokedex.css'
 import {useState, useEffect} from 'react';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
-import {GetSpeciesDataByDexNum, GetSpanishName} from './PokeAPI/PokemonSpeciesData';
-import {GetDataByDexNum, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish, GetImage} from './PokeAPI/PokemonData';
+import {GetSpeciesDataByDexNum, GetSpanishName} from './lib/PokemonSpeciesData';
+import {GetDataByDexNum, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish, GetImage} from './lib/PokemonData';
 import { PokedexRegisters } from './userdata/pokedexRegisters';
 import CircularProgress from '@mui/material/CircularProgress';
-import Popover from '@mui/material/Popover';
-import Typography from '@mui/material/Typography';
+import { MouseOverPopover } from './mouseOverPopOver';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 /**
@@ -229,52 +228,7 @@ const generationDexNums = {
     9: [906, 1025]
 };
 
-function MouseOverPopover({ content, shown }) {
 
-    const [anchorEl, setAnchorEl] = useState(null);
-  
-    const handlePopoverOpen = (event) => {
-      setAnchorEl(event.currentTarget);
-    };
-  
-    const handlePopoverClose = () => {
-      setAnchorEl(null);
-    };
-  
-    const open = Boolean(anchorEl);
-  
-    return (
-      <div style={{ display: 'inline-block'}}>
-        <Typography
-          className="Typography-hoverContent"
-          aria-owns={open ? 'mouse-over-popover' : undefined}
-          aria-haspopup="true"
-          onMouseEnter={handlePopoverOpen}
-          onMouseLeave={handlePopoverClose}
-        >
-          {content}
-        </Typography>
-        <Popover
-          id="mouse-over-popover"
-          className="TypographyText"
-          open={open}
-          anchorEl={anchorEl}
-          onClose={handlePopoverClose}
-          disableRestoreFocus
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'center',
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'center',
-          }}
-        >
-          <Typography sx={{ p: 1 } } >{shown}</Typography>
-        </Popover>
-      </div>
-    );
-}
 
 
 export default Pokedex;
