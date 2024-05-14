@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { GetPokemonByID } from "./userdata/pokemonList";
 import './styles/verPokemonAlmacen.css'
-import { GetFrequencyByName } from "./lib/pokemonFrequency";
+import { GetFrequencyByName, GetFrequencyByDexNum } from "./lib/pokemonFrequency";
 import { GetDataByName, GetImage, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish } from "./lib/PokemonData";
 import { GetSpeciesDataByName, GetSpanishName } from "./lib/PokemonSpeciesData";
 import { GetRarezaPoints } from "./lib/pokemonRarity";
@@ -96,7 +96,9 @@ function VerPokemonAlmacen() {
             </div>
 
             <div id="statsDiv">
-                <p>Estadísticas <MouseOverPopover content={<InfoOutlinedIcon />} 
+              <div className="inlineContainer">
+                <p>Estadísticas</p>
+                <MouseOverPopover content={<InfoOutlinedIcon />} 
                                             shown={<p>
                                               La gráfica de Estadísticas representa los valores individuales (IVs)<br/>
                                               para cada una de sus estadísticas, definiendo genéticamente a un Pokémon<br/>
@@ -105,7 +107,9 @@ function VerPokemonAlmacen() {
                                               este Pokémon y, en consecuencia, poseerá mayor puntuación en el cálculo.<br/>
                                               final de Rareza.<br/>
                                               </p>} />
-                                              </p>
+              </div>
+                
+                                              
                 <div id="statsFullStructure">
                   <Hexagon size={100} fillColor="rgba(0,0,0,0.1)" strokeColor="rgba(255,255,255,0.2)" data={pokemon.iv}/>
                   <HexagonData size={100} fillColor="rgba(255,255,0,0.3)" strokeColor="rgba(255,255,0,1)" data={pokemon.iv}/>

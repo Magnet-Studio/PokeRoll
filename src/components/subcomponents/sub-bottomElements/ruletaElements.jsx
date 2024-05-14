@@ -3,8 +3,9 @@ import './styles/ruletaElements.css';
 import CoinImage from '../../../images/coin.png';
 import PokeballIcon from '../../../images/pokeball.png';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import { GetThreeRandomPokemon } from '../sub-gameStatus/lib/RuletaController';
 
-export function TirarButton({cost, setUserData, tirarButtonDisable, setTirarButtonDisable, setChangeTierButtonDisable, UserData})
+export function TirarButton({cost, TierRuleta, setUserData, tirarButtonDisable, setTirarButtonDisable, setChangeTierButtonDisable, UserData, setThreePokemon})
 {
     
     const [redTirarButton, setRedTirarButton] = useState("");
@@ -22,6 +23,8 @@ export function TirarButton({cost, setUserData, tirarButtonDisable, setTirarButt
             // Se desactivan los botones de Tirar y de Cambiar de Tier
             setTirarButtonDisable("disabled");
             setChangeTierButtonDisable("disabled");
+
+            setThreePokemon(GetThreeRandomPokemon(TierRuleta - 1));
         }
     }
 

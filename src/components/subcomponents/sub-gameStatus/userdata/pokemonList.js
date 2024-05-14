@@ -19,7 +19,7 @@ export let FakeData =
             ,
             "type1":"dragon",
             "type2":"electric",
-            "tier":"5"
+            "frequency":"5"
         },
         {
             "id":2,
@@ -40,7 +40,7 @@ export let FakeData =
             ,
             "type1":"grass",
             "type2":"dark",
-            "tier":"4"
+            "frequency":"4"
         },
         {
             "id":3,
@@ -60,7 +60,7 @@ export let FakeData =
             },
             "type1":"electric",
             "type2":"ground",
-            "tier":"4"
+            "frequency":"4"
         },
         {
             "id":4,
@@ -80,7 +80,7 @@ export let FakeData =
             },
             "type1":"fire",
             "type2":"ghost",
-            "tier":"4"
+            "frequency":"4"
         },
         {
             "id":5,
@@ -100,7 +100,7 @@ export let FakeData =
             },
             "type1":"psychic",
             "type2":null,
-            "tier":"5"
+            "frequency":"5"
         },
         {
             "id":6,
@@ -120,7 +120,7 @@ export let FakeData =
             },
             "type1":"fire",
             "type2":null,
-            "tier":"3"
+            "frequency":"3"
         },
         {
             "id":7,
@@ -140,7 +140,7 @@ export let FakeData =
             },
             "type1":"normal",
             "type2":null,
-            "tier":"5"
+            "frequency":"5"
         },
         {
             "id":8,
@@ -160,7 +160,7 @@ export let FakeData =
             },
             "type1":"steel",
             "type2":"dragon",
-            "tier":"5"
+            "frequency":"5"
         },
         {
             "id":9,
@@ -180,7 +180,7 @@ export let FakeData =
             },
             "type1":"dark",
             "type2":null,
-            "tier":"6"
+            "frequency":"6"
         },
         {
             "id":10,
@@ -200,7 +200,7 @@ export let FakeData =
             },
             "type1":"normal",
             "type2":null,
-            "tier":"1"
+            "frequency":"1"
         },
         {
             "id":11,
@@ -220,7 +220,7 @@ export let FakeData =
             },
             "type1":"psychic",
             "type2":"flying",
-            "tier":"5"
+            "frequency":"5"
         }
         ,
         {
@@ -241,7 +241,7 @@ export let FakeData =
             },
             "type1":"fire",
             "type2":"flying",
-            "tier":"4"
+            "frequency":"4"
         },
         {
             "id":13,
@@ -261,7 +261,7 @@ export let FakeData =
             },
             "type1":"grass",
             "type2":null,
-            "tier":"2"
+            "frequency":"2"
         },
         {
             "id":14,
@@ -281,7 +281,7 @@ export let FakeData =
             },
             "type1":"dark",
             "type2":null,
-            "tier":"4"
+            "frequency":"4"
         },
         {
             "id":15,
@@ -301,7 +301,7 @@ export let FakeData =
             },
             "type1":"ghost",
             "type2":"dragon",
-            "tier":"5"
+            "frequency":"5"
         }
         
     ];

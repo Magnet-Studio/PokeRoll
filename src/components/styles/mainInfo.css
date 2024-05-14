@@ -1,5 +1,13 @@
 @import url("../../styles/fonts.css");
 
+::-webkit-scrollbar 
+{
+    position: absolute;
+    width: 1vw;
+    border-radius: 0.3vw;
+    margin: 1vh;
+}
+
 #mainInfoButtonContainer 
 {
   display: flex;
@@ -55,6 +63,8 @@
   pointer-events: all;
   box-sizing: border-box;
   padding: 2vw;
+  
+  border-radius: 2vw;
 }
 
 #mainInfoContainer > h1

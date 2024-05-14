@@ -47,4 +47,25 @@
     border : 0.3vw solid black;
     height: 90%;
     border-radius: 1vw;
+    justify-content: center;
+    display:flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.ruletaBox.enabled:hover
+{
+    background-color: yellow;
+}
+
+.ruletaBox.enabled
+{
+    pointer-events: all;
+}
+
+.ruletaBox > img {
+    top: auto;
+    right: auto;
+    position: relative;
+    width: 100%;
 }

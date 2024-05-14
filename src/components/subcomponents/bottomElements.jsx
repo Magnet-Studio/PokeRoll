@@ -4,7 +4,7 @@
  */
 
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import NavButton from "./sub-bottomElements/NavButton";
 import "./styles/bottomElements.css";
 import AlmacenIcon from "@mui/icons-material/Inventory2";
@@ -33,6 +33,7 @@ function BottomElements({
   setChangeTierButtonDisable,
   setTirarButtonDisable,
   changeTierButtonDisable,
+  setThreePokemon
 }) {
   const location = useLocation();
   let pokenametag = "";
@@ -59,9 +60,12 @@ function BottomElements({
             setTirarButtonDisable={setTirarButtonDisable}
             changeTierButtonDisable={changeTierButtonDisable}
             setChangeTierButtonDisable={setChangeTierButtonDisable}
+            setThreePokemon={setThreePokemon}
           />
         }
       />
+
+      <Route path="/" element={<ButtonsLoginStatus />} />
 
       <Route path="/almacen/" element={<ButtonsAlmacenStatus />} />
 
@@ -105,6 +109,7 @@ function ButtonsRuletaStatus({
   setChangeTierButtonDisable,
   setTirarButtonDisable,
   changeTierButtonDisable,
+  setThreePokemon
 }) {
   const TierCost = TierCosts[TierRuleta - 1];
 
@@ -140,10 +145,12 @@ function ButtonsRuletaStatus({
         <TirarButton
           cost={TierCost}
           UserData={UserData}
+          TierRuleta={TierRuleta}
           setUserData={setUserData}
           tirarButtonDisable={tirarButtonDisable}
           setTirarButtonDisable={setTirarButtonDisable}
           setChangeTierButtonDisable={setChangeTierButtonDisable}
+          setThreePokemon={setThreePokemon}
         />
       </div>
     </>
@@ -196,6 +203,35 @@ function ButtonsAlmacenStatus() {
         link="/intercambio"
         icon={<IntercambioIcon />}
         title="Intercambio"
+      />
+    </>
+  );
+}
+
+function ButtonsLoginStatus() {
+
+  return (
+    <>
+      <NavButton 
+        link="/login"
+        selected="selected"
+        icon={<RuletaIcon />} 
+      />
+      <NavButton
+        link="/login"
+        icon={<AlmacenIcon />}
+      />
+      <NavButton 
+        link="/login" 
+        icon={<PokedexIcon />} 
+      />
+      <NavButton
+        link="/login"
+        icon={<MarcadoresIcon />}
+      />
+      <NavButton
+        link="/login"
+        icon={<IntercambioIcon />}
       />
     </>
   );

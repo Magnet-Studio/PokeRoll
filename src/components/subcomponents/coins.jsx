@@ -19,7 +19,7 @@ function Coins({UserData})
         setCoinsValue(UserData.currency);
 
         let numC = parseInt(Math.floor(Math.log10(UserData.currency)) + 1);
-        if(numC < 100 || parseInt(UserData.currency) < 0)
+        if(numC < 100 || parseInt(UserData.currency) < 0 || isNaN(numC))
         {
             numC = 1;
         }

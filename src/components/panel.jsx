@@ -11,8 +11,8 @@ import GameState from './subcomponents/gameState';
 import {useState, useEffect} from 'react';
 
 const initData = {
-    name:"CreatorBeastGD",
-    pass:"beast",
+    name:"Iniciar sesión",
+    pass:"",
     currency: 100
 }
 
@@ -74,6 +74,10 @@ function MainPanel()
         sessionStorage.setItem("TierRuleta", TierRuleta);
     }, [TierRuleta]);
 
+    // Los tres pokémon que te tocan por tirada
+    const [threePokemon, setThreePokemon] = useState([{}, {}, {}]);
+
+
     return (
         <>
 
@@ -88,7 +92,7 @@ function MainPanel()
                                     <LogoPanel/>
                                 </div>
                                 <div id='loginPanelContainer' className='subpanelContainer'>
-                                    <LoginPanel/>
+                                    <LoginPanel setUserData={setUserData} />
                                 </div>
                             </>
                         }/>
@@ -107,13 +111,14 @@ function MainPanel()
                                     <UsernamePanel UserData={UserData}/>
                                 </div>
                                 <div id='gamestatePanelContainer' className='subpanelContainer'> 
-                                    <GameStatePanel setUserData={setUserData} TierRuleta={TierRuleta} />
+                                    <GameStatePanel setUserData={setUserData} TierRuleta={TierRuleta} threePokemon={threePokemon} />
                                 </div>
                                 <div id='bottomelementsPanelContainer' className='subpanelContainer'>
                                     <BottomElementsPanel UserData={UserData} setUserData={setUserData} 
                                                         TierRuleta={TierRuleta} setTierRuleta={setTierRuleta} 
                                                         tirarButtonDisable={tirarButtonDisable} setTirarButtonDisable={setTirarButtonDisable}
-                                                        changeTierButtonDisable={changeTierButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable}/>
+                                                        changeTierButtonDisable={changeTierButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable}
+                                                        setThreePokemon={setThreePokemon}/>
                                 </div>
                             </>
                         }/>
@@ -141,11 +146,11 @@ function LogoPanel()
 /**
  * Este es el panel que contiene el login
  */
-function LoginPanel()
+function LoginPanel({setUserData})
 {
     return (
         <div id='loginPanel'>
-            <Login/>
+            <Login setUserData={setUserData} />
         </div>
     );
 }
@@ -190,11 +195,11 @@ function UsernamePanel({UserData})
 /**
  * Este es el panel que contiene el estado actual del juego (game state)
  */
-function GameStatePanel({UserData, setUserData})
+function GameStatePanel({UserData, setUserData, threePokemon})
 {
     return (
         <div className='subpanel' id='gamestatePanel'>
-            <GameState UserData={UserData} setUserData={setUserData} />
+            <GameState UserData={UserData} setUserData={setUserData} threePokemon={threePokemon} />
         </div>
     );
 }
@@ -203,13 +208,14 @@ function GameStatePanel({UserData, setUserData})
 /**
  * Este es el panel que contiene los botones de navegación / el botón de Tirar / la pokéball
  */
-function BottomElementsPanel({UserData, setUserData, TierRuleta, setTierRuleta, tirarButtonDisable, setChangeTierButtonDisable, setTirarButtonDisable, changeTierButtonDisable})
+function BottomElementsPanel({UserData, setUserData, TierRuleta, setTierRuleta, tirarButtonDisable, setChangeTierButtonDisable, setTirarButtonDisable, changeTierButtonDisable, setThreePokemon})
 {
     return (
         <div className='subpanel' id='bottomelementsPanel'>
             <BottomElements UserData={UserData} setUserData={setUserData} TierRuleta={TierRuleta} setTierRuleta={setTierRuleta} 
                             tirarButtonDisable={tirarButtonDisable} setTirarButtonDisable={setTirarButtonDisable}
-                            changeTierButtonDisable={changeTierButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable}/>
+                            changeTierButtonDisable={changeTierButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable}
+                            setThreePokemon={setThreePokemon} />
         </div>
     );
 }

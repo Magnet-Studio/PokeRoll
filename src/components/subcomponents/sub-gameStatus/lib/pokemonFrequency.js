@@ -46,7 +46,13 @@ export const GetFrequencyAsync = async (data) => {
     }
 }
 
-let pokemonFrequencies = [
+export const GetPokemonArrayByFrequency = (frequencyIndex) =>
+{
+    return pokemonFrequencies[frequencyIndex];
+}
+
+
+const pokemonFrequencies = [
     [
         {"name": "Caterpie", "dexNum": 10},
         {"name": "Weedle", "dexNum": 13},
@@ -1057,8 +1063,7 @@ let pokemonFrequencies = [
         {"name": "Electrofuria", "dexNum": 1021},
         {"name": "Ferromole", "dexNum": 1022},
         {"name": "Ferrotesta", "dexNum": 1023},
-        {"name": "Terapagos", "dexNum": 1024},
-        {"name": "Pecharunt", "dexNum": 1025}
+        {"name": "Terapagos", "dexNum": 1024}
             
     ],
     /* Tier 6 */ [

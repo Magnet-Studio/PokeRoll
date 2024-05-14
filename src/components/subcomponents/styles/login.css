@@ -1,4 +1,125 @@
 #loginPanelContainer
 {
     height: 75vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-column: 1 / -1;
+    padding: 2vh;
+    box-sizing: border-box;
+}
+
+#loginPanel
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    pointer-events: all;
+    width: 70%;
+}
+
+#loginPanel > div
+{
+    width: 50%;
+}
+
+#loginPanel h1 {
+    text-align: center;
+    color: white;
+}
+
+#loginPanel input {
+    box-sizing: border-box;
+    border-radius: 1vw;
+    border: 0.2vw solid rgb(156, 156, 156);
+    color: rgb(37, 37, 37);
+    text-align: center;
+    pointer-events: all;
+    width: 100%;
+    height: 6vh;
+    background-color: white;
+}
+
+#loginPanel fieldset {
+    border-radius: 1vw;
+}
+
+#loginPanel div div {
+    width: 100%;
+}
+
+#passwordInput-helper-text {
+    background-color: white;
+    padding: 1vh;
+    text-align: justify;
+}
+
+#loginPanel label {
+    color: white;
+    display: block;
+    text-align: left;
+    justify-content: start;
+}
+
+#loginButton {
+    margin-top: 2vh;
+    background-color: #fecb02;
+    color: #1a437b;
+    border: 0.2vw solid #ba9712;
+    border-radius: 1vw;
+    width: 50%;
+    height: 9vh;
+    cursor: pointer;
+    pointer-events: all;
+}
+
+#loginPanel p {
+    font-size: 2vh;
+}
+
+#loginPanel p a {
+    color: white;
+}
+
+.loginButtonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Estilos para pantallas con un ancho de 768px o menos */
+@media (max-width: 768px) {
+    #loginPanelContainer {
+        padding: 1vh;
+    }
+
+    #loginPanel > div {
+        width: 100%;
+    }
+
+    #loginPanel h1 {
+        font-size: 2em;
+    }
+
+    #loginPanel input {
+        height: 5vh;
+    }
+
+    #loginButton {
+        width: 100%;
+        height: 8vh;
+    }
+
+    #loginPanel p {
+        font-size: 1.5vh;
+    }
+}
+
+@media (max-width: 350px) {
+    #loginPanel {
+        width: 90%;
+    }
 }

@@ -133,8 +133,8 @@ function CompletePokemonList({selectedValue, selectedTier, selectedType, selecte
             break;
         case '1':
             sortedList.sort((a, b) => {
-                let rarezaA = GetRarezaPoints(a.iv, a.shiny, parseInt(a.tier));
-                let rarezaB = GetRarezaPoints(b.iv, b.shiny, parseInt(b.tier));
+                let rarezaA = GetRarezaPoints(a.iv, a.shiny, parseInt(a.frequency));
+                let rarezaB = GetRarezaPoints(b.iv, b.shiny, parseInt(b.frequency));
                 
                 return (rarezaA - rarezaB); // No va bien? q raro xd
             });
@@ -147,7 +147,7 @@ function CompletePokemonList({selectedValue, selectedTier, selectedType, selecte
             break;
         case '3':
             sortedList.sort((a, b) => {
-                return parseInt(b.tier) - parseInt(a.tier)
+                return parseInt(b.frequency) - parseInt(a.frequency)
             })
             break;
         case '4':
@@ -169,10 +169,10 @@ function CompletePokemonList({selectedValue, selectedTier, selectedType, selecte
     }
 
     // Select de Tier
-    sortedList = sortedList.filter(poke => (selectedTier === "0" ? true : poke.tier === selectedTier));
+    sortedList = sortedList.filter(poke => (selectedTier === "0" ? true : poke.frequency === selectedTier));
 
     // Select de Tipo
-    sortedList = sortedList.filter(poke => (selectedType === "0" ? true : poke.type1 === selectedType || poke.type2 === selectedType));
+    sortedList = sortedList.filter(poke => (selectedType === "0" ? true : poke.frequency === selectedType || poke.type2 === selectedType));
 
     sortedList = sortedList.filter(poke => (Name === "" ? true : poke.nametag.toLowerCase().startsWith(Name.toLowerCase()) ||
                                                                  poke.speciesname.toLowerCase().startsWith(Name.toLowerCase())));
