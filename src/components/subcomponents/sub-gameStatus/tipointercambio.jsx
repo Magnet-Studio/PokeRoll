@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useLocation, Navigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import "./styles/intercambio.css";
 import "../../styles/panel.css";
 import ForwardIcon from "@mui/icons-material/Forward";
@@ -26,8 +26,7 @@ function IntercambioConCodigo() {
   const [loading, setLoading] = useState(false);
 
   if (loading) {
-    <PantallaCargaIntercambio />;
-    setLoading(false);
+    return <PantallaCargaIntercambio redirect="/ruleta" />;
   }
 
   const handleClick = () => {
@@ -65,16 +64,8 @@ function IntercambioSinCodigo({ code }) {
   const [isCopied, setIsCopied] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 5000);
-    return () => {
-      clearTimeout(timer);
-      <Navigate to="/ruleta" />;
-    };
-  }, []);
-
   if (loading) {
-    return <PantallaCargaIntercambio />;
+    return <PantallaCargaIntercambio redirect="/ruleta" />;
   }
 
   const handleClick = () => {
