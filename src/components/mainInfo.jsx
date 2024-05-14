@@ -50,8 +50,42 @@ function ExitMainInfoButton(props)
 function Instrucciones() {
   return (
     <>
-      <h1>Instrucciones de uso de PokéRoll</h1>
-      <p>El objetivo del nuevo jugador será realizar ruletas de nivel 1, donde se obtendrán Pokémon muy básicos. Para añadir un poco de variación a la mecánica. por cada tirada, podremos conseguir un Pokémon de los obtenidos y una cierta cantidad de puntos (pokedólares) equivalente a media tirada del mismo nivel, pensado para que el jugador tenga que deshacerse de sus propios Pokémon para poder realizar más tiradas y obtener Pokémon diferentes. Para hacer una tirada de Nivel 1 hay que usar una moneda de Nivel 1, que cuesta 100 pokedólares. Además, un Pokémon que tengas de los que has ido eligiendo y coleccionando se puede canjear por 100 pokedólares. A veces, una tirada de Nivel 1 puede ofrecerte además una moneda de Nivel 1 gratis o incluso una de Nivel 2. Una moneda de Nivel 2 se puede comprar por 500 pokedólares también. Una moneda de Nivel 2 te dará, además de elegir entre 3 Pokémon de mayor poder y 250 pokedólares por tirada. Una moneda de Nivel 3 se puede comprar por 1500. Una moneda de Nivel 4 se puede comprar por 4000. Una moneda de Nivel 5 se puede comprar por 10000. Las tiradas de Nivel 3, 4 o 5 cumplen con lo mismo que los anteriores niveles: Se podrá elegir uno de los tres Pokémon obtenidos, y se obtendrá pokedólares por el valor de media tirada del nivel elegido. Por otro lado, el jugador irá acumulando Pokémon, el jugador tiene que llegar a tener un cierto número de veces un Pokémon conseguido en las tiradas para tenerlo realmente registrado en su Pokédex. Además, una vez de registrado un Pokémon, se debe seguir consiguiendo a este más veces para poder “subirlo de Nivel” para que así no pierda sentido seguir consiguiendo ese Pokémon en las tiradas posteriores al desbloqueo. Las cadenas evolutivas en un principio no tienen importancia aquí, como mucho se toman de referencia en el sentido de que Squirtle (primero en su cadena evolutiva) estará en las tiradas de Nivel 1 y Blastoise (El último de su cadena evolutiva) estará en las tiradas de Nivel 3 o más alto (Por determinar). Una tirada en la que te salgan un Pokémon repetido dos veces te proporcionará más que la mitad del coste de la tirada (es decir, en Nivel 1, en vez de obtener 50 pokedólares, te dan 75 por ejemplo). Además, si se elige al pokémon repetido, se te darán dos de este (si sale repetido tres veces es análogo).</p>
+      <div className="infoBox">
+        <h1>Instrucciones de uso de PokéRoll</h1>
+        <h2>¡Bienvenido a PokéRoll!</h2>
+        <p>PokéRoll es un juego en línea de máquinas tragaperras <b>sin ningún gasto de dinero real</b> de Pokémon, en el que podrás competir contra
+          otros jugadores para encontrar al Pokémon más raro posible
+        </p>
+        <p>En PokéRoll, ofrecemos los siguientes servicios para todos los jugadores:</p>
+        <ul>
+          <li><b>RULETA</b>: Con la ruleta, ¡podrás conseguir TODOS los Pokémon que tú quieras! Además, tienes distintas ruletas para elegir,
+            cada una de ellas tiene una mayor probabilidad para obtener mejores Pokémon.
+            <ul><br/>
+              <li><b>TIER 1</b>: En esta ruleta, encontrarás mayormente Pokémon comunes, como Pidgey o Rattata.</li>
+              <li><b>TIER 2</b>: En esta ruleta, encontrarás Pokémon infrecuentes, como Chespin o Eevee.</li>
+              <li><b>TIER 3</b>: En esta ruleta, predominan Pokémon peculiares, como Quilava o Croconaw.</li>
+              <li><b>TIER 4</b>: En esta ruleta, aparecerán Pokémon épicos, como Charizard o Garchomp.</li>
+              <li><b>TIER 5</b>: En esta ruleta, encontrarás a los Pokémon legendarios, como Mewtwo o Giratina.
+                <ul>
+                  <li>...Y con un poco de suerte, ¡Podrás conseguir Pokémon singulares, como Darkrai o Genesect!</li>
+                </ul>
+              </li>
+            </ul><br/>
+            Pese a que por cada Tier de ruleta se obtienen Pokémon más raros, ¡ten en cuenta que cada uno cuesta más que el anterior!
+          </li><br/>
+          <li><b>POKÉDEX</b>: Con la Pokédex integrada en PokéRoll, podrás consultar todos los Pokémon que has obtenido a través de todas las tiradas
+            que hayas realizado. Ten en cuenta que, incluso liberando a tus Pokémon, ¡el registro no se perderá!
+          </li><br/>
+          <li><b>ALMACÉN</b>: En el almacén, se guardarán todos los Pokémon que hayas obtenido. Adicionalmente, podrás consultar los datos de estos Pokémon,
+            como pueden ser sus estadísticas, tipos, fecha de obtención, rareza y más.<br/><br/> También tienes una opción de liberar a tus Pokémon a cambio de
+            puntos, con los cuales podrás realizar más tiradas en la Ruleta para conseguir más Pokémon.
+          </li><br/>
+          <li><b>MARCADORES</b>: En esta ventana, podrás ver distintas clasificaciones dentro de la aplicación PokéRoll entre todos los usuarios, en el que podrás
+            consultar quiénes son los jugadores que tienen mejores Pokémon, o los más raros, entre otras más opciones.
+          </li><br/>
+          <li><b>INTERCAMBIO</b>: Con esta función, podrás conectar con otro jugador para poder intercambiar vuestros Pokémon.</li>
+        </ul>
+      </div>
     </>
   );
 }
