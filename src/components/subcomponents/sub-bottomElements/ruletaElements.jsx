@@ -11,15 +11,18 @@ export function TirarButton({cost, setUserData, tirarButtonDisable, setTirarButt
 
     const tirarHandler = () => 
     {
-        setUserData(prevUserData => {
-            const updatedUserData = { ...prevUserData }; // Crear una copia del estado anterior
-            updatedUserData.currency -= cost; // Modificar la copia (restar dinero)
-            return updatedUserData; // Devolver la copia modificada
-        });
-
-        // Se desactivan los botones de Tirar y de Cambiar de Tier
-        setTirarButtonDisable("disabled");
-        setChangeTierButtonDisable("disabled");
+        if(UserData.currency >= cost)
+        {
+            setUserData(prevUserData => {
+                const updatedUserData = { ...prevUserData }; // Crear una copia del estado anterior
+                updatedUserData.currency -= cost; // Modificar la copia (restar dinero)
+                return updatedUserData; // Devolver la copia modificada
+            });
+    
+            // Se desactivan los botones de Tirar y de Cambiar de Tier
+            setTirarButtonDisable("disabled");
+            setChangeTierButtonDisable("disabled");
+        }
     }
 
     // El botón de Tirar se queda disabled + rojo si no tienes suficientes monedas para esa tirada
@@ -33,7 +36,6 @@ export function TirarButton({cost, setUserData, tirarButtonDisable, setTirarButt
             setRedTirarButton("notEnoughMoney")
         }
     }, [UserData.currency, cost]);
-
 
     return (
         <div id='tirarButton' onClick={tirarHandler} className={tirarButtonDisable + " " + redTirarButton} >
@@ -57,7 +59,7 @@ export function ChangeTierButtons({TierRuleta, setTierRuleta, changeTierButtonDi
 {
     const prevTier = () => {
         setTierRuleta(prevTierRuleta => {
-            if(prevTierRuleta === 1)
+            if(prevTierRuleta <= 1)
             {
                 return 5;
             }
@@ -67,16 +69,13 @@ export function ChangeTierButtons({TierRuleta, setTierRuleta, changeTierButtonDi
 
     const nextTier = () => {
         setTierRuleta(prevTierRuleta => {
-            if(prevTierRuleta === 5)
+            if(prevTierRuleta >= 5)
             {
                 return 1;
             }
             return prevTierRuleta + 1;
         });
     };
-
-    const TierInfo = (<p>Hola</p>);
-
 
     return(
         <>
