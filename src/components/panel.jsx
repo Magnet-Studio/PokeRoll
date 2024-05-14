@@ -5,7 +5,7 @@ import Coins from './subcomponents/coins';
 import Username from './subcomponents/username';
 import TopElements from './subcomponents/topElements';
 import BottomElements from './subcomponents/bottomElements';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import GameState from './subcomponents/gameState';
 import {useState, useEffect} from 'react';
 
@@ -79,36 +79,45 @@ function MainPanel()
             <div id='mainPanelContainer'>
                 <div id='mainPanel'>
 
-                    <BrowserRouter>
-
-                        <div id='logoContainer' className='subpanelContainer'>
-                            <LogoPanel/>
-                        </div>
-
-                        <div id='coinsPanelContainer' className='subpanelContainer'>
-                            <CoinsPanel UserData={UserData} />
-                        </div>
-
-                        <div id='topelementsPanelContainer' className='subpanelContainer'>
-                            <TopElementsPanel/>
-                        </div>
-
-                        <div id='usernamePanelContainer' className='subpanelContainer'>
-                            <UsernamePanel UserData={UserData}/>
-                        </div>
-
-                        <div id='gamestatePanelContainer' className='subpanelContainer'> 
-                            <GameStatePanel setUserData={setUserData} TierRuleta={TierRuleta} />
-                        </div>
-
-                        <div id='bottomelementsPanelContainer' className='subpanelContainer'>
-                            <BottomElementsPanel UserData={UserData} setUserData={setUserData} 
-                                                TierRuleta={TierRuleta} setTierRuleta={setTierRuleta} 
-                                                tirarButtonDisable={tirarButtonDisable} setTirarButtonDisable={setTirarButtonDisable}
-                                                changeTierButtonDisable={changeTierButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable}/>
-                        </div>
-
-                    </BrowserRouter>
+                <BrowserRouter>
+                    <Routes>
+                        <Route path="/login" element={
+                            <>
+                                <div id='logoContainer' className='subpanelContainer'>
+                                    <LogoPanel/>
+                                </div>
+                                <div id='loginPanelContainer' className='subpanelContainer'>
+                                    <LoginPanel/>
+                                </div>
+                            </>
+                        }/>
+                        <Route path="*" element={
+                            <>
+                                <div id='logoContainer' className='subpanelContainer'>
+                                    <LogoPanel/>
+                                </div>
+                                <div id='coinsPanelContainer' className='subpanelContainer'>
+                                    <CoinsPanel UserData={UserData} />
+                                </div>
+                                <div id='topelementsPanelContainer' className='subpanelContainer'>
+                                    <TopElementsPanel/>
+                                </div>
+                                <div id='usernamePanelContainer' className='subpanelContainer'>
+                                    <UsernamePanel UserData={UserData}/>
+                                </div>
+                                <div id='gamestatePanelContainer' className='subpanelContainer'> 
+                                    <GameStatePanel setUserData={setUserData} TierRuleta={TierRuleta} />
+                                </div>
+                                <div id='bottomelementsPanelContainer' className='subpanelContainer'>
+                                    <BottomElementsPanel UserData={UserData} setUserData={setUserData} 
+                                                        TierRuleta={TierRuleta} setTierRuleta={setTierRuleta} 
+                                                        tirarButtonDisable={tirarButtonDisable} setTirarButtonDisable={setTirarButtonDisable}
+                                                        changeTierButtonDisable={changeTierButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable}/>
+                                </div>
+                            </>
+                        }/>
+                    </Routes>
+                </BrowserRouter>
                     
                 </div>
             </div>
@@ -124,6 +133,18 @@ function LogoPanel()
     return (
         <div className='subpanel' id='logoPanel'>
             <Logo/>
+        </div>
+    );
+}
+
+/**
+ * Este es el panel que contiene el login
+ */
+function LoginPanel()
+{
+    return (
+        <div className='subpanel' id='loginPanel'>
+            <h1>Login</h1>
         </div>
     );
 }
