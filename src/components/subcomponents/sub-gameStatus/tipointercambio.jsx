@@ -1,11 +1,12 @@
-import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useLocation, Navigate } from "react-router-dom";
 import "./styles/intercambio.css";
 import "../../styles/panel.css";
 import ForwardIcon from "@mui/icons-material/Forward";
 import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
 import DoneOutlinedIcon from "@mui/icons-material/DoneOutlined";
 import { Link } from "react-router-dom";
+import PantallaCargaIntercambio from "./pantallaCargaIntercambio";
 
 export default function TipoIntercambio() {
   const location = useLocation();
@@ -22,6 +23,16 @@ export default function TipoIntercambio() {
 
 function IntercambioConCodigo() {
   const [inputValue, setInputValue] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  if (loading) {
+    <PantallaCargaIntercambio />;
+    setLoading(false);
+  }
+
+  const handleClick = () => {
+    setLoading(true);
+  };
 
   const handleChange = (event) => {
     setInputValue(event.target.value);
@@ -43,7 +54,7 @@ function IntercambioConCodigo() {
             handleChange={handleChange}
             input={inputValue}
           />
-          <BotonIntercambio text="Buscar" code={inputValue} />
+          <BotonIntercambio text="Buscar" click={handleClick} />
         </div>
       </div>
     </>
@@ -52,6 +63,23 @@ function IntercambioConCodigo() {
 
 function IntercambioSinCodigo({ code }) {
   const [isCopied, setIsCopied] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 5000);
+    return () => {
+      clearTimeout(timer);
+      <Navigate to="/ruleta" />;
+    };
+  }, []);
+
+  if (loading) {
+    return <PantallaCargaIntercambio />;
+  }
+
+  const handleClick = () => {
+    setLoading(true);
+  };
 
   async function copyTextToClipboard(text) {
     if ("clipboard" in navigator) {
@@ -62,10 +90,8 @@ function IntercambioSinCodigo({ code }) {
   }
 
   const handleCopyClick = () => {
-    // Asynchronously call copyTextToClipboard
     copyTextToClipboard(code)
       .then(() => {
-        // If successful, update the isCopied state value
         setIsCopied(true);
       })
       .catch((err) => {
@@ -90,7 +116,7 @@ function IntercambioSinCodigo({ code }) {
             isCopied={isCopied}
             handleCopyClick={handleCopyClick}
           />
-          <BotonIntercambio text="Iniciar" code={code} />
+          <BotonIntercambio text="Iniciar" click={handleClick} />
         </div>
       </div>
     </>
@@ -99,7 +125,7 @@ function IntercambioSinCodigo({ code }) {
 
 function GenerateRandomCode() {
   const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-  const codeLength = 8; // Puedes ajustar la longitud del código según tus necesidades
+  const codeLength = 8;
   let randomCode = "";
 
   for (let i = 0; i < codeLength; i++) {
@@ -108,7 +134,10 @@ function GenerateRandomCode() {
   }
 
   // Aquí puedes ajustar el formato según tus necesidades
-  const formattedCode = `${randomCode.slice(0, 4)}-${randomCode.slice(4)}`;
+  const formattedCode = `${randomCode.slice(
+    0,
+    codeLength / 2
+  )}-${randomCode.slice(codeLength / 2)}`;
 
   return formattedCode;
 }
@@ -145,12 +174,10 @@ function InputCodigoIntercambio({ input, handleChange }) {
   );
 }
 
-function BotonIntercambio({ text, code }) {
+function BotonIntercambio({ text, click }) {
   return (
-    <Link to={"/intercambio/pantallaCarga?code=" + code}>
-      <button className="intercambioBoton">
-        <h2>{text}</h2>
-      </button>
-    </Link>
+    <button onClick={click} className="intercambioBoton">
+      <h2>{text}</h2>
+    </button>
   );
 }

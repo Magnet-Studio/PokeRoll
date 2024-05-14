@@ -42,6 +42,7 @@
   color: white;
   border-radius: 30px;
   cursor: pointer;
+  pointer-events: all;
 }
 
 .intercambioBoton:hover {
