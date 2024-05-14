@@ -280,7 +280,7 @@ function Reclamar(pokemonData, UserData, setThreePokemon, setOpen, setUserData, 
 
   setUserData(prevUserData => {
     prevUserData.currency += HalfCost/2;
-    //prevUserData.pokemonList.append(pokemonData);
+    //prevUserData.pokemonList.push(pokemonData);
     return prevUserData
   });
 } 
