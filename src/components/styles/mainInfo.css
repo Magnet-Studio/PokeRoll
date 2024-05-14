@@ -86,3 +86,9 @@
   width: 100%;
   height: auto;
 }
+
+.infoBox > p {
+  color: black;
+  font-size: 17px;
+  text-align: justify;
+}
