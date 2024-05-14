@@ -2,10 +2,10 @@ import React, { useState , useEffect } from "react";
 import './styles/almacen.css';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import { FakeData } from "./userdata/pokemonList";
-import { GetSpeciesDataByName, GetSpanishName} from './PokeAPI/PokemonSpeciesData';
-import { GetDataByName, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish, GetImage, GetDexNum} from './PokeAPI/PokemonData';
+import { GetSpeciesDataByName, GetSpanishName} from './lib/PokemonSpeciesData';
+import { GetDataByName, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish, GetImage, GetDexNum} from './lib/PokemonData';
 import { Link } from "react-router-dom";
-import { GetRarezaPoints } from "./userdata/rareza";
+import { GetRarezaPoints } from "./lib/pokemonRarity";
 import CircularProgress from '@mui/material/CircularProgress';
 
 function Almacen() {

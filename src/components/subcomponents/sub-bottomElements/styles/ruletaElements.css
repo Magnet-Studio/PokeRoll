@@ -72,8 +72,7 @@
 {
     display: grid;
     grid-template-rows: 100%;
-    grid-template-columns: 33% 33% 33%;
-    width: 16vw;
+    width: 20vw;
     justify-content: center;
     align-items: center;
 }
@@ -84,10 +83,12 @@
     grid-column: 2;
     margin: 0;
     font-size: calc(1px + 1vw);
-    display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    margin: 0 0.5vw;
 }
+
 
 #changeTierButtons > div 
 {

@@ -46,8 +46,7 @@ export function TirarButton({cost, setUserData, tirarButtonDisable, setTirarButt
     );
 }
 
-
-export function Pokeball() 
+function Pokeball() 
 {
     return (
         <img className="pokeBall" src={PokeballIcon} alt={"Pokeball"} />
@@ -76,12 +75,15 @@ export function ChangeTierButtons({TierRuleta, setTierRuleta, changeTierButtonDi
         });
     };
 
+    const TierInfo = (<p>Hola</p>);
+
 
     return(
         <>
             <div id="changeTierButtons">
-                <p>TIER {TierRuleta}</p>
-                
+                <p>
+                    TIER {TierRuleta}
+                </p>
                 <TierButton TierDir="prevTierButton" changeTierHandler={prevTier} changeTierButtonDisable={changeTierButtonDisable}/>
                 <TierButton TierDir="nextTierButton" changeTierHandler={nextTier} changeTierButtonDisable={changeTierButtonDisable}/>
                 

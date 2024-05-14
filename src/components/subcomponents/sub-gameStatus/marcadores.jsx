@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import './styles/marcadores.css'
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import { PlayerList } from './userdata/rankingList';
-import { GetDataByName, GetImage } from "./PokeAPI/PokemonData";
+import { GetDataByName, GetImage } from "./lib/PokemonData";
 
 
 function Marcadores() {
