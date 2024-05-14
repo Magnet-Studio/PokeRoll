@@ -1063,7 +1063,10 @@ const pokemonFrequencies = [
         {"name": "Electrofuria", "dexNum": 1021},
         {"name": "Ferromole", "dexNum": 1022},
         {"name": "Ferrotesta", "dexNum": 1023},
-        {"name": "Terapagos", "dexNum": 1024}
+        
+        {"name": "Terapagos", "dexNum": 1024},
+        
+        {"name": "Ogerpon", "dexNum": 1017}
             
     ],
     /* Tier 6 */ [
