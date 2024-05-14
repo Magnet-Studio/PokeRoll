@@ -5,7 +5,7 @@ import './styles/verPokemonAlmacen.css'
 import { GetFrequency } from "./userdata/pokemonFrequency";
 import { GetDataByName, GetImage, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish } from "./PokeAPI/PokemonData";
 import { GetSpeciesDataByName, GetSpanishName } from "./PokeAPI/PokemonSpeciesData";
-import { GetRareza } from "./userdata/rareza";
+import { GetRarezaPoints } from "./userdata/rareza";
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
@@ -39,8 +39,8 @@ function VerPokemonAlmacen() {
     }, [pokemon.name]);
 
     const name = GetSpanishName(pokemonSpeciesData);
-    const rareza = GetFrequency(name);
-    const nombreRareza = nombresRarezas[rareza-1];
+    const frequency = GetFrequency(name);
+    const nombreRareza = nombresRarezas[frequency-1];
 
     const firstType = GetFirstType(pokemonData);
     const secondType = GetSecondType(pokemonData);
@@ -64,7 +64,7 @@ function VerPokemonAlmacen() {
                                             shown={<p>
                                               La rareza de un Pokémon contribuye a su valor final. <br/>
                                               Este Pokémon posee la rareza "{nombreRareza}", por lo <br/>
-                                              cual obtendrá un bonus de {rarezas[rareza-1]} puntos en el <br/>
+                                              cual obtendrá un bonus de {rarezas[frequency-1]} puntos en el <br/>
                                               cálculo final de Rareza.
                                               </p>} />
 
@@ -92,8 +92,8 @@ function VerPokemonAlmacen() {
                 <p className="fechaEncontrado">{"Encontrado el " + pokemon.datefound}</p>
                 <p className="entrenadorOriginal">Entrenador original:</p>
                 <p className="nombreEO">{pokemon.originaltrainer}</p>
-                <p className="rareza">Rareza: <span className={"rareza" + rareza}>{(nombreRareza === undefined ? "Cargando..." : nombreRareza + " " )}</span>{rarityMessage}</p>
-                <GetRarezaValue ivs={pokemon.iv} shiny={pokemon.shiny} rareza={rareza}/>
+                <p className="rareza">Rareza: <span className={"rareza" + frequency}>{(nombreRareza === undefined ? "Cargando..." : nombreRareza + " " )}</span>{rarityMessage}</p>
+                <GetRarezaValue ivs={pokemon.iv} shiny={pokemon.shiny} frequency={frequency}/>
             </div>
 
             <div id="statsDiv">
@@ -172,10 +172,10 @@ function MouseOverPopover({ content, shown }) {
 
 const nombresRarezas = ['Común', 'Infrecuente', 'Raro', 'Épico', 'Legendario', 'Singular'];
 
-function GetRarezaValue({ ivs , shiny, rareza}) 
+function GetRarezaValue({ ivs , shiny, frequency}) 
 {
     
-    const finalValue = GetRareza(ivs, shiny, rareza);
+    const finalValue = GetRarezaPoints(ivs, shiny, frequency);
 
 
     return (

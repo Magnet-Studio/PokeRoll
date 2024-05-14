@@ -53,6 +53,7 @@ function BottomElements({
           <ButtonsRuletaStatus
             TierRuleta={TierRuleta}
             setTierRuleta={setTierRuleta}
+            UserData={UserData}
             setUserData={setUserData}
             tirarButtonDisable={tirarButtonDisable}
             setTirarButtonDisable={setTirarButtonDisable}
@@ -98,6 +99,7 @@ const TierCosts = [100, 500, 1500, 4000, 10000];
 function ButtonsRuletaStatus({
   TierRuleta,
   setTierRuleta,
+  UserData,
   setUserData,
   tirarButtonDisable,
   setChangeTierButtonDisable,
@@ -137,6 +139,7 @@ function ButtonsRuletaStatus({
         />
         <TirarButton
           cost={TierCost}
+          UserData={UserData}
           setUserData={setUserData}
           tirarButtonDisable={tirarButtonDisable}
           setTirarButtonDisable={setTirarButtonDisable}

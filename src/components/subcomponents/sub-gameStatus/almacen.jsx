@@ -5,7 +5,7 @@ import { FakeData } from "./userdata/pokemonList";
 import { GetSpeciesDataByName, GetSpanishName} from './PokeAPI/PokemonSpeciesData';
 import { GetDataByName, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish, GetImage, GetDexNum} from './PokeAPI/PokemonData';
 import { Link } from "react-router-dom";
-import { GetRareza } from "./userdata/rareza";
+import { GetRarezaPoints } from "./userdata/rareza";
 import CircularProgress from '@mui/material/CircularProgress';
 
 function Almacen() {
@@ -133,8 +133,8 @@ function CompletePokemonList({selectedValue, selectedTier, selectedType, selecte
             break;
         case '1':
             sortedList.sort((a, b) => {
-                let rarezaA = GetRareza(a.iv, a.shiny, parseInt(a.tier));
-                let rarezaB = GetRareza(b.iv, b.shiny, parseInt(b.tier));
+                let rarezaA = GetRarezaPoints(a.iv, a.shiny, parseInt(a.tier));
+                let rarezaB = GetRarezaPoints(b.iv, b.shiny, parseInt(b.tier));
                 
                 return (rarezaA - rarezaB); // No va bien? q raro xd
             });

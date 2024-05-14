@@ -9,7 +9,6 @@
     gap: 1vw;
 }
 
-
 #tirarButton 
 {
     background-color: #00DF09;
@@ -60,6 +59,13 @@
 {
     pointer-events: none;
     opacity: 0.5;
+}
+
+#tirarButton.notEnoughMoney
+{
+    background-color: red;
+    border: 0.3vw solid #ff7373;
+    pointer-events: none;
 }
 
 #changeTierButtons
