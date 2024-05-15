@@ -1,20 +1,15 @@
-export function GetPokemonByID(id, pokemonList)
-{
-    if(pokemonList === null || pokemonList === undefined) return {};
-
-    for(let i=0; i<pokemonList.lenght; i++)
-    {
+export function GetPokemonByID(id, pokemonList) {
+    if (pokemonList === null || pokemonList === undefined) return {};
+    for (let i = 0; i < pokemonList.length; i++) {
         const string = pokemonList[i];
-        if(string !== "{}")
-        {
+        if (string !== "{}") {
             let pokemon = JSON.parse(string);
-            if(parseInt(pokemon.id) === parseInt(id))
-            {
+            if (pokemon.id === parseInt(id)) {
                 return pokemon;
             }
         }
     }
-    return {};
+    return null; // Retornar null si no se encuentra el Pokémon con el ID dado
 }
 
 /**
