@@ -344,6 +344,8 @@ export function DeletePokemon(id, currencyAdded, SetUserData)
             "frequency":"5"
 */
 
+let x = 1;
+
 const TenerDate = () => {
 
     let fecha = new Date();
@@ -357,9 +359,10 @@ const TenerDate = () => {
 }
 
 export function AddNewPokemon({pokemonData, UserData}) {
+    x++;
     console.log(pokemonData);
     console.log(UserData);
-    pokemonData.id = FakeData.length + 1;
+    pokemonData.id = x;
     pokemonData.originaltrainer = UserData.name;
     pokemonData.datefound = TenerDate();
     
