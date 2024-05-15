@@ -56,7 +56,7 @@ function VerPokemonAlmacen({UserData, setUserData})
         secondTypeContainer = (<div className={"pokemonType " + secondType}>{GetPrettyTypeNameSpanish(secondType)}</div>);
     } 
     
-    const rarezas = [100, 400, 1000, 2000, 10000, 15000];
+    const rarezas = [100, 400, 1000, 2000, 10000, 13500];
     const nombrePKM = pokemon.nametag === null ? name : pokemon.nametag;
     const shinyCond = (pokemon.shiny === "shiny") ? <MouseOverPopover content={<AutoAwesomeIcon />} 
                                                                       shown={<p> ¡Felicidades! ¡Has conseguido un Pokémon Variocolor!<br/>
