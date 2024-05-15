@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 import './styles/ruleta.css';
 import { GetDataByDexNum, GetImage , GetFirstType, GetSecondType, GetPrettyTypeNameSpanish} from './lib/PokemonData';
 import Pokeball from "../../../images/pokeball.png";
@@ -122,7 +122,7 @@ function RuletaBox({setThreePokemon, pokemonImage, tirarButtonDisable, TierRulet
 
 function ModalConfirmar({setThreePokemon, pokemonData, setOpen, open, UserData, HalfCost, pokemonImage, setEnabled, setTirarButtonDisable, setChangeTierButtonDisable, setUserData})
 {
-  const hasReclaimedRef = useRef(false);
+ 
 
   const HandleClose = (event) => {
     event.stopPropagation();
@@ -130,22 +130,21 @@ function ModalConfirmar({setThreePokemon, pokemonData, setOpen, open, UserData, 
     setOpen(false);
     setEnabled("enabled");
 
-    hasReclaimedRef.current = false;
+    
   };
 
   const HandleReclamar = (event) => {
-    if (!hasReclaimedRef.current) 
-    {
+   
       event.stopPropagation();
 
       Reclamar(pokemonData, UserData, setThreePokemon, setUserData, HalfCost);
 
       setChangeTierButtonDisable("");
       setTirarButtonDisable("");
+      setEnabled("enabled");
       setOpen(false);
 
-      hasReclaimedRef.current = true;
-    }
+     
   }
 
  
