@@ -14,7 +14,8 @@ const initData = {
     name:"Iniciar sesión",
     pass:"",
     currency: 300,
-    pokemonList: [JSON.stringify({})]
+    pokemonList: [JSON.stringify({})],
+    registers: [0]
 }
 
 const savedData = () => 
@@ -23,12 +24,14 @@ const savedData = () =>
     const savedPass = localStorage.getItem("pass");
     const savedCurrency = localStorage.getItem("currency");
     const savedPokemonList = JSON.parse(localStorage.getItem("pokemonList"));
+    const savedRegisters = JSON.parse(localStorage.getItem("registers"));
 
     return {
         name: savedName ? savedName : initData.name,
         pass: savedPass ? savedPass : initData.pass,
         currency: savedCurrency ? parseInt(savedCurrency) : initData.currency,
-        pokemonList: savedPokemonList ? savedPokemonList : initData.pokemonList
+        pokemonList: savedPokemonList ? savedPokemonList : initData.pokemonList,
+        registers: savedRegisters ? savedRegisters : initData.registers
     };
 }
 
@@ -45,6 +48,7 @@ function MainPanel()
         localStorage.setItem("pass", UserData.pass);
         localStorage.setItem("currency", UserData.currency.toString());
         localStorage.setItem("pokemonList", JSON.stringify(UserData.pokemonList));
+        localStorage.setItem("registers", JSON.stringify(UserData.registers));
     }, [UserData]);
 
     useEffect(() => {

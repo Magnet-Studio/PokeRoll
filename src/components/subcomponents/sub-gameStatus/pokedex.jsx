@@ -4,7 +4,6 @@ import {useState, useEffect} from 'react';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import {GetSpeciesDataByDexNum, GetSpanishName} from './lib/PokemonSpeciesData';
 import {GetDataByDexNum, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish, GetImage} from './lib/PokemonData';
-import { PokedexRegisters } from './userdata/pokedexRegisters';
 import CircularProgress from '@mui/material/CircularProgress';
 import { MouseOverPopover } from './mouseOverPopOver';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
@@ -12,7 +11,7 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 /**
  * Función principal que se exporta.
  */
-function Pokedex() 
+function Pokedex({UserData}) 
 {
     const initGenerationNum = sessionStorage.getItem("generationNum");
     // El número de generación actual
@@ -32,7 +31,7 @@ function Pokedex()
             </div>
 
             <div id="pokedexBigBox">
-                <CompleteEntryList setGenerationNum={setGenerationNum} generationNum={generationNum} setDexNumbers={setDexNumbers} dexNumbers={dexNumbers}  />
+                <CompleteEntryList UserData={UserData} setGenerationNum={setGenerationNum} generationNum={generationNum} setDexNumbers={setDexNumbers} dexNumbers={dexNumbers}  />
             </div>
 
             <div id="nextGenContainer"> 
@@ -88,7 +87,7 @@ function CompleteEntryList(props)
 {
 
     const list = props.dexNumbers.map((num) => {
-        const card = (<PokemonEntry num={num} known={PokedexRegisters[num].known} key={num} />);
+        const card = (<PokemonEntry num={num} known={props.UserData.registers.includes(num) ? "known" : ""} key={num} />);
         return card;
         }
     );

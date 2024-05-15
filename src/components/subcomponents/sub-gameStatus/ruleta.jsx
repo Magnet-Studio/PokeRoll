@@ -8,7 +8,6 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import CoinImage from "../../../images/coin.png";
 import { GetFrequencyByName } from "./lib/pokemonFrequency";
-import { Register } from './userdata/pokedexRegisters';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import { MouseOverPopover } from './mouseOverPopOver';
 import { AddLastExtraDetails } from './lib/pokemonList';
@@ -273,10 +272,6 @@ function ModalConfirmar({setThreePokemon, pokemonData, setOpen, open, UserData, 
  */
 function Reclamar(pokemonData, UserData, setThreePokemon, setUserData, HalfCost) 
 {
-  
-  // Registra número en pokédex
-  Register(pokemonData.name);
-
   // Cambia las imagenes por otra vez pokeballs
   const pokeballImage = (<img src={Pokeball} className="pokeballRotar" />);
   const notPokemon = [(pokeballImage), (pokeballImage), (pokeballImage)];
@@ -290,6 +285,7 @@ function Reclamar(pokemonData, UserData, setThreePokemon, setUserData, HalfCost)
     const updatedUserData = { ...prevUserData };
     updatedUserData.currency += HalfCost;
     updatedUserData.pokemonList = [...updatedUserData.pokemonList, JSON.stringify(pokemonData)];
+    if(!updatedUserData.registers.includes(pokemonData.name)) updatedUserData.registers = [...updatedUserData.registers, pokemonData.name];
     return updatedUserData;
   });
 } 
