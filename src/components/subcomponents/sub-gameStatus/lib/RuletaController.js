@@ -58,7 +58,7 @@ export const GetThreeRandomPokemon = (TierRuleta) =>
         winners[i] = pokemon;
     }
 
-    console.log(winners);
+    //console.log(winners);
 
     return winners;
 }

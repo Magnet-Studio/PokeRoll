@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import './styles/ruleta.css';
 import { GetDataByDexNum, GetImage , GetFirstType, GetSecondType, GetPrettyTypeNameSpanish} from './lib/PokemonData';
 import Pokeball from "../../../images/pokeball.png";
@@ -8,10 +8,10 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import CoinImage from "../../../images/coin.png";
 import { GetFrequencyByName } from "./lib/pokemonFrequency";
-import { AddNewPokemon } from './userdata/pokemonList';
 import { Register } from './userdata/pokedexRegisters';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import { MouseOverPopover } from './mouseOverPopOver';
+import { AddLastExtraDetails } from './userdata/pokemonList';
 
 
 function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, UserData, setTirarButtonDisable, setChangeTierButtonDisable, setUserData})
@@ -44,8 +44,7 @@ function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, 
                 else
                 {
                   setThreePokemon(prevThreePokemon => 
-                    {
-                      console.log(prevThreePokemon);
+                    { 
                       prevThreePokemon[i].type1 = GetFirstType(data);
                       prevThreePokemon[i].type2 = GetSecondType(data);
                       return prevThreePokemon;
@@ -124,19 +123,34 @@ function RuletaBox({setThreePokemon, pokemonImage, tirarButtonDisable, TierRulet
 
 function ModalConfirmar({setThreePokemon, pokemonData, setOpen, open, UserData, HalfCost, pokemonImage, setEnabled, setTirarButtonDisable, setChangeTierButtonDisable, setUserData})
 {
+  const hasReclaimedRef = useRef(false);
 
-  const handleClose = (event) => {
+  const HandleClose = (event) => {
     event.stopPropagation();
+
     setOpen(false);
     setEnabled("enabled");
+
+    hasReclaimedRef.current = false;
   };
 
-  const handleCloseConfirm = (event) => {
-    event.stopPropagation();
-    setOpen(false);
-    setChangeTierButtonDisable("");
-    setTirarButtonDisable("")
-  };
+  const HandleReclamar = (event) => {
+    if (!hasReclaimedRef.current) 
+    {
+      event.stopPropagation();
+
+      Reclamar(pokemonData, UserData, setThreePokemon, setOpen, setUserData, HalfCost);
+
+      setChangeTierButtonDisable("");
+      setTirarButtonDisable("");
+
+      hasReclaimedRef.current = true;
+      
+      setOpen(false);
+    }
+  }
+
+ 
 
   const style = {
     position: "absolute",
@@ -162,13 +176,6 @@ function ModalConfirmar({setThreePokemon, pokemonData, setOpen, open, UserData, 
   const frequency = GetFrequencyByName(pokemonData.speciesname);
   const nombreRareza = nombresRarezas[frequency-1];
 
-  const ReclamarPokemon = () => Reclamar(pokemonData, UserData, setThreePokemon, setOpen, setUserData, HalfCost);
-
-  const HandleReclamar = (event) => {
-    handleCloseConfirm(event);
-    ReclamarPokemon();
-  }
-
   let shinyIndication = (<></>);
   if(pokemonData.shiny === "shiny")
   { 
@@ -176,11 +183,11 @@ function ModalConfirmar({setThreePokemon, pokemonData, setOpen, open, UserData, 
     shinyIndication = (<MouseOverPopover content={<AutoAwesomeIcon />} shown={shinyMsg} />);                                                         
   }
 
-  return(
+  return (
     
       <Modal
       open={open}
-      onClose={handleClose}
+      onClose={HandleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
       id='reclamarButtonContainer'
@@ -217,7 +224,7 @@ function ModalConfirmar({setThreePokemon, pokemonData, setOpen, open, UserData, 
         <div className="containerModal">
           <Button
             className="cerrarButton"
-            onClick={handleClose}
+            onClick={HandleClose}
             style={{
               backgroundColor: "#fb6c6c" /* color de fondo */,
               color: "white" /* color del texto */,
@@ -266,22 +273,24 @@ function ModalConfirmar({setThreePokemon, pokemonData, setOpen, open, UserData, 
  */
 function Reclamar(pokemonData, UserData, setThreePokemon, setOpen, setUserData, HalfCost) 
 {
-  setOpen(false);
   
+  // Registra número en pokédex
   Register(pokemonData.name);
-  
-  console.log("RECLAMAR: " + pokemonData);
-  console.log("RECLAMAR: " + UserData);
-  AddNewPokemon({pokemonData, UserData});
 
+  // Cambia las imagenes por otra vez pokeballs
   const pokeballImage = (<img src={Pokeball} className="pokeballRotar" />);
   const notPokemon = [(pokeballImage), (pokeballImage), (pokeballImage)];
   setThreePokemon(notPokemon);
 
+  // Añadimos fecha, username e id
+  AddLastExtraDetails(pokemonData, UserData); 
+
+  // Añade el pokémon al data y el dinero 
   setUserData(prevUserData => {
-    prevUserData.currency += HalfCost/2;
-    //prevUserData.pokemonList.push(pokemonData);
-    return prevUserData
+    const updatedUserData = { ...prevUserData };
+    updatedUserData.currency += HalfCost;
+    updatedUserData.pokemonList = [...updatedUserData.pokemonList, JSON.stringify(pokemonData)];
+    return updatedUserData;
   });
 } 
 

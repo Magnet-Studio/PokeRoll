@@ -307,19 +307,18 @@ export let FakeData =
         */
     ];
 
-export const GetPokemonByID = (id) => {
-    return FakeData.find((pokemon) => {
+export const GetPokemonByID = (id, UserData) => {
+    return UserData.pokemonList.find((pokemon) => {
         return (pokemon.id === parseInt(id));
     });
 }
 
 export function DeletePokemon(id, currencyAdded, SetUserData) 
 {
-    FakeData = FakeData.filter(data => data.id !== id);
     SetUserData(prevUserData => {
-        const updatedUserData = { ...prevUserData }; // Crear una copia del estado anterior
-        updatedUserData.currency += currencyAdded; // Modificar la copia
-        return updatedUserData; // Devolver la copia modificada
+        prevUserData.currency += currencyAdded; // Modificar el dinero
+        prevUserData.pokemonList.filter(data => JSON.parse(data).id !== id);
+        return prevUserData; // Devolver la copia modificada
     });
 }
 
@@ -344,9 +343,10 @@ export function DeletePokemon(id, currencyAdded, SetUserData)
             "frequency":"5"
 */
 
-let x = 1;
+let nextId = localStorage.getItem("nextId");
+nextId = nextId ? parseInt(nextId) : 1;
 
-const TenerDate = () => {
+const SetDate = () => {
 
     let fecha = new Date();
     let dia = String(fecha.getDate()).padStart(2, '0');
@@ -358,13 +358,13 @@ const TenerDate = () => {
     return (fechaActual);
 }
 
-export function AddNewPokemon({pokemonData, UserData}) {
-    x++;
-    console.log(pokemonData);
-    console.log(UserData);
-    pokemonData.id = x;
-    pokemonData.originaltrainer = UserData.name;
-    pokemonData.datefound = TenerDate();
+export const AddLastExtraDetails = (pokemonData, UserData) =>
+{
+    if(!pokemonData) return;
+    pokemonData.id = nextId;
+    nextId++;
     
-    FakeData.push(pokemonData);
+    localStorage.setItem("nextId", nextId);
+    pokemonData.originaltrainer = UserData.name;
+    pokemonData.datefound = SetDate();
 }

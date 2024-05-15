@@ -14,7 +14,7 @@ const initData = {
     name:"Iniciar sesión",
     pass:"",
     currency: 300,
-    pokemonList: []
+    pokemonList: [JSON.stringify({})]
 }
 
 const savedData = () => 
@@ -22,23 +22,13 @@ const savedData = () =>
     const savedName = localStorage.getItem("username");
     const savedPass = localStorage.getItem("pass");
     const savedCurrency = localStorage.getItem("currency");
-    let savedPokemonList = getProccessPokemonList(localStorage.getItem("pokemonList"));
-
-    if(savedName == undefined || savedPass == undefined || savedCurrency == undefined)
-    {
-        return null;
-    }
-
-    if(savedPokemonList == undefined)
-    {
-        savedPokemonList = [];
-    }
+    const savedPokemonList = JSON.parse(localStorage.getItem("pokemonList"));
 
     return {
-        name: savedName,
-        pass: savedPass,
-        currency: parseInt(savedCurrency),
-        pokemonList: savedPokemonList
+        name: savedName ? savedName : initData.name,
+        pass: savedPass ? savedPass : initData.pass,
+        currency: savedCurrency ? parseInt(savedCurrency) : initData.currency,
+        pokemonList: savedPokemonList ? savedPokemonList : initData.pokemonList
     };
 }
 
@@ -54,7 +44,7 @@ function MainPanel()
         localStorage.setItem("username", UserData.name);
         localStorage.setItem("pass", UserData.pass);
         localStorage.setItem("currency", UserData.currency.toString());
-        localStorage.setItem("pokemonList", setProccessPokemonList(UserData.pokemonList));
+        localStorage.setItem("pokemonList", JSON.stringify(UserData.pokemonList));
     }, [UserData]);
 
     useEffect(() => {
@@ -227,30 +217,6 @@ function BottomElementsPanel({UserData, setUserData, TierRuleta, setTierRuleta, 
         </div>
     );
 }
-
-export const getProccessPokemonList = (arrayStringed) =>     
-{
-    
-    let array = arrayStringed.split('&');
-
-    console.log(array);
-    if(array != [""] || array != [])
-    {
-        //array.map((str) => {return JSON.parse(str.substring(0, str.length - 1));});
-    }
-
-    return array;
-}
-
-export const setProccessPokemonList = (array) =>     
-{
-    array.map((json) => {return JSON.stringify(json);});
-
-    const string = array.join('&');
-
-    return string;
-}
-
 
 /* Lo único que hace falta exportar */
 export default MainPanel;

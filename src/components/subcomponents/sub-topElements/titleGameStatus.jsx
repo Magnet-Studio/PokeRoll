@@ -8,17 +8,12 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 function TitleGameStatus(props)
 {
 
-    let content = <p id='topElementTitle'>{props.titleName}</p>;
+    let content = <div id='topElementTitle'>{props.titleName}</div>;
 
     const info = (<MouseOverPopover content={<InfoOutlinedIcon />} shown={RuletaDescription} />);
 
     if(props.titleName === 'Ruleta') {
-        content = (
-            <>
-                <p id='topElementTitle'>{props.titleName} {info}</p>
-                
-            </>
-        );
+        content = (<div id='topElementTitle'>{props.titleName} {info}</div>);
     }
 
     return (
