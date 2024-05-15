@@ -21,7 +21,7 @@ function GameState({UserData, threePokemon, tirarButtonDisable, TierRuleta, setT
 
       <Route
         path="/almacen/ver-pokemon"
-        element={<VerPokemonAlmacenGameState />}
+        element={<VerPokemonAlmacenGameState UserData={UserData} setUserData={setUserData} />}
       />
 
       <Route path="/pokedex" element={<PokedexGameState />} />
@@ -50,8 +50,8 @@ function AlmacenGameState({UserData, setUserData}) {
   return <Almacen UserData={UserData} setUserData={setUserData}/>;
 }
 
-function VerPokemonAlmacenGameState() {
-  return <VerPokemonAlmacen />;
+function VerPokemonAlmacenGameState({UserData, setUserData}) {
+  return <VerPokemonAlmacen UserData={UserData} setUserData={setUserData} />;
 }
 
 function PokedexGameState() {

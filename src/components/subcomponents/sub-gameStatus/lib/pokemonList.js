@@ -1,6 +1,15 @@
-export const GetPokemonByID = (id, UserData) => {
-    return UserData.pokemonList.find((pokemon) => {
-        return (pokemon.id === parseInt(id));
+export function GetPokemonByID(id, pokemonList)
+{
+    if(pokemonList === null || pokemonList === undefined) return {};
+
+    return pokemonList.find((string) => 
+    {
+        if(string !== "{}")
+        {
+            let pokemon = JSON.parse(string);
+            return (parseInt(pokemon.id) === parseInt(id));
+        }
+        return false;
     });
 }
 

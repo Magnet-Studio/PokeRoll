@@ -14,12 +14,13 @@ import { useSpring, animated  } from 'react-spring';
 import CountUp from 'react-countup';
 
 
-function VerPokemonAlmacen() {
+function VerPokemonAlmacen({UserData, setUserData}) 
+{
 
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const id = searchParams.get("id");
-    const pokemon = GetPokemonByID(id);
+    const pokemon = GetPokemonByID(id, UserData.pokemonList);
 
     const [pokemonSpeciesData, setPokemonSpeciesData] = useState(null);
     const [pokemonData, setPokemonData] = useState(null);
@@ -67,8 +68,15 @@ function VerPokemonAlmacen() {
                                               cálculo final de Rareza.
                                               </p>} />
 
-    const totalSum = pokemon.iv.atq + pokemon.iv.def + pokemon.iv.spatq + pokemon.iv.spdef + pokemon.iv.spe + pokemon.iv.hp;
+    const totalSum = pokemon.iv ? (pokemon.iv.atq + pokemon.iv.def + pokemon.iv.spatq + pokemon.iv.spdef + pokemon.iv.spe + pokemon.iv.hp) : 0;
     const calc = ((totalSum / 186) * 100).toFixed(2);
+     
+    let hexagonData = (<></>);
+    if(pokemon.iv)
+    {
+      hexagonData = (<HexagonData size={100} fillColor="rgba(255,255,0,0.3)" strokeColor="rgba(255,255,0,1)" data={pokemon.iv}/>);
+    }
+
     return (
         <>
         <div id="verPokemonAlmacenBigBox">
@@ -112,7 +120,7 @@ function VerPokemonAlmacen() {
                                               
                 <div id="statsFullStructure">
                   <Hexagon size={100} fillColor="rgba(0,0,0,0.1)" strokeColor="rgba(255,255,255,0.2)" data={pokemon.iv}/>
-                  <HexagonData size={100} fillColor="rgba(255,255,0,0.3)" strokeColor="rgba(255,255,0,1)" data={pokemon.iv}/>
+                  {hexagonData}
                   <p className={"ivPercentage " + (totalSum === 186 ? "fullivs" : "")}>{calc}%</p>
                 </div>
                 
@@ -145,14 +153,21 @@ const HexagonData = ({ size, fillColor, strokeColor, data}) => {
   // Coordenadas de los vértices del hexágono
   const midX = 25 + (size* Math.sqrt(3) / 2);
   const midY = size;
-  const points = [
+
+  let points = [[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]];
+  if(data)
+  {
+    points = [
       [midX - (data.def / 31)*(size* Math.sqrt(3) / 2), midY + (data.def / 31)*size/2],
       [midX - (data.atq / 31)*(size* Math.sqrt(3) / 2), midY - (data.atq / 31)*size/2], 
       [midX, midY - (data.hp / 31)*size],
       [midX + (data.spatq / 31)*(size* Math.sqrt(3) / 2), midY - (data.spatq / 31)*size/2],
       [midX + (data.spdef / 31)*(size* Math.sqrt(3) / 2), midY + (data.spdef / 31)*size/2],
       [midX, midY + (data.spe / 31)*size]
-  ];
+    ];
+  }
+
+  
 
   // Convertimos las coordenadas a un string
   const [animatedProps, setAnimatedProps] = useSpring(() => ({
@@ -208,7 +223,11 @@ const Hexagon = ({ size, fillColor, strokeColor, data }) => {
   const pointsString = points.map(point => point.join(',')).join(' ');
 
   const labels = ['Def.', 'Atq.', 'HP', 'Sp.Atq.', 'Sp.Def.', 'Vel.'];
-  const values = [data.def, data.atq, data.hp, data.spatq, data.spdef, data.spe];
+  let values = [0,0,0,0,0,0];
+  if(data)
+  {
+    values = [data.def, data.atq, data.hp, data.spatq, data.spdef, data.spe];
+  }
 
   return (
     <svg className="statsTemplate" height="40vh" width="50vw" viewBox={`15 -15 ${size * 2} ${size * Math.sqrt(3) * 2}`}>

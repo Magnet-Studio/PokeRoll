@@ -213,7 +213,7 @@ function PokemonCard({data})
             };
 
             fetchDataAndUpdateState();
-    });
+    }, [data.name]);
 
     let pokemon, firstType = '';
 
