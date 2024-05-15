@@ -7,7 +7,7 @@ import React, {useEffect} from 'react';
 import {Routes, Route, useLocation } from 'react-router-dom';
 import './styles/topElements.css';
 import TitleGameStatus from './sub-topElements/titleGameStatus';
-import { GetPokemonByID } from './sub-gameStatus/userdata/pokemonList';
+import { GetPokemonByID } from './sub-gameStatus/lib/pokemonList';
 
 /**
  * Rutas de todas las posibilidades del elemento superior (título / cambiar tier)

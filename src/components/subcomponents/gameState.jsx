@@ -17,7 +17,7 @@ function GameState({UserData, threePokemon, tirarButtonDisable, TierRuleta, setT
 
       <Route path="/ruleta" element={<RuletaGameState UserData={UserData} threePokemon={threePokemon} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setThreePokemon={setThreePokemon} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>} />
 
-      <Route path="/almacen" element={<AlmacenGameState />} />
+      <Route path="/almacen" element={<AlmacenGameState UserData={UserData} setUserData={setUserData}/>} />
 
       <Route
         path="/almacen/ver-pokemon"
@@ -46,8 +46,8 @@ function RuletaGameState({UserData, threePokemon, tirarButtonDisable, TierRuleta
   return <Ruleta UserData={UserData} threePokemon={threePokemon} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setThreePokemon={setThreePokemon} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>;
 }
 
-function AlmacenGameState() {
-  return <Almacen />;
+function AlmacenGameState({UserData, setUserData}) {
+  return <Almacen UserData={UserData} setUserData={setUserData}/>;
 }
 
 function VerPokemonAlmacenGameState() {

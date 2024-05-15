@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import PokemonCard from "../sub-gameStatus/pokemonCard";
 import CoinImage from "../../../images/coin.png";
-import { DeletePokemon } from "../sub-gameStatus/userdata/pokemonList";
+import { DeletePokemon } from "../sub-gameStatus/lib/pokemonList";
 import { Link } from 'react-router-dom';
 
 

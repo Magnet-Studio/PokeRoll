@@ -18,7 +18,7 @@ import {
   ChangeTierButtons,
 } from "./sub-bottomElements/ruletaElements";
 import { useLocation } from "react-router-dom";
-import { GetPokemonByID } from "./sub-gameStatus/userdata/pokemonList";
+import { GetPokemonByID } from "./sub-gameStatus/lib/pokemonList";
 import LiberarButton from "./sub-bottomElements/liberarButton";
 
 /**

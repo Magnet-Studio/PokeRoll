@@ -1,22 +1,21 @@
 import React, { useState , useEffect } from "react";
 import './styles/almacen.css';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
-import { FakeData } from "./userdata/pokemonList";
 import { GetSpeciesDataByName, GetSpanishName} from './lib/PokemonSpeciesData';
 import { GetDataByName, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish, GetImage, GetDexNum} from './lib/PokemonData';
 import { Link } from "react-router-dom";
 import { GetRarezaPoints } from "./lib/pokemonRarity";
 import CircularProgress from '@mui/material/CircularProgress';
 
-function Almacen() {
+function Almacen({UserData, setUserData}) {
     const [selectedValue, setSelectedValue] = useState('0');
-    const [selectedTier, setSelectedTier] = useState('0');
+    const [selectedFrequency, setSelectedFrequency] = useState('0');
     const [selectedType, setSelectedType] = useState('0');
     const [Name, setName] = useState('');
 
     useEffect(() => {
         setSelectedValue(sessionStorage.getItem('selectedValue') || '0');
-        setSelectedTier(sessionStorage.getItem('selectedTier') || '0');
+        setSelectedFrequency(sessionStorage.getItem('selectedFrequency') || '0');
         setSelectedType(sessionStorage.getItem('selectedType') || '0');
         setName(sessionStorage.getItem('Name') || '');
     }, []);
@@ -27,8 +26,8 @@ function Almacen() {
                 <div id="filtros">
                     <FiltrosAlmacen selectedValue={selectedValue} 
                                     setSelectedValue={setSelectedValue} 
-                                    selectedTier={selectedTier}
-                                    setSelectedTier={setSelectedTier}
+                                    selectedFrequency={selectedFrequency}
+                                    setSelectedFrequency={setSelectedFrequency}
                                     selectedType={selectedType}
                                     setSelectedType={setSelectedType}
                                     Name={Name}
@@ -36,21 +35,21 @@ function Almacen() {
                 </div>
 
                 <div id="pokemon-cards-container">
-                    <CompletePokemonList selectedValue={selectedValue} selectedTier={selectedTier} selectedType={selectedType} Name={Name}/>
+                    <CompletePokemonList selectedValue={selectedValue} selectedFrequency={selectedFrequency} selectedType={selectedType} Name={Name} UserData={UserData}/>
                 </div>
             </div>
         </>
     )
 }
 
-function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedTier, setSelectedTier, selectedType, setSelectedType, Name, setName} ) {
+function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, setSelectedFrequency, selectedType, setSelectedType, Name, setName} ) {
     const handleSelectChange = (event) => {
         setSelectedValue(event.target.value);
         sessionStorage.setItem('selectedValue', event.target.value);
     };
     const handleSelectTier = (event) => {
-        setSelectedTier(event.target.value);
-        sessionStorage.setItem('selectedTier', event.target.value);
+        setSelectedFrequency(event.target.value);
+        sessionStorage.setItem('selectedFrequency', event.target.value);
     };
     const handleSelectType = (event) => {
         setSelectedType(event.target.value);
@@ -78,11 +77,11 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedTier, setSele
             </div>
             
             <div>
-                <select className="inputElemSmall" name="tier" value={selectedTier} onChange={handleSelectTier}>
+                <select className="inputElemSmall" name="tier" value={selectedFrequency} onChange={handleSelectTier}>
                     <option value="0">Filtrar Tier...</option>
                     <option value="1">Común</option>
                     <option value="2">Infrecuente</option>
-                    <option value="3">Raro</option>
+                    <option value="3">Peculiar</option>
                     <option value="4">Épico</option>
                     <option value="5">Legendario</option>
                     <option value="6">Singular</option>
@@ -122,10 +121,17 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedTier, setSele
     )
 }
 
-function CompletePokemonList({selectedValue, selectedTier, selectedType, selectedSpecial, selectedShiny, Name}) 
+function CompletePokemonList({selectedValue, selectedFrequency, selectedType, selectedSpecial, selectedShiny, Name, UserData}) 
 {
-    let sortedList = [...FakeData];
-    // console.log(sortedList);
+    const rawList = [...UserData.pokemonList];
+    let sortedList = []; 
+
+    // Vuelve JSON la lista
+    rawList.forEach((pokemon, index) => {
+        sortedList[index] = JSON.parse(pokemon);
+    });
+
+    sortedList.shift(); // Quita el {} inicial
 
     // Select de ordenacion
     switch (selectedValue) {
@@ -170,10 +176,10 @@ function CompletePokemonList({selectedValue, selectedTier, selectedType, selecte
     }
 
     // Select de Tier
-    sortedList = sortedList.filter(poke => (selectedTier === "0" ? true : poke.frequency === selectedTier));
+    sortedList = sortedList.filter(poke => (selectedFrequency === "0" ? true : parseInt(poke.frequency) === parseInt(selectedFrequency)));
 
     // Select de Tipo
-    sortedList = sortedList.filter(poke => (selectedType === "0" ? true : poke.frequency === selectedType || poke.type2 === selectedType));
+    sortedList = sortedList.filter(poke => (selectedType === "0" ? true : poke.type1 === selectedType || poke.type2 === selectedType));
 
     sortedList = sortedList.filter(poke => (Name === "" ? true : poke.nametag.toLowerCase().startsWith(Name.toLowerCase()) ||
                                                                  poke.speciesname.toLowerCase().startsWith(Name.toLowerCase())));

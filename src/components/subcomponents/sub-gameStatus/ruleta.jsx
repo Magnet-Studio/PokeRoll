@@ -11,7 +11,7 @@ import { GetFrequencyByName } from "./lib/pokemonFrequency";
 import { Register } from './userdata/pokedexRegisters';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import { MouseOverPopover } from './mouseOverPopOver';
-import { AddLastExtraDetails } from './userdata/pokemonList';
+import { AddLastExtraDetails } from './lib/pokemonList';
 
 
 function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, UserData, setTirarButtonDisable, setChangeTierButtonDisable, setUserData})
@@ -139,7 +139,7 @@ function ModalConfirmar({setThreePokemon, pokemonData, setOpen, open, UserData, 
     {
       event.stopPropagation();
 
-      Reclamar(pokemonData, UserData, setThreePokemon, setOpen, setUserData, HalfCost);
+      Reclamar(pokemonData, UserData, setThreePokemon, setUserData, HalfCost);
 
       setChangeTierButtonDisable("");
       setTirarButtonDisable("");
@@ -271,7 +271,7 @@ function ModalConfirmar({setThreePokemon, pokemonData, setOpen, open, UserData, 
 /**
  * Reclama tu pokémon
  */
-function Reclamar(pokemonData, UserData, setThreePokemon, setOpen, setUserData, HalfCost) 
+function Reclamar(pokemonData, UserData, setThreePokemon, setUserData, HalfCost) 
 {
   
   // Registra número en pokédex

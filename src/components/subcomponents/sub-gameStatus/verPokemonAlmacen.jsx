@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
-import { GetPokemonByID } from "./userdata/pokemonList";
+import { GetPokemonByID } from "./lib/pokemonList";
 import './styles/verPokemonAlmacen.css'
 import { GetFrequencyByName, GetFrequencyByDexNum } from "./lib/pokemonFrequency";
 import { GetDataByName, GetImage, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish } from "./lib/PokemonData";
