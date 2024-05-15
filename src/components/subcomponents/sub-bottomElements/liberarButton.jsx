@@ -26,7 +26,7 @@ const style = {
 
 const coinValues = [50, 250, 750, 2000, 5000, 5000]
 
-function LiberarButton({data, setUserData}) {
+function LiberarButton({data, setUserData, UserData}) {
 
   const [isHovered, setIsHovered] = useState(false);
   const [open, setOpen] = useState(false);
@@ -117,7 +117,6 @@ function LiberarButton({data, setUserData}) {
 function Liberar(data, setUserData) 
 {
   DeletePokemon(data.id, coinValues[data.frequency - 1], setUserData);
-  
 } 
 
 export default LiberarButton;

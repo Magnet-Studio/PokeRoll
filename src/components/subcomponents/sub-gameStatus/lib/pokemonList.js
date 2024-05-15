@@ -23,7 +23,11 @@ export function DeletePokemon(id, currencyAdded, SetUserData)
     SetUserData(prevUserData => {
         const updatedUserData = { ...prevUserData };
         updatedUserData.currency += currencyAdded; // Modificar el dinero
-        updatedUserData.pokemonList.filter(data => JSON.parse(data).id !== id);
+        updatedUserData.pokemonList = updatedUserData.pokemonList.filter(data => {
+            const parsedData = JSON.parse(data);
+            return parseInt(parsedData.id) !== parseInt(id);
+        });
+
         return updatedUserData; // Devolver la copia modificada
     });
 }

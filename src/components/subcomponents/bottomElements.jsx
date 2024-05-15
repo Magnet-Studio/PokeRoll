@@ -42,8 +42,7 @@ function BottomElements({
   if (location.pathname === "/almacen/ver-pokemon") {
     const searchParams = new URLSearchParams(location.search);
     const id = searchParams.get("id");
-    pokemon = GetPokemonByID(id);
-    pokenametag = id; // No se está usando(?)
+    pokemon = GetPokemonByID(id, UserData.pokemonList);
   }
 
   return (
@@ -195,7 +194,7 @@ function ButtonsVerPokemonAlmacenStatus({ data, UserData, setUserData }) {
         icon={<IntercambioIcon />}
         title="Intercambio"
       />
-      <LiberarButton data={data} setUserData={setUserData} />
+      <LiberarButton data={data} setUserData={setUserData} UserData={UserData} />
     </>
   );
 }
