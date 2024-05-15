@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { GetPokemonByID } from "./lib/pokemonList";
 import './styles/verPokemonAlmacen.css'
-import { GetFrequencyByName, GetFrequencyByDexNum } from "./lib/pokemonFrequency";
-import { GetDataByName, GetImage, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish } from "./lib/PokemonData";
-import { GetSpeciesDataByName, GetSpanishName } from "./lib/PokemonSpeciesData";
+import { GetFrequencyByName } from "./lib/pokemonFrequency";
+import { GetDataByDexNum, GetImage, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish } from "./lib/PokemonData";
+import { GetSpeciesDataByDexNum, GetSpanishName } from "./lib/PokemonSpeciesData";
 import { GetRarezaPoints } from "./lib/pokemonRarity";
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import { MouseOverPopover } from "./mouseOverPopOver";
@@ -29,13 +29,16 @@ function VerPokemonAlmacen({UserData, setUserData})
     useEffect(() => {
         const fetchDataAndUpdateState = async () => 
             {
-                const dataSpecies = await GetSpeciesDataByName(pokemon.name);
-                const dataPoke = await GetDataByName(pokemon.name);
+                const dataSpecies = await GetSpeciesDataByDexNum(pokemon.name);
+                const dataPoke = await GetDataByDexNum(pokemon.name);
                 setPokemonSpeciesData(dataSpecies);
                 setPokemonData(dataPoke);
             };
-
-            fetchDataAndUpdateState();
+            
+            if(pokemon.name !== undefined)
+            {
+              fetchDataAndUpdateState();
+            }
     }, [pokemon.name]);
 
     const name = GetSpanishName(pokemonSpeciesData);
