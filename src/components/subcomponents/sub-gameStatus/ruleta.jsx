@@ -142,10 +142,9 @@ function ModalConfirmar({setThreePokemon, pokemonData, setOpen, open, UserData, 
 
       setChangeTierButtonDisable("");
       setTirarButtonDisable("");
+      setOpen(false);
 
       hasReclaimedRef.current = true;
-      
-      setOpen(false);
     }
   }
 
