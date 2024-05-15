@@ -22,7 +22,7 @@ export const GetFrequencyByDexNum = (dexNum) => {
  */
 export const GetFrequencyByName = (name) => {
     for (let i = 0 ; i < pokemonFrequencies.length ; i++) {
-        const foundPokemon = pokemonFrequencies[i].find(pokemon => pokemon.name === name);
+        const foundPokemon = pokemonFrequencies[i].find(pokemon => pokemon.name=== name);
 
         if (foundPokemon) {
             return i + 1;
@@ -577,7 +577,6 @@ const pokemonFrequencies = [
         {"name": "Bouffalant", "dexNum": 626},
         {"name": "Rufflet", "dexNum": 627},
         {"name": "Vullaby", "dexNum": 629},
-        {"name": "Mandibuzz", "dexNum": 630},
         {"name": "Heatmor", "dexNum": 631},
         {"name": "Durant", "dexNum": 632},
         {"name": "Staraptor", "dexNum": 398},
@@ -784,6 +783,7 @@ const pokemonFrequencies = [
     ],
     /* Tier 4 */ [
 
+        {"name": "Mandibuzz", "dexNum": 630},
         {"name": "Garganacl", "dexNum": 934},
         {"name": "Armarouge", "dexNum": 936},
         {"name": "Ceruledge", "dexNum": 937},
@@ -1020,10 +1020,10 @@ const pokemonFrequencies = [
         {"name": "Zygarde", "dexNum": 718},
         {"name": "Código Cero", "dexNum": 772},
         {"name": "Silvally", "dexNum": 773},
-        {"name": "Tapu koko", "dexNum": 785},
-        {"name": "Tapu lele", "dexNum": 786},
-        {"name": "Tapu bulu", "dexNum": 787},
-        {"name": "Tapu fini", "dexNum": 788},
+        {"name": "Tapu Koko", "dexNum": 785},
+        {"name": "Tapu Lele", "dexNum": 786},
+        {"name": "Tapu Bulu", "dexNum": 787},
+        {"name": "Tapu Fini", "dexNum": 788},
         {"name": "Cosmog", "dexNum": 789},
         {"name": "Cosmoem", "dexNum": 790},
         {"name": "Solgaleo", "dexNum": 791},
