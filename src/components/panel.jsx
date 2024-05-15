@@ -107,7 +107,7 @@ function MainPanel()
                                     <CoinsPanel UserData={UserData} />
                                 </div>
                                 <div id='topelementsPanelContainer' className='subpanelContainer'>
-                                    <TopElementsPanel tirarButtonDisable={tirarButtonDisable} />
+                                    <TopElementsPanel tirarButtonDisable={tirarButtonDisable} UserData={UserData} />
                                 </div>
                                 <div id='usernamePanelContainer' className='subpanelContainer'>
                                     <UsernamePanel UserData={UserData}/>
@@ -172,11 +172,11 @@ function CoinsPanel({UserData})
 /**
  * Este es el panel que contiene el título de dónde te encuentras
  */
-function TopElementsPanel({tirarButtonDisable})
+function TopElementsPanel({UserData, tirarButtonDisable})
 {
     return (
         <div className='subpanel' id='topelementsPanel'>
-            <TopElements tirarButtonDisable={tirarButtonDisable}/>
+            <TopElements tirarButtonDisable={tirarButtonDisable} UserData={UserData}/>
         </div>
     );
 }
