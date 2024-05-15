@@ -68,7 +68,7 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, se
                 
                 <select className="inputElem" name="generalFilter" value={selectedValue} onChange={handleSelectChange}>
                     <option value="0">Ordenar por más reciente</option>
-                    <option value="5">Ordenar por ás antiguos</option>
+                    <option value="5">Ordenar por más antiguos</option>
                     <option value="1">Ordenar por Pokémon más raro</option>
                     <option value="2">Ordenar por número de Pokédex</option>
                     <option value="3">Ordenar por Tier más alto</option>
