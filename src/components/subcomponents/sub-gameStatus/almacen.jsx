@@ -67,18 +67,18 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, se
             <div>
                 
                 <select className="inputElem" name="generalFilter" value={selectedValue} onChange={handleSelectChange}>
-                    <option value="0">Obtenidos más reciente</option>
-                    <option value="5">Más antiguos</option>
-                    <option value="1">Pokémon más raro</option>
-                    <option value="2">Por número de Pokédex</option>
-                    <option value="3">Por Tier más alto</option>
+                    <option value="0">Ordenar por más reciente</option>
+                    <option value="5">Ordenar por ás antiguos</option>
+                    <option value="1">Ordenar por Pokémon más raro</option>
+                    <option value="2">Ordenar por número de Pokédex</option>
+                    <option value="3">Ordenar por Tier más alto</option>
                     <option value="4">Variocolores primero</option>
                 </select>
             </div>
             
             <div>
                 <select className="inputElemSmall" name="tier" value={selectedFrequency} onChange={handleSelectTier}>
-                    <option value="0">Filtrar Tier...</option>
+                    <option value="0">Filtrar Rareza...</option>
                     <option value="1">Común</option>
                     <option value="2">Infrecuente</option>
                     <option value="3">Peculiar</option>
@@ -88,7 +88,7 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, se
                 </select>
 
                 <select className="inputElemSmall" name="type" value={selectedType} onChange={handleSelectType}>
-                <option value="0">Tipo...</option>
+                <option value="0">Filtrar Tipo...</option>
                 <option value="steel">Acero</option>
                 <option value="water">Agua</option>
                 <option value="bug">Bicho</option>
@@ -113,7 +113,7 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, se
             
 
             <div>
-                <input className="inputElem" placeholder="Escribe un nombre..." value={Name} onChange={handleName}>
+                <input className="inputElem" placeholder="Filtrar por nombre..." value={Name} onChange={handleName}>
                 
                 </input>
             </div>
