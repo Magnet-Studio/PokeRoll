@@ -988,7 +988,7 @@ const pokemonFrequencies = [
         {"name": "Entei", "dexNum": 244},
         {"name": "Suicune", "dexNum": 245},
         {"name": "Lugia", "dexNum": 249},
-        {"name": "Ho-oh", "dexNum": 250},
+        {"name": "Ho-Oh", "dexNum": 250},
         {"name": "Regirock", "dexNum": 377},
         {"name": "Regice", "dexNum": 378},
         {"name": "Registeel", "dexNum": 379},
