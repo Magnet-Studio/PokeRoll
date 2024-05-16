@@ -933,7 +933,7 @@ const pokemonFrequencies = [
         {"name": "Goodra", "dexNum": 706},
         {"name": "Greninja", "dexNum": 658},
         {"name": "Delphox", "dexNum": 655},
-        {"name": "Chesnaught", "dexNum": 653},
+        {"name": "Chesnaught", "dexNum": 652},
         {"name": "Volcarona", "dexNum": 637},
         {"name": "Hydreigon", "dexNum": 635},
         {"name": "Garchomp", "dexNum": 445},
@@ -1063,9 +1063,7 @@ const pokemonFrequencies = [
         {"name": "Electrofuria", "dexNum": 1021},
         {"name": "Ferromole", "dexNum": 1022},
         {"name": "Ferrotesta", "dexNum": 1023},
-        
         {"name": "Terapagos", "dexNum": 1024},
-        
         {"name": "Ogerpon", "dexNum": 1017}
             
     ],
