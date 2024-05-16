@@ -753,7 +753,7 @@ const pokemonFrequencies = [
         {"name": "Sliggoo", "dexNum": 705},
         {"name": "Frogadier", "dexNum": 657},
         {"name": "Braixen", "dexNum": 654},
-        {"name": "Quilladin", "dexNum": 652},
+        {"name": "Quilladin", "dexNum": 651},
         {"name": "Larvesta", "dexNum": 636},
         {"name": "Zweilous", "dexNum": 634},
         {"name": "Gabite", "dexNum": 444},
