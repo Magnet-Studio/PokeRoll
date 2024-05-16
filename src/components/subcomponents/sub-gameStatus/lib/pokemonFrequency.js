@@ -693,7 +693,7 @@ const pokemonFrequencies = [
         {"name": "Sandslash", "dexNum": 28},
         {"name": "Nidoking", "dexNum": 34},
         {"name": "Nidoqueen", "dexNum": 31},
-        {"name": "Clefable", "dexNum": 34},
+        {"name": "Clefable", "dexNum": 36},
         {"name": "Ninetales", "dexNum": 38},
         {"name": "Wigglytuff", "dexNum": 40},
         {"name": "Vileplume", "dexNum": 45},
