@@ -335,7 +335,7 @@ const pokemonFrequencies = [
         {"name": "Pidgeotto", "dexNum": 17},
         {"name": "Arbok", "dexNum": 24},
         {"name": "Nidorina", "dexNum": 30},
-        {"name": "Nidorino", "dexNum": 32},
+        {"name": "Nidorino", "dexNum": 33},
         {"name": "Golbat", "dexNum": 42},
         {"name": "Gloom", "dexNum": 44},
         {"name": "Poliwhirl", "dexNum": 61},
