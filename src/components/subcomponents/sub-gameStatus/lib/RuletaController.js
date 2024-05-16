@@ -41,7 +41,7 @@ export const GetThreeRandomPokemon = (TierRuleta) =>
         pokemon.frequency = frequency + 1;
         
         // Calculo de IVs
-        pokemon.iv = GetIVs();
+        pokemon.iv = GetIVs(pokemon.frequency);
         
         // Obtener el dexNum del pokémon (aquí verdaderamente se elije el pokémon)
         const pokemonArray = GetPokemonArrayByFrequency(frequency);
@@ -58,7 +58,6 @@ export const GetThreeRandomPokemon = (TierRuleta) =>
         winners[i] = pokemon;
     }
 
-    //console.log(winners);
 
     return winners;
 }
@@ -96,14 +95,40 @@ const GetRandomIV = () => {
     return num;
 }
 
-const GetIVs = () => {
+const GetIVs = (frequency) => {
+
+    let ivs = [0,0,0,0,0,0];
+
+    for(let i=0; i<6; i++)
+    {
+        ivs[i] = GetRandomIV();
+    }
+
+    if(frequency >= 5)
+    {
+        let countMaxIVs = 0;
+        let range = [0,1,2,3,4,5];
+        let i;
+
+        while(countMaxIVs < 3)
+        {   
+            i = Math.floor(Math.random() * range.length);
+
+            ivs[range[i]] = 31;
+
+            range.splice(i, 1);
+
+            countMaxIVs++;
+        }
+    }
+
     return {
-        hp: GetRandomIV(),
-        atq: GetRandomIV(),
-        def: GetRandomIV(),
-        spatq: GetRandomIV(),
-        spdef: GetRandomIV(),
-        spe: GetRandomIV()
+        hp: ivs[0],
+        atq: ivs[1],
+        def: ivs[2],
+        spatq: ivs[3],
+        spdef: ivs[4],
+        spe: ivs[5]
     };
 }
 
