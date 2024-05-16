@@ -69,9 +69,10 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, se
                 <select className="inputElem" name="generalFilter" value={selectedValue} onChange={handleSelectChange}>
                     <option value="0">Ordenar por más reciente</option>
                     <option value="5">Ordenar por más antiguos</option>
-                    <option value="1">Ordenar por Pokémon más raro</option>
+                    <option value="1">Ordenar por Pokémon con más valor</option>
+                    <option value="6">Ordenar por mejores estadísticas</option>
                     <option value="2">Ordenar por número de Pokédex</option>
-                    <option value="3">Ordenar por Tier más alto</option>
+                    <option value="3">Ordenar por Rareza más alta</option>
                     <option value="4">Variocolores primero</option>
                 </select>
             </div>
@@ -119,6 +120,10 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, se
             </div>
         </>
     )
+}
+
+const sumIVs = (ivs) => {
+    return ivs.hp + ivs.atq + ivs.def + ivs.spatq + ivs.spdef + ivs.spe;
 }
 
 function CompletePokemonList({selectedValue, selectedFrequency, selectedType, selectedSpecial, selectedShiny, Name, UserData}) 
@@ -170,6 +175,9 @@ function CompletePokemonList({selectedValue, selectedFrequency, selectedType, se
             break;
         case '5':
             sortedList.sort((a, b) => a.id - b.id)
+            break;
+        case '6':
+            sortedList.sort((a, b) => sumIVs(b.iv) - sumIVs(a.iv))
             break;
         default:
             break;

@@ -99,10 +99,7 @@ const GetIVs = (frequency) => {
 
     let ivs = [0,0,0,0,0,0];
 
-    for(let i=0; i<6; i++)
-    {
-        ivs[i] = GetRandomIV();
-    }
+    
 
     if(frequency >= 5)
     {
@@ -121,6 +118,13 @@ const GetIVs = (frequency) => {
             countMaxIVs++;
         }
     }
+
+    for(let i=0; i<6; i++)
+        {
+            if (ivs[i] !== 31) {
+                ivs[i] = GetRandomIV();
+            }
+        }
 
     return {
         hp: ivs[0],
