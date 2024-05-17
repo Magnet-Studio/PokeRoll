@@ -26,7 +26,15 @@ function IntercambioConCodigo() {
   const [loading, setLoading] = useState(false);
 
   if (loading) {
-    return <PantallaCargaIntercambio redirect="/ruleta" />;
+    return (
+      <PantallaCargaIntercambio
+        redirect={true}
+        path="/intercambio/conexion?code="
+        code={inputValue}
+        size="10rem"
+        thickness={8}
+      />
+    );
   }
 
   const handleClick = () => {
@@ -65,7 +73,15 @@ function IntercambioSinCodigo({ code }) {
   const [loading, setLoading] = useState(false);
 
   if (loading) {
-    return <PantallaCargaIntercambio redirect="/ruleta" />;
+    return (
+      <PantallaCargaIntercambio
+        redirect={true}
+        path="/intercambio/conexion?code="
+        code={code}
+        size="10rem"
+        thickness={8}
+      />
+    );
   }
 
   const handleClick = () => {
