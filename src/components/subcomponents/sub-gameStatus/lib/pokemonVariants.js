@@ -668,7 +668,6 @@ const PokemonVariants = [
         dexnum: 80,
         name: "Slowbro",
         variants: [
-            { name: "slowbro", types: ["water", "psychic"] },
             { name: "slowbro-galarian", types: ["poison", "psychic"] },
             { megaevolution: [
                 { name: "slowbro", types: ["water", "psychic"], mega: false },
