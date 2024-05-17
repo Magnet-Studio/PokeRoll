@@ -4,7 +4,7 @@
  */
 
 import React, { useEffect } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, Link } from "react-router-dom";
 import NavButton from "./sub-bottomElements/NavButton";
 import "./styles/bottomElements.css";
 import AlmacenIcon from "@mui/icons-material/Inventory2";
