@@ -76,13 +76,13 @@ const PokemonVariants = [
         name: "Minior",
         variants: [
             { name: "minior-meteor", types: ["rock", "flying"] },
-            { name: "minior-core-red", types: ["rock", "flying"] },
-            { name: "minior-core-orange", types: ["rock", "flying"] },
-            { name: "minior-core-yellow", types: ["rock", "flying"] },
-            { name: "minior-core-green", types: ["rock", "flying"] },
-            { name: "minior-core-blue", types: ["rock", "flying"] },
-            { name: "minior-core-indigo", types: ["rock", "flying"] },
-            { name: "minior-core-violet", types: ["rock", "flying"] }
+            { name: "minior-red-core", types: ["rock", "flying"] },
+            { name: "minior-orange-core", types: ["rock", "flying"] },
+            { name: "minior-yellow-core", types: ["rock", "flying"] },
+            { name: "minior-green-core", types: ["rock", "flying"] },
+            { name: "minior-blue-core", types: ["rock", "flying"] },
+            { name: "minior-indigo-core", types: ["rock", "flying"] },
+            { name: "minior-violet-core", types: ["rock", "flying"] }
         ]
     },
     {
