@@ -37,6 +37,7 @@
 .ruletaBox.enabled
 {
     pointer-events: all;
+    position: relative;
 }
 
 .ruletaBox > img {
@@ -77,4 +78,48 @@ button .cerrarButton {
     justify-content: center;
     margin: 0;
     margin-bottom: 2vh;
+}
+
+.RegistradoCheck {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: rgb(0, 255, 0);
+    display: flex;
+    justify-content: right;
+    margin: 0;
+    margin-bottom: 2vh;
+    margin-right: 0.75vh;
+    margin-top: 0.5vh;
+    font-size: large;
+}
+
+.RarezaBox {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.RarezaText {
+    display: inline-block;
+    /* Ajusta estos valores según sea necesario para la responsividad */
+    font-size: 1.5vw; 
+    
+    
+    
+}
+
+@media screen and (max-width: 900px) {
+    .RarezaText {
+        font-size: 2vw;
+        
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .RarezaText {
+        font-size: 2.5vw;
+        
+    }
 }

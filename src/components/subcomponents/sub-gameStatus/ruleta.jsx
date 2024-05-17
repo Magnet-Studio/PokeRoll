@@ -12,6 +12,7 @@ import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import { MouseOverPopover } from './mouseOverPopOver';
 import { AddLastExtraDetails } from './lib/pokemonList';
 import SpaIcon from '@mui/icons-material/Spa';
+import CheckIcon from '@mui/icons-material/Check';
 
 
 function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, UserData, setTirarButtonDisable, setChangeTierButtonDisable, setUserData})
@@ -119,10 +120,20 @@ function RuletaBox({setThreePokemon, pokemonImage, tirarButtonDisable, TierRulet
       setEnabled("");
     };
 
+    const nombresRarezas = ['Común', 'Infrecuente', 'Peculiar', 'Épico', 'Legendario', 'Singular'];
+    const coloresRareza = ['rgb(190, 190, 190)', 'rgb(145, 255, 184)', 'rgb(142, 198, 255)', 'rgb(216, 139, 255)', 'rgb(255, 223, 39)', 'rgb(255, 100, 100)'];
     const HalfCost = (TierCosts[TierRuleta - 1]) / 2;
     
     return (
         <div className={"ruletaBox " + enabled} onClick={handleOpen}  >
+          <div className='RegistradoCheck'>
+            {UserData.registers.includes(pokemonData.name) ?<CheckIcon style={{ fontSize: '30px' }} /> : <></>}
+          </div>
+          <div className='RarezaBox'>
+            <p className='RarezaText' style={{ color: coloresRareza[GetFrequencyByName(pokemonData.speciesname)-1] }}>
+                {nombresRarezas[GetFrequencyByName(pokemonData.speciesname)-1]}
+            </p> 
+         </div>
             {pokemonImage}
             
             <ModalConfirmar setThreePokemon={setThreePokemon} UserData={UserData} open={open} setOpen={setOpen} HalfCost={HalfCost} pokemonImage={pokemonImage} pokemonData={pokemonData} setEnabled={setEnabled} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>
