@@ -124,10 +124,17 @@ function RuletaBox({setThreePokemon, pokemonImage, tirarButtonDisable, TierRulet
     const coloresRareza = ['rgb(190, 190, 190)', 'rgb(145, 255, 184)', 'rgb(142, 198, 255)', 'rgb(216, 139, 255)', 'rgb(255, 223, 39)', 'rgb(255, 100, 100)'];
     const HalfCost = (TierCosts[TierRuleta - 1]) / 2;
     
+    let RegisterCheck = false;
+    if (UserData?.registers !== undefined) {
+      if (UserData.registers.includes(pokemonData.name) ) {
+        RegisterCheck = true;
+      }
+    }
+
     return (
         <div className={"ruletaBox " + enabled} onClick={handleOpen}  >
           <div className='RegistradoCheck'>
-            {UserData.registers.includes(pokemonData.name) ?<CheckIcon style={{ fontSize: '30px' }} /> : <></>}
+            {RegisterCheck ?<CheckIcon style={{ fontSize: '30px' }} /> : <></>}
           </div>
           <div className='RarezaBox'>
             <p className='RarezaText' style={{ color: coloresRareza[GetFrequencyByName(pokemonData.speciesname)-1] }}>
@@ -220,8 +227,10 @@ function ModalConfirmar({setThreePokemon, pokemonData, setOpen, open, UserData, 
 
   let unregisterMessage = <></>;
 
-  if(!UserData.registers.includes(pokemonData.name)) {
-    unregisterMessage = <p className='unregisterMessage'>¡No registrado!</p>;
+  if (UserData?.registers !== undefined) {
+    if(!UserData.registers.includes(pokemonData.name)) {
+      unregisterMessage = <p className='unregisterMessage'>¡No registrado!</p>;
+    }
   }
     
 
