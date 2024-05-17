@@ -57,6 +57,8 @@ function VerPokemonAlmacen({UserData, setUserData})
         secondTypeContainer = (<div className={"pokemonType " + secondType}>{GetPrettyTypeNameSpanish(secondType)}</div>);
     }
 
+    console.log(pokemon)
+
     let megaWord = "una Megaevolución";
     if (pokemon.name === 382 || pokemon.name === 383) {
       megaWord = "una Regresión Primigenia"
