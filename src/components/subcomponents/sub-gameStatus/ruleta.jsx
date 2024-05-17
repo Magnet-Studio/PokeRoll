@@ -189,13 +189,13 @@ function ModalConfirmar({setThreePokemon, pokemonData, setOpen, open, UserData, 
   let megaIndication = (<></>);
   if(pokemonData.shiny === "shiny")
   { 
-    const shinyMsg = (<p>¡Felicidades! ¡Has conseguido un Pokémon Variocolor!<br/> Obtendrás una bonificación de 5000 puntos en el cálculo final <br/> de Rareza por ello</p>);
+    const shinyMsg = (<span>¡Felicidades! ¡Has conseguido un Pokémon Variocolor!<br/> Obtendrás una bonificación de 5000 puntos en el cálculo final <br/> de Rareza por ello</span>);
     shinyIndication = (<MouseOverPopover content={<AutoAwesomeIcon className="shinyIcon"/>} shown={shinyMsg} />);                                                         
   }
 
   if(pokemonData?.megaevolution !== undefined) {
     if (pokemonData.megaevolution === true) {
-      const megaMsg = (<p>¡Felicidades! ¡Has conseguido una Megaevolución!<br/> Obtendrás una bonificación de 1500 puntos en el cálculo final <br/> de Rareza por ello</p>);
+      const megaMsg = (<span>¡Felicidades! ¡Has conseguido una Megaevolución!<br/> Obtendrás una bonificación de 1500 puntos en el cálculo final <br/> de Rareza por ello</span>);
       megaIndication = (<MouseOverPopover content={<SpaIcon className="megaIcon"/>} shown={megaMsg} />);        
     }
   }

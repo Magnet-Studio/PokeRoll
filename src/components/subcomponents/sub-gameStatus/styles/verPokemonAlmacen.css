@@ -203,6 +203,10 @@ p {
     color: white;
 }
 
+.rareza {
+    margin-right: 0.5vw;
+}
+
 .pts {
     font-size: 1vw;
 }

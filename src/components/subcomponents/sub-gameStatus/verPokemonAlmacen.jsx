@@ -60,25 +60,33 @@ function VerPokemonAlmacen({UserData, setUserData})
     const rarezas = rarezaExtraPoints;
     const nombrePKM = pokemon.nametag === null ? name : pokemon.nametag;
     const shinyCond = (pokemon.shiny === "shiny") ? <MouseOverPopover content={<AutoAwesomeIcon className="shinyIcon"/>} 
-                                                                      shown={<p> ¡Felicidades! ¡Has conseguido un Pokémon Variocolor!<br/>
+                                                                      shown={<span> ¡Felicidades! ¡Has conseguido un Pokémon Variocolor!<br/>
                                                                       Obtendrás una bonificación de 5000 puntos en el cálculo final <br/>
                                                                       de Rareza por ello.
-                                                                      </p>}/> : <></>;
+                                                                      </span>}/> : <></>;
                                                                       
     const megaCond = (pokemon?.megaevolution === true) ? <MouseOverPopover content={<SpaIcon className="megaIcon" />} 
-                                                                      shown={<p> ¡Felicidades! ¡Has conseguido una Megaevolución!<br/>
+                                                                      shown={<span> ¡Felicidades! ¡Has conseguido una Megaevolución!<br/>
                                                                       Obtendrás una bonificación de 1500 puntos en el cálculo final <br/>
                                                                       de Rareza por ello.
-                                                                      </p>}/> : <></>;
+                                                                      </span>}/> : <></>;
 
     const rarityMessage = <MouseOverPopover content={<InfoOutlinedIcon />} 
-                                            shown={<p>
+                                            shown={<span>
                                               La rareza de un Pokémon contribuye a su valor final. <br/>
                                               Este Pokémon posee la rareza "{nombreRareza}", por lo <br/>
                                               cual obtendrá un bonus de {rarezas[frequency-1]} puntos en el <br/>
                                               cálculo final de Rareza.
-                                              </p>} />
-
+                                              </span>} />
+    const statMessage = <MouseOverPopover content={<InfoOutlinedIcon />} 
+                                          shown={<span>
+                                            La gráfica de Estadísticas representa los valores individuales (IVs)<br/>
+                                            para cada una de sus estadísticas, definiendo genéticamente a un Pokémon<br/>
+                                            para que este sea único. <br/>
+                                            Cuanto mayores sean estos valores para cada característica, mejor será <br/>
+                                            este Pokémon y, en consecuencia, poseerá mayor puntuación en el cálculo.<br/>
+                                            final de Rareza.<br/>
+                                            </span>} />;
     const totalSum = pokemon.iv ? (pokemon.iv.atq + pokemon.iv.def + pokemon.iv.spatq + pokemon.iv.spdef + pokemon.iv.spe + pokemon.iv.hp) : 0;
     const calc = ((totalSum / 186) * 100).toFixed(2);
      
@@ -111,22 +119,18 @@ function VerPokemonAlmacen({UserData, setUserData})
                 <p className="fechaEncontrado">{"Encontrado el " + pokemon.datefound}</p>
                 <p className="entrenadorOriginal">Entrenador original:</p>
                 <p className="nombreEO">{pokemon.originaltrainer}</p>
-                <p className="rareza">Rareza: <span className={"rareza" + frequency}>{(nombreRareza === undefined ? "Cargando..." : nombreRareza + " " )}</span>{rarityMessage}</p>
+                <div className="inlineContainer">
+                  <p className="rareza">Rareza: </p>
+                  <p className={"rareza" + frequency}>{(nombreRareza === undefined ?  " Cargando..." : " " + nombreRareza + " " )}</p>
+                  {rarityMessage}
+                </div>
                 <GetRarezaValue ivs={pokemon.iv} shiny={pokemon.shiny} frequency={frequency} mega={(pokemon?.megaevolution !== undefined ? pokemon.megaevolution : false)}/>
             </div>
 
             <div id="statsDiv">
               <div className="inlineContainer">
-                <p>Estadísticas</p>
-                <MouseOverPopover content={<InfoOutlinedIcon />} 
-                                            shown={<p>
-                                              La gráfica de Estadísticas representa los valores individuales (IVs)<br/>
-                                              para cada una de sus estadísticas, definiendo genéticamente a un Pokémon<br/>
-                                              para que este sea único. <br/>
-                                              Cuanto mayores sean estos valores para cada característica, mejor será <br/>
-                                              este Pokémon y, en consecuencia, poseerá mayor puntuación en el cálculo.<br/>
-                                              final de Rareza.<br/>
-                                              </p>} />
+                <p>Estadísticas </p>
+                {statMessage}
               </div>
                 
                                               

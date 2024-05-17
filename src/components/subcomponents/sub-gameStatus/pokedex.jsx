@@ -94,13 +94,13 @@ function CompleteEntryList(props)
 
     return (
         <>
-            <p className="generationTitle">
+            <p className="generationTitle inlineContainer">
                 {props.generationNum + "º Generación"} 
                 <MouseOverPopover content={<InfoOutlinedIcon className="infoGenerationIcon"/>} 
                                 shown={
-                                <p> 
+                                <span> 
                                     La generación de un Pokémon es el grupo de Pokémon que se introdujeron en un mismo juego de la saga.
-                                </p>
+                                </span>
                                 } />
             </p>
 
@@ -170,9 +170,9 @@ function PokemonEntry(props)
         pokemon = <div className='unknownMessageContainer'>
                     <MouseOverPopover content={<p className="unknownMessage">???</p>} 
                         shown={
-                            <p> 
+                            <span> 
                                 Este Pokémon aún no ha sido descubierto.
-                            </p>
+                            </span>
                         } />
                     </div>
     }

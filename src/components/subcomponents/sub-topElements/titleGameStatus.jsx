@@ -23,13 +23,13 @@ function TitleGameStatus(props)
     );
 }
 
-const RuletaDescription = (<p>
+const RuletaDescription = (<span>
     ¡Con la ruleta, podrás conseguir todos los Pokémon que TÚ quieras!<br/>
     Dependiendo del TIER que elijas para la tirada, te saldrán Pokémon<br/>
     con una rareza acorde a ese TIER. En el menú de Ayuda (?), podrás<br/>
     encontrar información sobre cada una de las tiradas.
 
-</p>);
+</span>);
 
 
 
