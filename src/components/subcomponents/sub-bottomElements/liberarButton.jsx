@@ -36,6 +36,8 @@ function LiberarButton({data, setUserData, UserData}) {
 
   const LiberarPokemon = () => Liberar(data, setUserData);
 
+  const monedas = coinValues[data.frequency-1] * (data.shiny === "shiny" ? 2 : 1);
+
   return (
     <div id="liberarButtonContainer">
       <Button onClick={handleOpen}>
@@ -60,13 +62,13 @@ function LiberarButton({data, setUserData, UserData}) {
             ¿Quieres liberar a este Pokémon?
           </Typography>
           <Typography id="modal-modal-description" variant="h6" component="h2">
-            Liberar a <i>{data.nametag}</i> supondrá perderlo para siempre, pero recibirás <i>{coinValues[data.frequency-1]} monedas</i> a cambio. (No perderás su registro en la Pokédex)
+            Liberar a <i>{data.nametag}</i> supondrá perderlo para siempre, pero recibirás <i>{monedas} monedas</i> a cambio. (No perderás su registro en la Pokédex)
           </Typography>
           <div className="containerModal">
             <PokemonCard data={data} />
           </div>
           <div className="containerModal moneyCount">
-            <img className="coin" src={CoinImage} alt="coin" /> {"+" + coinValues[data.frequency-1]}
+            <img className="coin" src={CoinImage} alt="coin" /> {"+" + monedas}
           </div>
           <div className="containerModal">
             <Button
@@ -117,7 +119,7 @@ function LiberarButton({data, setUserData, UserData}) {
 
 function Liberar(data, setUserData) 
 {
-  DeletePokemon(data.id, coinValues[data.frequency - 1], setUserData);
+  DeletePokemon(data.id, coinValues[data.frequency-1] * (data.shiny === "shiny" ? 2 : 1), setUserData);
 } 
 
 export default LiberarButton;
