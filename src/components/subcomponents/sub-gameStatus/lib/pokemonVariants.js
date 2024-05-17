@@ -56,7 +56,7 @@ const PokemonVariants = [
     {
         dexnum: 902,
         name: "Basculegion",
-        variant: [
+        variants: [
             {name: "basculegion-male" },
             {name: "basculegion-female" }
         ]
@@ -1101,7 +1101,7 @@ const PokemonVariants = [
     {
         dexnum: 745,
         name: "Lycanroc",
-        variant: [
+        variants: [
             { rarespecies: [
                 {name: "lycanroc-midday"},
                 {name: "lycanroc-midnight"},
