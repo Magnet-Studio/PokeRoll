@@ -1,4 +1,5 @@
 import { GetPokemonArrayByFrequency } from "./pokemonFrequency";
+import { getPokemonVariants, getRandomVariant } from "./pokemonVariants";
 
 /**
  * Devuelve un array de tres pokemon (object con dexNum y shiny)
@@ -53,6 +54,12 @@ export const GetThreeRandomPokemon = (TierRuleta) =>
         // Cálculo del shiny
         const shiny = GetShinyValue();
         pokemon.shiny = shiny;
+
+        // WIP: Obtenemos una variante
+        const variants = getPokemonVariants(pokemon.name);
+        if (variants !== null) {
+            pokemon.variant = getRandomVariant(variants);
+        }
         
         // Añadimos el pokemon a lista de 3
         winners[i] = pokemon;

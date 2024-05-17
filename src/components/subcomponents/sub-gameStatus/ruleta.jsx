@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './styles/ruleta.css';
-import { GetDataByDexNum, GetImage , GetFirstType, GetSecondType, GetPrettyTypeNameSpanish} from './lib/PokemonData';
+import { GetDataByDexNum, GetImage , GetFirstType, GetSecondType, GetPrettyTypeNameSpanish, GetVariantImage} from './lib/PokemonData';
 import Pokeball from "../../../images/pokeball.png";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
@@ -33,8 +33,7 @@ function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, 
                 {
                   data = await GetDataByDexNum(name);
                 }
-                images[i] = GetImage(data, threePokemon[i].shiny === 'shiny');
-                
+                images[i] = threePokemon[i]?.variant === undefined ? GetImage(data, (threePokemon[i].shiny === "shiny")) : GetVariantImage(threePokemon[i].variant.name, (threePokemon[i].shiny === "shiny"));
                 // images[i] === <></>;
                 if(images[i].props.children.type !== "img")
                 {
@@ -44,8 +43,20 @@ function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, 
                 {
                   setThreePokemon(prevThreePokemon => 
                     { 
-                      prevThreePokemon[i].type1 = GetFirstType(data);
-                      prevThreePokemon[i].type2 = GetSecondType(data);
+                      console.log(prevThreePokemon[i])
+                      if (threePokemon[i]?.variant === undefined) {
+                        prevThreePokemon[i].type1 = GetFirstType(data);
+                        prevThreePokemon[i].type2 = GetSecondType(data);
+                      } else {
+                        if (threePokemon[i].variant?.types === undefined) {
+                          prevThreePokemon[i].type1 = GetFirstType(data);
+                          prevThreePokemon[i].type2 = GetSecondType(data);
+                        } else {
+                          prevThreePokemon[i].type1 = threePokemon[i].variant.types[0];
+                          prevThreePokemon[i].type2 = threePokemon[i].variant.types[1];
+                        }
+                        
+                      }
                       return prevThreePokemon;
                     });
                 }
@@ -273,6 +284,7 @@ function Reclamar(pokemonData, UserData, setThreePokemon, setUserData, HalfCost)
   // Cambia las imagenes por otra vez pokeballs
   const pokeballImage = (<img src={Pokeball} className="pokeballRotar" />);
   const notPokemon = [(pokeballImage), (pokeballImage), (pokeballImage)];
+
   setThreePokemon(notPokemon);
 
   // Añadimos fecha, username e id

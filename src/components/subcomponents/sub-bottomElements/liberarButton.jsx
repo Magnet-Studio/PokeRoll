@@ -30,7 +30,8 @@ function LiberarButton({data, setUserData, UserData}) {
 
   const [isHovered, setIsHovered] = useState(false);
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {setOpen(true);}
+
   const handleClose = () => setOpen(false);
 
   const LiberarPokemon = () => Liberar(data, setUserData);

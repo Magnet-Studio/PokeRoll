@@ -97,6 +97,33 @@ export function GetImage(data, isShiny)
 }
 
 /**
+ * Devuelve el sprite del pokémon en objeto en caso de que tenga una variant <img/>
+ * @param data [JSON | Obligatorio] VARIANT del pokemon
+ * @param isShiny [Boolean] True si es shiny
+ */
+export function GetVariantImage(variant, isShiny)
+{
+    let image = (<></>);
+    if(variant !== null)        
+    {
+        let shiny = "normal";
+        if(isShiny === true)
+        {
+            shiny = "shiny";
+        }
+
+        const url = "https://img.pokemondb.net/sprites/home/" + shiny + "/" + variant + ".png";
+
+        image = (<img className="pokemonImg" src={url} alt={variant}></img>);
+    }
+    return (
+        <>
+            {image}
+        </>
+    );
+}
+
+/**
  * Devuelve el primer tipo del pokémon
  * @param data [JSON | Obligatorio] Datos del pokémon
  */

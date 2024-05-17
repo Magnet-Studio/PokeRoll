@@ -2,7 +2,7 @@ import React, { useState , useEffect } from "react";
 import './styles/almacen.css';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import { GetSpeciesDataByName, GetSpanishName} from './lib/PokemonSpeciesData';
-import { GetDataByName, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish, GetImage, GetDexNum} from './lib/PokemonData';
+import { GetDataByName, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish, GetImage, GetDexNum, GetVariantImage} from './lib/PokemonData';
 import { Link } from "react-router-dom";
 import { GetRarezaPoints } from "./lib/pokemonRarity";
 import CircularProgress from '@mui/material/CircularProgress';
@@ -226,19 +226,20 @@ function PokemonCard({data})
     let pokemon, firstType = '';
 
     const name = data.nametag === null ? GetSpanishName(pokemonSpeciesData) : data.nametag;
-    firstType = GetFirstType(pokemonData);
-    const secondType = GetSecondType(pokemonData);
+    firstType = data.type1;
+    const secondType = data.type2;
     const dexNum = GetDexNum(pokemonData);
     
     let secondTypeContainer = (<></>); 
     if(secondType !== null)
     {
         secondTypeContainer = (<div className="pokemonType">{GetPrettyTypeNameSpanish(secondType)}</div>);
-    }  
+    }
+
         
     pokemon = (
         <>
-            {GetImage(pokemonData, (data.shiny === "shiny"))}    
+            {data?.variant === undefined ? GetImage(pokemonData, (data.shiny === "shiny")) : GetVariantImage(data.variant.name, (data.shiny === "shiny"))}    
                 <div className='types'>
                     <div className="pokemonType">{GetPrettyTypeNameSpanish(firstType)}</div>
                     {secondTypeContainer}

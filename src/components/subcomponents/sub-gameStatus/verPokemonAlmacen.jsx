@@ -3,7 +3,7 @@ import { useLocation, Link } from "react-router-dom";
 import { GetPokemonByID } from "./lib/pokemonList";
 import './styles/verPokemonAlmacen.css'
 import { GetFrequencyByName } from "./lib/pokemonFrequency";
-import { GetDataByDexNum, GetImage, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish } from "./lib/PokemonData";
+import { GetDataByDexNum, GetImage, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish, GetVariantImage } from "./lib/PokemonData";
 import { GetSpeciesDataByDexNum, GetSpanishName } from "./lib/PokemonSpeciesData";
 import { GetRarezaPoints } from "./lib/pokemonRarity";
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
@@ -45,8 +45,8 @@ function VerPokemonAlmacen({UserData, setUserData})
     const frequency = GetFrequencyByName(name);
     const nombreRareza = nombresRarezas[frequency-1];
 
-    const firstType = GetFirstType(pokemonData);
-    const secondType = GetSecondType(pokemonData);
+    const firstType = pokemon.type1;
+    const secondType = pokemon.type2;
     
     let firstTypeContainer = (<div className={"pokemonType " + firstType}>{GetPrettyTypeNameSpanish(firstType)}</div>)
 
@@ -87,7 +87,7 @@ function VerPokemonAlmacen({UserData, setUserData})
                 <div className="backButton">
                   <Link to="/almacen"><span className="backArrow"><ForwardIcon fontSize="large"/></span></Link>
                 </div>
-                {GetImage(pokemonData, (pokemon.shiny === "shiny" ? true : false))}
+                {pokemon?.variant === undefined ? GetImage(pokemonData, (pokemon.shiny === "shiny")) : GetVariantImage(pokemon.variant.name, (pokemon.shiny === "shiny"))}
                 <div className="inlineContainer">
                     <p>{nombrePKM}</p>
                     {shinyCond}
