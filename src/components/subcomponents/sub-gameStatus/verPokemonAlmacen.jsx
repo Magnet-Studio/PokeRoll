@@ -10,6 +10,7 @@ import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import { MouseOverPopover } from "./mouseOverPopOver";
 import ForwardIcon from '@mui/icons-material/Forward';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import SpaIcon from '@mui/icons-material/Spa';
 import { useSpring, animated  } from 'react-spring';
 import CountUp from 'react-countup';
 
@@ -58,11 +59,18 @@ function VerPokemonAlmacen({UserData, setUserData})
     
     const rarezas = [100, 400, 1000, 2000, 10000, 13500];
     const nombrePKM = pokemon.nametag === null ? name : pokemon.nametag;
-    const shinyCond = (pokemon.shiny === "shiny") ? <MouseOverPopover content={<AutoAwesomeIcon />} 
+    const shinyCond = (pokemon.shiny === "shiny") ? <MouseOverPopover content={<AutoAwesomeIcon className="shinyIcon"/>} 
                                                                       shown={<p> ¡Felicidades! ¡Has conseguido un Pokémon Variocolor!<br/>
                                                                       Obtendrás una bonificación de 5000 puntos en el cálculo final <br/>
                                                                       de Rareza por ello.
                                                                       </p>}/> : <></>;
+                                                                      
+    const megaCond = (pokemon?.megaevolution === true) ? <MouseOverPopover content={<SpaIcon className="megaIcon" />} 
+                                                                      shown={<p> ¡Felicidades! ¡Has conseguido una Megaevolución!<br/>
+                                                                      Obtendrás una bonificación de 1500 puntos en el cálculo final <br/>
+                                                                      de Rareza por ello.
+                                                                      </p>}/> : <></>;
+
     const rarityMessage = <MouseOverPopover content={<InfoOutlinedIcon />} 
                                             shown={<p>
                                               La rareza de un Pokémon contribuye a su valor final. <br/>
@@ -91,6 +99,7 @@ function VerPokemonAlmacen({UserData, setUserData})
                 <div className="inlineContainer">
                     <p>{nombrePKM}</p>
                     {shinyCond}
+                    {megaCond}
                 </div>
                 <div id="tiposPokemon">
                   {firstTypeContainer}
@@ -103,7 +112,7 @@ function VerPokemonAlmacen({UserData, setUserData})
                 <p className="entrenadorOriginal">Entrenador original:</p>
                 <p className="nombreEO">{pokemon.originaltrainer}</p>
                 <p className="rareza">Rareza: <span className={"rareza" + frequency}>{(nombreRareza === undefined ? "Cargando..." : nombreRareza + " " )}</span>{rarityMessage}</p>
-                <GetRarezaValue ivs={pokemon.iv} shiny={pokemon.shiny} frequency={frequency}/>
+                <GetRarezaValue ivs={pokemon.iv} shiny={pokemon.shiny} frequency={frequency} mega={(pokemon?.megaevolution !== undefined ? pokemon.megaevolution : false)}/>
             </div>
 
             <div id="statsDiv">
@@ -139,10 +148,10 @@ function VerPokemonAlmacen({UserData, setUserData})
 
 const nombresRarezas = ['Común', 'Infrecuente', 'Peculiar', 'Épico', 'Legendario', 'Singular'];
 
-function GetRarezaValue({ ivs , shiny, frequency}) 
+function GetRarezaValue({ ivs , shiny, frequency, mega}) 
 {
     
-    const finalValue = GetRarezaPoints(ivs, shiny, frequency);
+    const finalValue = GetRarezaPoints(ivs, shiny, frequency, mega);
 
 
     return (

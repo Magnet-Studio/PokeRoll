@@ -145,8 +145,8 @@ function CompletePokemonList({selectedValue, selectedFrequency, selectedType, se
             break;
         case '1':
             sortedList.sort((a, b) => {
-                let rarezaA = GetRarezaPoints(a.iv, a.shiny, parseInt(a.frequency));
-                let rarezaB = GetRarezaPoints(b.iv, b.shiny, parseInt(b.frequency));
+                let rarezaA = GetRarezaPoints(a.iv, a.shiny, parseInt(a.frequency), (a?.megaevolution !== undefined ? a.megaevolution : false));
+                let rarezaB = GetRarezaPoints(b.iv, b.shiny, parseInt(b.frequency), (b?.megaevolution !== undefined ? b.megaevolution : false));
                 
                 return (rarezaA - rarezaB); // No va bien? q raro xd
             });

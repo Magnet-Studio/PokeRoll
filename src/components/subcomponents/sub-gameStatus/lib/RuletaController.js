@@ -59,6 +59,9 @@ export const GetThreeRandomPokemon = (TierRuleta) =>
         const variants = getPokemonVariants(pokemon.name);
         if (variants !== null) {
             pokemon.variant = getRandomVariant(variants);
+            if (pokemon.variant?.mega !== undefined) {
+                pokemon.megaevolution = pokemon.variant.mega;
+            }
         }
         
         // Añadimos el pokemon a lista de 3

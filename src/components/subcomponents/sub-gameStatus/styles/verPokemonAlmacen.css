@@ -164,8 +164,12 @@ p {
     font-size: 100%;
 }
 
-.Typography-hoverContent {
+.Typography-hoverContent > .shinyIcon {
     color: rgb(255, 230, 0);
+}
+
+.Typography-hoverContent > .megaIcon {
+    color: rgb(255, 111, 159);
 }
 
 .inlineContainer {
