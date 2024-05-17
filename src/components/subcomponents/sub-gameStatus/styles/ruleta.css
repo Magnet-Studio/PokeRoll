@@ -70,3 +70,11 @@
 button .cerrarButton {
     pointer-events: all;
 }
+
+.unregisterMessage {
+    color: rgb(244, 46, 39);
+    display:flex;
+    justify-content: center;
+    margin: 0;
+    margin-bottom: 2vh;
+}

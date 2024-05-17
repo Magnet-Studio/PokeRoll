@@ -193,12 +193,26 @@ function ModalConfirmar({setThreePokemon, pokemonData, setOpen, open, UserData, 
     shinyIndication = (<MouseOverPopover content={<AutoAwesomeIcon className="shinyIcon"/>} shown={shinyMsg} />);                                                         
   }
 
+  let megaWord = "una Megaevolución";
+    if (pokemonData.name === 382 || pokemonData.name === 383) {
+      megaWord = "una Regresión Primigenia"
+    } else if (pokemonData.name === 800) {
+      megaWord = "a Ultra Necrozma"
+    }
+
   if(pokemonData?.megaevolution !== undefined) {
     if (pokemonData.megaevolution === true) {
-      const megaMsg = (<span>¡Felicidades! ¡Has conseguido una Megaevolución!<br/> Obtendrás una bonificación de 1500 puntos en el cálculo final <br/> de Rareza por ello</span>);
+      const megaMsg = (<span>¡Felicidades! ¡Has conseguido {megaWord}!<br/> Obtendrás una bonificación de 1500 puntos en el cálculo final <br/> de Rareza por ello</span>);
       megaIndication = (<MouseOverPopover content={<SpaIcon className="megaIcon"/>} shown={megaMsg} />);        
     }
   }
+
+  let unregisterMessage = <></>;
+
+  if(!UserData.registers.includes(pokemonData.name)) {
+    unregisterMessage = <p className='unregisterMessage'>¡No registrado!</p>;
+  }
+    
 
   return (
     
@@ -221,6 +235,7 @@ function ModalConfirmar({setThreePokemon, pokemonData, setOpen, open, UserData, 
 
         <div className="containerModal">
           {pokemonImage}
+          
           <div>
             <p style={{color: "black"}}>
               {pokemonData.speciesname}
@@ -234,7 +249,7 @@ function ModalConfirmar({setThreePokemon, pokemonData, setOpen, open, UserData, 
             <p className="rareza" style={{color: 'black'}}>Rareza: <span className={"rareza" + frequency}>{(nombreRareza === undefined ? "Cargando..." : nombreRareza + " " )}</span></p>
           </div>
         </div>
-
+        {unregisterMessage}
         <div className="containerModal moneyCount">
           <img className="coin" src={CoinImage} alt="coin" /> {"+" + HalfCost}
         </div>

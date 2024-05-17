@@ -55,7 +55,14 @@ function VerPokemonAlmacen({UserData, setUserData})
     if(secondType !== null)
     {
         secondTypeContainer = (<div className={"pokemonType " + secondType}>{GetPrettyTypeNameSpanish(secondType)}</div>);
-    } 
+    }
+
+    let megaWord = "una Megaevolución";
+    if (pokemon.name === 382 || pokemon.name === 383) {
+      megaWord = "una Regresión Primigenia"
+    } else if (pokemon.name === 800) {
+      megaWord = "a Ultra Necrozma"
+    }
     
     const rarezas = rarezaExtraPoints;
     const nombrePKM = pokemon.nametag === null ? name : pokemon.nametag;
@@ -66,7 +73,7 @@ function VerPokemonAlmacen({UserData, setUserData})
                                                                       </span>}/> : <></>;
                                                                       
     const megaCond = (pokemon?.megaevolution === true) ? <MouseOverPopover content={<SpaIcon className="megaIcon" />} 
-                                                                      shown={<span> ¡Felicidades! ¡Has conseguido una Megaevolución!<br/>
+                                                                      shown={<span> ¡Felicidades! ¡Has conseguido {megaWord}!<br/>
                                                                       Obtendrás una bonificación de 1500 puntos en el cálculo final <br/>
                                                                       de Rareza por ello.
                                                                       </span>}/> : <></>;

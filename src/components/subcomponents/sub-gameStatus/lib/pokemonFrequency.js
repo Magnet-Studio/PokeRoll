@@ -378,7 +378,6 @@ const pokemonFrequencies = [
         {"name": "Koffing", "dexNum": 109},
         {"name": "Rhyhorn", "dexNum": 111},
         {"name": "Tangela", "dexNum": 114},
-        {"name": "Kangaskhan", "dexNum": 115},
         {"name": "Horsea", "dexNum": 116},
         {"name": "Goldeen", "dexNum": 118},
         {"name": "Staryu", "dexNum": 120},
@@ -429,6 +428,8 @@ const pokemonFrequencies = [
         {"name": "Gible", "dexNum": 443}
     ],
     /* Tier 3 */ [
+        
+        {"name": "Kangaskhan", "dexNum": 115},
         {"name": "Lokix", "dexNum": 920},
         {"name": "Pawmot", "dexNum": 923},
         {"name": "Maushold", "dexNum": 925},

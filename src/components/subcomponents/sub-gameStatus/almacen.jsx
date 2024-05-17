@@ -74,6 +74,7 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, se
                     <option value="2">Ordenar por número de Pokédex</option>
                     <option value="3">Ordenar por Rareza más alta</option>
                     <option value="4">Variocolores primero</option>
+                    <option value="7">Megaevoluciones primero</option>
                 </select>
             </div>
             
@@ -178,6 +179,26 @@ function CompletePokemonList({selectedValue, selectedFrequency, selectedType, se
             break;
         case '6':
             sortedList.sort((a, b) => sumIVs(b.iv) - sumIVs(a.iv))
+            break;
+        case '7':
+            sortedList.sort((a, b) => {
+                if (a?.megaevolution !== undefined && b?.megaevolution !== undefined) {
+                    if (a.megaevolution === true && b.megaevolution === false) {
+                        return -1
+                    } else if (b.megaevolution === true && a.megaevolution === false) {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
+                }
+                else if (a?.megaevolution !== undefined && b?.megaevolution === undefined) {
+                    return -1
+                } else if (a?.megaevolution === undefined && b?.megaevolution !== undefined) {
+                    return 1
+                } else {
+                    return 0;
+                }
+            })
             break;
         default:
             break;
