@@ -60,7 +60,7 @@ const PokemonVariants = [
         dexnum: 479,
         name: "Rotom",
         variants: [
-            { name: "rotom-normal", types: ["electric", "ghost"] },
+            { name: "rotom", types: ["electric", "ghost"] },
             { name: "rotom-heat", types: ["electric", "fire"] },
             { name: "rotom-wash", types: ["electric", "water"] },
             { name: "rotom-frost", types: ["electric", "ice"] },
@@ -104,7 +104,7 @@ const PokemonVariants = [
         dexnum: 351,
         name: "Castform",
         variants: [
-            { name: "castform-normal", types: ["normal"] },
+            { name: "castform", types: ["normal"] },
             { name: "castform-sunny", types: ["fire"] },
             { name: "castform-rainy", types: ["water"] },
             { name: "castform-snowy", types: ["ice"] }
@@ -1033,7 +1033,7 @@ export const getRandomVariant = (variants) => {
         return variant;
     } else {
         const randomVal = Math.floor(Math.random() * 100);
-        if (randomVal < 99) {
+        if (randomVal < 97) {
             return variant.megaevolution[0];
         } else {
             return variant.megaevolution[Math.floor(Math.random() * (variant.megaevolution.length - 1)) + 1]
