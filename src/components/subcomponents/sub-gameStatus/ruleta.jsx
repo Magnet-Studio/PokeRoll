@@ -11,6 +11,7 @@ import { GetFrequencyByName } from "./lib/pokemonFrequency";
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import { MouseOverPopover } from './mouseOverPopOver';
 import { AddLastExtraDetails } from './lib/pokemonList';
+import SpaIcon from '@mui/icons-material/Spa';
 
 
 function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, UserData, setTirarButtonDisable, setChangeTierButtonDisable, setUserData})
@@ -185,10 +186,18 @@ function ModalConfirmar({setThreePokemon, pokemonData, setOpen, open, UserData, 
   const nombreRareza = nombresRarezas[frequency-1];
 
   let shinyIndication = (<></>);
+  let megaIndication = (<></>);
   if(pokemonData.shiny === "shiny")
   { 
     const shinyMsg = (<p>¡Felicidades! ¡Has conseguido un Pokémon Variocolor!<br/> Obtendrás una bonificación de 5000 puntos en el cálculo final <br/> de Rareza por ello</p>);
-    shinyIndication = (<MouseOverPopover content={<AutoAwesomeIcon />} shown={shinyMsg} />);                                                         
+    shinyIndication = (<MouseOverPopover content={<AutoAwesomeIcon className="shinyIcon"/>} shown={shinyMsg} />);                                                         
+  }
+
+  if(pokemonData?.megaevolution !== undefined) {
+    if (pokemonData.megaevolution === true) {
+      const megaMsg = (<p>¡Felicidades! ¡Has conseguido una Megaevolución!<br/> Obtendrás una bonificación de 1500 puntos en el cálculo final <br/> de Rareza por ello</p>);
+      megaIndication = (<MouseOverPopover content={<SpaIcon className="megaIcon"/>} shown={megaMsg} />);        
+    }
   }
 
   return (
@@ -216,6 +225,7 @@ function ModalConfirmar({setThreePokemon, pokemonData, setOpen, open, UserData, 
             <p style={{color: "black"}}>
               {pokemonData.speciesname}
               {shinyIndication}
+              {megaIndication}
             </p>
             <div id="tiposPokemon">
                 {firstTypeContainer}

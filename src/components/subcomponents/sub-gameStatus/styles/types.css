@@ -93,6 +93,10 @@
     border: 0.3vw solid rgba(255, 255, 255, 0.2);
 }
 
+.entryBox.mega {
+    border: 0.3vw solid rgb(255, 111, 159);
+}
+
 .entryBox.shiny
 {
     border: 0.3vw solid rgb(251, 255, 0);

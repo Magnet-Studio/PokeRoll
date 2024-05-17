@@ -35,6 +35,8 @@ function PokemonCard({data})
     {
         secondTypeContainer = (<div className="pokemonType">{GetPrettyTypeNameSpanish(secondType)}</div>);
     }  
+
+    
         
     pokemon = (
         <>
@@ -47,9 +49,16 @@ function PokemonCard({data})
         </>
     );
 
+    let megaData="";
+    if (data?.megaevolution !== undefined) {
+        if (data.megaevolution == true) {
+            megaData = "mega"
+        }
+    }
+
     return (
         <Link to={"ver-pokemon?id=" + data.id}>
-            <div className={"entryBox " + firstType + " " + data.shiny} key={data.id}>
+            <div className={"entryBox " + firstType + " " + megaData + " " + data.shiny} key={data.id}>
                 <p className="dexNumber">Nº {dexNum}</p>
                 {pokemon}
             </div>

@@ -1,5 +1,5 @@
 
-const rarezaExtraPoints = [100, 400, 1000, 2000, 10000, 13500];
+export const rarezaExtraPoints = [100, 500, 1500, 4000, 10000, 13500];
 
 export const GetRarezaExtraPoints = (frequency) => {
     return rarezaExtraPoints[frequency - 1];

@@ -5,7 +5,7 @@ import './styles/verPokemonAlmacen.css'
 import { GetFrequencyByName } from "./lib/pokemonFrequency";
 import { GetDataByDexNum, GetImage, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish, GetVariantImage } from "./lib/PokemonData";
 import { GetSpeciesDataByDexNum, GetSpanishName } from "./lib/PokemonSpeciesData";
-import { GetRarezaPoints } from "./lib/pokemonRarity";
+import { GetRarezaPoints, rarezaExtraPoints } from "./lib/pokemonRarity";
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import { MouseOverPopover } from "./mouseOverPopOver";
 import ForwardIcon from '@mui/icons-material/Forward';
@@ -57,7 +57,7 @@ function VerPokemonAlmacen({UserData, setUserData})
         secondTypeContainer = (<div className={"pokemonType " + secondType}>{GetPrettyTypeNameSpanish(secondType)}</div>);
     } 
     
-    const rarezas = [100, 400, 1000, 2000, 10000, 13500];
+    const rarezas = rarezaExtraPoints;
     const nombrePKM = pokemon.nametag === null ? name : pokemon.nametag;
     const shinyCond = (pokemon.shiny === "shiny") ? <MouseOverPopover content={<AutoAwesomeIcon className="shinyIcon"/>} 
                                                                       shown={<p> ¡Felicidades! ¡Has conseguido un Pokémon Variocolor!<br/>
