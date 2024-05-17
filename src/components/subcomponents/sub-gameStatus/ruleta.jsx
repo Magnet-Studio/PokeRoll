@@ -44,7 +44,6 @@ function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, 
                 {
                   setThreePokemon(prevThreePokemon => 
                     { 
-                      console.log(prevThreePokemon[i])
                       if (threePokemon[i]?.variant === undefined) {
                         prevThreePokemon[i].type1 = GetFirstType(data);
                         prevThreePokemon[i].type2 = GetSecondType(data);
