@@ -172,6 +172,10 @@ p {
     color: rgb(255, 111, 159);
 }
 
+.Typography-hoverContent > .rareIcon {
+    color: rgb(170, 164, 255);
+}
+
 .inlineContainer {
     display: flex;
     align-items: center;

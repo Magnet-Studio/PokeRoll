@@ -13,6 +13,7 @@ import { MouseOverPopover } from './mouseOverPopOver';
 import { AddLastExtraDetails } from './lib/pokemonList';
 import SpaIcon from '@mui/icons-material/Spa';
 import CheckIcon from '@mui/icons-material/Check';
+import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
 
 
 function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, UserData, setTirarButtonDisable, setChangeTierButtonDisable, setUserData})
@@ -205,6 +206,7 @@ function ModalConfirmar({setThreePokemon, pokemonData, setOpen, open, UserData, 
 
   let shinyIndication = (<></>);
   let megaIndication = (<></>);
+  let rareIndication = (<></>);
   if(pokemonData.shiny === "shiny")
   { 
     const shinyMsg = (<span>¡Felicidades! ¡Has conseguido un Pokémon Variocolor!<br/> Obtendrás una bonificación de 5000 puntos en el cálculo final <br/> de Rareza por ello</span>);
@@ -222,6 +224,13 @@ function ModalConfirmar({setThreePokemon, pokemonData, setOpen, open, UserData, 
     if (pokemonData.megaevolution === true) {
       const megaMsg = (<span>¡Felicidades! ¡Has conseguido {megaWord}!<br/> Obtendrás una bonificación de 1500 puntos en el cálculo final <br/> de Rareza por ello</span>);
       megaIndication = (<MouseOverPopover content={<SpaIcon className="megaIcon"/>} shown={megaMsg} />);        
+    }
+  }
+
+  if(pokemonData?.rarespecies !== undefined) {
+    if (pokemonData.rarespecies === true) {
+      const rareMsg = (<span>¡Felicidades! ¡Has conseguido una especie rara!<br/> Obtendrás una bonificación de 1000 puntos en el cálculo final <br/> de Rareza por ello</span>);
+      rareIndication = (<MouseOverPopover content={<MilitaryTechIcon className="rareIcon"/>} shown={rareMsg} />);        
     }
   }
 
@@ -263,6 +272,7 @@ function ModalConfirmar({setThreePokemon, pokemonData, setOpen, open, UserData, 
               {pokemonData.speciesname}
               {shinyIndication}
               {megaIndication}
+              {rareIndication}
             </p>
             <div id="tiposPokemon">
                 {firstTypeContainer}

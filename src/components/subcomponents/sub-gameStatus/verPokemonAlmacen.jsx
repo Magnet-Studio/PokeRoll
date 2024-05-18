@@ -13,6 +13,7 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import SpaIcon from '@mui/icons-material/Spa';
 import { useSpring, animated  } from 'react-spring';
 import CountUp from 'react-countup';
+import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
 
 
 function VerPokemonAlmacen({UserData, setUserData}) 
@@ -79,6 +80,12 @@ function VerPokemonAlmacen({UserData, setUserData})
                                                                       Obtendrás una bonificación de 1500 puntos en el cálculo final <br/>
                                                                       de Rareza por ello.
                                                                       </span>}/> : <></>;
+    
+    const rareCond = (pokemon?.rarespecies === true) ? <MouseOverPopover content={<MilitaryTechIcon className="rareIcon" />} 
+                                                                      shown={<span> ¡Felicidades! ¡Has conseguido una especie rara!<br/>
+                                                                      Obtendrás una bonificación de 1000 puntos en el cálculo final <br/>
+                                                                      de Rareza por ello.
+                                                                      </span>}/> : <></>; 
 
     const rarityMessage = <MouseOverPopover content={<InfoOutlinedIcon />} 
                                             shown={<span>
@@ -117,6 +124,7 @@ function VerPokemonAlmacen({UserData, setUserData})
                     <p>{nombrePKM}</p>
                     {shinyCond}
                     {megaCond}
+                    {rareCond}
                 </div>
                 <div id="tiposPokemon">
                   {firstTypeContainer}
@@ -133,7 +141,7 @@ function VerPokemonAlmacen({UserData, setUserData})
                   <p className={"rareza" + frequency}>{(nombreRareza === undefined ?  " Cargando..." : " " + nombreRareza + " " )}</p>
                   {rarityMessage}
                 </div>
-                <GetRarezaValue ivs={pokemon.iv} shiny={pokemon.shiny} frequency={frequency} mega={(pokemon?.megaevolution !== undefined ? pokemon.megaevolution : false)}/>
+                <GetRarezaValue ivs={pokemon.iv} shiny={pokemon.shiny} frequency={frequency} mega={(pokemon?.megaevolution !== undefined ? pokemon.megaevolution : false)} rare={(pokemon?.rarespecies !== undefined ? pokemon.rarespecies : false)}/>
             </div>
 
             <div id="statsDiv">
@@ -161,15 +169,15 @@ function VerPokemonAlmacen({UserData, setUserData})
 
 const nombresRarezas = ['Común', 'Infrecuente', 'Peculiar', 'Épico', 'Legendario', 'Singular'];
 
-function GetRarezaValue({ ivs , shiny, frequency, mega}) 
+function GetRarezaValue({ ivs , shiny, frequency, mega, rare}) 
 {
     
-    const finalValue = GetRarezaPoints(ivs, shiny, frequency, mega);
+    const finalValue = GetRarezaPoints(ivs, shiny, frequency, mega, rare);
 
 
     return (
         <>
-            <p className="ValorRareza">{<CountUp start={0} end={finalValue < 10 ? 10 : finalValue} duration={0.5} separator=""></CountUp>}<span className="pts"> pts.</span></p>
+            <p className="ValorRareza">{<CountUp start={0} end={finalValue} duration={0.5} separator=""></CountUp>}<span className="pts"> pts.</span></p>
         </>
     )
 }

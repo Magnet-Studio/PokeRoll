@@ -146,10 +146,10 @@ function CompletePokemonList({selectedValue, selectedFrequency, selectedType, se
             break;
         case '1':
             sortedList.sort((a, b) => {
-                let rarezaA = GetRarezaPoints(a.iv, a.shiny, parseInt(a.frequency), (a?.megaevolution !== undefined ? a.megaevolution : false));
-                let rarezaB = GetRarezaPoints(b.iv, b.shiny, parseInt(b.frequency), (b?.megaevolution !== undefined ? b.megaevolution : false));
+                let rarezaA = GetRarezaPoints(a.iv, a.shiny, parseInt(a.frequency), (a?.megaevolution !== undefined ? a.megaevolution : false), (a?.rarespecies !== undefined ? a.rarespecies : false));
+                let rarezaB = GetRarezaPoints(b.iv, b.shiny, parseInt(b.frequency), (b?.megaevolution !== undefined ? b.megaevolution : false), (b?.rarespecies !== undefined ? b.rarespecies : false));
                 
-                return (rarezaA - rarezaB); // No va bien? q raro xd
+                return (rarezaA - rarezaB);
             });
             sortedList.sort((a,b) => -1);
             break;
@@ -276,6 +276,13 @@ function PokemonCard({data})
         }
     }
 
+    let rareData="";
+    if (data?.rarespecies !== undefined) {
+        if (data.rarespecies == true) {
+            rareData = "rare"
+        }
+    }
+
     // Si los datos aún se están cargando, muestra CircularProgress dentro de la tarjeta
     const content = (pokemonData === null || pokemonSpeciesData === null) ? 
         <div className="loadingPokemon">
@@ -285,7 +292,7 @@ function PokemonCard({data})
 
     return (
         <Link to={"ver-pokemon?id=" + data.id}>
-            <div className={"entryBox " + firstType + " " + megaData + " " + data.shiny} key={data.id}>
+            <div className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny} key={data.id}>
                 <p className="dexNumber">Nº {dexNum}</p>
                 {content}
             </div>

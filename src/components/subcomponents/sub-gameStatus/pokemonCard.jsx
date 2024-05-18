@@ -56,9 +56,16 @@ function PokemonCard({data})
         }
     }
 
+    let rareData="";
+    if (data?.rarespecies !== undefined) {
+        if (data.rarespecies == true) {
+            rareData = "rare"
+        }
+    }
+
     return (
         <Link to={"ver-pokemon?id=" + data.id}>
-            <div className={"entryBox " + firstType + " " + megaData + " " + data.shiny} key={data.id}>
+            <div className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny} key={data.id}>
                 <p className="dexNumber">Nº {dexNum}</p>
                 {pokemon}
             </div>
