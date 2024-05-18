@@ -92,8 +92,12 @@ function CompleteEntryList(props)
         }
     );
 
+    const registeredMons = props.UserData.registers.length - 1;
+    const percentage = (100*(registeredMons/1025)).toFixed(2);
+
     return (
         <>
+            <p><label>Registrados: {registeredMons} / 1025 ({percentage}%)</label></p>
             <p className="generationTitle inlineContainer">
                 {props.generationNum + "º Generación"} 
                 <MouseOverPopover content={<InfoOutlinedIcon className="infoGenerationIcon"/>} 
@@ -103,7 +107,6 @@ function CompleteEntryList(props)
                                 </span>
                                 } />
             </p>
-
             {list}
         </>
     );

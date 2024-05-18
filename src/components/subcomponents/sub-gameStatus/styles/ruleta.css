@@ -40,6 +40,12 @@
     pointer-events: all;
 }
 
+canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
 .ruletaBox > img {
     top: auto;
     right: auto;
