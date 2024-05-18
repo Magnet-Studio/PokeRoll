@@ -23,6 +23,8 @@ function TopElements({UserData, tirarButtonDisable})
         const searchParams = new URLSearchParams(location.search);
         const id = searchParams.get("id");
         const pokemon = GetPokemonByID(id, UserData.pokemonList);
+
+        console.log(pokemon);
         
         pokenametag = pokemon.nametag === null ? pokemon.name : pokemon.nametag;
     }

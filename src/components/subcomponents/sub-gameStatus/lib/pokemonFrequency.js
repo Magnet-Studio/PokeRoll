@@ -148,7 +148,7 @@ const pokemonFrequencies = [
         {"name": "Glimmet", "dexNum": 969},
         {"name": "Greavard", "dexNum": 971},
         {"name": "Cetoddle", "dexNum": 974},
-        {"name": "Poltchageist", "dexNum": 986},
+        {"name": "Poltchageist", "dexNum": 1013},
         {"name": "Greedent", "dexNum": 820},
         {"name": "Corvisquire", "dexNum": 822},
         {"name": "Dottler", "dexNum": 825},
@@ -457,7 +457,7 @@ const pokemonFrequencies = [
         {"name": "Tatsugiri", "dexNum": 978},
         {"name": "Gimmighoul", "dexNum": 999},
         {"name": "Dipplin", "dexNum": 1011},
-        {"name": "Sinistcha", "dexNum": 987},
+        {"name": "Sinistcha", "dexNum": 1012},
         {"name": "Corviknight", "dexNum": 823},
         {"name": "Orbeetle", "dexNum": 826},
         {"name": "Thievul", "dexNum": 828},
@@ -973,7 +973,8 @@ const pokemonFrequencies = [
         {"name": "Ferropalmas", "dexNum": 992},
         {"name": "Ferrocuello", "dexNum": 993},
         {"name": "Ferropolilla", "dexNum": 994},
-        {"name": "Ferropúas", "dexNum": 995}
+        {"name": "Ferropúas", "dexNum": 995},
+        {"name": "Gholdengo", "dexNum": 1000}
     ],
     /* Tier 5 */ [
         

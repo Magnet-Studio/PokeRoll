@@ -55,7 +55,7 @@ export const GetThreeRandomPokemon = (TierRuleta) =>
         const shiny = GetShinyValue();
         pokemon.shiny = shiny;
 
-        // WIP: Obtenemos una variante
+        // Obtenemos una variante (Y vemos si es una mega o especie rara)
         const variants = getPokemonVariants(pokemon.name);
         if (variants !== null) {
             pokemon.variant = getRandomVariant(variants);

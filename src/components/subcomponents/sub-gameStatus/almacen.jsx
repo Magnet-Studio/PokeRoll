@@ -2,12 +2,12 @@ import React, { useState , useEffect } from "react";
 import './styles/almacen.css';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import { GetSpeciesDataByName, GetSpanishName} from './lib/PokemonSpeciesData';
-import { GetDataByName, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish, GetImage, GetDexNum, GetVariantImage} from './lib/PokemonData';
+import { GetDataByName, GetPrettyTypeNameSpanish, GetImage, GetDexNum, GetVariantImage} from './lib/PokemonData';
 import { Link } from "react-router-dom";
 import { GetRarezaPoints } from "./lib/pokemonRarity";
 import CircularProgress from '@mui/material/CircularProgress';
 
-function Almacen({UserData, setUserData}) {
+function Almacen({UserData}) {
     const [selectedValue, setSelectedValue] = useState('0');
     const [selectedFrequency, setSelectedFrequency] = useState('0');
     const [selectedType, setSelectedType] = useState('0');
