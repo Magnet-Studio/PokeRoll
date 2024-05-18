@@ -61,6 +61,8 @@ export const GetThreeRandomPokemon = (TierRuleta) =>
             pokemon.variant = getRandomVariant(variants);
             if (pokemon.variant?.mega !== undefined) {
                 pokemon.megaevolution = pokemon.variant.mega;
+            } if (pokemon.variant?.rare !== undefined) {
+                pokemon.rarespecies = pokemon.variant.rare;
             }
         }
         

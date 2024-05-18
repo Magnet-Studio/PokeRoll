@@ -26,6 +26,7 @@
     display:flex;
     align-items: center;
     cursor: pointer;
+    position: relative;
 }
 
 .ruletaBox.enabled:hover
@@ -37,7 +38,6 @@
 .ruletaBox.enabled
 {
     pointer-events: all;
-    position: relative;
 }
 
 .ruletaBox > img {
@@ -80,6 +80,14 @@ button .cerrarButton {
     margin-bottom: 2vh;
 }
 
+.registerMessage {
+    color: rgb(81, 199, 54);
+    display:flex;
+    justify-content: center;
+    margin: 0;
+    margin-bottom: 2vh;
+}
+
 .RegistradoCheck {
     position: absolute;
     top: 0;
@@ -99,13 +107,14 @@ button .cerrarButton {
     top: 0;
     width: 100%;
     text-align: center;
+    
+    z-index: 3;
 }
 
 .RarezaText {
     display: inline-block;
     /* Ajusta estos valores según sea necesario para la responsividad */
     font-size: 1.5vw; 
-    
     
     
 }

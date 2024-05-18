@@ -15,8 +15,14 @@ const PokemonVariants = [
                 { name: "necrozma", types:["psychic", null], mega: false },
                 { name: "necrozma-ultra", types:["psychic", "dragon"] ,mega: true }
             ] },
-            { name: "necrozma-dawn-wings", types: ["psychic", "ghost"] },
-            { name: "necrozma-dusk-mane", types: ["psychic", "steel"] },
+            { rarespecies: [
+                { name: "necrozma", types:["psychic", null]},
+                { name: "necrozma-dawn-wings", types: ["psychic", "ghost"], rare: true},
+            ] },
+            { rarespecies: [
+                { name: "necrozma", types:["psychic", null]},
+                { name: "necrozma-dusk-mane", types: ["psychic", "steel"], rare: true },
+            ] }
         ]
     },
 
@@ -65,10 +71,20 @@ const PokemonVariants = [
         dexnum: 888,
         name: "Zacian",
         variants: [
-            { name: "zacian-hero" },
-            { name: "zacian-crowned",
-                types:["fairy", "steel"]
-            }
+            {rarespecies: [
+                { name: "zacian-hero" },
+                { name: "zacian-crowned", types:["fairy", "steel"], rare: true }
+            ]}
+        ]
+    },
+    {
+        dexnum: 889,
+        name: "Zamazenta",
+        variants: [
+            { rarespecies: [
+                { name: "zamazenta-hero" },
+                { name: "zamazenta-crowned", types:["fighting", "steel"], rare: true}
+            ]}
         ]
     },
     {
@@ -83,16 +99,6 @@ const PokemonVariants = [
             { name: "minior-blue-core", types: ["rock", "flying"] },
             { name: "minior-indigo-core", types: ["rock", "flying"] },
             { name: "minior-violet-core", types: ["rock", "flying"] }
-        ]
-    },
-    {
-        dexnum: 889,
-        name: "Zamazenta",
-        variants: [
-            { name: "zamazenta-hero" },
-            { name: "zamazenta-crowned",
-                types:["fighting", "steel"]
-            }
         ]
     },
     {
@@ -111,8 +117,10 @@ const PokemonVariants = [
         dexnum: 492,
         name: "Shaymin",
         variants: [
-            { name: "shaymin-land", types: ["grass", null] },
-            { name: "shaymin-sky", types: ["grass", "flying"] }
+            { rarespecies: [
+                { name: "shaymin-land", types: ["grass", null] },
+                { name: "shaymin-sky", types: ["grass", "flying"], rare: true}
+            ] }
         ]
     },
     {
@@ -143,10 +151,10 @@ const PokemonVariants = [
         dexnum: 351,
         name: "Castform",
         variants: [
-            { name: "castform", types: ["normal"] },
-            { name: "castform-sunny", types: ["fire"] },
-            { name: "castform-rainy", types: ["water"] },
-            { name: "castform-snowy", types: ["ice"] }
+            { name: "castform", types: ["normal", null] },
+            { name: "castform-sunny", types: ["fire", null] },
+            { name: "castform-rainy", types: ["water", null] },
+            { name: "castform-snowy", types: ["ice", null] }
         ]
     },
     {
@@ -234,8 +242,10 @@ const PokemonVariants = [
         dexnum: 647,
         name: "Keldeo",
         variants: [
-            { name: "keldeo-ordinary", types: ["water", "fighting"] },
-            { name: "keldeo-resolute", types: ["water", "fighting"] }
+            { rarespecies: [
+                { name: "keldeo-ordinary", types: ["water", "fighting"] },
+                { name: "keldeo-resolute", types: ["water", "fighting"], rare: true}
+            ] }
         ]
     },
     {
@@ -258,9 +268,14 @@ const PokemonVariants = [
         dexnum: 646,
         name: "Kyurem",
         variants: [
-            { name: "kyurem" },
-            { name: "kyurem-black" },
-            { name: "kyurem-white" }
+            { rarespecies: [
+                { name: "kyurem" },
+                { name: "kyurem-black", rare: true},
+            ] },
+            { rarespecies: [
+                { name: "kyurem" },
+                { name: "kyurem-white", rare: true }
+            ] }
         ]
     },
     {
@@ -285,8 +300,10 @@ const PokemonVariants = [
         dexnum: 648,
         name: "Meloetta",
         variants: [
-            { name: "meloetta-aria", types: ["normal", "psychic"] },
-            { name: "meloetta-pirouette", types: ["normal", "fighting"] }
+            { rarespecies: [
+                { name: "meloetta-aria", types: ["normal", "psychic"] },
+                { name: "meloetta-pirouette", types: ["normal", "fighting"], rare:true }
+            ] }
         ]
     },
     {
@@ -338,8 +355,10 @@ const PokemonVariants = [
         dexnum: 720,
         name: "Hoopa",
         variants: [
-            { name: "hoopa-confined", types: ["psychic", "ghost"] },
-            { name: "hoopa-unbound", types: ["psychic", "dark"] },
+            { rarespecies: [
+                { name: "hoopa-confined", types: ["psychic", "ghost"] },
+                { name: "hoopa-unbound", types: ["psychic", "dark"], rare: true },
+            ] }
         ]
     },
     {
@@ -364,9 +383,14 @@ const PokemonVariants = [
         dexnum:898,
         name:"Calyrex",
         variants: [
-            { name: "calyrex" },
-            { name: "calyrex-ice-rider", types: ["psychic", "ice"] },
-            { name: "calyrex-shadow-rider", types: ["psychic", "ghost"] },
+            { rarespecies: [  
+                { name: "calyrex" },
+                { name: "calyrex-ice-rider", types: ["psychic", "ice"], rare: true},
+            ] },
+            { rarespecies:[
+                { name: "calyrex" },
+                { name: "calyrex-shadow-rider", types: ["psychic", "ghost"] , rare: true},
+            ] }
         ]
     },
 
@@ -376,185 +400,6 @@ const PokemonVariants = [
         variants: [
             { name:"terapagos-normal" },
             { name:"terapagos-terastal" }
-        ]
-    },
-    {
-        dexnum: 37,
-        name: "Vulpix",
-        variants: [
-            { name: "vulpix", types: ["fire", null] },
-            { name: "vulpix-alolan", types: ["ice", null] }
-        ]
-    },
-    {
-        dexnum: 38,
-        name: "Ninetales",
-        variants: [
-            { name: "ninetales", types: ["fire", null] },
-            { name: "ninetales-alolan", types: ["ice", "fairy"] }
-        ]
-    },
-    {
-        dexnum: 27,
-        name: "Sandshrew",
-        variants: [
-            { name: "sandshrew", types: ["ground", null] },
-            { name: "sandshrew-alolan", types: ["ice", null] }
-        ]
-    },
-    {
-        dexnum: 28,
-        name: "Sandslash",
-        variants: [
-            { name: "sandslash", types: ["ground", null] },
-            { name: "sandslash-alolan", types: ["ice", "steel"] }
-        ]
-    },
-    {
-        dexnum: 52,
-        name: "Meowth",
-        variants: [
-            { name: "meowth", types: ["normal", null] },
-            { name: "meowth-alolan", types: ["dark", null] },
-            { name: "meowth-galarian", types: ["steel", null] }
-        ]
-    },
-    {
-        dexnum: 53,
-        name: "Persian",
-        variants: [
-            { name: "persian", types: ["normal", null] },
-            { name: "persian-alolan", types: ["dark", null] }
-        ]
-    },
-    {
-        dexnum: 88,
-        name: "Grimer",
-        variants: [
-            { name: "grimer", types: ["poison", null] },
-            { name: "grimer-alolan", types: ["poison", "dark"] }
-        ]
-    },
-    {
-        dexnum: 89,
-        name: "Muk",
-        variants: [
-            { name: "muk", types: ["poison", null] },
-            { name: "muk-alolan", types: ["poison", "dark"] }
-        ]
-    },
-    {
-        dexnum: 19,
-        name: "Rattata",
-        variants: [
-            { name: "rattata", types: ["normal", null] },
-            { name: "rattata-alolan", types: ["dark", "normal"] }
-        ]
-    },
-    {
-        dexnum: 20,
-        name: "Raticate",
-        variants: [
-            { name: "raticate", types: ["normal", null] },
-            { name: "raticate-alolan", types: ["dark", "normal"] }
-        ]
-    },
-    {
-        dexnum: 103,
-        name: "Exeggutor",
-        variants: [
-            { name: "exeggutor", types: ["grass", "psychic"] },
-            { name: "exeggutor-alolan", types: ["grass", "dragon"] }
-        ]
-    },
-    {
-        dexnum: 105,
-        name: "Marowak",
-        variants: [
-            { name: "marowak", types: ["ground", null] },
-            { name: "marowak-alolan", types: ["fire", "ghost"] }
-        ]
-    },
-    {
-        dexnum: 77,
-        name: "Ponyta",
-        variants: [
-            { name: "ponyta", types: ["fire", null] },
-            { name: "ponyta-galarian", types: ["psychic", null] }
-        ]
-    },
-    {
-        dexnum: 78,
-        name: "Rapidash",
-        variants: [
-            { name: "rapidash", types: ["fire", null] },
-            { name: "rapidash-galarian", types: ["psychic", "fairy"] }
-        ]
-    },
-    {
-        dexnum: 110,
-        name: "Weezing",
-        variants: [
-            { name: "weezing", types: ["poison", null] },
-            { name: "weezing-galarian", types: ["poison", "fairy"] }
-        ]
-    },
-    {
-        dexnum: 222,
-        name: "Corsola",
-        variants: [
-            { name: "corsola", types: ["water", "rock"] },
-            { name: "corsola-galarian", types: ["ghost", null] }
-        ]
-    },
-    {
-        dexnum: 555,
-        name: "Darmanitan",
-        variants: [
-            { name: "darmanitan-standard", types: ["fire", null]  },
-            { name: "darmanitan-galarian-standard", types: ["ice", null]   },
-            { name: "darmanitan-zen", types: ["fire", "psychic"] },
-            { name: "darmanitan-galarian-zen", types: ["ice", "fire"] }
-        ]
-    },
-    {
-        dexnum: 264,
-        name: "Linoone",
-        variants: [
-            { name: "linoone", types: ["normal", null] },
-            { name: "linoone-galarian", types: ["dark", "normal"] }
-        ]
-    },
-    {
-        dexnum: 554,
-        name: "Darumaka",
-        variants: [
-            { name: "darumaka", types: ["fire", null] },
-            { name: "darumaka-galarian", types: ["ice", null] }
-        ]
-    },
-    {
-        dexnum: 562,
-        name: "Yamask",
-        variants: [
-            { name: "yamask", types: ["ghost", null] },
-            { name: "yamask-galarian", types: ["ground", "ghost"] }
-        ]
-    },
-    {
-        dexnum: 618,
-        name: "Stunfisk",
-        variants: [
-            { name: "stunfisk", types: ["ground", "electric"] },
-            { name: "stunfisk-galarian", types: ["ground", "steel"] }
-        ]
-    },
-    {
-        dexnum: 628,
-        name: "Braviary",
-        variants: [
-            { name: "braviary", types: ["normal", "flying"] },
-            { name: "braviary-hisuian", types: ["psychic", "flying"] }
         ]
     },
     {
@@ -602,7 +447,7 @@ const PokemonVariants = [
         ]
     },
 
-    // A partir de aquí, todos son megas
+    // Megaevoluciones
     {
         dexnum: 3,
         name: "Venusaur",
@@ -1094,7 +939,7 @@ const PokemonVariants = [
             { rarespecies: [
                     {name: "zygarde-10" },
                     {name: "zygarde-50" },
-                    {name: "zygarde-complete"}
+                    {name: "zygarde-complete", rare: true}
                 ]
             }
         ]
@@ -1106,7 +951,7 @@ const PokemonVariants = [
             { rarespecies: [
                 {name: "lycanroc-midday"},
                 {name: "lycanroc-midnight"},
-                {name: "lycanroc-dusk"}
+                {name: "lycanroc-dusk", rare: true }
             ]}
         ]
     },
@@ -1116,7 +961,7 @@ const PokemonVariants = [
         variants: [
            { rarespecies: [
                 { name: "pikachu" },
-                { name: "pikachu-world-cup" },
+                { name: "pikachu-world-cup", rare: true },
             ]}
         ]
     },
@@ -1124,30 +969,29 @@ const PokemonVariants = [
         dexnum:666,
         name:"Vivillon",
         variants: [
+            
+            { name: "vivillon-meadow", types: ["bug", "flying"] },
+            { name: "vivillon-archipelago", types: ["bug", "flying"] },
+            { name: "vivillon-continent", types: ["bug", "flying"] },
+            { name: "vivillon-elegant", types: ["bug", "flying"] },
+            { name: "vivillon-garden", types: ["bug", "flying"] },
+            { name: "vivillon-high-plains", types: ["bug", "flying"] },
+            { name: "vivillon-icy-snow", types: ["bug", "flying"] },
+            { name: "vivillon-jungle", types: ["bug", "flying"] },
+            { name: "vivillon-marine", types: ["bug", "flying"] },
+            { name: "vivillon-modern", types: ["bug", "flying"] },
+            { name: "vivillon-monsoon", types: ["bug", "flying"] },
+            { name: "vivillon-ocean", types: ["bug", "flying"] },
+            { name: "vivillon-polar", types: ["bug", "flying"] },
+            { name: "vivillon-river", types: ["bug", "flying"] },
+            { name: "vivillon-sandstorm", types: ["bug", "flying"] },
+            { name: "vivillon-savanna", types: ["bug", "flying"] },
+            { name: "vivillon-sun", types: ["bug", "flying"] },
+            { name: "vivillon-tundra", types: ["bug", "flying"] },
             { rarespecies: [
-                { name: "vivillon-meadow", types: ["bug", "flying"] },
-                { name: "vivillon-archipelago", types: ["bug", "flying"] },
-                { name: "vivillon-continent", types: ["bug", "flying"] },
-                { name: "vivillon-elegant", types: ["bug", "flying"] },
-                { name: "vivillon-garden", types: ["bug", "flying"] },
-                { name: "vivillon-high-plains", types: ["bug", "flying"] },
-                { name: "vivillon-icy-snow", types: ["bug", "flying"] },
-                { name: "vivillon-jungle", types: ["bug", "flying"] },
-                { name: "vivillon-marine", types: ["bug", "flying"] },
-                { name: "vivillon-modern", types: ["bug", "flying"] },
-                { name: "vivillon-monsoon", types: ["bug", "flying"] },
-                { name: "vivillon-ocean", types: ["bug", "flying"] },
-                { name: "vivillon-polar", types: ["bug", "flying"] },
-                { name: "vivillon-river", types: ["bug", "flying"] },
-                { name: "vivillon-sandstorm", types: ["bug", "flying"] },
-                { name: "vivillon-savanna", types: ["bug", "flying"] },
-                { name: "vivillon-sun", types: ["bug", "flying"] },
-                { name: "vivillon-tundra", types: ["bug", "flying"] },
-                { name: "vivillon-fancy", types: ["bug", "flying"] },
-                { name: "vivillon-poke-ball", types: ["bug", "flying"] }
-            ]
-                
-            }
+                { name: "vivillon-fancy", types: ["bug", "flying"], rare: true },
+                { name: "vivillon-poke-ball", types: ["bug", "flying"], rare: true }
+            ]}
         ]
     },
     {
@@ -1156,7 +1000,7 @@ const PokemonVariants = [
         variants: [
             { rarespecies: [
                  { name: "zarude" },
-                 { name: "zarude-dada" },
+                 { name: "zarude-dada", rare: true },
              ]}
         ]
     },
@@ -1166,7 +1010,7 @@ const PokemonVariants = [
         variants: [
             { rarespecies: [
                  { name: "palafin-zero" },
-                 { name: "palafin-hero" },
+                 { name: "palafin-hero", rare: true },
              ]}
         ]
     },
@@ -1176,7 +1020,7 @@ const PokemonVariants = [
         variants: [
             { rarespecies: [
                  { name: "ursaluna" },
-                 { name: "ursaluna-bloodmoon" },
+                 { name: "ursaluna-bloodmoon", rare: true },
              ]}
         ]
     },
@@ -1214,6 +1058,14 @@ const PokemonVariants = [
         variants: [
             { name: "typhlosion", types: ["fire", null] },
             { name: "typhlosion-hisuian", types: ["fire", "ghost"] }
+        ]
+    },
+    {
+        dexnum: 503,
+        name: "Samurott",
+        variants: [
+            { name: "samurott", types: ["water", null] },
+            { name: "samurott-hisuian", types: ["water", "dark"] }
         ]
     },
     {
@@ -1306,15 +1158,6 @@ const PokemonVariants = [
             { name: "wooper-paldean", types: ["poison", "ground"] }
         ]
     },
-
-    {
-        dexnum: 503,
-        name: "Samurott",
-        variants: [
-            { name: "samurott", types: ["water", null] },
-            { name: "samurott-hisuian", types: ["water", "dark"] }
-        ]
-    },
     {
         dexnum: 79,
         name: "Slowpoke",
@@ -1331,13 +1174,193 @@ const PokemonVariants = [
             { name: "slowking-galarian", types: ["poison", "psychic"] }
         ]
     },
+    
+    {
+        dexnum: 37,
+        name: "Vulpix",
+        variants: [
+            { name: "vulpix", types: ["fire", null] },
+            { name: "vulpix-alolan", types: ["ice", null] }
+        ]
+    },
+    {
+        dexnum: 38,
+        name: "Ninetales",
+        variants: [
+            { name: "ninetales", types: ["fire", null] },
+            { name: "ninetales-alolan", types: ["ice", "fairy"] }
+        ]
+    },
+    {
+        dexnum: 27,
+        name: "Sandshrew",
+        variants: [
+            { name: "sandshrew", types: ["ground", null] },
+            { name: "sandshrew-alolan", types: ["ice", null] }
+        ]
+    },
+    {
+        dexnum: 28,
+        name: "Sandslash",
+        variants: [
+            { name: "sandslash", types: ["ground", null] },
+            { name: "sandslash-alolan", types: ["ice", "steel"] }
+        ]
+    },
+    {
+        dexnum: 52,
+        name: "Meowth",
+        variants: [
+            { name: "meowth", types: ["normal", null] },
+            { name: "meowth-alolan", types: ["dark", null] },
+            { name: "meowth-galarian", types: ["steel", null] }
+        ]
+    },
+    {
+        dexnum: 53,
+        name: "Persian",
+        variants: [
+            { name: "persian", types: ["normal", null] },
+            { name: "persian-alolan", types: ["dark", null] }
+        ]
+    },
+    {
+        dexnum: 88,
+        name: "Grimer",
+        variants: [
+            { name: "grimer", types: ["poison", null] },
+            { name: "grimer-alolan", types: ["poison", "dark"] }
+        ]
+    },
+    {
+        dexnum: 89,
+        name: "Muk",
+        variants: [
+            { name: "muk", types: ["poison", null] },
+            { name: "muk-alolan", types: ["poison", "dark"] }
+        ]
+    },
+    {
+        dexnum: 19,
+        name: "Rattata",
+        variants: [
+            { name: "rattata", types: ["normal", null] },
+            { name: "rattata-alolan", types: ["dark", "normal"] }
+        ]
+    },
+    {
+        dexnum: 20,
+        name: "Raticate",
+        variants: [
+            { name: "raticate", types: ["normal", null] },
+            { name: "raticate-alolan", types: ["dark", "normal"] }
+        ]
+    },
+    {
+        dexnum: 103,
+        name: "Exeggutor",
+        variants: [
+            { name: "exeggutor", types: ["grass", "psychic"] },
+            { name: "exeggutor-alolan", types: ["grass", "dragon"] }
+        ]
+    },
+    {
+        dexnum: 105,
+        name: "Marowak",
+        variants: [
+            { name: "marowak", types: ["ground", null] },
+            { name: "marowak-alolan", types: ["fire", "ghost"] }
+        ]
+    },
+    {
+        dexnum: 77,
+        name: "Ponyta",
+        variants: [
+            { name: "ponyta", types: ["fire", null] },
+            { name: "ponyta-galarian", types: ["psychic", null] }
+        ]
+    },
+    {
+        dexnum: 78,
+        name: "Rapidash",
+        variants: [
+            { name: "rapidash", types: ["fire", null] },
+            { name: "rapidash-galarian", types: ["psychic", "fairy"] }
+        ]
+    },
+    {
+        dexnum: 110,
+        name: "Weezing",
+        variants: [
+            { name: "weezing", types: ["poison", null] },
+            { name: "weezing-galarian", types: ["poison", "fairy"] }
+        ]
+    },
+    {
+        dexnum: 222,
+        name: "Corsola",
+        variants: [
+            { name: "corsola", types: ["water", "rock"] },
+            { name: "corsola-galarian", types: ["ghost", null] }
+        ]
+    },
+    {
+        dexnum: 555,
+        name: "Darmanitan",
+        variants: [
+            { name: "darmanitan-standard", types: ["fire", null]  },
+            { name: "darmanitan-galarian-standard", types: ["ice", null]   },
+            { name: "darmanitan-zen", types: ["fire", "psychic"] },
+            { name: "darmanitan-galarian-zen", types: ["ice", "fire"] }
+        ]
+    },
+    {
+        dexnum: 264,
+        name: "Linoone",
+        variants: [
+            { name: "linoone", types: ["normal", null] },
+            { name: "linoone-galarian", types: ["dark", "normal"] }
+        ]
+    },
+    {
+        dexnum: 554,
+        name: "Darumaka",
+        variants: [
+            { name: "darumaka", types: ["fire", null] },
+            { name: "darumaka-galarian", types: ["ice", null] }
+        ]
+    },
+    {
+        dexnum: 562,
+        name: "Yamask",
+        variants: [
+            { name: "yamask", types: ["ghost", null] },
+            { name: "yamask-galarian", types: ["ground", "ghost"] }
+        ]
+    },
+    {
+        dexnum: 618,
+        name: "Stunfisk",
+        variants: [
+            { name: "stunfisk", types: ["ground", "electric"] },
+            { name: "stunfisk-galarian", types: ["ground", "steel"] }
+        ]
+    },
+    {
+        dexnum: 628,
+        name: "Braviary",
+        variants: [
+            { name: "braviary", types: ["normal", "flying"] },
+            { name: "braviary-hisuian", types: ["psychic", "flying"] }
+        ]
+    },
     {
         dexnum: 925,
         name: "Maushold",
         variants: [
             { rarespecies: [
                  { name: "maushold-family4" },
-                 { name: "maushold-family3" },
+                 { name: "maushold-family3", rare: true },
              ]}
         ]
     },
@@ -1347,7 +1370,7 @@ const PokemonVariants = [
         variants: [
             { rarespecies: [
                  { name: "dudunsparce-two-segment" },
-                 { name: "dudunsparce-three-segment" },
+                 { name: "dudunsparce-three-segment", rare: true },
              ]}
         ]
     },
@@ -1357,7 +1380,7 @@ const PokemonVariants = [
         variants: [
             { rarespecies: [
                  { name: "magearna" },
-                 { name: "magearna-original" },
+                 { name: "magearna-original", rare: true },
              ]}
         ]
     },
@@ -1367,7 +1390,7 @@ const PokemonVariants = [
         variants: [
             { rarespecies: [
                  { name: "wishiwashi-solo" },
-                 { name: "wishiwashi-school" },
+                 { name: "wishiwashi-school", rare: true },
              ]}
         ]
     }

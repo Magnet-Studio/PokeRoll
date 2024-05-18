@@ -230,6 +230,8 @@ function ModalConfirmar({setThreePokemon, pokemonData, setOpen, open, UserData, 
   if (UserData?.registers !== undefined) {
     if(!UserData.registers.includes(pokemonData.name)) {
       unregisterMessage = <p className='unregisterMessage'>¡No registrado!</p>;
+    } else {
+      unregisterMessage = <p className='registerMessage'>¡Ya registrado!</p>;
     }
   }
     
