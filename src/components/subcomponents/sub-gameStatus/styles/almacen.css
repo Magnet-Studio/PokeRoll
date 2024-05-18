@@ -58,6 +58,7 @@ a {
     pointer-events: all;
     width: 15vw;
     height: 6vh;
+    outline: none;
 }
 
 input.inputElem {
