@@ -6,12 +6,17 @@ import { GetDataByName, GetPrettyTypeNameSpanish, GetImage, GetDexNum, GetVarian
 import { Link } from "react-router-dom";
 import { GetRarezaPoints } from "./lib/pokemonRarity";
 import CircularProgress from '@mui/material/CircularProgress';
+import { Button } from "@mui/material";
+import { Liberar } from '../sub-bottomElements/liberarButton';
+import { GetPokemonByID } from "./lib/pokemonList";
 
-function Almacen({UserData}) {
+function Almacen({UserData, setUserData}) {
     const [selectedValue, setSelectedValue] = useState('0');
     const [selectedFrequency, setSelectedFrequency] = useState('0');
     const [selectedType, setSelectedType] = useState('0');
     const [Name, setName] = useState('');
+    const [borradoMultiple, setBorradoMultiple] = useState(false);
+    const [selectedBorrado, setSelectedBorrado] = useState([]);
 
     useEffect(() => {
         setSelectedValue(sessionStorage.getItem('selectedValue') || '0');
@@ -19,6 +24,24 @@ function Almacen({UserData}) {
         setSelectedType(sessionStorage.getItem('selectedType') || '0');
         setName(sessionStorage.getItem('Name') || '');
     }, []);
+
+    useEffect(() => {
+        console.log(selectedBorrado);
+    }, [selectedBorrado]);
+
+    const toggleBorradoMultiple = () => {
+        setBorradoMultiple(!borradoMultiple);
+        setSelectedBorrado([]);
+        console.log(borradoMultiple);
+    };
+
+    const liberarMultiple = () => {
+        selectedBorrado.forEach(pokemon => {
+            Liberar(pokemon, setUserData);
+        });
+        setSelectedBorrado([]);
+        toggleBorradoMultiple();
+    }
 
     return (
         <>
@@ -35,7 +58,18 @@ function Almacen({UserData}) {
                 </div>
 
                 <div id="pokemon-cards-container">
-                    <CompletePokemonList selectedValue={selectedValue} selectedFrequency={selectedFrequency} selectedType={selectedType} Name={Name} UserData={UserData}/>
+                    <CompletePokemonList selectedBorrado={selectedBorrado} setSelectedBorrado={setSelectedBorrado} borradoMultiple={borradoMultiple} selectedValue={selectedValue} selectedFrequency={selectedFrequency} selectedType={selectedType} Name={Name} UserData={UserData}/>
+                </div>
+
+                <div className="borradoMultipleContainer">
+                    {borradoMultiple ? (
+                        <>
+                            <Button onClick={toggleBorradoMultiple}>Cancelar</Button>
+                            <Button onClick={liberarMultiple}>Confirmar</Button>
+                        </>
+                    ) : (
+                        <Button onClick={toggleBorradoMultiple}>Liberar</Button>
+                    )}
                 </div>
             </div>
         </>
@@ -128,7 +162,7 @@ const sumIVs = (ivs) => {
     return ivs.hp + ivs.atq + ivs.def + ivs.spatq + ivs.spdef + ivs.spe;
 }
 
-function CompletePokemonList({selectedValue, selectedFrequency, selectedType, selectedSpecial, selectedShiny, Name, UserData}) 
+function CompletePokemonList({selectedBorrado, setSelectedBorrado, borradoMultiple, selectedValue, selectedFrequency, selectedType, selectedSpecial, selectedShiny, Name, UserData}) 
 {
     const rawList = [...UserData.pokemonList];
     let sortedList = []; 
@@ -234,8 +268,8 @@ function CompletePokemonList({selectedValue, selectedFrequency, selectedType, se
     sortedList = sortedList.filter(poke => (Name === "" ? true : poke.nametag.toLowerCase().startsWith(Name.toLowerCase()) ||
                                                                  poke.speciesname.toLowerCase().startsWith(Name.toLowerCase())));
 
-    const list = sortedList.map((datos, index) =>
-        <PokemonCard data={datos} key={index}/>
+    const list = sortedList.map((datos) =>
+        <PokemonCard UserData={UserData} selectedBorrado={selectedBorrado} setSelectedBorrado={setSelectedBorrado} borradoMultiple={borradoMultiple} data={datos} key={datos.id}/>
     );
 
     return (
@@ -246,13 +280,28 @@ function CompletePokemonList({selectedValue, selectedFrequency, selectedType, se
 
 }
 
-function PokemonCard({data}) 
+function PokemonCard({UserData, selectedBorrado, setSelectedBorrado, borradoMultiple, data}) 
 {
 
     /* Esto habria que hacerlo con un array de pokemon? */
     const [pokemonData, setPokemonData] = useState(null);
     const [pokemonSpeciesData, setPokemonSpeciesData] = useState(null);
 
+    const [isSelectedBorrado, setIsSelectedBorrado] = useState(false);
+
+    const handleSelectedBorrado = () => {
+        const pokemon = GetPokemonByID(data.id, UserData.pokemonList);
+        const isAlreadySelected = selectedBorrado.some(pokemon => pokemon.id === data.id);
+    
+        if (isAlreadySelected) {
+            setSelectedBorrado(selectedBorrado.filter(pokemon => pokemon.id !== data.id));
+            setIsSelectedBorrado(false);
+        } else {
+            setSelectedBorrado([...selectedBorrado, pokemon]);
+            setIsSelectedBorrado(true);
+        }
+    }
+    
     useEffect(() => {
         const fetchDataAndUpdateState = async () => 
             {
@@ -311,14 +360,26 @@ function PokemonCard({data})
         </div> : 
         pokemon;
 
-    return (
-        <Link to={"ver-pokemon?id=" + data.id}>
-            <div className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny} key={data.id}>
-                <p className="dexNumber">Nº {dexNum}</p>
-                {content}
-            </div>
-        </Link>
-    );
+        return (
+            borradoMultiple ? (
+                <div 
+                    className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny + (isSelectedBorrado ? " liberado" : " notLiberado")} 
+                    key={data.id}
+                    onClick={handleSelectedBorrado}
+                >
+                    <p className="dexNumber">Nº {dexNum}</p>
+                    {content}
+                </div>
+            ) : (
+                <Link to={"ver-pokemon?id=" + data.id}>
+                    <div className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny} key={data.id}>
+                        <p className="dexNumber">Nº {dexNum}</p>
+                        {content}
+                    </div>
+                </Link>
+            )
+        );
 }
+
 
 export default Almacen;

@@ -106,6 +106,19 @@ option
     height: 100%;
 }
 
+.borradoMultipleContainer button
+{
+    font-family: vanilla-regular;
+    color: white;
+    background-color: #ff0000;
+    border: none;
+    border-radius: 1vw;
+    height: 6vh;
+    width: 15vw;
+    margin-right: 1em;
+    pointer-events: all;
+}
+
 @media screen and (max-width: 900px)
 {
     #pokemon-cards-container

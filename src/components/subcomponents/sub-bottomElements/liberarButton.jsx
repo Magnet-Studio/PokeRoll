@@ -117,7 +117,7 @@ function LiberarButton({data, setUserData, UserData}) {
   );
 }
 
-function Liberar(data, setUserData) 
+export function Liberar(data, setUserData) 
 {
   DeletePokemon(data.id,coinValues[data.frequency-1] * (data.shiny === "shiny" ? 2 : 1) * (data?.megaevolution == true ? 1.2 : 1) * (data?.rarespecies == true ? 1.1 : 1), setUserData);
 } 
