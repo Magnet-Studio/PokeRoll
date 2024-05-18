@@ -268,10 +268,20 @@ function CompletePokemonList({selectedBorrado, setSelectedBorrado, borradoMultip
     sortedList = sortedList.filter(poke => (Name === "" ? true : poke.nametag.toLowerCase().startsWith(Name.toLowerCase()) ||
                                                                  poke.speciesname.toLowerCase().startsWith(Name.toLowerCase())));
 
-    const list = sortedList.map((datos) =>
-        <PokemonCard UserData={UserData} selectedBorrado={selectedBorrado} setSelectedBorrado={setSelectedBorrado} borradoMultiple={borradoMultiple} data={datos} key={datos.id}/>
-    );
-
+    const list = sortedList.map((datos) => {
+        const isAlreadySelected = selectedBorrado.some(pokemon => pokemon.id === datos.id);
+        return (
+            <PokemonCard 
+                UserData={UserData} 
+                isAlreadySelected={isAlreadySelected} 
+                selectedBorrado={selectedBorrado}
+                setSelectedBorrado={setSelectedBorrado} 
+                borradoMultiple={borradoMultiple} 
+                data={datos} 
+                key={`${datos.id}-${isAlreadySelected}`}
+            />
+        );
+    });
     return (
         <>
             {list}
@@ -280,7 +290,7 @@ function CompletePokemonList({selectedBorrado, setSelectedBorrado, borradoMultip
 
 }
 
-function PokemonCard({UserData, selectedBorrado, setSelectedBorrado, borradoMultiple, data}) 
+function PokemonCard({UserData, isAlreadySelected, selectedBorrado, setSelectedBorrado, borradoMultiple, data}) 
 {
 
     /* Esto habria que hacerlo con un array de pokemon? */
@@ -289,9 +299,12 @@ function PokemonCard({UserData, selectedBorrado, setSelectedBorrado, borradoMult
 
     const [isSelectedBorrado, setIsSelectedBorrado] = useState(false);
 
+    useEffect(() => {
+        setIsSelectedBorrado(isAlreadySelected);
+    }, [isAlreadySelected]);
+
     const handleSelectedBorrado = () => {
         const pokemon = GetPokemonByID(data.id, UserData.pokemonList);
-        const isAlreadySelected = selectedBorrado.some(pokemon => pokemon.id === data.id);
     
         if (isAlreadySelected) {
             setSelectedBorrado(selectedBorrado.filter(pokemon => pokemon.id !== data.id));
@@ -364,7 +377,7 @@ function PokemonCard({UserData, selectedBorrado, setSelectedBorrado, borradoMult
             borradoMultiple ? (
                 <div 
                     className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny + (isSelectedBorrado ? " liberado" : " notLiberado")} 
-                    key={data.id}
+                    key={`${data.id}-${isAlreadySelected}`}
                     onClick={handleSelectedBorrado}
                 >
                     <p className="dexNumber">Nº {dexNum}</p>
