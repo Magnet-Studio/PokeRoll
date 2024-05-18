@@ -11,7 +11,7 @@ import { GetFrequencyByName } from "./lib/pokemonFrequency";
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import { MouseOverPopover } from './mouseOverPopOver';
 import { AddLastExtraDetails } from './lib/pokemonList';
-import SpaIcon from '@mui/icons-material/Spa';
+import {ReactComponent as SpaIcon} from '../../../images/megaIcon.svg';
 import CheckIcon from '@mui/icons-material/Check';
 import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
 import Confetti from 'react-confetti';
@@ -80,21 +80,24 @@ function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, 
     let shouldShowConfetti = false;
     let colors = [];
 
-    for (let i = 0 ; i < 3 ; i++) {
+    for (let i = 0; i < 3; i++) {
       if (threePokemon[i].shiny === "shiny") {
-        shouldShowConfetti = true
-        colors = ['#ffff00', '#ffff99', '#cccc00'];
-      } else if (threePokemon[i]?.megaevolution === true) {
         shouldShowConfetti = true;
-        colors = ['#ff0066', '#ff0000', '#ff6699'];
-      } else if  (threePokemon[i]?.rarespecies === true) {
+        colors = colors.concat(['#ffff00', '#ffff99', '#cccc00']);
+      }
+      if (threePokemon[i]?.megaevolution === true) {
         shouldShowConfetti = true;
-        colors = ['#6699ff', '#0099ff', '#9966ff'];
+        colors = colors.concat(['#ff0066', '#ff0000', '#ff6699']);
+      }
+      if (threePokemon[i]?.rarespecies === true) {
+        shouldShowConfetti = true;
+        colors = colors.concat(['#6699ff', '#0099ff', '#9966ff']);
       }
     }
-  
-    
 
+    // Eliminar duplicados usando un Set
+    colors = [...new Set(colors)];
+  
     return (
         <>
             
@@ -262,12 +265,12 @@ function ModalConfirmar({ setThreePokemon, pokemonData, setOpen, open, UserData,
                   <div className="containerModal">
                       {pokemonImage}
                       <div>
-                          <p style={{ color: "black" }}>
-                              {pokemonData.speciesname}
+                          <div className='inlineContainer' style={{ color: "black" }}>
+                              <p className='nombrePokemonReclamar'>{pokemonData.speciesname}</p>
                               {shinyIndication}
                               {megaIndication}
                               {rareIndication}
-                          </p>
+                          </div>
                           <div id="tiposPokemon">
                               {firstTypeContainer}
                               {secondTypeContainer}

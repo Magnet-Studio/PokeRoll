@@ -36,7 +36,7 @@ function LiberarButton({data, setUserData, UserData}) {
 
   const LiberarPokemon = () => Liberar(data, setUserData);
 
-  const monedas = coinValues[data.frequency-1] * (data.shiny === "shiny" ? 2 : 1);
+  const monedas = coinValues[data.frequency-1] * (data.shiny === "shiny" ? 2 : 1) * (data?.megaevolution == true ? 1.2 : 1) * (data?.rarespecies == true ? 1.1 : 1);
 
   return (
     <div id="liberarButtonContainer">
@@ -119,7 +119,7 @@ function LiberarButton({data, setUserData, UserData}) {
 
 function Liberar(data, setUserData) 
 {
-  DeletePokemon(data.id, coinValues[data.frequency-1] * (data.shiny === "shiny" ? 2 : 1), setUserData);
+  DeletePokemon(data.id,coinValues[data.frequency-1] * (data.shiny === "shiny" ? 2 : 1) * (data?.megaevolution == true ? 1.2 : 1) * (data?.rarespecies == true ? 1.1 : 1), setUserData);
 } 
 
 export default LiberarButton;

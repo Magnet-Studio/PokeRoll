@@ -22,6 +22,7 @@
 .navButton > svg 
 {
     color: #1a437b;
+    fill: #1a437b;
     width: 80%;
     height: 80%;
     pointer-events: none;
@@ -35,6 +36,7 @@
 .selected > svg 
 {
     color: #fecb02;
+    fill: #fecb02;
 }
 
 .navButtonTitle 

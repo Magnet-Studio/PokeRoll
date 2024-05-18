@@ -124,7 +124,7 @@
         border-color: rgb(170, 164, 255);
     }
     50% {
-        border-color: rgb(225, 221, 255); /* Color más claro para mayor contraste */
+        border-color: rgb(241, 240, 255); /* Color más claro para mayor contraste */
     }
     100% {
         border-color: rgb(170, 164, 255);
@@ -136,7 +136,7 @@
         border-color: rgb(255, 111, 159);
     }
     50% {
-        border-color: rgb(255, 198, 225); /* Color más claro para mayor contraste */
+        border-color: rgb(255, 230, 242); /* Color más claro para mayor contraste */
     }
     100% {
         border-color: rgb(255, 111, 159);
@@ -148,7 +148,7 @@
         border-color: rgb(251, 255, 0);
     }
     50% {
-        border-color: rgb(255, 255, 182); /* Color más claro para mayor contraste */
+        border-color: rgb(255, 255, 237); /* Color más claro para mayor contraste */
     }
     100% {
         border-color: rgb(251, 255, 0);

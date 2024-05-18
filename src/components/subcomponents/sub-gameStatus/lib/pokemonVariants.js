@@ -431,8 +431,7 @@ const PokemonVariants = [
             { name: "floette-yellow", types: ["fairy", null] },
             { name: "floette-orange", types: ["fairy", null] },
             { name: "floette-blue", types: ["fairy", null] },
-            { name: "floette-white", types: ["fairy", null] },
-            { name: "floette-eternal", types: ["fairy", null] }
+            { name: "floette-white", types: ["fairy", null] }
         ]
     },
     {

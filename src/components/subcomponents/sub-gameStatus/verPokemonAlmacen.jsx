@@ -10,7 +10,7 @@ import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import { MouseOverPopover } from "./mouseOverPopOver";
 import ForwardIcon from '@mui/icons-material/Forward';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import SpaIcon from '@mui/icons-material/Spa';
+import { ReactComponent as SpaIcon } from '../../../images/megaIcon.svg';
 import { useSpring, animated  } from 'react-spring';
 import CountUp from 'react-countup';
 import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';

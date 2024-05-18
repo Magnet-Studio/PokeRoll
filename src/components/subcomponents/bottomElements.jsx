@@ -7,11 +7,14 @@ import React, { useEffect } from "react";
 import { Routes, Route, useNavigate, Link } from "react-router-dom";
 import NavButton from "./sub-bottomElements/NavButton";
 import "./styles/bottomElements.css";
-import AlmacenIcon from "@mui/icons-material/Inventory2";
+//import AlmacenIcon from "@mui/icons-material/Inventory2";
+import { ReactComponent as AlmacenIcon } from '../../images/almacen.svg';
 import IntercambioIcon from "@mui/icons-material/Autorenew";
 import MarcadoresIcon from "@mui/icons-material/EmojiEvents";
-import PokedexIcon from "@mui/icons-material/Apps";
-import RuletaIcon from "@mui/icons-material/Money";
+//import PokedexIcon from "@mui/icons-material/Apps";
+import { ReactComponent as PokedexIcon } from '../../images/pokedex.svg';
+//import RuletaIcon from "@mui/icons-material/Money";
+import { ReactComponent as RuletaIcon } from '../../images/ruleta.svg';
 import {
   Pokeball,
   TirarButton,

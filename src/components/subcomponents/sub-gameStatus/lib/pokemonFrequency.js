@@ -164,7 +164,6 @@ const pokemonFrequencies = [
         {"name": "Toxel", "dexNum": 848},
         {"name": "Sizzlipede", "dexNum": 850},
         {"name": "Clobbopus", "dexNum": 852},
-        {"name": "Sinistea", "dexNum": 854},
         {"name": "Hatenna", "dexNum": 856},
         {"name": "Impidimp", "dexNum": 859},
         {"name": "Milcery", "dexNum": 868},

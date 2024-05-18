@@ -75,6 +75,7 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, se
                     <option value="3">Ordenar por Rareza más alta</option>
                     <option value="4">Variocolores primero</option>
                     <option value="7">Megaevoluciones primero</option>
+                    <option value="8">Especies raras primero</option>
                 </select>
             </div>
             
@@ -194,6 +195,26 @@ function CompletePokemonList({selectedValue, selectedFrequency, selectedType, se
                 else if (a?.megaevolution !== undefined && b?.megaevolution === undefined) {
                     return -1
                 } else if (a?.megaevolution === undefined && b?.megaevolution !== undefined) {
+                    return 1
+                } else {
+                    return 0;
+                }
+            })
+            break;
+        case '8':
+            sortedList.sort((a, b) => {
+                if (a?.rarespecies !== undefined && b?.rarespecies !== undefined) {
+                    if (a.rarespecies === true && b.rarespecies === false) {
+                        return -1
+                    } else if (b.rarespecies === true && a.rarespecies === false) {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
+                }
+                else if (a?.rarespecies !== undefined && b?.rarespecies === undefined) {
+                    return -1
+                } else if (a?.rarespecies === undefined && b?.rarespecies !== undefined) {
                     return 1
                 } else {
                     return 0;

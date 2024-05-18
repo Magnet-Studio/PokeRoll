@@ -125,10 +125,24 @@ button .cerrarButton {
     
 }
 
+.containerModal svg {
+    width: 24px;
+    height: 24px;
+}
+
+.nombrePokemonReclamar {
+    color: black;
+}
+
 @media screen and (max-width: 900px) {
     .RarezaText {
         font-size: 2vw;
         
+    }
+    
+    .containerModal svg {
+        width: 3vw;
+        height: 3vw;
     }
 }
 
