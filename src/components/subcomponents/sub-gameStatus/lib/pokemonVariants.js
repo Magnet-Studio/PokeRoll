@@ -921,7 +921,7 @@ const PokemonVariants = [
         ]
     },
     {
-        dexnum: 382,
+        dexnum: 383,
         name: "Groudon",
         variants: [
             { megaevolution: [
