@@ -1,6 +1,6 @@
 import React from "react";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
-import { useState } from "react";
+import { useState, useEffect  } from "react";
 import "./styles/liberarButton.css";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -37,6 +37,14 @@ function LiberarButton({data, setUserData, UserData}) {
   const LiberarPokemon = () => Liberar(data, setUserData);
 
   const monedas = coinValues[data.frequency-1] * (data.shiny === "shiny" ? 2 : 1) * (data?.megaevolution == true ? 1.2 : 1) * (data?.rarespecies == true ? 1.1 : 1);
+  
+  useEffect(() => {
+    if (open) {
+      document.body.classList.add('modal-open');
+    } else {
+      document.body.classList.remove('modal-open');
+    }
+  }, [open]);
 
   return (
     <div id="liberarButtonContainer">
@@ -120,6 +128,10 @@ function LiberarButton({data, setUserData, UserData}) {
 export function Liberar(data, setUserData) 
 {
   DeletePokemon(data.id,coinValues[data.frequency-1] * (data.shiny === "shiny" ? 2 : 1) * (data?.megaevolution == true ? 1.2 : 1) * (data?.rarespecies == true ? 1.1 : 1), setUserData);
-} 
+}
+
+export function GetPrice(data) {
+  return coinValues[data.frequency-1] * (data.shiny === "shiny" ? 2 : 1) * (data?.megaevolution == true ? 1.2 : 1) * (data?.rarespecies == true ? 1.1 : 1);
+}
 
 export default LiberarButton;

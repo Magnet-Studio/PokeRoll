@@ -7,16 +7,36 @@ import { Link } from "react-router-dom";
 import { GetRarezaPoints } from "./lib/pokemonRarity";
 import CircularProgress from '@mui/material/CircularProgress';
 import { Button } from "@mui/material";
-import { Liberar } from '../sub-bottomElements/liberarButton';
+import { GetPrice, Liberar } from '../sub-bottomElements/liberarButton';
 import { GetPokemonByID } from "./lib/pokemonList";
 
-function Almacen({UserData, setUserData}) {
+import CoinImage from "../../../images/coin.png";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+
+const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: "40vw",
+    bgcolor: "white",
+    boxShadow: 24,
+    p: 4,
+    borderRadius: "2vw",
+  };
+
+
+
+  function Almacen({ UserData, setUserData }) {
     const [selectedValue, setSelectedValue] = useState('0');
     const [selectedFrequency, setSelectedFrequency] = useState('0');
     const [selectedType, setSelectedType] = useState('0');
     const [Name, setName] = useState('');
     const [borradoMultiple, setBorradoMultiple] = useState(false);
     const [selectedBorrado, setSelectedBorrado] = useState([]);
+    const [open, setOpen] = useState(false);
 
     useEffect(() => {
         setSelectedValue(sessionStorage.getItem('selectedValue') || '0');
@@ -29,6 +49,14 @@ function Almacen({UserData, setUserData}) {
         console.log(selectedBorrado);
     }, [selectedBorrado]);
 
+    useEffect(() => {
+        if (open) {
+            document.body.classList.add('modal-open');
+        } else {
+            document.body.classList.remove('modal-open');
+        }
+    }, [open]);
+
     const toggleBorradoMultiple = () => {
         setBorradoMultiple(!borradoMultiple);
         setSelectedBorrado([]);
@@ -39,9 +67,53 @@ function Almacen({UserData, setUserData}) {
         selectedBorrado.forEach(pokemon => {
             Liberar(pokemon, setUserData);
         });
+        setOpen(false);
         setSelectedBorrado([]);
         toggleBorradoMultiple();
-    }
+    };
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    let coins = 0;
+    let warning = null;
+    const maxDisplayCount = 5; // Máximo número de Pokémon a mostrar directamente
+
+    let list = selectedBorrado.map((pokemon, index) => {
+        coins += GetPrice(pokemon);
+        let tag = "";
+
+        if (pokemon.shiny === 'shiny' || pokemon?.rarespecies == true || pokemon.megaevolution == true) {
+            warning = <>¡CUIDADO! Hay Pokémon especiales en la selección.</>;
+            if (pokemon.rarespecies == true) {
+                tag = "rareSpeciesFound";
+            } else if (pokemon.megaevolution == true) {
+                tag = "megaFound";
+            } else {
+                tag = "shinyFound";
+            }
+        }
+
+        let name = pokemon.nametag;
+        console.log(name + " " + pokemon.nametag);
+        return <p key={index} className={"pokemonNameLiberar " + tag}>{name}</p>;
+    });
+
+    // Filtrar los primeros 5 Pokémon para mostrar y contar el resto
+    let displayedList = list.slice(0, maxDisplayCount);
+    let remainingCount = list.length - maxDisplayCount;
+
+    const Lista = (
+        <div>
+            {displayedList}
+            {remainingCount > 0 && <p className="pokemonNameLiberar">...Y {remainingCount} Pokémon más</p>}
+        </div>
+    );
 
     return (
         <>
@@ -65,15 +137,82 @@ function Almacen({UserData, setUserData}) {
                     {borradoMultiple ? (
                         <>
                             <Button onClick={toggleBorradoMultiple}>Cancelar</Button>
-                            <Button onClick={liberarMultiple}>Confirmar</Button>
+                            <Button onClick={handleOpen}>Confirmar</Button>
                         </>
                     ) : (
                         <Button onClick={toggleBorradoMultiple}>Liberar</Button>
                     )}
+                    <Modal
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                    >
+                        <Box sx={style}>
+                            <Typography id="modal-modal-title" variant="h6" component="h2">
+                                ¿Quieres liberar a los Pokémon seleccionados?
+                            </Typography>
+                            <Typography id="modal-modal-description" variant="h6" component="h2">
+                                Estás a punto de liberar {selectedBorrado.length} Pokémon. Entre ellos se encuentran... 
+                            </Typography>
+                            <div className="containerModal">
+                                {Lista}
+                            </div>
+                            <br/>
+                            <div className="containerModal warningMessage">
+                                {warning}
+                            </div>
+
+                            <div className="containerModal moneyCount">
+                                <img className="coin" src={CoinImage} alt="coin" /> {"+" + coins}
+                            </div>
+                            <div className="containerModal">
+                                <Button
+                                    className="cerrarButton"
+                                    onClick={handleClose}
+                                    style={{
+                                        backgroundColor: "#fb6c6c" /* color de fondo */,
+                                        color: "white" /* color del texto */,
+                                        padding: "14px 20px" /* padding */,
+                                        border: "0.2vw solid #9f4949" /* sin borde */,
+                                        borderRadius: "1vw" /* bordes redondeados */,
+                                        cursor: "pointer" /* cursor de mano al pasar por encima */,
+                                        fontSize: "calc(0.5vw + 0.9vh)" /* tamaño de la fuente */,
+                                        width: "8vw",
+                                        pointerEvents: "all",
+                                        fontFamily: "vanilla-regular",
+                                    }}
+                                >
+                                    Cancelar
+                                </Button>
+                                <Link to="/almacen">
+                                    <Button
+                                        className="confirmarButton"
+                                        onClick={liberarMultiple}
+                                        style={{
+                                            backgroundColor: "#00DF09" /* color de fondo */,
+                                            color: "#ffffff" /* color del texto */,
+                                            padding: "14px 20px" /* padding */,
+                                            border: "0.2vw solid #89ff8e" /* sin borde */,
+                                            borderRadius: "1vw" /* bordes redondeados */,
+                                            cursor: "pointer" /* cursor de mano al pasar por encima */,
+                                            fontSize: "calc(0.5vw + 0.9vh)" /* tamaño de la fuente */,
+                                            width: "8vw",
+                                            marginLeft: "1.5vw",
+                                            pointerEvents: "all",
+                                            fontFamily: "vanilla-regular",
+                                        }}
+                                    >
+                                        Liberar
+                                    </Button>
+                                </Link>
+                            </div>
+                        </Box>
+                    </Modal>
                 </div>
             </div>
         </>
-    )
+    );
 }
 
 function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, setSelectedFrequency, selectedType, setSelectedType, Name, setName} ) {

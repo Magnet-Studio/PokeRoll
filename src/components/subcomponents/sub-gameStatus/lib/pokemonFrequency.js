@@ -781,7 +781,9 @@ const pokemonFrequencies = [
         {"name": "Arcanine", "dexNum": 59},
         {"name": "Ivysaur", "dexNum": 2},
         {"name": "Charmeleon", "dexNum": 5},
-        {"name": "Wartortle", "dexNum": 8}
+        {"name": "Wartortle", "dexNum": 8},
+        
+        {"name": "Ursaring", "dexNum": 217}
     ],
     /* Tier 4 */ [
 
@@ -797,7 +799,6 @@ const pokemonFrequencies = [
         {"name": "Clodsire", "dexNum": 980},
         {"name": "Farigiraf", "dexNum": 981},
         {"name": "Dudunsparce", "dexNum": 982},
-        {"name": "Gholdengo", "dexNum": 984},
         {"name": "Hydrapple", "dexNum": 1019},
         {"name": "Coalossal", "dexNum": 839},
         {"name": "Toxtricity", "dexNum": 849},
@@ -878,7 +879,6 @@ const pokemonFrequencies = [
         {"name": "Steelix", "dexNum": 208},
         {"name": "Scizor", "dexNum": 212},
         {"name": "Heracross", "dexNum": 214},
-        {"name": "Ursaring", "dexNum": 217},
         {"name": "Skarmory", "dexNum": 227},
         {"name": "Kingdra", "dexNum": 230},
         {"name": "Blissey", "dexNum": 242},

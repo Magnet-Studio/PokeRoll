@@ -168,166 +168,172 @@ function RuletaBox({ setThreePokemon, pokemonImage, tirarButtonDisable, TierRule
 
 
 function ModalConfirmar({ setThreePokemon, pokemonData, setOpen, open, UserData, HalfCost, pokemonImage, setEnabled, setTirarButtonDisable, setChangeTierButtonDisable, setUserData }) {
-  const HandleClose = (event) => {
-      event.stopPropagation();
-      setOpen(false);
-      setEnabled("enabled");
-  };
+    useEffect(() => {
+        if (open) {
+            document.body.classList.add('modal-open');
+        } else {
+            document.body.classList.remove('modal-open');
+        }
+    }, [open]);
 
-  const HandleReclamar = (event) => {
-      event.stopPropagation();
-      Reclamar(pokemonData, UserData, setThreePokemon, setUserData, HalfCost);
-      setChangeTierButtonDisable("");
-      setTirarButtonDisable("");
-      setEnabled("enabled");
-      setOpen(false);
-  }
+    const HandleClose = (event) => {
+        event.stopPropagation();
+        setOpen(false);
+        setEnabled("enabled");
+    };
 
-  const style = {
-      position: "absolute",
-      top: "50%",
-      left: "50%",
-      transform: "translate(-50%, -50%)",
-      width: "40vw",
-      bgcolor: "white",
-      boxShadow: 24,
-      p: 4,
-      borderRadius: "2vw",
-  };
+    const HandleReclamar = (event) => {
+        event.stopPropagation();
+        Reclamar(pokemonData, UserData, setThreePokemon, setUserData, HalfCost);
+        setChangeTierButtonDisable("");
+        setTirarButtonDisable("");
+        setEnabled("enabled");
+        setOpen(false);
+    };
 
-  let firstTypeContainer = (<div className={"pokemonType " + pokemonData.type1}>{GetPrettyTypeNameSpanish(pokemonData.type1)}</div>);
-  let secondTypeContainer = (<></>);
-  if (pokemonData.type2 !== null) {
-      secondTypeContainer = (<div className={"pokemonType " + pokemonData.type2}>{GetPrettyTypeNameSpanish(pokemonData.type2)}</div>);
-  }
+    const style = {
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        width: "40vw",
+        bgcolor: "white",
+        boxShadow: 24,
+        p: 4,
+        borderRadius: "2vw",
+    };
 
-  const nombresRarezas = ['Común', 'Infrecuente', 'Peculiar', 'Épico', 'Legendario', 'Singular'];
-  const frequency = GetFrequencyByName(pokemonData.speciesname);
-  const nombreRareza = nombresRarezas[frequency - 1];
+    let firstTypeContainer = (<div className={"pokemonType " + pokemonData.type1}>{GetPrettyTypeNameSpanish(pokemonData.type1)}</div>);
+    let secondTypeContainer = (<></>);
+    if (pokemonData.type2 !== null) {
+        secondTypeContainer = (<div className={"pokemonType " + pokemonData.type2}>{GetPrettyTypeNameSpanish(pokemonData.type2)}</div>);
+    }
 
-  let shinyIndication = (<></>);
-  let megaIndication = (<></>);
-  let rareIndication = (<></>);
-  if (pokemonData.shiny === "shiny") {
-      const shinyMsg = (<span>¡Felicidades! ¡Has conseguido un Pokémon Variocolor!<br /> Obtendrás una bonificación de 5000 puntos en el cálculo final <br /> de Rareza por ello</span>);
-      shinyIndication = (<MouseOverPopover content={<AutoAwesomeIcon className="shinyIcon" />} shown={shinyMsg} />);
-  }
+    const nombresRarezas = ['Común', 'Infrecuente', 'Peculiar', 'Épico', 'Legendario', 'Singular'];
+    const frequency = GetFrequencyByName(pokemonData.speciesname);
+    const nombreRareza = nombresRarezas[frequency - 1];
 
-  let megaWord = "una Megaevolución";
-  if (pokemonData.name === 382 || pokemonData.name === 383) {
-      megaWord = "una Regresión Primigenia"
-  } else if (pokemonData.name === 800) {
-      megaWord = "a Ultra Necrozma"
-  }
+    let shinyIndication = (<></>);
+    let megaIndication = (<></>);
+    let rareIndication = (<></>);
+    if (pokemonData.shiny === "shiny") {
+        const shinyMsg = (<span>¡Felicidades! ¡Has conseguido un Pokémon Variocolor!<br /> Obtendrás una bonificación de 5000 puntos en el cálculo final <br /> de Rareza por ello</span>);
+        shinyIndication = (<MouseOverPopover content={<AutoAwesomeIcon className="shinyIcon" />} shown={shinyMsg} />);
+    }
 
-  if (pokemonData?.megaevolution !== undefined) {
-      if (pokemonData.megaevolution === true) {
-          const megaMsg = (<span>¡Felicidades! ¡Has conseguido {megaWord}!<br /> Obtendrás una bonificación de 1500 puntos en el cálculo final <br /> de Rareza por ello</span>);
-          megaIndication = (<MouseOverPopover content={<SpaIcon className="megaIcon" />} shown={megaMsg} />);
-      }
-  }
+    let megaWord = "una Megaevolución";
+    if (pokemonData.name === 382 || pokemonData.name === 383) {
+        megaWord = "una Regresión Primigenia"
+    } else if (pokemonData.name === 800) {
+        megaWord = "a Ultra Necrozma"
+    }
 
-  if (pokemonData?.rarespecies !== undefined) {
-      if (pokemonData.rarespecies === true) {
-          const rareMsg = (<span>¡Felicidades! ¡Has conseguido una especie rara!<br /> Obtendrás una bonificación de 1000 puntos en el cálculo final <br /> de Rareza por ello</span>);
-          rareIndication = (<MouseOverPopover content={<MilitaryTechIcon className="rareIcon" />} shown={rareMsg} />);
-      }
-  }
+    if (pokemonData?.megaevolution !== undefined) {
+        if (pokemonData.megaevolution === true) {
+            const megaMsg = (<span>¡Felicidades! ¡Has conseguido {megaWord}!<br /> Obtendrás una bonificación de 1500 puntos en el cálculo final <br /> de Rareza por ello</span>);
+            megaIndication = (<MouseOverPopover content={<SpaIcon className="megaIcon" />} shown={megaMsg} />);
+        }
+    }
 
-  let unregisterMessage = <></>;
-  if (UserData?.registers !== undefined) {
-      if (!UserData.registers.includes(pokemonData.name)) {
-          unregisterMessage = <p className='unregisterMessage'>¡No registrado!</p>;
-      } else {
-          unregisterMessage = <p className='registerMessage'>¡Ya registrado!</p>;
-      }
-  }
+    if (pokemonData?.rarespecies !== undefined) {
+        if (pokemonData.rarespecies === true) {
+            const rareMsg = (<span>¡Felicidades! ¡Has conseguido una especie rara!<br /> Obtendrás una bonificación de 1000 puntos en el cálculo final <br /> de Rareza por ello</span>);
+            rareIndication = (<MouseOverPopover content={<MilitaryTechIcon className="rareIcon" />} shown={rareMsg} />);
+        }
+    }
 
+    let unregisterMessage = <></>;
+    if (UserData?.registers !== undefined) {
+        if (!UserData.registers.includes(pokemonData.name)) {
+            unregisterMessage = <p className='unregisterMessage'>¡No registrado!</p>;
+        } else {
+            unregisterMessage = <p className='registerMessage'>¡Ya registrado!</p>;
+        }
+    }
 
-  return (
-      <>
-          <Modal
-              open={open}
-              onClose={HandleClose}
-              aria-labelledby="modal-modal-title"
-              aria-describedby="modal-modal-description"
-              id='reclamarButtonContainer'
-          >
-              <Box sx={style}>
-                  <Typography id="modal-modal-title" variant="h6" component="h2">
-                      ¿Quieres reclamar este Pokémon?
-                  </Typography>
+    return (
+        <>
+            <Modal
+                open={open}
+                onClose={HandleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+                id='reclamarButtonContainer'
+            >
+                <Box sx={style}>
+                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                        ¿Quieres reclamar este Pokémon?
+                    </Typography>
 
-                  <Typography id="modal-modal-description" variant="h6" component="h2" style={{ fontFamily: "vanilla-regular", margin: "0", textAlign: "center" }}>
-                      El Pokémon elegido será guardado en tu Almacén. ¡Recibirás además la mitad de las monedas que gastaste en la tirada!
-                  </Typography>
+                    <Typography id="modal-modal-description" variant="h6" component="h2" style={{ fontFamily: "vanilla-regular", margin: "0", textAlign: "center" }}>
+                        El Pokémon elegido será guardado en tu Almacén. ¡Recibirás además la mitad de las monedas que gastaste en la tirada!
+                    </Typography>
 
-                  <div className="containerModal">
-                      {pokemonImage}
-                      <div>
-                          <div className='inlineContainer' style={{ color: "black" }}>
-                              <p className='nombrePokemonReclamar'>{pokemonData.speciesname}</p>
-                              {shinyIndication}
-                              {megaIndication}
-                              {rareIndication}
-                          </div>
-                          <div id="tiposPokemon">
-                              {firstTypeContainer}
-                              {secondTypeContainer}
-                          </div>
-                          <p className="rareza" style={{ color: 'black' }}>Rareza: <span className={"rareza" + frequency}>{(nombreRareza === undefined ? "Cargando..." : nombreRareza + " ")}</span></p>
-                      </div>
-                  </div>
-                  {unregisterMessage}
-                  <div className="containerModal moneyCount">
-                      <img className="coin" src={CoinImage} alt="coin" /> {"+" + HalfCost}
-                  </div>
+                    <div className="containerModal">
+                        {pokemonImage}
+                        <div>
+                            <div className='inlineContainer' style={{ color: "black" }}>
+                                <p className='nombrePokemonReclamar'>{pokemonData.speciesname}</p>
+                                {shinyIndication}
+                                {megaIndication}
+                                {rareIndication}
+                            </div>
+                            <div id="tiposPokemon">
+                                {firstTypeContainer}
+                                {secondTypeContainer}
+                            </div>
+                            <p className="rareza" style={{ color: 'black' }}>Rareza: <span className={"rareza" + frequency}>{(nombreRareza === undefined ? "Cargando..." : nombreRareza + " ")}</span></p>
+                        </div>
+                    </div>
+                    {unregisterMessage}
+                    <div className="containerModal moneyCount">
+                        <img className="coin" src={CoinImage} alt="coin" /> {"+" + HalfCost}
+                    </div>
 
-                  <div className="containerModal">
-                      <Button
-                          className="cerrarButton"
-                          onClick={HandleClose}
-                          style={{
-                              backgroundColor: "#fb6c6c" /* color de fondo */,
-                              color: "white" /* color del texto */,
-                              padding: "14px 20px" /* padding */,
-                              border: "0.2vw solid #9f4949" /* sin borde */,
-                              borderRadius: "1vw" /* bordes redondeados */,
-                              cursor: "pointer" /* cursor de mano al pasar por encima */,
-                              fontSize: "calc(0.3vw + 0.9vh)" /* tamaño de la fuente */,
-                              width: "8vw",
-                              pointerEvents: "all",
-                              fontFamily: "vanilla-regular",
-                          }}
-                      >
-                          Cancelar
-                      </Button>
+                    <div className="containerModal">
+                        <Button
+                            className="cerrarButton"
+                            onClick={HandleClose}
+                            style={{
+                                backgroundColor: "#fb6c6c" /* color de fondo */,
+                                color: "white" /* color del texto */,
+                                padding: "14px 20px" /* padding */,
+                                border: "0.2vw solid #9f4949" /* sin borde */,
+                                borderRadius: "1vw" /* bordes redondeados */,
+                                cursor: "pointer" /* cursor de mano al pasar por encima */,
+                                fontSize: "calc(0.3vw + 0.9vh)" /* tamaño de la fuente */,
+                                width: "8vw",
+                                pointerEvents: "all",
+                                fontFamily: "vanilla-regular",
+                            }}
+                        >
+                            Cancelar
+                        </Button>
 
-                      <Button
-                          className="confirmarButton"
-                          onClick={HandleReclamar}
-                          style={{
-                              backgroundColor: "#00DF09" /* color de fondo */,
-                              color: "#ffffff" /* color del texto */,
-                              padding: "14px 20px" /* padding */,
-                              border: "0.2vw solid #89ff8e" /* sin borde */,
-                              borderRadius: "1vw" /* bordes redondeados */,
-                              cursor: "pointer" /* cursor de mano al pasar por encima */,
-                              fontSize: "calc(0.3vw + 0.9vh)" /* tamaño de la fuente */,
-                              width: "8vw",
-                              marginLeft: "1.5vw",
-                              pointerEvents: "all",
-                              fontFamily: "vanilla-regular",
-                          }}
-                      >
-                          Reclamar
-                      </Button>
-
-                  </div>
-              </Box>
-          </Modal>
-      </>
-  );
+                        <Button
+                            className="confirmarButton"
+                            onClick={HandleReclamar}
+                            style={{
+                                backgroundColor: "#00DF09" /* color de fondo */,
+                                color: "#ffffff" /* color del texto */,
+                                padding: "14px 20px" /* padding */,
+                                border: "0.2vw solid #89ff8e" /* sin borde */,
+                                borderRadius: "1vw" /* bordes redondeados */,
+                                cursor: "pointer" /* cursor de mano al pasar por encima */,
+                                fontSize: "calc(0.3vw + 0.9vh)" /* tamaño de la fuente */,
+                                width: "8vw",
+                                marginLeft: "1.5vw",
+                                pointerEvents: "all",
+                                fontFamily: "vanilla-regular",
+                            }}
+                        >
+                            Reclamar
+                        </Button>
+                    </div>
+                </Box>
+            </Modal>
+        </>
+    );
 }
 
 /**

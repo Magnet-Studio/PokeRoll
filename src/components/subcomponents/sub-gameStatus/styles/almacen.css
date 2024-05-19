@@ -119,6 +119,40 @@ option
     pointer-events: all;
 }
 
+.warningMessage {
+    color: rgb(162, 0, 0);
+}
+
+.pokemonNameLiberar {
+    color: black;
+    margin: 0;
+}
+
+.rareSpeciesFound {
+    color: rgb(170, 164, 255);
+}
+
+.megaFound {
+    color: rgb(255, 111, 159);
+}
+
+.shinyFound {
+    color: rgb(225, 227, 104);
+}
+
+.modal-open {
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.modal-open * {
+    pointer-events: none;
+}
+
+.modal-open .MuiModal-root {
+    pointer-events: all;
+}
+
 @media screen and (max-width: 900px)
 {
     #pokemon-cards-container

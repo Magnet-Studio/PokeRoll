@@ -134,6 +134,19 @@ button .cerrarButton {
     color: black;
 }
 
+.modal-open {
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.modal-open * {
+    pointer-events: none;
+}
+
+.modal-open .MuiModal-root {
+    pointer-events: all;
+}
+
 @media screen and (max-width: 900px) {
     .RarezaText {
         font-size: 2vw;
