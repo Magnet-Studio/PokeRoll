@@ -322,13 +322,18 @@ function CompletePokemonList({selectedBorrado, setSelectedBorrado, borradoMultip
                 let rarezaA = GetRarezaPoints(a.iv, a.shiny, parseInt(a.frequency), (a?.megaevolution !== undefined ? a.megaevolution : false), (a?.rarespecies !== undefined ? a.rarespecies : false));
                 let rarezaB = GetRarezaPoints(b.iv, b.shiny, parseInt(b.frequency), (b?.megaevolution !== undefined ? b.megaevolution : false), (b?.rarespecies !== undefined ? b.rarespecies : false));
                 
-                return (rarezaA - rarezaB);
+                return (rarezaB - rarezaA);
             });
-            sortedList.sort((a,b) => -1);
             break;
         case '2':
             sortedList.sort((a,b) => {
-                return parseInt(a.name) - parseInt(b.name);
+                let rarezaA = GetRarezaPoints(a.iv, a.shiny, parseInt(a.frequency), (a?.megaevolution !== undefined ? a.megaevolution : false), (a?.rarespecies !== undefined ? a.rarespecies : false));
+                let rarezaB = GetRarezaPoints(b.iv, b.shiny, parseInt(b.frequency), (b?.megaevolution !== undefined ? b.megaevolution : false), (b?.rarespecies !== undefined ? b.rarespecies : false));
+                if (a.name === b.name) {
+                    return (rarezaB - rarezaA);
+                } else {
+                    return parseInt(a.name) - parseInt(b.name);
+                }
             })
             break;
         case '3':
@@ -338,12 +343,15 @@ function CompletePokemonList({selectedBorrado, setSelectedBorrado, borradoMultip
             break;
         case '4':
             sortedList.sort((a, b) => {
+                let rarezaA = GetRarezaPoints(a.iv, a.shiny, parseInt(a.frequency), (a?.megaevolution !== undefined ? a.megaevolution : false), (a?.rarespecies !== undefined ? a.rarespecies : false));
+                let rarezaB = GetRarezaPoints(b.iv, b.shiny, parseInt(b.frequency), (b?.megaevolution !== undefined ? b.megaevolution : false), (b?.rarespecies !== undefined ? b.rarespecies : false));
+                
                 if (a.shiny === "shiny" && b.shiny !== "shiny") {
                     return -1; // a viene antes que b
                 } else if (a.shiny !== "shiny" && b.shiny === "shiny") {
                     return 1; // b viene antes que a
                 } else {
-                    return 0; // mantiene el orden actual
+                    return (rarezaB - rarezaA); // ordena por rareza
                 }
             })
             break;
@@ -355,13 +363,16 @@ function CompletePokemonList({selectedBorrado, setSelectedBorrado, borradoMultip
             break;
         case '7':
             sortedList.sort((a, b) => {
+                let rarezaA = GetRarezaPoints(a.iv, a.shiny, parseInt(a.frequency), (a?.megaevolution !== undefined ? a.megaevolution : false), (a?.rarespecies !== undefined ? a.rarespecies : false));
+                let rarezaB = GetRarezaPoints(b.iv, b.shiny, parseInt(b.frequency), (b?.megaevolution !== undefined ? b.megaevolution : false), (b?.rarespecies !== undefined ? b.rarespecies : false));
+                
                 if (a?.megaevolution !== undefined && b?.megaevolution !== undefined) {
                     if (a.megaevolution === true && b.megaevolution === false) {
                         return -1
                     } else if (b.megaevolution === true && a.megaevolution === false) {
                         return 1;
                     } else {
-                        return 0;
+                        return (rarezaB - rarezaA);
                     }
                 }
                 else if (a?.megaevolution !== undefined && b?.megaevolution === undefined) {
@@ -369,19 +380,23 @@ function CompletePokemonList({selectedBorrado, setSelectedBorrado, borradoMultip
                 } else if (a?.megaevolution === undefined && b?.megaevolution !== undefined) {
                     return 1
                 } else {
-                    return 0;
+                    return (rarezaB - rarezaA);
                 }
             })
             break;
         case '8':
             sortedList.sort((a, b) => {
+                
+                let rarezaA = GetRarezaPoints(a.iv, a.shiny, parseInt(a.frequency), (a?.megaevolution !== undefined ? a.megaevolution : false), (a?.rarespecies !== undefined ? a.rarespecies : false));
+                let rarezaB = GetRarezaPoints(b.iv, b.shiny, parseInt(b.frequency), (b?.megaevolution !== undefined ? b.megaevolution : false), (b?.rarespecies !== undefined ? b.rarespecies : false));
+                
                 if (a?.rarespecies !== undefined && b?.rarespecies !== undefined) {
                     if (a.rarespecies === true && b.rarespecies === false) {
                         return -1
                     } else if (b.rarespecies === true && a.rarespecies === false) {
                         return 1;
                     } else {
-                        return 0;
+                        return  (rarezaB - rarezaA);
                     }
                 }
                 else if (a?.rarespecies !== undefined && b?.rarespecies === undefined) {
@@ -389,7 +404,7 @@ function CompletePokemonList({selectedBorrado, setSelectedBorrado, borradoMultip
                 } else if (a?.rarespecies === undefined && b?.rarespecies !== undefined) {
                     return 1
                 } else {
-                    return 0;
+                    return  (rarezaB - rarezaA);
                 }
             })
             break;
