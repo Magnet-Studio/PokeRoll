@@ -7,6 +7,7 @@ import {GetDataByDexNum, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish, 
 import CircularProgress from '@mui/material/CircularProgress';
 import { MouseOverPopover } from './mouseOverPopOver';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import { GetFrequencyByDexNum } from './lib/pokemonFrequency';
 
 /**
  * Función principal que se exporta.
@@ -140,7 +141,7 @@ function PokemonEntry(props)
 
     let knownCond= '';
 
-    let pokemon, firstType = ''; 
+    let pokemon, firstType, rarityNum = '0'; 
     if(props.known === 'known')
     {
         const name = GetSpanishName(pokemonSpeciesData);
@@ -170,6 +171,8 @@ function PokemonEntry(props)
     else 
     {
         // Caso de pokémon desconocido
+        rarityNum = GetFrequencyByDexNum(props.num);
+
         pokemon = <div className='unknownMessageContainer'>
                     <MouseOverPopover content={<p className="unknownMessage">???</p>} 
                         shown={
@@ -188,7 +191,7 @@ function PokemonEntry(props)
         pokemon;
 
     return (
-        <div className={"entryBox " + knownCond} key={"pokemon-" + props.num}>
+        <div className={"entryBox " + knownCond + " rarity" + (rarityNum)} key={"pokemon-" + props.num}>
             <p className="dexNumber">Nº {props.num}</p>
             {content}
         </div>
