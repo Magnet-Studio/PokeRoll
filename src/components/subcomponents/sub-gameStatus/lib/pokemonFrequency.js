@@ -125,6 +125,9 @@ const pokemonFrequencies = [
         {"name": "Smoliv", "dexNum": 928}
     ],
     /* Tier 2 */ [
+        {"name": "Cubchoo", "dexNum": 613},
+        
+        {"name": "Shelmet", "dexNum": 616},
         {"name": "Oinkologne", "dexNum": 916},
         {"name": "Spidops", "dexNum": 918},
         {"name": "Pawmo", "dexNum": 922},
@@ -347,7 +350,7 @@ const pokemonFrequencies = [
         {"name": "Chansey", "dexNum": 113},
         {"name": "Porygon", "dexNum": 137},
         {"name": "Pikachu", "dexNum": 25},
-        {"name": "Clefairy", "dexNum": 33},
+        {"name": "Clefairy", "dexNum": 35},
         {"name": "Vulpix", "dexNum": 37},
         {"name": "Jigglypuff", "dexNum": 39},
         {"name": "Oddish", "dexNum": 43},
