@@ -3,6 +3,7 @@
 
 > [!IMPORTANT]
 > This project is in development, we are currently working on it.
+
 > Actual version: 0.2.0
 
 ## 📜 Magnet Studio is formed by... 📜
