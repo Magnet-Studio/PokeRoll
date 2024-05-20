@@ -968,7 +968,7 @@ const PokemonVariants = [
         variants: [
            { rarespecies: [
                 { name: "pikachu" },
-                { name: "pikachu-world-cup", rare: true },
+                { name: "pikachu-world-cap", rare: true },
             ]}
         ]
     },
