@@ -1412,20 +1412,25 @@ export const getPokemonVariants = (dexnum) => {
     return null;
 }
 
-export const getRandomVariant = (variants) => {
+const MEGA_CHANCE = 3;
+const RARE_CHANCE = 10;
+
+export const getRandomVariant = (variants, UserData) => {
+    const MEGA_BONUS = UserData?.megacharm === "true" ? 3 : 0;
+    const RARE_BONUS = UserData?.rarecharm === "true" ? 10 : 0;
     const variant = variants[Math.floor(Math.random() * variants.length)];
     if (variant?.megaevolution === undefined && variant?.rarespecies === undefined) {
         return variant;
     } else if (variant?.megaevolution !== undefined) {
         const randomVal = Math.floor(Math.random() * 100);
-        if (randomVal < 97) {
+        if (randomVal < 100 - MEGA_CHANCE - MEGA_BONUS) {
             return variant.megaevolution[0];
         } else {
             return variant.megaevolution[Math.floor(Math.random() * (variant.megaevolution.length - 1)) + 1];
         }
     } else {
         const randomVal = Math.floor(Math.random() * 100);
-        if (randomVal < 90) {
+        if (randomVal < 100 - RARE_CHANCE - RARE_BONUS) {
             return variant.rarespecies[Math.floor(Math.random() * (variant.rarespecies.length - 1))];
         } else {
             return variant.rarespecies[variant.rarespecies.length - 1];

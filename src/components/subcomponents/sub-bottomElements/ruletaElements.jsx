@@ -23,7 +23,7 @@ export function TirarButton({cost, TierRuleta, setUserData, tirarButtonDisable, 
             setTirarButtonDisable("disabled");
             setChangeTierButtonDisable("disabled");
 
-            setThreePokemon(GetThreeRandomPokemon(TierRuleta - 1));
+            setThreePokemon(GetThreeRandomPokemon(TierRuleta - 1, UserData));
         }
     }
 

@@ -5,7 +5,7 @@ import { getPokemonVariants, getRandomVariant } from "./pokemonVariants";
  * Devuelve un array de tres pokemon (object con dexNum y shiny)
  * @param TierRuleta El tier de la tirada hecha (número entre 1 y 5)
  */
-export const GetThreeRandomPokemon = (TierRuleta) =>
+export const GetThreeRandomPokemon = (TierRuleta, UserData) =>
 {
     let winners = [];
 
@@ -52,11 +52,11 @@ export const GetThreeRandomPokemon = (TierRuleta) =>
         pokemon.name = array.dexNum;
         
         // Cálculo del shiny
-        const shiny = GetShinyValue();
+        const shiny = GetShinyValue(UserData);
         pokemon.shiny = shiny;
 
         // Obtenemos una variante (Y vemos si es una mega o especie rara)
-        const variants = getPokemonVariants(pokemon.name);
+        const variants = getPokemonVariants(pokemon.name, UserData);
         if (variants !== null) {
             pokemon.variant = getRandomVariant(variants);
             if (pokemon.variant?.mega !== undefined) {
@@ -90,9 +90,10 @@ const SHINY_PROBABILITY = 512;
 /**
  * Elije aleatoriamente si es shiny o normal
  */
-const GetShinyValue = () => 
+const GetShinyValue = (UserData) => 
 {
-    const num = Math.floor(Math.random() * SHINY_PROBABILITY);
+    const SHINY_BONUS = (UserData.shinycharm === "true" ? 2 : 1);
+    const num = Math.floor(Math.random() * (SHINY_PROBABILITY / SHINY_BONUS));
 
     if(num === 33)
     {

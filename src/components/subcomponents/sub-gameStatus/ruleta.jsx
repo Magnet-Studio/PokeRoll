@@ -23,6 +23,7 @@ function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, 
     const notPokemon = [(pokeballImage), (pokeballImage), (pokeballImage)];
     const [threePokemonImages, setThreePokemonImages] = useState(notPokemon);
     
+
     useEffect(() => 
     {
         const fetchDataAndUpdateState = async () => 
@@ -364,14 +365,44 @@ function Reclamar(pokemonData, UserData, setThreePokemon, setUserData, HalfCost,
     // Añadimos fecha, username e id
     AddLastExtraDetails(pokemonData, UserData); 
 
-    // Añade el pokémon al data y el dinero 
-    setUserData(prevUserData => {
-        const updatedUserData = { ...prevUserData };
-        updatedUserData.currency += HalfCost;
-        updatedUserData.pokemonList = [...updatedUserData.pokemonList, JSON.stringify(pokemonData)];
-        if(!updatedUserData.registers.includes(pokemonData.name)) updatedUserData.registers = [...updatedUserData.registers, pokemonData.name];
-        return updatedUserData;
-    });
+  // Añadimos fecha, username e id
+  AddLastExtraDetails(pokemonData, UserData); 
+
+  // Añade el pokémon al data y el dinero 
+  setUserData(prevUserData => {
+    const updatedUserData = { ...prevUserData };
+    updatedUserData.currency += HalfCost;
+    updatedUserData.pokemonList = [...updatedUserData.pokemonList, JSON.stringify(pokemonData)];
+    if(!updatedUserData.registers.includes(pokemonData.name)) updatedUserData.registers = [...updatedUserData.registers, pokemonData.name];
+    
+    if (pokemonData.shiny === "shiny") {
+        if (updatedUserData?.shinycount === undefined) {
+            updatedUserData.shinycount = 1;
+        } else {
+            updatedUserData.shinycount = parseInt(updatedUserData.shinycount) + 1;
+        }
+    }
+
+    if (pokemonData?.megaevolution === true) {
+        if (updatedUserData?.megacount === undefined) {
+            updatedUserData.megacount = 1;
+        } else {
+            updatedUserData.megacount = parseInt(updatedUserData.megacount) + 1;
+        }
+    }
+
+    if (pokemonData?.rarespecies === true) {
+        if (updatedUserData?.rarecount === undefined) {
+            updatedUserData.rarecount = 1;
+        } else {
+            updatedUserData.rarecount = parseInt(updatedUserData.rarecount) + 1;
+        }
+    } 
+
+    
+
+    return updatedUserData;
+  });
 } 
 
 

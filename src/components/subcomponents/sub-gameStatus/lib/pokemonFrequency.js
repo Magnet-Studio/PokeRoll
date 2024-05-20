@@ -315,7 +315,6 @@ const pokemonFrequencies = [
         {"name": "Bellossom", "dexNum": 182},
         {"name": "Marill", "dexNum": 183},
         {"name": "Sudowoodo", "dexNum": 185},
-        {"name": "Politoed", "dexNum": 186},
         {"name": "Skiploom", "dexNum": 188},
         {"name": "Aipom", "dexNum": 190},
         {"name": "Sunflora", "dexNum": 192},
@@ -432,6 +431,7 @@ const pokemonFrequencies = [
     ],
     /* Tier 3 */ [
         
+        {"name": "Politoed", "dexNum": 186},
         {"name": "Pyukumuku", "dexNum": 771},
         {"name": "Kangaskhan", "dexNum": 115},
         {"name": "Lokix", "dexNum": 920},

@@ -47,7 +47,6 @@ const style = {
 
     /*
     useEffect(() => {
-        console.log(selectedBorrado);
     }, [selectedBorrado]);
     */
    
