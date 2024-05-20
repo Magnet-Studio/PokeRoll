@@ -64,6 +64,9 @@ function VerPokemonAlmacen({UserData, setUserData})
     } else if (pokemon.name === 800) {
       megaWord = "a Ultra Necrozma"
     }
+    const shinyEffect = (pokemon.shiny === "shiny") ? "shinyEffect" : "";
+    const megaEffect = (pokemon?.megaevolution === true) ? "megaEffect" : "";
+    const rareEffect = (pokemon?.rarespecies === true) ? "rareEffect" : ""
     
     const rarezas = rarezaExtraPoints;
     const nombrePKM = pokemon.nametag === null ? name : pokemon.nametag;
@@ -119,7 +122,7 @@ function VerPokemonAlmacen({UserData, setUserData})
                 </div>
                 {pokemon?.variant === undefined ? GetImage(pokemonData, (pokemon.shiny === "shiny")) : GetVariantImage(pokemon.variant.name, (pokemon.shiny === "shiny"))}
                 <div className="inlineContainer">
-                    <p>{nombrePKM}</p>
+                    <p className={rareEffect + " " + megaEffect + " " + shinyEffect}>{nombrePKM}</p>
                     {shinyCond}
                     {megaCond}
                     {rareCond}
