@@ -432,6 +432,7 @@ const pokemonFrequencies = [
     ],
     /* Tier 3 */ [
         
+        {"name": "Pyukumuku", "dexNum": 771},
         {"name": "Kangaskhan", "dexNum": 115},
         {"name": "Lokix", "dexNum": 920},
         {"name": "Pawmot", "dexNum": 923},
