@@ -159,6 +159,19 @@
                 changeFontSize-Reverse 0.5s ease-in-out forwards alternate;;
 }
 
+.modal-open {
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.modal-open * {
+    pointer-events: none;
+}
+
+.modal-open .MuiModal-root {
+    pointer-events: all;
+}
+
 
 /* Animación del title invertida */
 @keyframes moveDown-Reverse {
