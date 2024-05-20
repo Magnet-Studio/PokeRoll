@@ -46,7 +46,6 @@ const style = {
     }, []);
 
     useEffect(() => {
-        console.log(selectedBorrado);
     }, [selectedBorrado]);
 
     useEffect(() => {
@@ -60,7 +59,6 @@ const style = {
     const toggleBorradoMultiple = () => {
         setBorradoMultiple(!borradoMultiple);
         setSelectedBorrado([]);
-        console.log(borradoMultiple);
     };
 
     const liberarMultiple = () => {
@@ -100,7 +98,6 @@ const style = {
         }
 
         let name = pokemon.nametag;
-        console.log(name + " " + pokemon.nametag);
         return <p key={index} className={"pokemonNameLiberar " + tag}>{name}</p>;
     });
 
