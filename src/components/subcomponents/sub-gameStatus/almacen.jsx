@@ -45,10 +45,12 @@ const style = {
         setName(sessionStorage.getItem('Name') || '');
     }, []);
 
+    /*
     useEffect(() => {
         console.log(selectedBorrado);
     }, [selectedBorrado]);
-
+    */
+   
     useEffect(() => {
         if (open) {
             document.body.classList.add('modal-open');
@@ -60,7 +62,6 @@ const style = {
     const toggleBorradoMultiple = () => {
         setBorradoMultiple(!borradoMultiple);
         setSelectedBorrado([]);
-        console.log(borradoMultiple);
     };
 
     const liberarMultiple = () => {
@@ -100,7 +101,6 @@ const style = {
         }
 
         let name = pokemon.nametag;
-        console.log(name + " " + pokemon.nametag);
         return <p key={index} className={"pokemonNameLiberar " + tag}>{name}</p>;
     });
 

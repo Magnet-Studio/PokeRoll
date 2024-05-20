@@ -16,7 +16,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
 import Confetti from 'react-confetti';
 
-const pokeballImage = (<img src={Pokeball} className="pokeballRotar" />);
+const pokeballImage = (<img src={Pokeball} className="pokeballRotar" alt="Pokéball"/>);
 
 function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, UserData, setTirarButtonDisable, setChangeTierButtonDisable, setUserData})
 {   
@@ -38,6 +38,7 @@ function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, 
                   data = await GetDataByDexNum(name);
                 }
                 images[i] = threePokemon[i]?.variant === undefined ? GetImage(data, (threePokemon[i].shiny === "shiny")) : GetVariantImage(threePokemon[i].variant.name, (threePokemon[i].shiny === "shiny"));
+                
                 // images[i] === <></>;
                 if(images[i].props.children.type !== "img")
                 {
@@ -47,7 +48,6 @@ function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, 
                 {
                   setThreePokemon(prevThreePokemon => 
                     { 
-                      //console.log(prevThreePokemon[i])
                       if (threePokemon[i]?.variant === undefined) {
                         prevThreePokemon[i].type1 = GetFirstType(data);
                         prevThreePokemon[i].type2 = GetSecondType(data);
@@ -72,7 +72,7 @@ function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, 
         
         fetchDataAndUpdateState();
         
-    
+    // eslint-disable-next-line
     }, [threePokemon]);
 
     let shouldShowConfetti = false;
@@ -96,15 +96,7 @@ function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, 
     // Eliminar duplicados usando un Set
     colors = [...new Set(colors)];
 
-    const [enabled, setEnabled] = useState("");
-
-    useEffect(() => {
-        if (tirarButtonDisable !== "disabled" || !threePokemon.every(pokemon => pokemon.name !== undefined)) {
-            setEnabled("");
-        } else {
-            setEnabled("enabled");
-        }
-    }, [tirarButtonDisable, threePokemon[0], threePokemon[1], threePokemon[2]]);
+    
   
     return (
         <>
@@ -115,9 +107,9 @@ function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, 
             </div>
         
             <div className="boxes">
-                <RuletaBox enabled={enabled} setEnabled={setEnabled} setThreePokemon={setThreePokemon} UserData={UserData} pokemonImage={threePokemonImages[0]} pokemonData={threePokemon[0]} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>
-                <RuletaBox enabled={enabled} setEnabled={setEnabled} setThreePokemon={setThreePokemon} UserData={UserData} pokemonImage={threePokemonImages[1]} pokemonData={threePokemon[1]} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>
-                <RuletaBox enabled={enabled} setEnabled={setEnabled} setThreePokemon={setThreePokemon} UserData={UserData} pokemonImage={threePokemonImages[2]} pokemonData={threePokemon[2]} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>
+                <RuletaBox  setThreePokemon={setThreePokemon} UserData={UserData} pokemonImage={threePokemonImages[0]} pokemonData={threePokemon[0]} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>
+                <RuletaBox  setThreePokemon={setThreePokemon} UserData={UserData} pokemonImage={threePokemonImages[1]} pokemonData={threePokemon[1]} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>
+                <RuletaBox  setThreePokemon={setThreePokemon} UserData={UserData} pokemonImage={threePokemonImages[2]} pokemonData={threePokemon[2]} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>
             </div>
 
             <div className='externalArrowContainer'>
@@ -131,8 +123,19 @@ function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, 
 
 const TierCosts = [100, 500, 1500, 4000, 10000];
 
-function RuletaBox({ enabled, setEnabled, setThreePokemon, pokemonImage, tirarButtonDisable, TierRuleta, pokemonData, UserData, setTirarButtonDisable, setChangeTierButtonDisable, setUserData }) {
+function RuletaBox({ setThreePokemon, pokemonImage, tirarButtonDisable, TierRuleta, pokemonData, UserData, setTirarButtonDisable, setChangeTierButtonDisable, setUserData }) {
   
+    const [enabled, setEnabled] = useState("");
+    const [loaded, setLoaded] = useState(false);
+
+    useEffect(() => {
+        if (tirarButtonDisable === "disabled" && loaded) {
+            setEnabled("enabled");
+        } else {
+            setEnabled("");
+        }
+    }, [tirarButtonDisable, loaded]);
+
     const [open, setOpen] = useState(false);
     const handleOpen = () => {
         setOpen(true);
@@ -150,6 +153,18 @@ function RuletaBox({ enabled, setEnabled, setThreePokemon, pokemonImage, tirarBu
         }
     }
 
+    useEffect(() => {
+        if(pokemonData.type1 !== undefined)
+        {
+            setLoaded(true);
+        }
+        else 
+        {
+            setLoaded(false);
+        }
+    // eslint-disable-next-line
+    }, [pokemonImage]);
+
     return (
         <div className={"ruletaBox " + enabled} onClick={handleOpen} >
             <div className='RegistradoCheck'>
@@ -165,7 +180,7 @@ function RuletaBox({ enabled, setEnabled, setThreePokemon, pokemonImage, tirarBu
             <ModalConfirmar setThreePokemon={setThreePokemon} UserData={UserData} open={open} setOpen={setOpen} HalfCost={HalfCost} pokemonImage={pokemonImage} pokemonData={pokemonData} setEnabled={setEnabled} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData} />
         </div>
     );
-    }
+}
 
 
 function ModalConfirmar({ setThreePokemon, pokemonData, setOpen, open, UserData, HalfCost, pokemonImage, setEnabled, setTirarButtonDisable, setChangeTierButtonDisable, setUserData }) {
@@ -340,24 +355,23 @@ function ModalConfirmar({ setThreePokemon, pokemonData, setOpen, open, UserData,
 /**
  * Reclama tu pokémon
  */
-function Reclamar(pokemonData, UserData, setThreePokemon, setUserData, HalfCost) 
-{
-  // Cambia las imagenes por otra vez pokeballs
-  const notPokemon = [(pokeballImage), (pokeballImage), (pokeballImage)];
+function Reclamar(pokemonData, UserData, setThreePokemon, setUserData, HalfCost, set) 
+{    
+    // Reinica los datos de los pokemon
+    const notPokemon = [{}, {}, {}];
+    setThreePokemon(notPokemon);
 
-  setThreePokemon(notPokemon);
+    // Añadimos fecha, username e id
+    AddLastExtraDetails(pokemonData, UserData); 
 
-  // Añadimos fecha, username e id
-  AddLastExtraDetails(pokemonData, UserData); 
-
-  // Añade el pokémon al data y el dinero 
-  setUserData(prevUserData => {
-    const updatedUserData = { ...prevUserData };
-    updatedUserData.currency += HalfCost;
-    updatedUserData.pokemonList = [...updatedUserData.pokemonList, JSON.stringify(pokemonData)];
-    if(!updatedUserData.registers.includes(pokemonData.name)) updatedUserData.registers = [...updatedUserData.registers, pokemonData.name];
-    return updatedUserData;
-  });
+    // Añade el pokémon al data y el dinero 
+    setUserData(prevUserData => {
+        const updatedUserData = { ...prevUserData };
+        updatedUserData.currency += HalfCost;
+        updatedUserData.pokemonList = [...updatedUserData.pokemonList, JSON.stringify(pokemonData)];
+        if(!updatedUserData.registers.includes(pokemonData.name)) updatedUserData.registers = [...updatedUserData.registers, pokemonData.name];
+        return updatedUserData;
+    });
 } 
 
 

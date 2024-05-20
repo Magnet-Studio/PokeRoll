@@ -34,16 +34,6 @@ function BottomElements({
   const location = useLocation();
   let pokemon;
 
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (UserData.name === "Iniciar sesión") 
-    {
-      navigate("/");
-    }
-    // eslint-disable-next-line
-  }, [UserData]);
-
   if (location.pathname === "/almacen/ver-pokemon") {
     const searchParams = new URLSearchParams(location.search);
     const id = searchParams.get("id");
@@ -65,15 +55,16 @@ function BottomElements({
             changeTierButtonDisable={changeTierButtonDisable}
             setChangeTierButtonDisable={setChangeTierButtonDisable}
             setThreePokemon={setThreePokemon}
+            
           />
         }
       />
 
-      <Route path="/" element={<ButtonsLoginStatus UserData={UserData} />} />
+      <Route path="/" element={<ButtonsLoginStatus UserData={UserData}  />} />
 
       <Route
         path="/almacen/"
-        element={<ButtonsAlmacenStatus UserData={UserData} />}
+        element={<ButtonsAlmacenStatus UserData={UserData}  />}
       />
 
       <Route
@@ -83,38 +74,39 @@ function BottomElements({
             data={pokemon}
             UserData={UserData}
             setUserData={setUserData}
+            
           />
         }
       />
 
       <Route
         path="/pokedex/*"
-        element={<ButtonsPokedexStatus UserData={UserData} />}
+        element={<ButtonsPokedexStatus UserData={UserData}  />}
       />
 
       <Route
         path="/marcadores/*"
-        element={<ButtonsMarcadoresStatus UserData={UserData} />}
+        element={<ButtonsMarcadoresStatus UserData={UserData}  />}
       />
 
       <Route
         path="/intercambio/tipo"
-        element={<ButtonsIntercambioStatus UserData={UserData} />}
+        element={<ButtonsIntercambioStatus UserData={UserData}  />}
       />
 
       <Route
         path="/intercambio"
-        element={<ButtonsIntercambioStatus UserData={UserData} />}
+        element={<ButtonsIntercambioStatus UserData={UserData}  />}
       />
 
       <Route
         path="/intercambio/pantallaCarga"
-        element={<ButtonsIntercambioStatus UserData={UserData} />}
+        element={<ButtonsIntercambioStatus UserData={UserData}  />}
       />
 
       <Route
         path="/intercambio/conexion"
-        element={<ButtonCancelarConexionIntercambio />}
+        element={<ButtonCancelarConexionIntercambio  UserData={UserData}  />}
       />
 
       <Route path="*" element={<></>} />
@@ -133,11 +125,18 @@ function ButtonsRuletaStatus({
   setChangeTierButtonDisable,
   setTirarButtonDisable,
   changeTierButtonDisable,
-  setThreePokemon,
+  setThreePokemon
 }) {
   const TierCost = TierCosts[TierRuleta - 1];
+  const navigate = useNavigate();
 
-  
+  useEffect(() => {
+    if (UserData.name === "Iniciar sesión") 
+    {
+      navigate("/");
+    }
+    // eslint-disable-next-line
+  }, [UserData]);
 
   return (
     <>
@@ -183,7 +182,17 @@ function ButtonsRuletaStatus({
   );
 }
 
-function ButtonsVerPokemonAlmacenStatus({ data, UserData, setUserData }) {
+function ButtonsVerPokemonAlmacenStatus({ data, UserData, setUserData }) 
+{
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (UserData.name === "Iniciar sesión") 
+    {
+      navigate("/");
+    }
+    // eslint-disable-next-line
+  }, [UserData]);
 
   return (
     <>
@@ -214,7 +223,17 @@ function ButtonsVerPokemonAlmacenStatus({ data, UserData, setUserData }) {
   );
 }
 
-function ButtonsAlmacenStatus({ UserData }) {
+function ButtonsAlmacenStatus({ UserData }) 
+{
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (UserData.name === "Iniciar sesión") 
+    {
+      navigate("/");
+    }
+    // eslint-disable-next-line
+  }, [UserData]);
 
   return (
     <>
@@ -240,8 +259,18 @@ function ButtonsAlmacenStatus({ UserData }) {
   );
 }
 
-function ButtonsLoginStatus({ UserData }) {
+function ButtonsLoginStatus({ UserData }) 
+{
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    if (UserData.name !== "Iniciar sesión") 
+    {
+      navigate("/ruleta");
+    }
+    // eslint-disable-next-line
+  }, [UserData]);
+  
   return (
     <>
       <NavButton link="/login" selected="selected" icon={<RuletaIcon />} />
@@ -253,7 +282,17 @@ function ButtonsLoginStatus({ UserData }) {
   );
 }
 
-function ButtonsPokedexStatus({ UserData }) {
+function ButtonsPokedexStatus({ UserData }) 
+{
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (UserData.name === "Iniciar sesión") 
+    {
+      navigate("/");
+    }
+    // eslint-disable-next-line
+  }, [UserData]);
 
   return (
     <>
@@ -279,7 +318,17 @@ function ButtonsPokedexStatus({ UserData }) {
   );
 }
 
-function ButtonsMarcadoresStatus({ UserData }) {
+function ButtonsMarcadoresStatus({ UserData }) 
+{
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (UserData.name === "Iniciar sesión") 
+    {
+      navigate("/");
+    }
+    // eslint-disable-next-line
+  }, [UserData]);
 
   return (
     <>
@@ -301,7 +350,17 @@ function ButtonsMarcadoresStatus({ UserData }) {
   );
 }
 
-function ButtonsIntercambioStatus({ UserData }) {
+function ButtonsIntercambioStatus({ UserData }) 
+{
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (UserData.name === "Iniciar sesión") 
+    {
+      navigate("/");
+    }
+    // eslint-disable-next-line
+  }, [UserData]);
 
   return (
     <>
@@ -323,7 +382,18 @@ function ButtonsIntercambioStatus({ UserData }) {
   );
 }
 
-function ButtonCancelarConexionIntercambio() {
+function ButtonCancelarConexionIntercambio({UserData}) 
+{
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (UserData.name === "Iniciar sesión") 
+    {
+      navigate("/");
+    }
+    // eslint-disable-next-line
+  }, [UserData]);
+
   return (
     <Link to="/intercambio">
       <button id="botonCancelarIntercambio">Cancelar</button>
