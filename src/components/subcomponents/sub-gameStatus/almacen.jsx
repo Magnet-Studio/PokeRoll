@@ -296,7 +296,7 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, se
     )
 }
 
-const sumIVs = (ivs) => {
+export const sumIVs = (ivs) => {
     return ivs.hp + ivs.atq + ivs.def + ivs.spatq + ivs.spdef + ivs.spe;
 }
 

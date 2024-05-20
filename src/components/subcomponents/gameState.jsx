@@ -76,7 +76,7 @@ function GameState({
         element={<PokedexGameState UserData={UserData} />}
       />
 
-      <Route path="/marcadores" element={<MarcadoresGameState />} />
+      <Route path="/marcadores" element={<MarcadoresGameState UserData={UserData} />} />
 
       <Route path="/intercambio/tipo" element={<TipoIntercambioGameState />} />
 
@@ -133,8 +133,8 @@ function PokedexGameState({ UserData }) {
   return <Pokedex UserData={UserData} />;
 }
 
-function MarcadoresGameState() {
-  return <Marcadores />;
+function MarcadoresGameState({UserData}) {
+  return <Marcadores UserData={UserData} />;
 }
 
 function TipoIntercambioGameState() {

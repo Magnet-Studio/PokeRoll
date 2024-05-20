@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import './styles/marcadores.css'
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import { PlayerList } from './userdata/rankingList';
-import { GetDataByName, GetImage } from "./lib/PokemonData";
+import { GetDataByName, GetImage, GetVariantImage } from "./lib/PokemonData";
+import { sumIVs } from "./almacen";
+import { GetRarezaPoints, GetRarezaPointsSimplified } from "./lib/pokemonRarity";
 
 
-function Marcadores() {
+function Marcadores({UserData}) {
     const [selectedValueRank, setselectedValueRank] = useState(sessionStorage.getItem('selectedValueRank') || '1');
     
     return(
@@ -15,7 +17,7 @@ function Marcadores() {
                     <FiltroMarcador selectedValueRank={selectedValueRank} setselectedValueRank={setselectedValueRank} />
                 </div>
                 <div id="ranking-cards-container">
-                    <CompleteRankingList selectedValueRank={selectedValueRank} />
+                    <CompleteRankingList selectedValueRank={selectedValueRank} UserData={UserData}/>
                 </div>
             </div>
         </>
@@ -43,15 +45,55 @@ function FiltroMarcador({selectedValueRank, setselectedValueRank}) {
     );
 }
 
+const GetBestPokemon = (pokemonList) => {
+    pokemonList.sort((a, b) => {
+        return sumIVs(b.iv) - sumIVs(a.iv)
+    })
+    return pokemonList[0];
+}
 
-function CompleteRankingList({selectedValueRank}) 
+const GetRarestPokemon = (pokemonList) => {
+    pokemonList.sort((a, b) => {
+        let rarezaA = GetRarezaPoints(a.iv, a.shiny, parseInt(a.frequency), (a?.megaevolution !== undefined ? a.megaevolution : false), (a?.rarespecies !== undefined ? a.rarespecies : false));
+        let rarezaB = GetRarezaPoints(b.iv, b.shiny, parseInt(b.frequency), (b?.megaevolution !== undefined ? b.megaevolution : false), (b?.rarespecies !== undefined ? b.rarespecies : false));
+        
+        return rarezaB - rarezaA;
+    })
+    return pokemonList[0];
+}
+
+
+function CompleteRankingList({selectedValueRank, UserData}) 
 {
 
     let sortedList = [...PlayerList];
+
+    let user = sortedList[0];
+    user.playername = UserData.name;
+    user.pointsspent = (localStorage.getItem("nextId") * 10000);
+    user.rolls = localStorage.getItem("nextId");
+    user.registers = (UserData.registers.length - 1);
+
+    const rawList = [...UserData.pokemonList];
+    let myPokelist = [];
+    // Vuelve JSON la lista
+    rawList.forEach((pokemon, index) => {
+        myPokelist[index] = JSON.parse(pokemon);
+    });
+    
+    myPokelist.shift();
+
+
+    user.bestpokemon = GetBestPokemon(myPokelist);
+    user.rarestpokemon = GetRarestPokemon(myPokelist);
+
     
     switch (selectedValueRank) {
         case '1':
-            sortedList.sort((a, b) => b.rarestpokemon.rareza - a.rarestpokemon.rareza);
+            sortedList.sort((a, b) => {
+                return GetRarezaPointsSimplified(b.rarestpokemon) - GetRarezaPointsSimplified(a.rarestpokemon);
+            })
+                
             break;
         case '2':
             sortedList.sort((a, b) => b.pointsspent - a.pointsspent);
@@ -75,7 +117,7 @@ function CompleteRankingList({selectedValueRank})
 
 
     const list = sortedList.map((datos, index) => (
-        <RankingCard  data={datos} key={index} keyNum={index} selectedValueRank={selectedValueRank}/>
+        <RankingCard  data={datos} key={index} keyNum={index} selectedValueRank={selectedValueRank} UserData={UserData}/>
     ));
 
     return (
@@ -87,7 +129,7 @@ function CompleteRankingList({selectedValueRank})
 }
 
 
-function RankingCard({data, keyNum, selectedValueRank})
+function RankingCard({data, keyNum, selectedValueRank, UserData})
 {
     const position = <span className={keyNum + 1 === 1 ? "firstPosition" : keyNum + 1 === 2 ? "secondPosition" : keyNum + 1 === 3 ? "thirdPosition" : ""}>{keyNum + 1} </span>;
     let title = "";
@@ -119,8 +161,8 @@ function RankingCard({data, keyNum, selectedValueRank})
     switch (selectedValueRank) {
         case '1':
             title = data.rarestpokemon.nametag + " (" + data.playername + ")";
-            points = data.rarestpokemon.rareza + " puntos";
-            image = GetImage(pokemonData, data.rarestpokemon.shiny === "shiny");
+            points = GetRarezaPointsSimplified(data.rarestpokemon) + " puntos";
+            image = data.rarestpokemon?.variant !== undefined ? GetVariantImage(data.rarestpokemon.variant.name, data.rarestpokemon.shiny === "shiny") : GetImage(pokemonData, data.rarestpokemon.shiny === "shiny");
             break;
         case '2':
             title = data.playername;
@@ -142,10 +184,13 @@ function RankingCard({data, keyNum, selectedValueRank})
         default:
             // No debe pasar por aquí
     }
-
+    let cosa = "";
+    if (data.playername === UserData.name) {
+        cosa = "yourself";
+    }
     return (
         <>
-            <div className="rankBox" key={keyNum} >
+            <div className={"rankBox " + cosa} key={keyNum} >
                 <div className="rankContent">
                     <div className="rankTitle">
                             <p>

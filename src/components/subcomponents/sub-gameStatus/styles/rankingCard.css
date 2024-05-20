@@ -10,6 +10,10 @@
     margin-bottom: 1.5vh;
 }
 
+.rankBox.yourself {
+    background-color: rgb(246, 246, 198);
+}
+
 .rankContent
 {
     display: flex;

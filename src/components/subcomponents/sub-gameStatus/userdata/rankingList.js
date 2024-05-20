@@ -1,6 +1,6 @@
 export let PlayerList = [
     {
-        'playername': 'CreatorBeastGD',
+        'playername': 'a',
         'score': 1000,
         'bestpokemon': {
             "id":16,
@@ -13,11 +13,13 @@ export let PlayerList = [
                 "hp":31,
                 "atq":31,
                 "def":31,
-                "spatq":31,
+                "spatq":3,
                 "spdef":31,
                 "spe":31
             },
-            "rareza": 15627
+            frequency: 5,
+            rarespecies: false,
+            megaevolution: false
         },
         'rarestpokemon': {
             "id":14,
@@ -31,10 +33,12 @@ export let PlayerList = [
                 "atq":31,
                 "def":31,
                 "spatq":31,
-                "spdef":31,
+                "spdef":3,
                 "spe":31
             },
-            "rareza": 11233
+            frequency: 4,
+            rarespecies: false,
+            megaevolution: false
         },
         'rolls': 100,
         'pointsspent': 1000,
@@ -53,12 +57,14 @@ export let PlayerList = [
             "iv": {
                 "hp":31,
                 "atq":31,
-                "def":31,
+                "def":28,
                 "spatq":31,
                 "spdef":31,
                 "spe":31
             },
-            "rareza": 11233
+            frequency: 4 ,
+            rarespecies: false,
+            megaevolution: false
         },
         'rarestpokemon': {
             "id":16,
@@ -75,7 +81,9 @@ export let PlayerList = [
                 "spdef":31,
                 "spe":31
             },
-            "rareza": 15627
+            frequency: 5,
+            rarespecies: false,
+            megaevolution: false
         },
         'rolls': 90,
         'pointsspent': 900,
@@ -99,7 +107,9 @@ export let PlayerList = [
                 "spdef":5,
                 "spe":5
             },
-            "rareza": 12853
+            frequency: 5,
+            rarespecies: false,
+            megaevolution: false
         },
         'rarestpokemon': {
             "id":16,
@@ -116,7 +126,10 @@ export let PlayerList = [
                 "spdef":31,
                 "spe":31
             },
-            "rareza": 15627
+            variant: { name: "giratina-origin", rare: true },
+            frequency: 5,
+            rarespecies: true,
+            megaevolution: false
         },
         'rolls': 80,
         'pointsspent': 800,
@@ -140,7 +153,9 @@ export let PlayerList = [
                 "spdef":1,
                 "spe":1
             },
-            "rareza": 74
+            frequency: 1,
+            rarespecies: false,
+            megaevolution: false
         },
         'rarestpokemon': {
             "id":11,
@@ -157,14 +172,16 @@ export let PlayerList = [
                 "spdef":5,
                 "spe":5
             },
-            "rareza": 12853
+            frequency: 5,
+            rarespecies: false,
+            megaevolution: false
         },
         'rolls': 70,
         'pointsspent': 700,
         'registers': 100
     },
     {
-        'playername': 'SparaOPS',
+        'playername': 'sparaop',
         'score': 600,
         'bestpokemon': {
             "id":11,
@@ -181,7 +198,9 @@ export let PlayerList = [
                 "spdef":5,
                 "spe":5
             },
-            "rareza": 12853
+            frequency: 5,
+            rarespecies: false,
+            megaevolution: false
         },
         'rarestpokemon': {
             "id":9,
@@ -194,11 +213,13 @@ export let PlayerList = [
                 "hp":31,
                 "atq":31,
                 "def":31,
-                "spatq":31,
-                "spdef":31,
-                "spe":31
+                "spatq":2,
+                "spdef":3,
+                "spe":6
             },
-            "rareza": 31999
+            frequency: 6,
+            rarespecies: false,
+            megaevolution: false
             
         },
         'rolls': 60,
@@ -219,28 +240,33 @@ export let PlayerList = [
                 "hp":31,
                 "atq":31,
                 "def":31,
-                "spatq":31,
-                "spdef":31,
+                "spatq":11,
+                "spdef":12,
                 "spe":31
             },
-            "rareza": 23536
+            frequency: 5,
+            rarespecies: false,
+            megaevolution: false
         },
         'rarestpokemon': {
             "id":8,
-            "name": "dialga",
-            "nametag":"Dialga",
+            "name": "diancie",
+            "nametag":"Diancie",
             "shiny": "shiny",
             "originaltrainer": "SparaOPS",
             "datefound":"07/05/2024",
             "iv": {
-                "hp":31,
+                "hp":0,
                 "atq":31,
-                "def":31,
-                "spatq":31,
-                "spdef":31,
+                "def":0,
+                "spatq":0,
+                "spdef":23,
                 "spe":31
             },
-            "rareza": 23536
+            variant: { name: "diancie-mega", types: ["rock", "fairy"], mega: true },
+            frequency: 6,
+            rarespecies: false,
+            megaevolution: true
         },
         'rolls': 150,
         'pointsspent': 500,
@@ -260,11 +286,13 @@ export let PlayerList = [
                 "hp":31,
                 "atq":31,
                 "def":31,
-                "spatq":31,
+                "spatq":3,
                 "spdef":31,
                 "spe":31
             },
-            "rareza": 15627
+            frequency: 5,
+            rarespecies: false,
+            megaevolution: false
         },
         'rarestpokemon': {
             "id":8,
@@ -275,13 +303,15 @@ export let PlayerList = [
             "datefound":"07/05/2024",
             "iv": {
                 "hp":31,
-                "atq":31,
-                "def":31,
-                "spatq":31,
+                "atq":1,
+                "def":19,
+                "spatq":3,
                 "spdef":31,
                 "spe":31
             },
-            "rareza": 23536
+            frequency: 5,
+            rarespecies: false,
+            megaevolution: false
         },
         'rolls': 40,
         'pointsspent': 400,
@@ -301,11 +331,13 @@ export let PlayerList = [
                 "hp":31,
                 "atq":31,
                 "def":31,
-                "spatq":31,
+                "spatq":12,
                 "spdef":31,
                 "spe":31
             },
-            "rareza": 3804
+            frequency: 3,
+            rarespecies: false,
+            megaevolution: false
         },
         'rarestpokemon': {
             "id":7,
@@ -316,13 +348,15 @@ export let PlayerList = [
             "datefound":"07/05/2024",
             "iv": {
                 "hp":31,
-                "atq":31,
+                "atq":30,
                 "def":31,
-                "spatq":31,
+                "spatq":26,
                 "spdef":31,
                 "spe":31
             },
-            "rareza": 15627
+            frequency: 5,
+            rarespecies: false,
+            megaevolution: false
         },
         'rolls': 30,
         'pointsspent': 300,
@@ -341,12 +375,16 @@ export let PlayerList = [
             "iv": {
                 "hp":31,
                 "atq":31,
-                "def":31,
+                "def":2,
                 "spatq":31,
                 "spdef":31,
                 "spe":31
             },
-            "rareza": 15627
+            variant: 
+            { name: "mewtwo-mega-y", types: ["psychic", null], mega: true },
+            frequency: 5,
+            rarespecies: false,
+            megaevolution: true
         },
         'rarestpokemon': {
             "id":5,
@@ -359,11 +397,15 @@ export let PlayerList = [
                 "hp":31,
                 "atq":31,
                 "def":31,
-                "spatq":31,
+                "spatq":0,
                 "spdef":31,
                 "spe":31
             },
-            "rareza": 15627
+            variant: 
+            { name: "mewtwo-mega-y", types: ["psychic", null], mega: true },
+            frequency: 5,
+            rarespecies: false,
+            megaevolution: true
         },
         'rolls': 20,
         'pointsspent': 200,
@@ -380,14 +422,16 @@ export let PlayerList = [
             "originaltrainer": "CreatorBeastGD",
             "datefound":"07/05/2024",
             "iv": {
-                "hp":31,
+                "hp":15,
                 "atq":31,
                 "def":31,
-                "spatq":31,
+                "spatq":22,
                 "spdef":31,
                 "spe":31
             },
-            "rareza": 11233
+            frequency: 4,
+            rarespecies: false,
+            megaevolution: false
         },
         'rarestpokemon': {
             "id":5,
@@ -399,12 +443,14 @@ export let PlayerList = [
             "iv": {
                 "hp":31,
                 "atq":31,
-                "def":31,
+                "def":16,
                 "spatq":31,
                 "spdef":31,
                 "spe":31
             },
-            "rareza": 15627
+            frequency: 5,
+            rarespecies: false,
+            megaevolution: false
         },
         'rolls': 10,
         'pointsspent': 100,
@@ -428,7 +474,9 @@ export let PlayerList = [
                 "spdef":10,
                 "spe":31
             },
-            "rareza": 10146
+            frequency: 4,
+            rarespecies: false,
+            megaevolution: false
         },
         'rarestpokemon': {
             "id":5,
@@ -445,7 +493,9 @@ export let PlayerList = [
                 "spdef":31,
                 "spe":31
             },
-            "rareza": 15627
+            frequency: 4,
+            rarespecies: false,
+            megaevolution: false
         },
         'rolls': 0,
         'pointsspent': 0,
@@ -469,7 +519,9 @@ export let PlayerList = [
                 "spdef":25,
                 "spe":31
             },
-            "rareza": 22589
+            frequency: 5,
+            rarespecies: false,
+            megaevolution: false
         },
         'rarestpokemon': {
             "id":2,
@@ -486,7 +538,9 @@ export let PlayerList = [
                 "spdef":10,
                 "spe":31
             },
-            "rareza": 10146
+            frequency: 4,
+            rarespecies: false,
+            megaevolution: false
         },
         'rolls': 10,
         'pointsspent': 100,
