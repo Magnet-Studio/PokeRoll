@@ -3,8 +3,10 @@ const PokemonVariants = [
         dexnum: 487,
         name: "Giratina",
         variants: [
-            { name: "giratina-altered" },
-            { name: "giratina-origin" }
+            { rarespecies: [
+                { name: "giratina-altered" },
+                { name: "giratina-origin", rare: true }
+            ] } 
         ]
     },
     {
@@ -30,16 +32,20 @@ const PokemonVariants = [
         dexnum: 483,
         name: "Dialga",
         variants: [
-            { name: "dialga" },
-            { name: "dialga-origin" }
+            { rarespecies: [
+                { name: "dialga" },
+                { name: "dialga-origin", rare: true }
+            ] }
         ]
     },
     {
         dexnum: 484,
         name: "Palkia",
         variants: [
-            { name: "palkia" },
-            { name: "palkia-origin" }
+            { rarespecies: [
+                { name: "palkia" },
+                { name: "palkia-origin", rare: true}
+            ] }
         ]
     },
     {
@@ -398,8 +404,10 @@ const PokemonVariants = [
         dexnum: 1024,
         name:"Terapagos",
         variants: [
-            { name:"terapagos-normal" },
-            { name:"terapagos-terastal" }
+            { rarespecies: [
+                { name:"terapagos-normal" },
+                { name:"terapagos-terastal", rare: true }
+            ] }
         ]
     },
     {
