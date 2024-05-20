@@ -15,7 +15,13 @@ const initData = {
     pass:"",
     currency: 300,
     pokemonList: [JSON.stringify({})],
-    registers: [0]
+    registers: [0],
+    shinycharm: false,
+    rarecharm: false,
+    megacharm: false,
+    shinycount: 0,
+    rarecount: 0,
+    megacount: 0,
 }
 
 const savedData = () => 
@@ -25,13 +31,27 @@ const savedData = () =>
     const savedCurrency = localStorage.getItem("currency");
     const savedPokemonList = JSON.parse(localStorage.getItem("pokemonList"));
     const savedRegisters = JSON.parse(localStorage.getItem("registers"));
+    const savedShinyCharm = localStorage.getItem("shinycharm");
+    const savedRareCharm = localStorage.getItem("rarecharm");
+    const savedMegaCharm = localStorage.getItem("megacharm");
+    const savedShinyCount = localStorage.getItem("shinycount");
+    const savedRareCount = localStorage.getItem("rarecount");
+    const savedMegaCount = localStorage.getItem("megacount");
+
 
     return {
         name: savedName ? savedName : initData.name,
         pass: savedPass ? savedPass : initData.pass,
         currency: savedCurrency ? parseInt(savedCurrency) : initData.currency,
         pokemonList: savedPokemonList ? savedPokemonList : initData.pokemonList,
-        registers: savedRegisters ? savedRegisters : initData.registers
+        registers: savedRegisters ? savedRegisters : initData.registers,
+        shinycharm: savedShinyCharm ? savedShinyCharm : initData.shinycharm,
+        rarecharm: savedRareCharm ? savedRareCharm : initData.rarecharm,
+        megacharm: savedMegaCharm ? savedMegaCharm : initData.megacharm,
+        shinycount: savedShinyCount ? savedShinyCount : initData.shinycount,
+        rarecount: savedRareCount ? savedRareCount : initData.rarecount,
+        megacount: savedMegaCount ? savedMegaCount : initData.megacount
+
     };
 }
 
@@ -49,6 +69,12 @@ function MainPanel()
         localStorage.setItem("currency", UserData.currency.toString());
         localStorage.setItem("pokemonList", JSON.stringify(UserData.pokemonList));
         localStorage.setItem("registers", JSON.stringify(UserData.registers));
+        localStorage.setItem("shinycount", UserData.shinycount);
+        localStorage.setItem("rarecount", UserData.rarecount);
+        localStorage.setItem("megacount", UserData.megacount);
+        localStorage.setItem("shinycharm", (UserData.registers.length-1 === 1025));
+        localStorage.setItem("rarecharm", (UserData.rarecount >= 300));
+        localStorage.setItem("megacharm", (UserData.megacount >= 100));
     }, [UserData]);
 
     useEffect(() => {
