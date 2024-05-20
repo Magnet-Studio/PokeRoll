@@ -206,6 +206,8 @@ p {
     height: auto;
     position: relative;
     margin-bottom: 2%;
+    
+    filter: drop-shadow(0 0 10px rgb(0, 0, 0));
 }
 
 .nombreEO {
