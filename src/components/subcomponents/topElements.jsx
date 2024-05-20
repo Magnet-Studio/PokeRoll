@@ -3,7 +3,7 @@
  * de los elementos que hay arriba: titulo con/sin botón de cambio de Tier de tirada
  */
 
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Routes, Route, useLocation } from 'react-router-dom';
 import './styles/topElements.css';
 import TitleGameStatus from './sub-topElements/titleGameStatus';

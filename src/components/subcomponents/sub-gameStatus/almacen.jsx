@@ -88,11 +88,11 @@ const style = {
         coins += GetPrice(pokemon);
         let tag = "";
 
-        if (pokemon.shiny === 'shiny' || pokemon?.rarespecies == true || pokemon.megaevolution == true) {
+        if (pokemon.shiny === 'shiny' || pokemon?.rarespecies === true || pokemon.megaevolution === true) {
             warning = <>¡CUIDADO! Hay Pokémon especiales en la selección.</>;
-            if (pokemon.rarespecies == true) {
+            if (pokemon.rarespecies === true) {
                 tag = "rareSpeciesFound";
-            } else if (pokemon.megaevolution == true) {
+            } else if (pokemon.megaevolution === true) {
                 tag = "megaFound";
             } else {
                 tag = "shinyFound";
@@ -493,14 +493,14 @@ function PokemonCard({UserData, isAlreadySelected, selectedBorrado, setSelectedB
 
     let megaData="";
     if (data?.megaevolution !== undefined) {
-        if (data.megaevolution == true) {
+        if (data.megaevolution === true) {
             megaData = "mega"
         }
     }
 
     let rareData="";
     if (data?.rarespecies !== undefined) {
-        if (data.rarespecies == true) {
+        if (data.rarespecies === true) {
             rareData = "rare"
         }
     }

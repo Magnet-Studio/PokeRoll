@@ -1,7 +1,7 @@
 import React, { useState , useEffect } from "react";
 import './styles/almacen.css';
 import { GetSpeciesDataByName, GetSpanishName} from './lib/PokemonSpeciesData';
-import { GetDataByName, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish, GetImage, GetDexNum, GetVariantImage} from './lib/PokemonData';
+import { GetDataByName, GetPrettyTypeNameSpanish, GetImage, GetDexNum, GetVariantImage} from './lib/PokemonData';
 import { Link } from "react-router-dom";
 
 
@@ -51,14 +51,14 @@ function PokemonCard({data})
 
     let megaData="";
     if (data?.megaevolution !== undefined) {
-        if (data.megaevolution == true) {
+        if (data.megaevolution === true) {
             megaData = "mega"
         }
     }
 
     let rareData="";
     if (data?.rarespecies !== undefined) {
-        if (data.rarespecies == true) {
+        if (data.rarespecies === true) {
             rareData = "rare"
         }
     }

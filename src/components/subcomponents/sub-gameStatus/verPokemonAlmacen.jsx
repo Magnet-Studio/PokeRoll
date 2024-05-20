@@ -3,7 +3,7 @@ import { useLocation, Link } from "react-router-dom";
 import { GetPokemonByID } from "./lib/pokemonList";
 import './styles/verPokemonAlmacen.css'
 import { GetFrequencyByName } from "./lib/pokemonFrequency";
-import { GetDataByDexNum, GetImage, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish, GetVariantImage } from "./lib/PokemonData";
+import { GetDataByDexNum, GetImage, GetPrettyTypeNameSpanish, GetVariantImage } from "./lib/PokemonData";
 import { GetSpeciesDataByDexNum, GetSpanishName } from "./lib/PokemonSpeciesData";
 import { GetRarezaPoints, rarezaExtraPoints } from "./lib/pokemonRarity";
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';

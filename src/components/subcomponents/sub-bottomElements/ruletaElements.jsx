@@ -51,13 +51,6 @@ export function TirarButton({cost, TierRuleta, setUserData, tirarButtonDisable, 
     );
 }
 
-function Pokeball() 
-{
-    return (
-        <img className="pokeBall" src={PokeballIcon} alt={"Pokeball"} />
-    );
-}
-
 export function ChangeTierButtons({TierRuleta, setTierRuleta, changeTierButtonDisable})
 {
     const prevTier = () => {
