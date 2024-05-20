@@ -165,3 +165,8 @@ button .cerrarButton {
         
     }
 }
+
+#reclamarButtonContainer .pokeballRotar 
+{
+    width: 50%;
+}

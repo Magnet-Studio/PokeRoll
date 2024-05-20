@@ -16,10 +16,10 @@ import CheckIcon from '@mui/icons-material/Check';
 import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
 import Confetti from 'react-confetti';
 
+const pokeballImage = (<img src={Pokeball} className="pokeballRotar" />);
 
 function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, UserData, setTirarButtonDisable, setChangeTierButtonDisable, setUserData})
 {   
-    const pokeballImage = (<img src={Pokeball} className="pokeballRotar" />);
     const notPokemon = [(pokeballImage), (pokeballImage), (pokeballImage)];
     const [threePokemonImages, setThreePokemonImages] = useState(notPokemon);
     
@@ -33,7 +33,7 @@ function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, 
             {
                 const name = threePokemon[i].name;
                 let data = null;
-                if(name != undefined)
+                if(name !== undefined)
                 {
                   data = await GetDataByDexNum(name);
                 }
@@ -75,8 +75,6 @@ function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, 
     
     }, [threePokemon]);
 
-    const [enabled, setEnabled] = useState("");
-
     let shouldShowConfetti = false;
     let colors = [];
 
@@ -97,19 +95,29 @@ function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, 
 
     // Eliminar duplicados usando un Set
     colors = [...new Set(colors)];
+
+    const [enabled, setEnabled] = useState("");
+
+    useEffect(() => {
+        if (tirarButtonDisable !== "disabled" || !threePokemon.every(pokemon => pokemon.name !== undefined)) {
+            setEnabled("");
+        } else {
+            setEnabled("enabled");
+        }
+    }, [tirarButtonDisable, threePokemon[0], threePokemon[1], threePokemon[2]]);
   
     return (
         <>
             
-            {shouldShowConfetti && <Confetti width height colors={colors} numberOfPieces={50} friction={0.97}/>}
+            {shouldShowConfetti && <Confetti width="" height="" colors={colors} numberOfPieces={50} friction={0.97}/>}
             <div className='externalArrowContainer'>
                 
             </div>
         
             <div className="boxes">
-                <RuletaBox setThreePokemon={setThreePokemon} UserData={UserData} pokemonImage={threePokemonImages[0]} pokemonData={threePokemon[0]} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} enabled={enabled} setEnabled={setEnabled} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>
-                <RuletaBox setThreePokemon={setThreePokemon} UserData={UserData} pokemonImage={threePokemonImages[1]} pokemonData={threePokemon[1]} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} enabled={enabled} setEnabled={setEnabled} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>
-                <RuletaBox setThreePokemon={setThreePokemon} UserData={UserData} pokemonImage={threePokemonImages[2]} pokemonData={threePokemon[2]} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} enabled={enabled} setEnabled={setEnabled} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>
+                <RuletaBox enabled={enabled} setEnabled={setEnabled} setThreePokemon={setThreePokemon} UserData={UserData} pokemonImage={threePokemonImages[0]} pokemonData={threePokemon[0]} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>
+                <RuletaBox enabled={enabled} setEnabled={setEnabled} setThreePokemon={setThreePokemon} UserData={UserData} pokemonImage={threePokemonImages[1]} pokemonData={threePokemon[1]} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>
+                <RuletaBox enabled={enabled} setEnabled={setEnabled} setThreePokemon={setThreePokemon} UserData={UserData} pokemonImage={threePokemonImages[2]} pokemonData={threePokemon[2]} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>
             </div>
 
             <div className='externalArrowContainer'>
@@ -123,133 +131,126 @@ function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, 
 
 const TierCosts = [100, 500, 1500, 4000, 10000];
 
-function RuletaBox({ setThreePokemon, pokemonImage, tirarButtonDisable, TierRuleta, pokemonData, enabled, setEnabled, UserData, setTirarButtonDisable, setChangeTierButtonDisable, setUserData }) {
-  useEffect(() => {
-      if (tirarButtonDisable !== "disabled") {
-          setEnabled("");
-      } else {
-          setEnabled("enabled");
-      }
-  }, [tirarButtonDisable]);
+function RuletaBox({ enabled, setEnabled, setThreePokemon, pokemonImage, tirarButtonDisable, TierRuleta, pokemonData, UserData, setTirarButtonDisable, setChangeTierButtonDisable, setUserData }) {
+  
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => {
+        setOpen(true);
+        setEnabled("");
+    };
 
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => {
-      setOpen(true);
-      setEnabled("");
-  };
+    const nombresRarezas = ['Común', 'Infrecuente', 'Peculiar', 'Épico', 'Legendario', 'Singular'];
+    const coloresRareza = ['rgb(190, 190, 190)', 'rgb(145, 255, 184)', 'rgb(142, 198, 255)', 'rgb(216, 139, 255)', 'rgb(255, 223, 39)', 'rgb(255, 100, 100)'];
+    const HalfCost = (TierCosts[TierRuleta - 1]) / 2;
 
-  const nombresRarezas = ['Común', 'Infrecuente', 'Peculiar', 'Épico', 'Legendario', 'Singular'];
-  const coloresRareza = ['rgb(190, 190, 190)', 'rgb(145, 255, 184)', 'rgb(142, 198, 255)', 'rgb(216, 139, 255)', 'rgb(255, 223, 39)', 'rgb(255, 100, 100)'];
-  const HalfCost = (TierCosts[TierRuleta - 1]) / 2;
+    let RegisterCheck = false;
+    if (UserData?.registers !== undefined) {
+        if (UserData.registers.includes(pokemonData.name)) {
+            RegisterCheck = true;
+        }
+    }
 
-  let RegisterCheck = false;
-  if (UserData?.registers !== undefined) {
-      if (UserData.registers.includes(pokemonData.name)) {
-          RegisterCheck = true;
-      }
-  }
+    return (
+        <div className={"ruletaBox " + enabled} onClick={handleOpen} >
+            <div className='RegistradoCheck'>
+                {RegisterCheck ? <CheckIcon style={{ fontSize: '30px' }} /> : <></>}
+            </div>
+            <div className='RarezaBox'>
+                <p className='RarezaText' style={{ color: coloresRareza[GetFrequencyByName(pokemonData.speciesname) - 1] }}>
+                    {nombresRarezas[GetFrequencyByName(pokemonData.speciesname) - 1]}
+                </p>
+            </div>
+            {pokemonImage}
 
-  return (
-      <div className={"ruletaBox " + enabled} onClick={handleOpen} >
-          <div className='RegistradoCheck'>
-              {RegisterCheck ? <CheckIcon style={{ fontSize: '30px' }} /> : <></>}
-          </div>
-          <div className='RarezaBox'>
-              <p className='RarezaText' style={{ color: coloresRareza[GetFrequencyByName(pokemonData.speciesname) - 1] }}>
-                  {nombresRarezas[GetFrequencyByName(pokemonData.speciesname) - 1]}
-              </p>
-          </div>
-          {pokemonImage}
-
-          <ModalConfirmar setThreePokemon={setThreePokemon} UserData={UserData} open={open} setOpen={setOpen} HalfCost={HalfCost} pokemonImage={pokemonImage} pokemonData={pokemonData} setEnabled={setEnabled} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData} />
-      </div>
-  );
-}
+            <ModalConfirmar setThreePokemon={setThreePokemon} UserData={UserData} open={open} setOpen={setOpen} HalfCost={HalfCost} pokemonImage={pokemonImage} pokemonData={pokemonData} setEnabled={setEnabled} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData} />
+        </div>
+    );
+    }
 
 
 function ModalConfirmar({ setThreePokemon, pokemonData, setOpen, open, UserData, HalfCost, pokemonImage, setEnabled, setTirarButtonDisable, setChangeTierButtonDisable, setUserData }) {
-    useEffect(() => {
-        if (open) {
-            document.body.classList.add('modal-open');
-        } else {
-            document.body.classList.remove('modal-open');
+        useEffect(() => {
+            if (open) {
+                document.body.classList.add('modal-open');
+            } else {
+                document.body.classList.remove('modal-open');
+            }
+        }, [open]);
+
+        const HandleClose = (event) => {
+            event.stopPropagation();
+            setOpen(false);
+            setEnabled("enabled");
+        };
+
+        const HandleReclamar = (event) => {
+            event.stopPropagation();
+            Reclamar(pokemonData, UserData, setThreePokemon, setUserData, HalfCost);
+            setChangeTierButtonDisable("");
+            setTirarButtonDisable("");
+            setEnabled("enabled");
+            setOpen(false);
+        };
+
+        const style = {
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "40vw",
+            bgcolor: "white",
+            boxShadow: 24,
+            p: 4,
+            borderRadius: "2vw",
+        };
+
+        let firstTypeContainer = (<div className={"pokemonType " + pokemonData.type1}>{GetPrettyTypeNameSpanish(pokemonData.type1)}</div>);
+        let secondTypeContainer = (<></>);
+        if (pokemonData.type2 !== null) {
+            secondTypeContainer = (<div className={"pokemonType " + pokemonData.type2}>{GetPrettyTypeNameSpanish(pokemonData.type2)}</div>);
         }
-    }, [open]);
 
-    const HandleClose = (event) => {
-        event.stopPropagation();
-        setOpen(false);
-        setEnabled("enabled");
-    };
+        const nombresRarezas = ['Común', 'Infrecuente', 'Peculiar', 'Épico', 'Legendario', 'Singular'];
+        const frequency = GetFrequencyByName(pokemonData.speciesname);
+        const nombreRareza = nombresRarezas[frequency - 1];
 
-    const HandleReclamar = (event) => {
-        event.stopPropagation();
-        Reclamar(pokemonData, UserData, setThreePokemon, setUserData, HalfCost);
-        setChangeTierButtonDisable("");
-        setTirarButtonDisable("");
-        setEnabled("enabled");
-        setOpen(false);
-    };
-
-    const style = {
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        width: "40vw",
-        bgcolor: "white",
-        boxShadow: 24,
-        p: 4,
-        borderRadius: "2vw",
-    };
-
-    let firstTypeContainer = (<div className={"pokemonType " + pokemonData.type1}>{GetPrettyTypeNameSpanish(pokemonData.type1)}</div>);
-    let secondTypeContainer = (<></>);
-    if (pokemonData.type2 !== null) {
-        secondTypeContainer = (<div className={"pokemonType " + pokemonData.type2}>{GetPrettyTypeNameSpanish(pokemonData.type2)}</div>);
-    }
-
-    const nombresRarezas = ['Común', 'Infrecuente', 'Peculiar', 'Épico', 'Legendario', 'Singular'];
-    const frequency = GetFrequencyByName(pokemonData.speciesname);
-    const nombreRareza = nombresRarezas[frequency - 1];
-
-    let shinyIndication = (<></>);
-    let megaIndication = (<></>);
-    let rareIndication = (<></>);
-    if (pokemonData.shiny === "shiny") {
-        const shinyMsg = (<span>¡Felicidades! ¡Has conseguido un Pokémon Variocolor!<br /> Obtendrás una bonificación de 5000 puntos en el cálculo final <br /> de Rareza por ello</span>);
-        shinyIndication = (<MouseOverPopover content={<AutoAwesomeIcon className="shinyIcon" />} shown={shinyMsg} />);
-    }
-
-    let megaWord = "una Megaevolución";
-    if (pokemonData.name === 382 || pokemonData.name === 383) {
-        megaWord = "una Regresión Primigenia"
-    } else if (pokemonData.name === 800) {
-        megaWord = "a Ultra Necrozma"
-    }
-
-    if (pokemonData?.megaevolution !== undefined) {
-        if (pokemonData.megaevolution === true) {
-            const megaMsg = (<span>¡Felicidades! ¡Has conseguido {megaWord}!<br /> Obtendrás una bonificación de 1500 puntos en el cálculo final <br /> de Rareza por ello</span>);
-            megaIndication = (<MouseOverPopover content={<SpaIcon className="megaIcon" />} shown={megaMsg} />);
+        let shinyIndication = (<></>);
+        let megaIndication = (<></>);
+        let rareIndication = (<></>);
+        if (pokemonData.shiny === "shiny") {
+            const shinyMsg = (<span>¡Felicidades! ¡Has conseguido un Pokémon Variocolor!<br /> Obtendrás una bonificación de 5000 puntos en el cálculo final <br /> de Rareza por ello</span>);
+            shinyIndication = (<MouseOverPopover content={<AutoAwesomeIcon className="shinyIcon" />} shown={shinyMsg} />);
         }
-    }
 
-    if (pokemonData?.rarespecies !== undefined) {
-        if (pokemonData.rarespecies === true) {
-            const rareMsg = (<span>¡Felicidades! ¡Has conseguido una especie rara!<br /> Obtendrás una bonificación de 1000 puntos en el cálculo final <br /> de Rareza por ello</span>);
-            rareIndication = (<MouseOverPopover content={<MilitaryTechIcon className="rareIcon" />} shown={rareMsg} />);
+        let megaWord = "una Megaevolución";
+        if (pokemonData.name === 382 || pokemonData.name === 383) {
+            megaWord = "una Regresión Primigenia"
+        } else if (pokemonData.name === 800) {
+            megaWord = "a Ultra Necrozma"
         }
-    }
 
-    let unregisterMessage = <></>;
-    if (UserData?.registers !== undefined) {
-        if (!UserData.registers.includes(pokemonData.name)) {
-            unregisterMessage = <p className='unregisterMessage'>¡No registrado!</p>;
-        } else {
-            unregisterMessage = <p className='registerMessage'>¡Ya registrado!</p>;
+        if (pokemonData?.megaevolution !== undefined) {
+            if (pokemonData.megaevolution === true) {
+                const megaMsg = (<span>¡Felicidades! ¡Has conseguido {megaWord}!<br /> Obtendrás una bonificación de 1500 puntos en el cálculo final <br /> de Rareza por ello</span>);
+                megaIndication = (<MouseOverPopover content={<SpaIcon className="megaIcon" />} shown={megaMsg} />);
+            }
         }
-    }
+
+        if (pokemonData?.rarespecies !== undefined) {
+            if (pokemonData.rarespecies === true) {
+                const rareMsg = (<span>¡Felicidades! ¡Has conseguido una especie rara!<br /> Obtendrás una bonificación de 1000 puntos en el cálculo final <br /> de Rareza por ello</span>);
+                rareIndication = (<MouseOverPopover content={<MilitaryTechIcon className="rareIcon" />} shown={rareMsg} />);
+            }
+        }
+
+        let unregisterMessage = <></>;
+        if (UserData?.registers !== undefined) {
+            if (!UserData.registers.includes(pokemonData.name)) {
+                unregisterMessage = <p className='unregisterMessage'>¡No registrado!</p>;
+            } else {
+                unregisterMessage = <p className='registerMessage'>¡Ya registrado!</p>;
+            }
+        }
 
     return (
         <>
@@ -342,7 +343,6 @@ function ModalConfirmar({ setThreePokemon, pokemonData, setOpen, open, UserData,
 function Reclamar(pokemonData, UserData, setThreePokemon, setUserData, HalfCost) 
 {
   // Cambia las imagenes por otra vez pokeballs
-  const pokeballImage = (<img src={Pokeball} className="pokeballRotar" />);
   const notPokemon = [(pokeballImage), (pokeballImage), (pokeballImage)];
 
   setThreePokemon(notPokemon);

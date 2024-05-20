@@ -7,19 +7,12 @@ import React, { useEffect } from "react";
 import { Routes, Route, useNavigate, Link } from "react-router-dom";
 import NavButton from "./sub-bottomElements/NavButton";
 import "./styles/bottomElements.css";
-//import AlmacenIcon from "@mui/icons-material/Inventory2";
 import { ReactComponent as AlmacenIcon } from '../../images/almacen.svg';
 import IntercambioIcon from "@mui/icons-material/Autorenew";
 import MarcadoresIcon from "@mui/icons-material/EmojiEvents";
-//import PokedexIcon from "@mui/icons-material/Apps";
 import { ReactComponent as PokedexIcon } from '../../images/pokedex.svg';
-//import RuletaIcon from "@mui/icons-material/Money";
 import { ReactComponent as RuletaIcon } from '../../images/ruleta.svg';
-import {
-  Pokeball,
-  TirarButton,
-  ChangeTierButtons,
-} from "./sub-bottomElements/ruletaElements";
+import { TirarButton, ChangeTierButtons} from "./sub-bottomElements/ruletaElements";
 import { useLocation } from "react-router-dom";
 import { GetPokemonByID } from "./sub-gameStatus/lib/pokemonList";
 import LiberarButton from "./sub-bottomElements/liberarButton";
@@ -39,8 +32,17 @@ function BottomElements({
   setThreePokemon,
 }) {
   const location = useLocation();
-  let pokenametag = "";
   let pokemon;
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (UserData.name === "Iniciar sesión") 
+    {
+      navigate("/");
+    }
+    // eslint-disable-next-line
+  }, [UserData]);
 
   if (location.pathname === "/almacen/ver-pokemon") {
     const searchParams = new URLSearchParams(location.search);
@@ -135,13 +137,7 @@ function ButtonsRuletaStatus({
 }) {
   const TierCost = TierCosts[TierRuleta - 1];
 
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (UserData.name === "Iniciar sesión") {
-      navigate("/");
-    }
-  }, [UserData]);
+  
 
   return (
     <>
@@ -188,13 +184,6 @@ function ButtonsRuletaStatus({
 }
 
 function ButtonsVerPokemonAlmacenStatus({ data, UserData, setUserData }) {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (UserData.name === "Iniciar sesión") {
-      navigate("/");
-    }
-  }, [UserData]);
 
   return (
     <>
@@ -226,13 +215,6 @@ function ButtonsVerPokemonAlmacenStatus({ data, UserData, setUserData }) {
 }
 
 function ButtonsAlmacenStatus({ UserData }) {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (UserData.name === "Iniciar sesión") {
-      navigate("/");
-    }
-  }, [UserData]);
 
   return (
     <>
@@ -259,13 +241,6 @@ function ButtonsAlmacenStatus({ UserData }) {
 }
 
 function ButtonsLoginStatus({ UserData }) {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (UserData.name !== "Iniciar sesión") {
-      navigate("/ruleta");
-    }
-  }, [UserData]);
 
   return (
     <>
@@ -279,13 +254,6 @@ function ButtonsLoginStatus({ UserData }) {
 }
 
 function ButtonsPokedexStatus({ UserData }) {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (UserData.name === "Iniciar sesión") {
-      navigate("/");
-    }
-  }, [UserData]);
 
   return (
     <>
@@ -312,13 +280,6 @@ function ButtonsPokedexStatus({ UserData }) {
 }
 
 function ButtonsMarcadoresStatus({ UserData }) {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (UserData.name === "Iniciar sesión") {
-      navigate("/");
-    }
-  }, [UserData]);
 
   return (
     <>
@@ -341,13 +302,6 @@ function ButtonsMarcadoresStatus({ UserData }) {
 }
 
 function ButtonsIntercambioStatus({ UserData }) {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (UserData.name === "Iniciar sesión") {
-      navigate("/");
-    }
-  }, [UserData]);
 
   return (
     <>

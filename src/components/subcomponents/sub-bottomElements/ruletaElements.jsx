@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './styles/ruletaElements.css';
 import CoinImage from '../../../images/coin.png';
-import PokeballIcon from '../../../images/pokeball.png';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { GetThreeRandomPokemon } from '../sub-gameStatus/lib/RuletaController';
 

@@ -14,8 +14,8 @@ export const GetRarezaExtraPoints = (frequency) => {
 export const GetRarezaPoints = (ivs, shiny, frequency, mega, rare) => {
     const rarity = GetRarezaExtraPoints(frequency);
     const shinyFactor = (shiny === "shiny" ? 5000 : 0);
-    const megaFactor = (mega == true ? 1500 : 0);
-    const rareFactor = (rare == true ? 1000 : 0)
+    const megaFactor = (mega === true ? 1500 : 0);
+    const rareFactor = (rare === true ? 1000 : 0)
     const ivsSum = ivs ? (ivs.hp + ivs.atq + ivs.def + ivs.spatq + ivs.spdef + ivs.spe) : 0;
     const ivFactor = (Math.pow(ivsSum , 1.4)) * 10
     const finalValue = Math.trunc((Math.pow(shinyFactor + rarity + megaFactor + rareFactor, 1.2) + ivFactor) / 5);
