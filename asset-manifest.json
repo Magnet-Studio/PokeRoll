@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/pokeroll/static/css/main.84df9783.css",
-    "main.js": "/pokeroll/static/js/main.df516f47.js",
+    "main.js": "/pokeroll/static/js/main.5e8af490.js",
     "static/media/logo.png": "/pokeroll/static/media/logo.30221ed4618de975b3c9.png",
     "static/media/bg.jpg": "/pokeroll/static/media/bg.e8eeea2ab98250305201.jpg",
     "static/media/pokeball.png": "/pokeroll/static/media/pokeball.b5d2808ddddc0f86b5f8.png",
@@ -15,10 +15,10 @@
     "index.html": "/pokeroll/index.html",
     "static/media/pokedex.svg": "/pokeroll/static/media/pokedex.1ace752d6ab39a10bba808e07070b6ca.svg",
     "main.84df9783.css.map": "/pokeroll/static/css/main.84df9783.css.map",
-    "main.df516f47.js.map": "/pokeroll/static/js/main.df516f47.js.map"
+    "main.5e8af490.js.map": "/pokeroll/static/js/main.5e8af490.js.map"
   },
   "entrypoints": [
     "static/css/main.84df9783.css",
-    "static/js/main.df516f47.js"
+    "static/js/main.5e8af490.js"
   ]
 }
