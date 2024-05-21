@@ -3,6 +3,7 @@ import { useState } from "react";
 import "./styles/mainInfo.css";
 import HelpIcon from "@mui/icons-material/Help";
 import CloseIcon from '@mui/icons-material/Close';
+import Button from 'react-bootstrap/Button';
 
 
 function MainInfoButton() {
@@ -41,9 +42,13 @@ const MainInfoBox = (props) => {
 function ExitMainInfoButton(props)
 {
   return (
-    <div id="exitMainInfoButton" onClick={props.exitHandler}>
+    <>
+    <Button variant="outline-light" id="exitMainInfoButton" onClick={props.exitHandler}>{<CloseIcon />}</Button>{' '}
+    
+    {/* <div id="exitMainInfoButton" onClick={props.exitHandler}>
       <CloseIcon />
-    </div>
+    </div> */}
+    </>
   );
 }
 

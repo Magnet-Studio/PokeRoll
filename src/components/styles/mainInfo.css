@@ -92,6 +92,8 @@
   right: 0;
   top: 0;
   position: absolute;
+  background-color: transparent;
+  border-color: transparent;
 }
 
 #exitMainInfoButton > svg
