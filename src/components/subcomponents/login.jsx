@@ -42,7 +42,7 @@ function Login({setUserData})
     return (
         <div>
             <h1>{isRegistering ? 'Registro' : 'Iniciar sesión'}</h1>
-            <form method="get" action="/ruleta">
+            <form method="get" action="/">
                 <label for="usernameInput">Nombre de usuario:</label>
                 <input id="usernameInput" type="text" value={username} onChange={handleUsernameChange}></input><br/>
                 <label for="passwordInput">Contraseña: </label>
