@@ -179,7 +179,7 @@ function RankingCard({data, keyNum, selectedValueRank, UserData})
         case '5':
             title = data.bestpokemon.nametag + " (" + data.playername + ")";
             points = ((data.bestpokemon.iv.hp + data.bestpokemon.iv.atq + data.bestpokemon.iv.def + data.bestpokemon.iv.spatq + data.bestpokemon.iv.spdef + data.bestpokemon.iv.spe)/186*100).toFixed(2) + "% IVs";
-            image = GetImage(pokemonData, data.bestpokemon.shiny === "shiny");
+            image = data.bestpokemon?.variant !== undefined ? GetVariantImage(data.bestpokemon.variant.name, data.bestpokemon.shiny === "shiny") : GetImage(pokemonData, data.bestpokemon.shiny === "shiny");
             break;
         default:
             // No debe pasar por aquí
