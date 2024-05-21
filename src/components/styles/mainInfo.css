@@ -85,13 +85,15 @@
 
 #exitMainInfoButton 
 {
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   pointer-events: all;
   cursor: pointer;
   right: 0;
   top: 0;
   position: absolute;
+  background-color: transparent;
+  border-color: transparent;
 }
 
 #exitMainInfoButton > svg
