@@ -1,6 +1,6 @@
 import React from "react";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
-import { useState } from "react";
+import { useState, useEffect  } from "react";
 import "./styles/liberarButton.css";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import PokemonCard from "../sub-gameStatus/pokemonCard";
 import CoinImage from "../../../images/coin.png";
-import { DeletePokemon } from "../sub-gameStatus/userdata/pokemonList";
+import { DeletePokemon } from "../sub-gameStatus/lib/pokemonList";
 import { Link } from 'react-router-dom';
 
 
@@ -26,14 +26,25 @@ const style = {
 
 const coinValues = [50, 250, 750, 2000, 5000, 5000]
 
-function LiberarButton({data, setUserData}) {
+function LiberarButton({data, setUserData, UserData}) {
 
   const [isHovered, setIsHovered] = useState(false);
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {setOpen(true);}
+
   const handleClose = () => setOpen(false);
 
   const LiberarPokemon = () => Liberar(data, setUserData);
+
+  const monedas = Math.floor(coinValues[data.frequency-1] * (data.shiny === "shiny" ? 2 : 1) * (data?.megaevolution === true ? 1.2 : 1) * (data?.rarespecies === true ? 1.1 : 1));
+  
+  useEffect(() => {
+    if (open) {
+      document.body.classList.add('modal-open');
+    } else {
+      document.body.classList.remove('modal-open');
+    }
+  }, [open]);
 
   return (
     <div id="liberarButtonContainer">
@@ -59,13 +70,13 @@ function LiberarButton({data, setUserData}) {
             ¿Quieres liberar a este Pokémon?
           </Typography>
           <Typography id="modal-modal-description" variant="h6" component="h2">
-            Liberar a <i>{data.nametag}</i> supondrá perderlo para siempre, pero recibirás <i>{coinValues[data.frequency-1]} monedas</i> a cambio. (No perderás su registro en la Pokédex)
+            Liberar a <i>{data.nametag}</i> supondrá perderlo para siempre, pero recibirás <i>{monedas} monedas</i> a cambio. (No perderás su registro en la Pokédex)
           </Typography>
           <div className="containerModal">
             <PokemonCard data={data} />
           </div>
           <div className="containerModal moneyCount">
-            <img className="coin" src={CoinImage} alt="coin" /> {"+" + coinValues[data.frequency-1]}
+            <img className="coin" src={CoinImage} alt="coin" /> {"+" + monedas}
           </div>
           <div className="containerModal">
             <Button
@@ -114,10 +125,13 @@ function LiberarButton({data, setUserData}) {
   );
 }
 
-function Liberar(data, setUserData) 
+export function Liberar(data, setUserData) 
 {
-  DeletePokemon(data.id, coinValues[data.frequency - 1], setUserData);
-  
-} 
+  DeletePokemon(data.id,Math.floor(coinValues[data.frequency-1] * (data.shiny === "shiny" ? 2 : 1) * (data?.megaevolution === true ? 1.2 : 1) * (data?.rarespecies === true ? 1.1 : 1)), setUserData);
+}
+
+export function GetPrice(data) {
+  return Math.floor(coinValues[data.frequency-1] * (data.shiny === "shiny" ? 2 : 1) * (data?.megaevolution === true ? 1.2 : 1) * (data?.rarespecies === true ? 1.1 : 1));
+}
 
 export default LiberarButton;

@@ -4,15 +4,15 @@ import {useState, useEffect} from 'react';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import {GetSpeciesDataByDexNum, GetSpanishName} from './lib/PokemonSpeciesData';
 import {GetDataByDexNum, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish, GetImage} from './lib/PokemonData';
-import { PokedexRegisters } from './userdata/pokedexRegisters';
 import CircularProgress from '@mui/material/CircularProgress';
 import { MouseOverPopover } from './mouseOverPopOver';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import { GetFrequencyByDexNum } from './lib/pokemonFrequency';
 
 /**
  * Función principal que se exporta.
  */
-function Pokedex() 
+function Pokedex({UserData}) 
 {
     const initGenerationNum = sessionStorage.getItem("generationNum");
     // El número de generación actual
@@ -32,7 +32,7 @@ function Pokedex()
             </div>
 
             <div id="pokedexBigBox">
-                <CompleteEntryList setGenerationNum={setGenerationNum} generationNum={generationNum} setDexNumbers={setDexNumbers} dexNumbers={dexNumbers}  />
+                <CompleteEntryList UserData={UserData} setGenerationNum={setGenerationNum} generationNum={generationNum} setDexNumbers={setDexNumbers} dexNumbers={dexNumbers}  />
             </div>
 
             <div id="nextGenContainer"> 
@@ -88,23 +88,26 @@ function CompleteEntryList(props)
 {
 
     const list = props.dexNumbers.map((num) => {
-        const card = (<PokemonEntry num={num} known={PokedexRegisters[num].known} key={num} />);
+        const card = (<PokemonEntry num={num} known={props.UserData.registers.includes(num) ? "known" : ""} key={num} />);
         return card;
         }
     );
 
+    const registeredMons = props.UserData.registers.length - 1;
+    const percentage = (100*(registeredMons/1025)).toFixed(2);
+
     return (
         <>
-            <p className="generationTitle">
+            <p><label>Registrados: {registeredMons} / 1025 ({percentage}%)</label></p>
+            <p className="generationTitle inlineContainer">
                 {props.generationNum + "º Generación"} 
                 <MouseOverPopover content={<InfoOutlinedIcon className="infoGenerationIcon"/>} 
                                 shown={
-                                <p> 
+                                <span> 
                                     La generación de un Pokémon es el grupo de Pokémon que se introdujeron en un mismo juego de la saga.
-                                </p>
+                                </span>
                                 } />
             </p>
-
             {list}
         </>
     );
@@ -138,7 +141,7 @@ function PokemonEntry(props)
 
     let knownCond= '';
 
-    let pokemon, firstType = ''; 
+    let pokemon, firstType, rarityNum = '0'; 
     if(props.known === 'known')
     {
         const name = GetSpanishName(pokemonSpeciesData);
@@ -168,12 +171,14 @@ function PokemonEntry(props)
     else 
     {
         // Caso de pokémon desconocido
+        rarityNum = GetFrequencyByDexNum(props.num);
+
         pokemon = <div className='unknownMessageContainer'>
                     <MouseOverPopover content={<p className="unknownMessage">???</p>} 
                         shown={
-                            <p> 
+                            <span> 
                                 Este Pokémon aún no ha sido descubierto.
-                            </p>
+                            </span>
                         } />
                     </div>
     }
@@ -186,7 +191,7 @@ function PokemonEntry(props)
         pokemon;
 
     return (
-        <div className={"entryBox " + knownCond} key={"pokemon-" + props.num}>
+        <div className={"entryBox " + knownCond + " rarity" + (rarityNum)} key={"pokemon-" + props.num}>
             <p className="dexNumber">Nº {props.num}</p>
             {content}
         </div>

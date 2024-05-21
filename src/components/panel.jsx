@@ -14,7 +14,14 @@ const initData = {
     name:"Iniciar sesión",
     pass:"",
     currency: 300,
-    pokemonList: []
+    pokemonList: [JSON.stringify({})],
+    registers: [0],
+    shinycharm: false,
+    rarecharm: false,
+    megacharm: false,
+    shinycount: 0,
+    rarecount: 0,
+    megacount: 0,
 }
 
 const savedData = () => 
@@ -22,23 +29,29 @@ const savedData = () =>
     const savedName = localStorage.getItem("username");
     const savedPass = localStorage.getItem("pass");
     const savedCurrency = localStorage.getItem("currency");
-    let savedPokemonList = getProccessPokemonList(localStorage.getItem("pokemonList"));
+    const savedPokemonList = JSON.parse(localStorage.getItem("pokemonList"));
+    const savedRegisters = JSON.parse(localStorage.getItem("registers"));
+    const savedShinyCharm = localStorage.getItem("shinycharm");
+    const savedRareCharm = localStorage.getItem("rarecharm");
+    const savedMegaCharm = localStorage.getItem("megacharm");
+    const savedShinyCount = localStorage.getItem("shinycount");
+    const savedRareCount = localStorage.getItem("rarecount");
+    const savedMegaCount = localStorage.getItem("megacount");
 
-    if(savedName == undefined || savedPass == undefined || savedCurrency == undefined)
-    {
-        return null;
-    }
-
-    if(savedPokemonList == undefined)
-    {
-        savedPokemonList = [];
-    }
 
     return {
-        name: savedName,
-        pass: savedPass,
-        currency: parseInt(savedCurrency),
-        pokemonList: savedPokemonList
+        name: savedName ? savedName : initData.name,
+        pass: savedPass ? savedPass : initData.pass,
+        currency: savedCurrency ? parseInt(savedCurrency) : initData.currency,
+        pokemonList: savedPokemonList ? savedPokemonList : initData.pokemonList,
+        registers: savedRegisters ? savedRegisters : initData.registers,
+        shinycharm: savedShinyCharm ? savedShinyCharm : initData.shinycharm,
+        rarecharm: savedRareCharm ? savedRareCharm : initData.rarecharm,
+        megacharm: savedMegaCharm ? savedMegaCharm : initData.megacharm,
+        shinycount: savedShinyCount ? savedShinyCount : initData.shinycount,
+        rarecount: savedRareCount ? savedRareCount : initData.rarecount,
+        megacount: savedMegaCount ? savedMegaCount : initData.megacount
+
     };
 }
 
@@ -54,7 +67,14 @@ function MainPanel()
         localStorage.setItem("username", UserData.name);
         localStorage.setItem("pass", UserData.pass);
         localStorage.setItem("currency", UserData.currency.toString());
-        localStorage.setItem("pokemonList", setProccessPokemonList(UserData.pokemonList));
+        localStorage.setItem("pokemonList", JSON.stringify(UserData.pokemonList));
+        localStorage.setItem("registers", JSON.stringify(UserData.registers));
+        localStorage.setItem("shinycount", UserData.shinycount);
+        localStorage.setItem("rarecount", UserData.rarecount);
+        localStorage.setItem("megacount", UserData.megacount);
+        localStorage.setItem("shinycharm", (UserData.registers.length-1 === 1025));
+        localStorage.setItem("rarecharm", (UserData.rarecount >= 300));
+        localStorage.setItem("megacharm", (UserData.megacount >= 100));
     }, [UserData]);
 
     useEffect(() => {
@@ -113,7 +133,7 @@ function MainPanel()
                                     <CoinsPanel UserData={UserData} />
                                 </div>
                                 <div id='topelementsPanelContainer' className='subpanelContainer'>
-                                    <TopElementsPanel tirarButtonDisable={tirarButtonDisable} />
+                                    <TopElementsPanel tirarButtonDisable={tirarButtonDisable} UserData={UserData} />
                                 </div>
                                 <div id='usernamePanelContainer' className='subpanelContainer'>
                                     <UsernamePanel UserData={UserData}/>
@@ -178,11 +198,11 @@ function CoinsPanel({UserData})
 /**
  * Este es el panel que contiene el título de dónde te encuentras
  */
-function TopElementsPanel({tirarButtonDisable})
+function TopElementsPanel({UserData, tirarButtonDisable})
 {
     return (
         <div className='subpanel' id='topelementsPanel'>
-            <TopElements tirarButtonDisable={tirarButtonDisable}/>
+            <TopElements tirarButtonDisable={tirarButtonDisable} UserData={UserData}/>
         </div>
     );
 }
@@ -227,30 +247,6 @@ function BottomElementsPanel({UserData, setUserData, TierRuleta, setTierRuleta, 
         </div>
     );
 }
-
-export const getProccessPokemonList = (arrayStringed) =>     
-{
-    
-    let array = arrayStringed.split('&');
-
-    console.log(array);
-    if(array != [""] || array != [])
-    {
-        //array.map((str) => {return JSON.parse(str.substring(0, str.length - 1));});
-    }
-
-    return array;
-}
-
-export const setProccessPokemonList = (array) =>     
-{
-    array.map((json) => {return JSON.stringify(json);});
-
-    const string = array.join('&');
-
-    return string;
-}
-
 
 /* Lo único que hace falta exportar */
 export default MainPanel;

@@ -129,6 +129,36 @@
     height: 100%;
 }
 
+.rarity1 {
+    border-color: rgb(190, 190, 190);
+}
+
+.rarity2 {
+    border-color: rgb(145, 255, 184);
+}
+
+.rarity3 {
+    border-color: rgb(142, 198, 255);
+}
+
+.rarity4 {
+    border-color: rgb(216, 139, 255);
+}
+
+.rarity5 {
+    border-color: rgb(255, 223, 39);
+    animation-name: rareza5anim;
+    animation-duration: 5s; /* Aumenta la duración para hacerla más lenta */
+    animation-iteration-count: infinite;
+}
+
+.rarity6 {
+    border-color: rgb(255, 100, 100);
+    animation-name: rareza6anim;
+    animation-duration: 5s; /* Aumenta la duración para hacerla más lenta */
+    animation-iteration-count: infinite;
+}
+
 @media screen and (max-width: 900px)
 {
     #pokedexBigBox

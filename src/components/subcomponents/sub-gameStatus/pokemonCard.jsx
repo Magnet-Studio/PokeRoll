@@ -1,7 +1,7 @@
 import React, { useState , useEffect } from "react";
 import './styles/almacen.css';
 import { GetSpeciesDataByName, GetSpanishName} from './lib/PokemonSpeciesData';
-import { GetDataByName, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish, GetImage, GetDexNum} from './lib/PokemonData';
+import { GetDataByName, GetPrettyTypeNameSpanish, GetImage, GetDexNum, GetVariantImage} from './lib/PokemonData';
 import { Link } from "react-router-dom";
 
 
@@ -26,8 +26,8 @@ function PokemonCard({data})
     let pokemon, firstType = '';
 
     const name = data.nametag === null ? GetSpanishName(pokemonSpeciesData) : data.nametag;
-    firstType = GetFirstType(pokemonData);
-    const secondType = GetSecondType(pokemonData);
+    firstType = data.type1;
+    const secondType = data.type2;
     const dexNum = GetDexNum(pokemonData);
     
     let secondTypeContainer = (<></>); 
@@ -35,10 +35,12 @@ function PokemonCard({data})
     {
         secondTypeContainer = (<div className="pokemonType">{GetPrettyTypeNameSpanish(secondType)}</div>);
     }  
+
+    
         
     pokemon = (
         <>
-            {GetImage(pokemonData, (data.shiny === "shiny"))}    
+            {data?.variant === undefined ? GetImage(pokemonData, (data.shiny === "shiny")) : GetVariantImage(data.variant.name, (data.shiny === "shiny"))}    
                 <div className='types'>
                     <div className="pokemonType">{GetPrettyTypeNameSpanish(firstType)}</div>
                     {secondTypeContainer}
@@ -47,9 +49,23 @@ function PokemonCard({data})
         </>
     );
 
+    let megaData="";
+    if (data?.megaevolution !== undefined) {
+        if (data.megaevolution === true) {
+            megaData = "mega"
+        }
+    }
+
+    let rareData="";
+    if (data?.rarespecies !== undefined) {
+        if (data.rarespecies === true) {
+            rareData = "rare"
+        }
+    }
+
     return (
         <Link to={"ver-pokemon?id=" + data.id}>
-            <div className={"entryBox " + firstType + " " + data.shiny} key={data.id}>
+            <div className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny} key={data.id}>
                 <p className="dexNumber">Nº {dexNum}</p>
                 {pokemon}
             </div>

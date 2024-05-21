@@ -1,10 +1,11 @@
 import { GetPokemonArrayByFrequency } from "./pokemonFrequency";
+import { getPokemonVariants, getRandomVariant } from "./pokemonVariants";
 
 /**
  * Devuelve un array de tres pokemon (object con dexNum y shiny)
  * @param TierRuleta El tier de la tirada hecha (número entre 1 y 5)
  */
-export const GetThreeRandomPokemon = (TierRuleta) =>
+export const GetThreeRandomPokemon = (TierRuleta, UserData) =>
 {
     let winners = [];
 
@@ -41,7 +42,7 @@ export const GetThreeRandomPokemon = (TierRuleta) =>
         pokemon.frequency = frequency + 1;
         
         // Calculo de IVs
-        pokemon.iv = GetIVs();
+        pokemon.iv = GetIVs(pokemon.frequency);
         
         // Obtener el dexNum del pokémon (aquí verdaderamente se elije el pokémon)
         const pokemonArray = GetPokemonArrayByFrequency(frequency);
@@ -51,14 +52,24 @@ export const GetThreeRandomPokemon = (TierRuleta) =>
         pokemon.name = array.dexNum;
         
         // Cálculo del shiny
-        const shiny = GetShinyValue();
+        const shiny = GetShinyValue(UserData);
         pokemon.shiny = shiny;
+
+        // Obtenemos una variante (Y vemos si es una mega o especie rara)
+        const variants = getPokemonVariants(pokemon.name, UserData);
+        if (variants !== null) {
+            pokemon.variant = getRandomVariant(variants);
+            if (pokemon.variant?.mega !== undefined) {
+                pokemon.megaevolution = pokemon.variant.mega;
+            } if (pokemon.variant?.rare !== undefined) {
+                pokemon.rarespecies = pokemon.variant.rare;
+            }
+        }
         
         // Añadimos el pokemon a lista de 3
         winners[i] = pokemon;
     }
 
-    console.log(winners);
 
     return winners;
 }
@@ -67,11 +78,11 @@ export const GetThreeRandomPokemon = (TierRuleta) =>
  * Muestra en cada array el límite (intervalo abierto) de cada probabilidad * tier * frecuencia
  */
 const AllTierProbabilities = [
-    [900, 990, 1000, 1001, 1001, 1001], // 90% 9%  1%   0%    0%   0%
-    [50, 950, 990, 1000, 1001, 1001],   // 5%  90% 4%   1%    0%   0%
-    [50, 100, 950, 990, 1000, 1001],    // 5%  5%  85%  4%    1%   0%
-    [0, 10, 100, 975, 1000, 1001],      // 0%  1%  10%  87.5% 2.5% 0%       
-    [0, 0, 0, 100, 950, 1000]           // 0%  0%  0%   10%   85%  5%
+    [900, 990, 1000, 1001, 1001, 1001], // 90% 9%  1%   0%    0%   0% TIER 1
+    [50, 950, 990, 1000, 1001, 1001],   // 5%  90% 4%   1%    0%   0% TIER 2
+    [50, 100, 950, 990, 1000, 1001],    // 5%  5%  85%  4%    1%   0% TIER 3
+    [0, 10, 100, 975, 1000, 1001],      // 0%  1%  10%  87.5% 2.5% 0% TIER 4 
+    [0, 0, 0, 100, 950, 1000]           // 0%  0%  0%   10%   85%  5% TIER 5
 ];
 
 const SHINY_PROBABILITY = 512;
@@ -79,9 +90,10 @@ const SHINY_PROBABILITY = 512;
 /**
  * Elije aleatoriamente si es shiny o normal
  */
-const GetShinyValue = () => 
+const GetShinyValue = (UserData) => 
 {
-    const num = Math.floor(Math.random() * SHINY_PROBABILITY);
+    const SHINY_BONUS = (UserData.shinycharm === "true" ? 2 : 1);
+    const num = Math.floor(Math.random() * (SHINY_PROBABILITY / SHINY_BONUS));
 
     if(num === 33)
     {
@@ -96,14 +108,44 @@ const GetRandomIV = () => {
     return num;
 }
 
-const GetIVs = () => {
+const GetIVs = (frequency) => {
+
+    let ivs = [0,0,0,0,0,0];
+
+    
+
+    if(frequency >= 5)
+    {
+        let countMaxIVs = 0;
+        let range = [0,1,2,3,4,5];
+        let i;
+
+        while(countMaxIVs < 3)
+        {   
+            i = Math.floor(Math.random() * range.length);
+
+            ivs[range[i]] = 31;
+
+            range.splice(i, 1);
+
+            countMaxIVs++;
+        }
+    }
+
+    for(let i=0; i<6; i++)
+        {
+            if (ivs[i] !== 31) {
+                ivs[i] = GetRandomIV();
+            }
+        }
+
     return {
-        hp: GetRandomIV(),
-        atq: GetRandomIV(),
-        def: GetRandomIV(),
-        spatq: GetRandomIV(),
-        spdef: GetRandomIV(),
-        spe: GetRandomIV()
+        hp: ivs[0],
+        atq: ivs[1],
+        def: ivs[2],
+        spatq: ivs[3],
+        spdef: ivs[4],
+        spe: ivs[5]
     };
 }
 

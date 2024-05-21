@@ -3,16 +3,16 @@
  * de los elementos que hay arriba: titulo con/sin botón de cambio de Tier de tirada
  */
 
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Routes, Route, useLocation } from 'react-router-dom';
 import './styles/topElements.css';
 import TitleGameStatus from './sub-topElements/titleGameStatus';
-import { GetPokemonByID } from './sub-gameStatus/userdata/pokemonList';
+import { GetPokemonByID } from './sub-gameStatus/lib/pokemonList';
 
 /**
  * Rutas de todas las posibilidades del elemento superior (título / cambiar tier)
  */
-function TopElements({tirarButtonDisable})
+function TopElements({UserData, tirarButtonDisable})
 {
 
     const location = useLocation();
@@ -22,7 +22,7 @@ function TopElements({tirarButtonDisable})
         
         const searchParams = new URLSearchParams(location.search);
         const id = searchParams.get("id");
-        const pokemon = GetPokemonByID(id);
+        const pokemon = GetPokemonByID(id, UserData.pokemonList);
         
         pokenametag = pokemon.nametag === null ? pokemon.name : pokemon.nametag;
     }

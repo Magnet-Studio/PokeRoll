@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './styles/ruletaElements.css';
 import CoinImage from '../../../images/coin.png';
-import PokeballIcon from '../../../images/pokeball.png';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { GetThreeRandomPokemon } from '../sub-gameStatus/lib/RuletaController';
 
@@ -24,7 +23,7 @@ export function TirarButton({cost, TierRuleta, setUserData, tirarButtonDisable, 
             setTirarButtonDisable("disabled");
             setChangeTierButtonDisable("disabled");
 
-            setThreePokemon(GetThreeRandomPokemon(TierRuleta - 1));
+            setThreePokemon(GetThreeRandomPokemon(TierRuleta - 1, UserData));
         }
     }
 
@@ -48,13 +47,6 @@ export function TirarButton({cost, TierRuleta, setUserData, tirarButtonDisable, 
                 <img src={CoinImage} alt={"Coins"} />
             </div>
         </div>
-    );
-}
-
-function Pokeball() 
-{
-    return (
-        <img className="pokeBall" src={PokeballIcon} alt={"Pokeball"} />
     );
 }
 

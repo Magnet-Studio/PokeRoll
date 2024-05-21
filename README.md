@@ -4,6 +4,9 @@
 > [!IMPORTANT]
 > This project is in development, we are currently working on it.
 
+> [!IMPORTANT]
+> Actual Version: 0.2.0
+
 ## 📜 Magnet Studio is formed by... 📜
 - [Mario Cortés Herrera](https://github.com/SimulationOfMario)
 - [Javier Molina Colmenero](https://github.com/CreatorBeastGD)
@@ -20,3 +23,4 @@
 > - Bootstrap: ```npm install react-bootstrap bootstrap```
 > - React CountUp: ```npm install react-countup```
 > - React Spring: ```npm install react-spring```
+> - React Confetti: ```npm install react-confetti```

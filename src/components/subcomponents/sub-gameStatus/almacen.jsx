@@ -1,25 +1,131 @@
 import React, { useState , useEffect } from "react";
 import './styles/almacen.css';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
-import { FakeData } from "./userdata/pokemonList";
 import { GetSpeciesDataByName, GetSpanishName} from './lib/PokemonSpeciesData';
-import { GetDataByName, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish, GetImage, GetDexNum} from './lib/PokemonData';
+import { GetDataByName, GetPrettyTypeNameSpanish, GetImage, GetDexNum, GetVariantImage} from './lib/PokemonData';
 import { Link } from "react-router-dom";
 import { GetRarezaPoints } from "./lib/pokemonRarity";
 import CircularProgress from '@mui/material/CircularProgress';
+import { Button } from "@mui/material";
+import { GetPrice, Liberar } from '../sub-bottomElements/liberarButton';
+import { GetPokemonByID } from "./lib/pokemonList";
+import { MouseOverPopover } from "../sub-gameStatus/mouseOverPopOver";
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import CoinImage from "../../../images/coin.png";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import CheckIcon from '@mui/icons-material/Check';
+import CloseIcon from '@mui/icons-material/Close';
+import PublishedWithChangesIcon from '@mui/icons-material/PublishedWithChanges';
 
-function Almacen() {
+const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: "40vw",
+    bgcolor: "white",
+    boxShadow: 24,
+    p: 4,
+    borderRadius: "2vw",
+  };
+
+
+
+  function Almacen({ UserData, setUserData }) {
     const [selectedValue, setSelectedValue] = useState('0');
-    const [selectedTier, setSelectedTier] = useState('0');
+    const [selectedFrequency, setSelectedFrequency] = useState('0');
     const [selectedType, setSelectedType] = useState('0');
     const [Name, setName] = useState('');
+    const [borradoMultiple, setBorradoMultiple] = useState(false);
+    const [selectedBorrado, setSelectedBorrado] = useState([]);
+    const [open, setOpen] = useState(false);
 
     useEffect(() => {
         setSelectedValue(sessionStorage.getItem('selectedValue') || '0');
-        setSelectedTier(sessionStorage.getItem('selectedTier') || '0');
+        setSelectedFrequency(sessionStorage.getItem('selectedFrequency') || '0');
         setSelectedType(sessionStorage.getItem('selectedType') || '0');
         setName(sessionStorage.getItem('Name') || '');
     }, []);
+
+    /*
+    useEffect(() => {
+    }, [selectedBorrado]);
+    */
+   
+    useEffect(() => {
+        if (open) {
+            document.body.classList.add('modal-open');
+        } else {
+            document.body.classList.remove('modal-open');
+        }
+    }, [open]);
+
+    const toggleBorradoMultiple = () => {
+        setBorradoMultiple(!borradoMultiple);
+        setSelectedBorrado([]);
+    };
+
+    const liberarMultiple = () => {
+        selectedBorrado.forEach(pokemon => {
+            Liberar(pokemon, setUserData);
+        });
+        setOpen(false);
+        setSelectedBorrado([]);
+        toggleBorradoMultiple();
+    };
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    let coins = 0;
+    let warning = null;
+    const maxDisplayCount = 5; // Máximo número de Pokémon a mostrar directamente
+
+    let list = selectedBorrado.map((pokemon, index) => {
+        coins += GetPrice(pokemon);
+        let tag = "";
+
+        if (pokemon.shiny === 'shiny' || pokemon?.rarespecies === true || pokemon.megaevolution === true) {
+            warning = <>¡CUIDADO! Hay Pokémon especiales en la selección.</>;
+            if (pokemon.rarespecies === true) {
+                tag = "rareSpeciesFound";
+            } else if (pokemon.megaevolution === true) {
+                tag = "megaFound";
+            } else {
+                tag = "shinyFound";
+            }
+        }
+
+        let name = pokemon.nametag;
+        return <p key={index} className={"pokemonNameLiberar " + tag}>{name}</p>;
+    });
+
+    // Filtrar los primeros 5 Pokémon para mostrar y contar el resto
+    let displayedList = list.slice(0, maxDisplayCount);
+    let remainingCount = list.length - maxDisplayCount;
+
+    const Lista = (
+        <div>
+            {displayedList}
+            {remainingCount > 0 && <p className="pokemonNameLiberar">...Y {remainingCount} Pokémon más</p>}
+        </div>
+    );
+
+    const infoMultipleBorrado = (<span>
+        Con la herramienta de liberar múltiple puedes liberar<br/>
+        varios Pokémon de tu almacen a la vez.<br/>
+        Selecciona los Pokémon que quieras liberar y pulsa confirmar<br/>
+        para venderlos todos a la vez. ¡Ten cuidado seleccionando!
+    </span>);
+
+    const multipleBorradoPopover = (<MouseOverPopover content={<InfoOutlinedIcon />} shown={infoMultipleBorrado} />);
 
     return (
         <>
@@ -27,8 +133,8 @@ function Almacen() {
                 <div id="filtros">
                     <FiltrosAlmacen selectedValue={selectedValue} 
                                     setSelectedValue={setSelectedValue} 
-                                    selectedTier={selectedTier}
-                                    setSelectedTier={setSelectedTier}
+                                    selectedFrequency={selectedFrequency}
+                                    setSelectedFrequency={setSelectedFrequency}
                                     selectedType={selectedType}
                                     setSelectedType={setSelectedType}
                                     Name={Name}
@@ -36,21 +142,109 @@ function Almacen() {
                 </div>
 
                 <div id="pokemon-cards-container">
-                    <CompletePokemonList selectedValue={selectedValue} selectedTier={selectedTier} selectedType={selectedType} Name={Name}/>
+                    <CompletePokemonList selectedBorrado={selectedBorrado} setSelectedBorrado={setSelectedBorrado} borradoMultiple={borradoMultiple} selectedValue={selectedValue} selectedFrequency={selectedFrequency} selectedType={selectedType} Name={Name} UserData={UserData}/>
+                </div>
+
+                <div className="borradoMultipleContainer">
+                    {borradoMultiple ? (
+                        <>
+                            {multipleBorradoPopover}
+                            <Button id="borradoMultipleCancel" onClick={toggleBorradoMultiple}><CloseIcon style={{ fontSize: '40px' }} /></Button>
+                            <Button 
+                                id="borradoMultipleConfirm" 
+                                onClick={selectedBorrado.length > 0 ? handleOpen : null}
+                                className={selectedBorrado.length > 0 ? "" : "borradoMultipleConfirmDisabled"}
+                                >
+                                <CheckIcon style={{ fontSize: '40px' }} />
+                            </Button>
+                        </>
+                    ) : (
+                        <>
+                             {multipleBorradoPopover}
+                            <Button id="borradoMultipleButton" onClick={toggleBorradoMultiple}><PublishedWithChangesIcon style={{ fontSize: '40px' }} /></Button>
+                        </>
+                    )}
+                    <Modal
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                    >
+                        <Box sx={style}>
+                            <Typography id="modal-modal-title" variant="h6" component="h2">
+                                ¿Quieres liberar a los Pokémon seleccionados?
+                            </Typography>
+                            <Typography id="modal-modal-description" variant="h6" component="h2">
+                                Estás a punto de liberar {selectedBorrado.length} Pokémon. Entre ellos se encuentran... 
+                            </Typography>
+                            <div className="containerModal">
+                                {Lista}
+                            </div>
+                            <br/>
+                            <div className="containerModal warningMessage">
+                                {warning}
+                            </div>
+
+                            <div className="containerModal moneyCount">
+                                <img className="coin" src={CoinImage} alt="coin" /> {"+" + coins}
+                            </div>
+                            <div className="containerModal">
+                                <Button
+                                    className="cerrarButton"
+                                    onClick={handleClose}
+                                    style={{
+                                        backgroundColor: "#fb6c6c" /* color de fondo */,
+                                        color: "white" /* color del texto */,
+                                        padding: "14px 20px" /* padding */,
+                                        border: "0.2vw solid #9f4949" /* sin borde */,
+                                        borderRadius: "1vw" /* bordes redondeados */,
+                                        cursor: "pointer" /* cursor de mano al pasar por encima */,
+                                        fontSize: "calc(0.5vw + 0.9vh)" /* tamaño de la fuente */,
+                                        width: "8vw",
+                                        pointerEvents: "all",
+                                        fontFamily: "vanilla-regular",
+                                    }}
+                                >
+                                    Cancelar
+                                </Button>
+                                <Link to="/almacen">
+                                    <Button
+                                        className="confirmarButton"
+                                        onClick={liberarMultiple}
+                                        style={{
+                                            backgroundColor: "#00DF09" /* color de fondo */,
+                                            color: "#ffffff" /* color del texto */,
+                                            padding: "14px 20px" /* padding */,
+                                            border: "0.2vw solid #89ff8e" /* sin borde */,
+                                            borderRadius: "1vw" /* bordes redondeados */,
+                                            cursor: "pointer" /* cursor de mano al pasar por encima */,
+                                            fontSize: "calc(0.5vw + 0.9vh)" /* tamaño de la fuente */,
+                                            width: "8vw",
+                                            marginLeft: "1.5vw",
+                                            pointerEvents: "all",
+                                            fontFamily: "vanilla-regular",
+                                        }}
+                                    >
+                                        Liberar
+                                    </Button>
+                                </Link>
+                            </div>
+                        </Box>
+                    </Modal>
                 </div>
             </div>
         </>
-    )
+    );
 }
 
-function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedTier, setSelectedTier, selectedType, setSelectedType, Name, setName} ) {
+function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, setSelectedFrequency, selectedType, setSelectedType, Name, setName} ) {
     const handleSelectChange = (event) => {
         setSelectedValue(event.target.value);
         sessionStorage.setItem('selectedValue', event.target.value);
     };
     const handleSelectTier = (event) => {
-        setSelectedTier(event.target.value);
-        sessionStorage.setItem('selectedTier', event.target.value);
+        setSelectedFrequency(event.target.value);
+        sessionStorage.setItem('selectedFrequency', event.target.value);
     };
     const handleSelectType = (event) => {
         setSelectedType(event.target.value);
@@ -68,28 +262,31 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedTier, setSele
             <div>
                 
                 <select className="inputElem" name="generalFilter" value={selectedValue} onChange={handleSelectChange}>
-                    <option value="0">Obtenidos más reciente</option>
-                    <option value="5">Más antiguos</option>
-                    <option value="1">Pokémon más raro</option>
-                    <option value="2">Por número de Pokédex</option>
-                    <option value="3">Por Tier más alto</option>
+                    <option value="0">Ordenar por más reciente</option>
+                    <option value="5">Ordenar por más antiguos</option>
+                    <option value="1">Ordenar por Pokémon con más valor</option>
+                    <option value="6">Ordenar por mejores estadísticas</option>
+                    <option value="2">Ordenar por número de Pokédex</option>
+                    <option value="3">Ordenar por Rareza más alta</option>
                     <option value="4">Variocolores primero</option>
+                    <option value="7">Megaevoluciones primero</option>
+                    <option value="8">Especies raras primero</option>
                 </select>
             </div>
             
             <div>
-                <select className="inputElemSmall" name="tier" value={selectedTier} onChange={handleSelectTier}>
-                    <option value="0">Filtrar Tier...</option>
+                <select className="inputElemSmall" name="tier" value={selectedFrequency} onChange={handleSelectTier}>
+                    <option value="0">Filtrar Rareza...</option>
                     <option value="1">Común</option>
                     <option value="2">Infrecuente</option>
-                    <option value="3">Raro</option>
+                    <option value="3">Peculiar</option>
                     <option value="4">Épico</option>
                     <option value="5">Legendario</option>
                     <option value="6">Singular</option>
                 </select>
 
                 <select className="inputElemSmall" name="type" value={selectedType} onChange={handleSelectType}>
-                <option value="0">Tipo...</option>
+                <option value="0">Filtrar Tipo...</option>
                 <option value="steel">Acero</option>
                 <option value="water">Agua</option>
                 <option value="bug">Bicho</option>
@@ -114,7 +311,7 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedTier, setSele
             
 
             <div>
-                <input className="inputElem" placeholder="Escribe un nombre..." value={Name} onChange={handleName}>
+                <input className="inputElem" placeholder="Filtrar por nombre..." value={Name} onChange={handleName}>
                 
                 </input>
             </div>
@@ -122,10 +319,21 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedTier, setSele
     )
 }
 
-function CompletePokemonList({selectedValue, selectedTier, selectedType, selectedSpecial, selectedShiny, Name}) 
+export const sumIVs = (ivs) => {
+    return ivs.hp + ivs.atq + ivs.def + ivs.spatq + ivs.spdef + ivs.spe;
+}
+
+function CompletePokemonList({selectedBorrado, setSelectedBorrado, borradoMultiple, selectedValue, selectedFrequency, selectedType, selectedSpecial, selectedShiny, Name, UserData}) 
 {
-    let sortedList = [...FakeData];
-    // console.log(sortedList);
+    const rawList = [...UserData.pokemonList];
+    let sortedList = []; 
+
+    // Vuelve JSON la lista
+    rawList.forEach((pokemon, index) => {
+        sortedList[index] = JSON.parse(pokemon);
+    });
+
+    sortedList.shift(); // Quita el {} inicial
 
     // Select de ordenacion
     switch (selectedValue) {
@@ -134,16 +342,21 @@ function CompletePokemonList({selectedValue, selectedTier, selectedType, selecte
             break;
         case '1':
             sortedList.sort((a, b) => {
-                let rarezaA = GetRarezaPoints(a.iv, a.shiny, parseInt(a.frequency));
-                let rarezaB = GetRarezaPoints(b.iv, b.shiny, parseInt(b.frequency));
+                let rarezaA = GetRarezaPoints(a.iv, a.shiny, parseInt(a.frequency), (a?.megaevolution !== undefined ? a.megaevolution : false), (a?.rarespecies !== undefined ? a.rarespecies : false));
+                let rarezaB = GetRarezaPoints(b.iv, b.shiny, parseInt(b.frequency), (b?.megaevolution !== undefined ? b.megaevolution : false), (b?.rarespecies !== undefined ? b.rarespecies : false));
                 
-                return (rarezaA - rarezaB); // No va bien? q raro xd
+                return (rarezaB - rarezaA);
             });
-            sortedList.sort((a,b) => -1);
             break;
         case '2':
             sortedList.sort((a,b) => {
-                return parseInt(a.name) - parseInt(b.name);
+                let rarezaA = GetRarezaPoints(a.iv, a.shiny, parseInt(a.frequency), (a?.megaevolution !== undefined ? a.megaevolution : false), (a?.rarespecies !== undefined ? a.rarespecies : false));
+                let rarezaB = GetRarezaPoints(b.iv, b.shiny, parseInt(b.frequency), (b?.megaevolution !== undefined ? b.megaevolution : false), (b?.rarespecies !== undefined ? b.rarespecies : false));
+                if (a.name === b.name) {
+                    return (rarezaB - rarezaA);
+                } else {
+                    return parseInt(a.name) - parseInt(b.name);
+                }
             })
             break;
         case '3':
@@ -153,35 +366,98 @@ function CompletePokemonList({selectedValue, selectedTier, selectedType, selecte
             break;
         case '4':
             sortedList.sort((a, b) => {
+                let rarezaA = GetRarezaPoints(a.iv, a.shiny, parseInt(a.frequency), (a?.megaevolution !== undefined ? a.megaevolution : false), (a?.rarespecies !== undefined ? a.rarespecies : false));
+                let rarezaB = GetRarezaPoints(b.iv, b.shiny, parseInt(b.frequency), (b?.megaevolution !== undefined ? b.megaevolution : false), (b?.rarespecies !== undefined ? b.rarespecies : false));
+                
                 if (a.shiny === "shiny" && b.shiny !== "shiny") {
                     return -1; // a viene antes que b
                 } else if (a.shiny !== "shiny" && b.shiny === "shiny") {
                     return 1; // b viene antes que a
                 } else {
-                    return 0; // mantiene el orden actual
+                    return (rarezaB - rarezaA); // ordena por rareza
                 }
             })
             break;
         case '5':
             sortedList.sort((a, b) => a.id - b.id)
             break;
+        case '6':
+            sortedList.sort((a, b) => sumIVs(b.iv) - sumIVs(a.iv))
+            break;
+        case '7':
+            sortedList.sort((a, b) => {
+                let rarezaA = GetRarezaPoints(a.iv, a.shiny, parseInt(a.frequency), (a?.megaevolution !== undefined ? a.megaevolution : false), (a?.rarespecies !== undefined ? a.rarespecies : false));
+                let rarezaB = GetRarezaPoints(b.iv, b.shiny, parseInt(b.frequency), (b?.megaevolution !== undefined ? b.megaevolution : false), (b?.rarespecies !== undefined ? b.rarespecies : false));
+                
+                if (a?.megaevolution !== undefined && b?.megaevolution !== undefined) {
+                    if (a.megaevolution === true && b.megaevolution === false) {
+                        return -1
+                    } else if (b.megaevolution === true && a.megaevolution === false) {
+                        return 1;
+                    } else {
+                        return (rarezaB - rarezaA);
+                    }
+                }
+                else if (a?.megaevolution !== undefined && b?.megaevolution === undefined) {
+                    return -1
+                } else if (a?.megaevolution === undefined && b?.megaevolution !== undefined) {
+                    return 1
+                } else {
+                    return (rarezaB - rarezaA);
+                }
+            })
+            break;
+        case '8':
+            sortedList.sort((a, b) => {
+                
+                let rarezaA = GetRarezaPoints(a.iv, a.shiny, parseInt(a.frequency), (a?.megaevolution !== undefined ? a.megaevolution : false), (a?.rarespecies !== undefined ? a.rarespecies : false));
+                let rarezaB = GetRarezaPoints(b.iv, b.shiny, parseInt(b.frequency), (b?.megaevolution !== undefined ? b.megaevolution : false), (b?.rarespecies !== undefined ? b.rarespecies : false));
+                
+                if (a?.rarespecies !== undefined && b?.rarespecies !== undefined) {
+                    if (a.rarespecies === true && b.rarespecies === false) {
+                        return -1
+                    } else if (b.rarespecies === true && a.rarespecies === false) {
+                        return 1;
+                    } else {
+                        return  (rarezaB - rarezaA);
+                    }
+                }
+                else if (a?.rarespecies !== undefined && b?.rarespecies === undefined) {
+                    return -1
+                } else if (a?.rarespecies === undefined && b?.rarespecies !== undefined) {
+                    return 1
+                } else {
+                    return  (rarezaB - rarezaA);
+                }
+            })
+            break;
         default:
             break;
     }
 
     // Select de Tier
-    sortedList = sortedList.filter(poke => (selectedTier === "0" ? true : poke.frequency === selectedTier));
+    sortedList = sortedList.filter(poke => (selectedFrequency === "0" ? true : parseInt(poke.frequency) === parseInt(selectedFrequency)));
 
     // Select de Tipo
-    sortedList = sortedList.filter(poke => (selectedType === "0" ? true : poke.frequency === selectedType || poke.type2 === selectedType));
+    sortedList = sortedList.filter(poke => (selectedType === "0" ? true : poke.type1 === selectedType || poke.type2 === selectedType));
 
     sortedList = sortedList.filter(poke => (Name === "" ? true : poke.nametag.toLowerCase().startsWith(Name.toLowerCase()) ||
                                                                  poke.speciesname.toLowerCase().startsWith(Name.toLowerCase())));
 
-    const list = sortedList.map((datos, index) =>
-        <PokemonCard data={datos} key={index}/>
-    );
-
+    const list = sortedList.map((datos) => {
+        const isAlreadySelected = selectedBorrado.some(pokemon => pokemon.id === datos.id);
+        return (
+            <PokemonCard 
+                UserData={UserData} 
+                isAlreadySelected={isAlreadySelected} 
+                selectedBorrado={selectedBorrado}
+                setSelectedBorrado={setSelectedBorrado} 
+                borradoMultiple={borradoMultiple} 
+                data={datos} 
+                key={`${datos.id}-${isAlreadySelected}`}
+            />
+        );
+    });
     return (
         <>
             {list}
@@ -190,13 +466,31 @@ function CompletePokemonList({selectedValue, selectedTier, selectedType, selecte
 
 }
 
-function PokemonCard({data}) 
+function PokemonCard({UserData, isAlreadySelected, selectedBorrado, setSelectedBorrado, borradoMultiple, data}) 
 {
 
     /* Esto habria que hacerlo con un array de pokemon? */
     const [pokemonData, setPokemonData] = useState(null);
     const [pokemonSpeciesData, setPokemonSpeciesData] = useState(null);
 
+    const [isSelectedBorrado, setIsSelectedBorrado] = useState(false);
+
+    useEffect(() => {
+        setIsSelectedBorrado(isAlreadySelected);
+    }, [isAlreadySelected]);
+
+    const handleSelectedBorrado = () => {
+        const pokemon = GetPokemonByID(data.id, UserData.pokemonList);
+    
+        if (isAlreadySelected) {
+            setSelectedBorrado(selectedBorrado.filter(pokemon => pokemon.id !== data.id));
+            setIsSelectedBorrado(false);
+        } else {
+            setSelectedBorrado([...selectedBorrado, pokemon]);
+            setIsSelectedBorrado(true);
+        }
+    }
+    
     useEffect(() => {
         const fetchDataAndUpdateState = async () => 
             {
@@ -207,24 +501,25 @@ function PokemonCard({data})
             };
 
             fetchDataAndUpdateState();
-    });
+    }, [data.name]);
 
     let pokemon, firstType = '';
 
     const name = data.nametag === null ? GetSpanishName(pokemonSpeciesData) : data.nametag;
-    firstType = GetFirstType(pokemonData);
-    const secondType = GetSecondType(pokemonData);
+    firstType = data.type1;
+    const secondType = data.type2;
     const dexNum = GetDexNum(pokemonData);
     
     let secondTypeContainer = (<></>); 
     if(secondType !== null)
     {
         secondTypeContainer = (<div className="pokemonType">{GetPrettyTypeNameSpanish(secondType)}</div>);
-    }  
+    }
+
         
     pokemon = (
         <>
-            {GetImage(pokemonData, (data.shiny === "shiny"))}    
+            {data?.variant === undefined ? GetImage(pokemonData, (data.shiny === "shiny")) : GetVariantImage(data.variant.name, (data.shiny === "shiny"))}    
                 <div className='types'>
                     <div className="pokemonType">{GetPrettyTypeNameSpanish(firstType)}</div>
                     {secondTypeContainer}
@@ -233,6 +528,20 @@ function PokemonCard({data})
         </>
     );
 
+    let megaData="";
+    if (data?.megaevolution !== undefined) {
+        if (data.megaevolution === true) {
+            megaData = "mega"
+        }
+    }
+
+    let rareData="";
+    if (data?.rarespecies !== undefined) {
+        if (data.rarespecies === true) {
+            rareData = "rare"
+        }
+    }
+
     // Si los datos aún se están cargando, muestra CircularProgress dentro de la tarjeta
     const content = (pokemonData === null || pokemonSpeciesData === null) ? 
         <div className="loadingPokemon">
@@ -240,14 +549,26 @@ function PokemonCard({data})
         </div> : 
         pokemon;
 
-    return (
-        <Link to={"ver-pokemon?id=" + data.id}>
-            <div className={"entryBox " + firstType + " " + data.shiny} key={data.id}>
-                <p className="dexNumber">Nº {dexNum}</p>
-                {content}
-            </div>
-        </Link>
-    );
+        return (
+            borradoMultiple ? (
+                <div 
+                    className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny + (isSelectedBorrado ? " liberado" : " notLiberado")} 
+                    key={`${data.id}-${isAlreadySelected}`}
+                    onClick={handleSelectedBorrado}
+                >
+                    <p className="dexNumber">Nº {dexNum}</p>
+                    {content}
+                </div>
+            ) : (
+                <Link to={"ver-pokemon?id=" + data.id}>
+                    <div className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny} key={data.id}>
+                        <p className="dexNumber">Nº {dexNum}</p>
+                        {content}
+                    </div>
+                </Link>
+            )
+        );
 }
+
 
 export default Almacen;

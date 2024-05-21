@@ -2,7 +2,7 @@
  * Contenidos del panel que tiene el usuario
  */
 
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import './styles/username.css';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Link } from 'react-router-dom';
