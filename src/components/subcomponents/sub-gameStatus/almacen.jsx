@@ -150,7 +150,13 @@ const style = {
                         <>
                             {multipleBorradoPopover}
                             <Button id="borradoMultipleCancel" onClick={toggleBorradoMultiple}><CloseIcon style={{ fontSize: '40px' }} /></Button>
-                            <Button id="borradoMultipleConfirm" onClick={handleOpen}><CheckIcon style={{ fontSize: '40px' }} /></Button>
+                            <Button 
+                                id="borradoMultipleConfirm" 
+                                onClick={selectedBorrado.length > 0 ? handleOpen : null}
+                                className={selectedBorrado.length > 0 ? "" : "borradoMultipleConfirmDisabled"}
+                                >
+                                <CheckIcon style={{ fontSize: '40px' }} />
+                            </Button>
                         </>
                     ) : (
                         <>
