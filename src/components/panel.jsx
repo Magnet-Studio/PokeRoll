@@ -6,7 +6,7 @@ import Coins from './subcomponents/coins';
 import Username from './subcomponents/username';
 import TopElements from './subcomponents/topElements';
 import BottomElements from './subcomponents/bottomElements';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, HashRouter } from 'react-router-dom';
 import GameState from './subcomponents/gameState';
 import {useState, useEffect} from 'react';
 
@@ -112,7 +112,7 @@ function MainPanel()
             <div id='mainPanelContainer'>
                 <div id='mainPanel'>
 
-                <BrowserRouter>
+                <HashRouter>
                     <Routes>
                         <Route path="/login" element={
                             <>
@@ -151,7 +151,7 @@ function MainPanel()
                             </>
                         }/>
                     </Routes>
-                </BrowserRouter>
+                </HashRouter>
                     
                 </div>
             </div>
