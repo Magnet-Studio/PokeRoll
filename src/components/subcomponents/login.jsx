@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './styles/login.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 
 function Login({setUserData}) 
@@ -29,6 +29,7 @@ function Login({setUserData})
         setUsername(event.target.value);
     };
 
+    const navigate = useNavigate();
     const UpdateUserDataHandler = () => {
         setUserData(prevUserData => {
             return {
@@ -37,12 +38,13 @@ function Login({setUserData})
                 pass: password
             };
         });
+        navigate('/');
     };
 
     return (
         <div>
             <h1>{isRegistering ? 'Registro' : 'Iniciar sesión'}</h1>
-            <form method="get" action="/">
+            <form method='get'>
                 <label for="usernameInput">Nombre de usuario:</label>
                 <input id="usernameInput" type="text" value={username} onChange={handleUsernameChange}></input><br/>
                 <label for="passwordInput">Contraseña: </label>
