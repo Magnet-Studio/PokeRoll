@@ -106,17 +106,56 @@ option
     height: 100%;
 }
 
+.borradoMultipleContainer
+{
+    position: absolute;
+    bottom: 1vh;
+    z-index: 4;
+    width: 12%;
+    right: 1.6vw;
+    display: flex;
+    flex-direction: column;
+    min-width: 60px;
+}
+
+@media screen and (max-width: 670px)
+{
+    .borradoMultipleContainer
+    {
+        right: 2.2vw;
+    }
+}
+
 .borradoMultipleContainer button
 {
     font-family: vanilla-regular;
     color: white;
-    background-color: #ff0000;
-    border: none;
-    border-radius: 1vw;
-    height: 6vh;
-    width: 15vw;
-    margin-right: 1em;
+    background-color: #fb6c6c;
+    border: 0.3vw solid #9f4949;
+    border-radius: 0.8vw;
+    height: 80%;
+    width: 95%;
+    margin-top: 0.7vh;
     pointer-events: all;
+    font-size: calc(2px + 0.8vw);
+}
+
+.borradoMultipleContainer button:hover 
+{
+    background-color: #7d3939;
+}
+
+.borradoMultipleContainer div 
+{
+    width: 100%;
+    height: 10%;
+   
+}
+
+.borradoMultipleContainer div > p 
+{
+    position: relative;
+    align-self: center;
 }
 
 .warningMessage {

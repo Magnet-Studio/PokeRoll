@@ -9,7 +9,8 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { Button } from "@mui/material";
 import { GetPrice, Liberar } from '../sub-bottomElements/liberarButton';
 import { GetPokemonByID } from "./lib/pokemonList";
-
+import { MouseOverPopover } from "../sub-gameStatus/mouseOverPopOver";
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import CoinImage from "../../../images/coin.png";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
@@ -114,6 +115,15 @@ const style = {
         </div>
     );
 
+    const infoMultipleBorrado = (<span>
+        Con la herramienta de liberar múltiple puedes agilizar tu<br/>
+        manera de liberar muchos pokémon de tu almacen.<br/>
+        Primero selecciona los pokémon que quieres liberar y luego<br/>
+        pulsa confimar para liberarlos todos a la vez, ¡ten cuidado seleccionando!
+    </span>);
+
+    const multipleBorradoPopover = (<MouseOverPopover content={<InfoOutlinedIcon />} shown={infoMultipleBorrado} />);
+
     return (
         <>
             <div id="almacenBigBox">
@@ -135,6 +145,7 @@ const style = {
                 <div className="borradoMultipleContainer">
                     {borradoMultiple ? (
                         <>
+                            {multipleBorradoPopover}
                             <Button onClick={toggleBorradoMultiple}>Cancelar</Button>
                             <Button onClick={handleOpen}>Confirmar</Button>
                         </>
