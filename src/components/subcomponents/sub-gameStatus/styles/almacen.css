@@ -111,8 +111,8 @@ option
     position: absolute;
     bottom: 1vh;
     z-index: 4;
-    width: 12%;
-    right: 1.6vw;
+    width: 5%;
+    right: 2.3vw;
     display: flex;
     flex-direction: column;
     min-width: 60px;
@@ -122,11 +122,11 @@ option
 {
     .borradoMultipleContainer
     {
-        right: 2.2vw;
+        right: 2.5vw;
     }
 }
 
-.borradoMultipleContainer button
+.borradoMultipleContainer #borradoMultipleButton
 {
     font-family: vanilla-regular;
     color: white;
@@ -134,15 +134,53 @@ option
     border: 0.3vw solid #9f4949;
     border-radius: 0.8vw;
     height: 80%;
-    width: 95%;
+    width: 80%;
     margin-top: 0.7vh;
     pointer-events: all;
     font-size: calc(2px + 0.8vw);
 }
 
-.borradoMultipleContainer button:hover 
+.borradoMultipleContainer #borradoMultipleButton:hover 
 {
     background-color: #7d3939;
+}
+
+.borradoMultipleContainer #borradoMultipleCancel
+{
+    font-family: vanilla-regular;
+    color: white;
+    background-color: #fb6c6c;
+    border: 0.3vw solid #9f4949;
+    border-radius: 0.8vw;
+    height: 80%;
+    width: 80%;
+    margin-top: 0.7vh;
+    pointer-events: all;
+    font-size: calc(2px + 0.8vw);
+}
+
+.borradoMultipleContainer #borradoMultipleCancel:hover 
+{
+    background-color: #7d3939;
+}
+
+.borradoMultipleContainer #borradoMultipleConfirm
+{
+    font-family: vanilla-regular;
+    color: white;
+    background-color: #00df09;
+    border: 0.3vw solid #89ff8e;
+    border-radius: 0.8vw;
+    height: 80%;
+    width: 80%;
+    margin-top: 0.7vh;
+    pointer-events: all;
+    font-size: calc(2px + 0.8vw);
+}
+
+.borradoMultipleContainer #borradoMultipleConfirm:hover 
+{
+    background-color: #006d04;
 }
 
 .borradoMultipleContainer div 

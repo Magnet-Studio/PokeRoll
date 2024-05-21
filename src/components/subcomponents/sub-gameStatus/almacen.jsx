@@ -15,6 +15,9 @@ import CoinImage from "../../../images/coin.png";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
+import CheckIcon from '@mui/icons-material/Check';
+import CloseIcon from '@mui/icons-material/Close';
+import PublishedWithChangesIcon from '@mui/icons-material/PublishedWithChanges';
 
 const style = {
     position: "absolute",
@@ -116,10 +119,10 @@ const style = {
     );
 
     const infoMultipleBorrado = (<span>
-        Con la herramienta de liberar múltiple puedes agilizar tu<br/>
-        manera de liberar muchos pokémon de tu almacen.<br/>
-        Primero selecciona los pokémon que quieres liberar y luego<br/>
-        pulsa confimar para liberarlos todos a la vez, ¡ten cuidado seleccionando!
+        Con la herramienta de liberar múltiple puedes liberar<br/>
+        varios Pokémon de tu almacen a la vez.<br/>
+        Selecciona los Pokémon que quieras liberar y pulsa confirmar<br/>
+        para venderlos todos a la vez. ¡Ten cuidado seleccionando!
     </span>);
 
     const multipleBorradoPopover = (<MouseOverPopover content={<InfoOutlinedIcon />} shown={infoMultipleBorrado} />);
@@ -146,11 +149,11 @@ const style = {
                     {borradoMultiple ? (
                         <>
                             {multipleBorradoPopover}
-                            <Button onClick={toggleBorradoMultiple}>Cancelar</Button>
-                            <Button onClick={handleOpen}>Confirmar</Button>
+                            <Button id="borradoMultipleCancel" onClick={toggleBorradoMultiple}><CloseIcon style={{ fontSize: '40px' }} /></Button>
+                            <Button id="borradoMultipleConfirm" onClick={handleOpen}><CheckIcon style={{ fontSize: '40px' }} /></Button>
                         </>
                     ) : (
-                        <Button onClick={toggleBorradoMultiple}>Liberar</Button>
+                        <Button id="borradoMultipleButton" onClick={toggleBorradoMultiple}><PublishedWithChangesIcon style={{ fontSize: '40px' }} /></Button>
                     )}
                     <Modal
                         open={open}
