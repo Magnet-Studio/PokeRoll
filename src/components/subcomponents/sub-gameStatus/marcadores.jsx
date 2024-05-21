@@ -68,24 +68,27 @@ function CompleteRankingList({selectedValueRank, UserData})
 
     let sortedList = [...PlayerList];
 
-    let user = sortedList[0];
-    user.playername = UserData.name;
-    user.pointsspent = (localStorage.getItem("nextId") * 10000);
-    user.rolls = localStorage.getItem("nextId");
-    user.registers = (UserData.registers.length - 1);
-
     const rawList = [...UserData.pokemonList];
     let myPokelist = [];
+    
+    let user = sortedList[0];
+
     // Vuelve JSON la lista
     rawList.forEach((pokemon, index) => {
         myPokelist[index] = JSON.parse(pokemon);
     });
-    
+
     myPokelist.shift();
+    if (myPokelist.length !== 0 ) {
+        user.playername = UserData.name;
+        user.pointsspent = (localStorage.getItem("nextId"));
+        user.rolls = localStorage.getItem("nextId");
+        user.registers = (UserData.registers.length - 1);
 
 
-    user.bestpokemon = GetBestPokemon(myPokelist);
-    user.rarestpokemon = GetRarestPokemon(myPokelist);
+        user.bestpokemon = GetBestPokemon(myPokelist);
+        user.rarestpokemon = GetRarestPokemon(myPokelist);
+    }
 
     
     switch (selectedValueRank) {
