@@ -210,6 +210,31 @@ p {
     filter: drop-shadow(0 0 10px rgb(0, 0, 0));
 }
 
+
+
+#infoGeneral > img.shinyResplandor {
+    width: 13vw;
+    height: auto;
+    position: relative;
+    margin-bottom: 2%;
+    animation-name: shinyResplandor;
+    animation-duration: 5s; /* Aumenta la duración para hacerla más lenta */
+    animation-iteration-count: infinite;
+    ;
+}
+
+@keyframes shinyResplandor {
+    0% {
+        filter: drop-shadow(0 0 10px rgb(0, 0, 0));
+    }
+    50% {
+       filter: drop-shadow(0 0 15px rgb(205, 183, 58)); /* Color más claro para mayor contraste */
+    }
+    100% {
+        filter: drop-shadow(0 0 10px rgb(0, 0, 0));
+    }
+}
+
 .nombreEO {
     color: rgb(182, 220, 254);
     font-size: 2vw;

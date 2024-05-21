@@ -19,6 +19,25 @@
     filter: drop-shadow(0 0 3px rgb(0, 0, 0));
 }
 
+.pokemonImg.shinyResplandor {
+    
+    animation-name: shinyResplandor1;
+    animation-duration: 5s; /* Aumenta la duración para hacerla más lenta */
+    animation-iteration-count: infinite;
+}
+
+@keyframes shinyResplandor1 {
+    0% {
+        filter: drop-shadow(0 0 3px rgb(0, 0, 0));
+    }
+    50% {
+       filter: drop-shadow(0 0 6px rgb(205, 183, 58)); /* Color más claro para mayor contraste */
+    }
+    100% {
+        filter: drop-shadow(0 0 3px rgb(0, 0, 0));
+    }
+}
+
 @media screen and (max-width: 900px)
 {
     #pokedexBigBox
