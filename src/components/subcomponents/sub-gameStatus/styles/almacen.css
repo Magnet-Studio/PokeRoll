@@ -152,7 +152,6 @@ option
     height: 80%;
 }
 
-
 .borradoMultipleContainer #borradoMultipleConfirm
 {
     background-color: #00df09;
@@ -162,6 +161,17 @@ option
 .borradoMultipleContainer #borradoMultipleConfirm:hover 
 {
     background-color: #006d04;
+}
+
+
+.borradoMultipleConfirmDisabled
+{
+    opacity: 0.5;
+}
+
+.borradoMultipleConfirmDisabled:hover
+{
+    background-color: #00df09 !important;
 }
 
 .borradoMultipleContainer div 
