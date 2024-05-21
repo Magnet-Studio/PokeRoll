@@ -153,7 +153,10 @@ const style = {
                             <Button id="borradoMultipleConfirm" onClick={handleOpen}><CheckIcon style={{ fontSize: '40px' }} /></Button>
                         </>
                     ) : (
-                        <Button id="borradoMultipleButton" onClick={toggleBorradoMultiple}><PublishedWithChangesIcon style={{ fontSize: '40px' }} /></Button>
+                        <>
+                             {multipleBorradoPopover}
+                            <Button id="borradoMultipleButton" onClick={toggleBorradoMultiple}><PublishedWithChangesIcon style={{ fontSize: '40px' }} /></Button>
+                        </>
                     )}
                     <Modal
                         open={open}
