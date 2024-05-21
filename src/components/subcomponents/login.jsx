@@ -38,7 +38,7 @@ function Login({setUserData})
                 pass: password
             };
         });
-        navigate('/pokerroll/');
+        navigate('/');
     };
 
     return (
