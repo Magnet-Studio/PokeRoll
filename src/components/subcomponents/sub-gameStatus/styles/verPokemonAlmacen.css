@@ -131,6 +131,7 @@ p {
 
 
 
+
 .entrenadorOriginal {
     margin-bottom: -2vw;
 }
@@ -213,10 +214,6 @@ p {
 
 
 #infoGeneral > img.shinyResplandor {
-    width: 13vw;
-    height: auto;
-    position: relative;
-    margin-bottom: 2%;
     animation-name: shinyResplandor;
     animation-duration: 5s; /* Aumenta la duración para hacerla más lenta */
     animation-iteration-count: infinite;
@@ -416,6 +413,11 @@ p {
     #infoAdicional > p {
         font-size: 100%;
     }
+
+    
+    #infoAdicional > div.inlineContainer > p {
+        font-size: 100%;
+    }
     
     #infoGeneral > p 
     {
@@ -423,6 +425,9 @@ p {
         font-size: 100%;
     }
 
+    #statsDiv > div.inlineContainer > p {
+        font-size: 100%;
+    }
     
 
     .TypographyText p {

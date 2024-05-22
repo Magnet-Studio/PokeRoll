@@ -129,6 +129,65 @@
     animation-duration: 10s; /* Aumenta la duración para hacerla más lenta */
 }
 
+.notLiberado
+{
+    opacity: 0.5;
+    pointer-events: all;
+}
+
+.entryBox.liberado
+{
+    opacity: 1;
+    pointer-events: all;
+    animation: shake 0.5s;
+    animation-iteration-count: infinite;
+}
+
+.entryBox.liberado.shiny
+{
+    opacity: 1;
+    pointer-events: all;
+    animation: shake 0.5s infinite, shineShiny 10s infinite;
+    animation-iteration-count: infinite;
+}
+
+.entryBox.liberado.rare
+{
+    opacity: 1;
+    pointer-events: all;
+    animation: shake 0.5s infinite, shineRare 10s infinite;
+    animation-iteration-count: infinite;
+}
+
+.entryBox.liberado.mega
+{
+    opacity: 1;
+    pointer-events: all;
+    animation: shake 0.5s infinite, shineMega 10s infinite;
+}
+
+.entryBox.liberado.mega.shiny
+{
+    opacity: 1;
+    pointer-events: all;
+    animation: shake 0.5s infinite, shineShinyMega 10s infinite;
+}
+
+.entryBox.liberado.rare.shiny
+{
+    opacity: 1;
+    pointer-events: all;
+    animation: shake 0.5s infinite, shineRareShiny 10s infinite;
+}
+
+
+
+@keyframes shake {
+    0%, 100% { transform: rotate(1deg); }
+    10%, 30%, 50%, 70%, 90% { transform: rotate(-1deg); }
+    20%, 40%, 60%, 80% { transform: rotate(1deg); }
+  }
+
 @keyframes shineRare {
     0% {
         border-color: rgb(170, 164, 255);

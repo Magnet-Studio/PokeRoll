@@ -1362,6 +1362,80 @@ const PokemonVariants = [
         ]
     },
     {
+        dexnum: 570,
+        name: "Zorua",
+        variants: [
+            { name: "zorua" },
+            { name: "zorua-hisuian", types: ["normal", "ghost"] }
+        ]
+    },
+    {
+        dexnum: 681,
+        name: "Aegislash",
+        variants: [
+            { name: "aegislash-shield" },
+            { name: "aegislash-sword" }
+        ]
+    },
+    {
+        dexnum: 668,
+        name: "Pyroar",
+        variants: [
+            { name: "pyroar-f" },
+            { name: "pyroar-m" }
+        ]
+    },
+    {
+        dexnum: 350,
+        name: "Milotic",
+        variants: [
+            { name: "milotic-f" },
+            { name: "milotic" }
+        ]
+    },
+    {
+        dexnum: 550,
+        name: "Basculin",
+        variants: [
+            { name: "basculin-red-striped" },
+            { name: "basculin-blue-striped" },
+            { name: "basculin-white-striped" }
+        ]
+    },
+    {
+        dexnum: 571,
+        name: "Zoroark",
+        variants: [
+            { name: "zoroark" },
+            { name: "zoroark-hisuian", types: ["normal", "ghost"] }
+        ]
+    },
+    {
+        dexnum: 422,
+        name: "Shellos",
+        variants: [
+            { name: "shellos-west" },
+            { name: "shellos-east" }
+        ]
+    },
+    {
+        dexnum: 423,
+        name: "Gastrodon",
+        variants: [
+            { name: "gastrodon-west" },
+            { name: "gastrodon-east" }
+        ]
+    },
+    {
+        dexnum: 521,
+        name: "Unfezant",
+        variants: [
+            { name: "unfezant-male" },
+            { name: "unfezant-female" }
+        ]
+    },
+    
+    {
         dexnum: 925,
         name: "Maushold",
         variants: [
@@ -1416,21 +1490,21 @@ const MEGA_CHANCE = 3;
 const RARE_CHANCE = 10;
 
 export const getRandomVariant = (variants, UserData) => {
-    const MEGA_BONUS = UserData?.megacharm === "true" ? 3 : 0;
-    const RARE_BONUS = UserData?.rarecharm === "true" ? 10 : 0;
+    const MEGA = UserData?.megacharm === "true" ? (2*MEGA_CHANCE) : MEGA_CHANCE;
+    const RARE = UserData?.rarecharm === "true" ? (2*RARE_CHANCE) : RARE_CHANCE;
     const variant = variants[Math.floor(Math.random() * variants.length)];
     if (variant?.megaevolution === undefined && variant?.rarespecies === undefined) {
         return variant;
     } else if (variant?.megaevolution !== undefined) {
         const randomVal = Math.floor(Math.random() * 100);
-        if (randomVal < 100 - MEGA_CHANCE - MEGA_BONUS) {
+        if (randomVal < 100 - MEGA) {
             return variant.megaevolution[0];
         } else {
             return variant.megaevolution[Math.floor(Math.random() * (variant.megaevolution.length - 1)) + 1];
         }
     } else {
         const randomVal = Math.floor(Math.random() * 100);
-        if (randomVal < 100 - RARE_CHANCE - RARE_BONUS) {
+        if (randomVal < 100 - RARE) {
             return variant.rarespecies[Math.floor(Math.random() * (variant.rarespecies.length - 1))];
         } else {
             return variant.rarespecies[variant.rarespecies.length - 1];

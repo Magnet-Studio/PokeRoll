@@ -185,88 +185,88 @@ function RuletaBox({ setThreePokemon, pokemonImage, tirarButtonDisable, TierRule
 
 
 function ModalConfirmar({ setThreePokemon, pokemonData, setOpen, open, UserData, HalfCost, pokemonImage, setEnabled, setTirarButtonDisable, setChangeTierButtonDisable, setUserData }) {
-        useEffect(() => {
-            if (open) {
-                document.body.classList.add('modal-open');
-            } else {
-                document.body.classList.remove('modal-open');
-            }
-        }, [open]);
-
-        const HandleClose = (event) => {
-            event.stopPropagation();
-            setOpen(false);
-            setEnabled("enabled");
-        };
-
-        const HandleReclamar = (event) => {
-            event.stopPropagation();
-            Reclamar(pokemonData, UserData, setThreePokemon, setUserData, HalfCost);
-            setChangeTierButtonDisable("");
-            setTirarButtonDisable("");
-            setEnabled("enabled");
-            setOpen(false);
-        };
-
-        const style = {
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: "40vw",
-            bgcolor: "white",
-            boxShadow: 24,
-            p: 4,
-            borderRadius: "2vw",
-        };
-
-        let firstTypeContainer = (<div className={"pokemonType " + pokemonData.type1}>{GetPrettyTypeNameSpanish(pokemonData.type1)}</div>);
-        let secondTypeContainer = (<></>);
-        if (pokemonData.type2 !== null) {
-            secondTypeContainer = (<div className={"pokemonType " + pokemonData.type2}>{GetPrettyTypeNameSpanish(pokemonData.type2)}</div>);
+    useEffect(() => {
+        if (open) {
+            document.body.classList.add('modal-open');
+        } else {
+            document.body.classList.remove('modal-open');
         }
+    }, [open]);
 
-        const nombresRarezas = ['Común', 'Infrecuente', 'Peculiar', 'Épico', 'Legendario', 'Singular'];
-        const frequency = GetFrequencyByName(pokemonData.speciesname);
-        const nombreRareza = nombresRarezas[frequency - 1];
+    const HandleClose = (event) => {
+        event.stopPropagation();
+        setOpen(false);
+        setEnabled("enabled");
+    };
 
-        let shinyIndication = (<></>);
-        let megaIndication = (<></>);
-        let rareIndication = (<></>);
-        if (pokemonData.shiny === "shiny") {
-            const shinyMsg = (<span>¡Felicidades! ¡Has conseguido un Pokémon Variocolor!<br /> Obtendrás una bonificación de 5000 puntos en el cálculo final <br /> de Rareza por ello</span>);
-            shinyIndication = (<MouseOverPopover content={<AutoAwesomeIcon className="shinyIcon" />} shown={shinyMsg} />);
+    const HandleReclamar = (event) => {
+        event.stopPropagation();
+        Reclamar(pokemonData, UserData, setThreePokemon, setUserData, HalfCost);
+        setChangeTierButtonDisable("");
+        setTirarButtonDisable("");
+        setEnabled("enabled");
+        setOpen(false);
+    };
+
+    const style = {
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        width: "40vw",
+        bgcolor: "white",
+        boxShadow: 24,
+        p: 4,
+        borderRadius: "2vw",
+    };
+
+    let firstTypeContainer = (<div className={"pokemonType " + pokemonData.type1}>{GetPrettyTypeNameSpanish(pokemonData.type1)}</div>);
+    let secondTypeContainer = (<></>);
+    if (pokemonData.type2 !== null) {
+        secondTypeContainer = (<div className={"pokemonType " + pokemonData.type2}>{GetPrettyTypeNameSpanish(pokemonData.type2)}</div>);
+    }
+
+    const nombresRarezas = ['Común', 'Infrecuente', 'Peculiar', 'Épico', 'Legendario', 'Singular'];
+    const frequency = GetFrequencyByName(pokemonData.speciesname);
+    const nombreRareza = nombresRarezas[frequency - 1];
+
+    let shinyIndication = (<></>);
+    let megaIndication = (<></>);
+    let rareIndication = (<></>);
+    if (pokemonData.shiny === "shiny") {
+        const shinyMsg = (<span>¡Felicidades! ¡Has conseguido un Pokémon Variocolor!<br /> Obtendrás una bonificación de 5000 puntos en el cálculo final <br /> de Rareza por ello</span>);
+        shinyIndication = (<MouseOverPopover className="mop" content={<AutoAwesomeIcon className="shinyIcon" />} shown={shinyMsg} />);
+    }
+
+    let megaWord = "una Megaevolución";
+    if (pokemonData.name === 382 || pokemonData.name === 383) {
+        megaWord = "una Regresión Primigenia";
+    } else if (pokemonData.name === 800) {
+        megaWord = "a Ultra Necrozma";
+    }
+
+    if (pokemonData?.megaevolution !== undefined) {
+        if (pokemonData.megaevolution === true) {
+            const megaMsg = (<span>¡Felicidades! ¡Has conseguido {megaWord}!<br /> Obtendrás una bonificación de 1500 puntos en el cálculo final <br /> de Rareza por ello</span>);
+            megaIndication = (<MouseOverPopover className="mop" content={<SpaIcon className="megaIcon" />} shown={megaMsg} />);
         }
+    }
 
-        let megaWord = "una Megaevolución";
-        if (pokemonData.name === 382 || pokemonData.name === 383) {
-            megaWord = "una Regresión Primigenia"
-        } else if (pokemonData.name === 800) {
-            megaWord = "a Ultra Necrozma"
+    if (pokemonData?.rarespecies !== undefined) {
+        if (pokemonData.rarespecies === true) {
+            const rareMsg = (<span>¡Felicidades! ¡Has conseguido una especie rara!<br /> Obtendrás una bonificación de 1000 puntos en el cálculo final <br /> de Rareza por ello</span>);
+            rareIndication = (<MouseOverPopover className="mop" content={<MilitaryTechIcon className="rareIcon" />} shown={rareMsg} />);
         }
+    }
 
-        if (pokemonData?.megaevolution !== undefined) {
-            if (pokemonData.megaevolution === true) {
-                const megaMsg = (<span>¡Felicidades! ¡Has conseguido {megaWord}!<br /> Obtendrás una bonificación de 1500 puntos en el cálculo final <br /> de Rareza por ello</span>);
-                megaIndication = (<MouseOverPopover content={<SpaIcon className="megaIcon" />} shown={megaMsg} />);
-            }
+    let unregisterMessage = <></>;
+    if (UserData?.registers !== undefined) {
+        if (!UserData.registers.includes(pokemonData.name)) {
+            unregisterMessage = <p className='unregisterMessage'>¡No registrado!</p>;
+        } else {
+            unregisterMessage = <p className='registerMessage'>¡Ya registrado!</p>;
         }
-
-        if (pokemonData?.rarespecies !== undefined) {
-            if (pokemonData.rarespecies === true) {
-                const rareMsg = (<span>¡Felicidades! ¡Has conseguido una especie rara!<br /> Obtendrás una bonificación de 1000 puntos en el cálculo final <br /> de Rareza por ello</span>);
-                rareIndication = (<MouseOverPopover content={<MilitaryTechIcon className="rareIcon" />} shown={rareMsg} />);
-            }
-        }
-
-        let unregisterMessage = <></>;
-        if (UserData?.registers !== undefined) {
-            if (!UserData.registers.includes(pokemonData.name)) {
-                unregisterMessage = <p className='unregisterMessage'>¡No registrado!</p>;
-            } else {
-                unregisterMessage = <p className='registerMessage'>¡Ya registrado!</p>;
-            }
-        }
+    }
 
     return (
         <>
@@ -312,13 +312,13 @@ function ModalConfirmar({ setThreePokemon, pokemonData, setOpen, open, UserData,
                             className="cerrarButton"
                             onClick={HandleClose}
                             style={{
-                                backgroundColor: "#fb6c6c" /* color de fondo */,
-                                color: "white" /* color del texto */,
-                                padding: "14px 20px" /* padding */,
-                                border: "0.2vw solid #9f4949" /* sin borde */,
-                                borderRadius: "1vw" /* bordes redondeados */,
-                                cursor: "pointer" /* cursor de mano al pasar por encima */,
-                                fontSize: "calc(0.3vw + 0.9vh)" /* tamaño de la fuente */,
+                                backgroundColor: "#fb6c6c",
+                                color: "white",
+                                padding: "14px 20px",
+                                border: "0.2vw solid #9f4949",
+                                borderRadius: "1vw",
+                                cursor: "pointer",
+                                fontSize: "calc(0.3vw + 0.9vh)",
                                 width: "8vw",
                                 pointerEvents: "all",
                                 fontFamily: "vanilla-regular",
@@ -331,13 +331,13 @@ function ModalConfirmar({ setThreePokemon, pokemonData, setOpen, open, UserData,
                             className="confirmarButton"
                             onClick={HandleReclamar}
                             style={{
-                                backgroundColor: "#00DF09" /* color de fondo */,
-                                color: "#ffffff" /* color del texto */,
-                                padding: "14px 20px" /* padding */,
-                                border: "0.2vw solid #89ff8e" /* sin borde */,
-                                borderRadius: "1vw" /* bordes redondeados */,
-                                cursor: "pointer" /* cursor de mano al pasar por encima */,
-                                fontSize: "calc(0.3vw + 0.9vh)" /* tamaño de la fuente */,
+                                backgroundColor: "#00DF09",
+                                color: "#ffffff",
+                                padding: "14px 20px",
+                                border: "0.2vw solid #89ff8e",
+                                borderRadius: "1vw",
+                                cursor: "pointer",
+                                fontSize: "calc(0.3vw + 0.9vh)",
                                 width: "8vw",
                                 marginLeft: "1.5vw",
                                 pointerEvents: "all",

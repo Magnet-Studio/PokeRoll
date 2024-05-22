@@ -192,11 +192,11 @@ const HexagonData = ({ size, fillColor, strokeColor, data}) => {
   if(data)
   {
     points = [
-      [midX - (data.def / 31)*(size* Math.sqrt(3) / 2), midY + (data.def / 31)*size/2],
-      [midX - (data.atq / 31)*(size* Math.sqrt(3) / 2), midY - (data.atq / 31)*size/2], 
+      [midX - (data.spdef / 31)*(size* Math.sqrt(3) / 2), midY + (data.spdef / 31)*size/2],
+      [midX - (data.spatq / 31)*(size* Math.sqrt(3) / 2), midY - (data.spatq / 31)*size/2], 
       [midX, midY - (data.hp / 31)*size],
-      [midX + (data.spatq / 31)*(size* Math.sqrt(3) / 2), midY - (data.spatq / 31)*size/2],
-      [midX + (data.spdef / 31)*(size* Math.sqrt(3) / 2), midY + (data.spdef / 31)*size/2],
+      [midX + (data.atq / 31)*(size* Math.sqrt(3) / 2), midY - (data.atq / 31)*size/2],
+      [midX + (data.def / 31)*(size* Math.sqrt(3) / 2), midY + (data.def / 31)*size/2],
       [midX, midY + (data.spe / 31)*size]
     ];
   }
@@ -256,11 +256,11 @@ const Hexagon = ({ size, fillColor, strokeColor, data }) => {
   // Convertimos las coordenadas a un string
   const pointsString = points.map(point => point.join(',')).join(' ');
 
-  const labels = ['Def.', 'Atq.', 'HP', 'Sp.Atq.', 'Sp.Def.', 'Vel.'];
+  const labels = ['Sp.Def.', 'Sp.Atq.', 'HP', 'Atq.', 'Def.', 'Vel.'];
   let values = [0,0,0,0,0,0];
   if(data)
   {
-    values = [data.def, data.atq, data.hp, data.spatq, data.spdef, data.spe];
+    values = [data.spdef, data.spatq, data.hp, data.atq, data.def, data.spe];
   }
 
   return (
