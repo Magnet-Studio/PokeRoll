@@ -98,7 +98,7 @@ export function GetImage(data, isShiny)
 
 /**
  * Devuelve el sprite del pokémon en objeto en caso de que tenga una variant <img/>
- * @param data [JSON | Obligatorio] VARIANT del pokemon
+ * @param variant nombre de la VARIANT del pokemon
  * @param isShiny [Boolean] True si es shiny
  */
 export function GetVariantImage(variant, isShiny)
