@@ -979,7 +979,7 @@ const PokemonVariants = [
             
             { name: "vivillon-meadow", types: ["bug", "flying"] },
             { name: "vivillon-archipelago", types: ["bug", "flying"] },
-            { name: "vivillon-continent", types: ["bug", "flying"] },
+            { name: "vivillon-continental", types: ["bug", "flying"] },
             { name: "vivillon-elegant", types: ["bug", "flying"] },
             { name: "vivillon-garden", types: ["bug", "flying"] },
             { name: "vivillon-high-plains", types: ["bug", "flying"] },

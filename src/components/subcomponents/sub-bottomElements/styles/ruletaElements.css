@@ -90,7 +90,7 @@
 }
 
 
-#changeTierButtons > div 
+#changeTierButtons > button
 {
     width: 5vw;
     height: 4vw;
@@ -104,14 +104,14 @@
     cursor: pointer;
 }
 
-#changeTierButtons > div > svg 
+#changeTierButtons > button > svg 
 {
     width: 100%;
     height: 100%;
     color: white;
 }
 
-#changeTierButtons > div.disabled
+#changeTierButtons > button.disabled
 {
     opacity: 0.5;
     pointer-events: none;
@@ -132,4 +132,36 @@
 #prevTierButton > svg 
 {
     transform: scaleX(-1);
+}
+
+/* Accciones cuando la anchura es menor a la altura */
+@media (max-aspect-ratio: 1/1) and (min-height: 720px)
+{
+    #ruletaSpecialButtonsContainer
+    {
+        top: -60%;
+        right: initial;
+        margin: 0;
+        width: 100%;
+    }
+
+    #changeTierButtons
+    {
+        margin-right: 1vw;
+        width: 25vw;
+    }
+
+    #changeTierButtons > p
+    {
+        font-size: 10px;
+    }
+
+    #prevTierButton,
+    #nextTierButton,
+    #tirarButton 
+    {
+        min-width: 40px;
+        min-height: 40px;
+    }
+
 }

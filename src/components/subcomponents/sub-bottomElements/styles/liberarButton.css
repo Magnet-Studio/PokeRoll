@@ -196,3 +196,47 @@
     0% { font-size: 0.9vw; }
     100% { font-size: 0.2vw; }
 }
+
+/* Accciones cuando la anchura es menor a la altura */
+@media (max-aspect-ratio: 1/1) and (min-height: 720px)
+{
+    #liberarButtonContainer
+    {
+        margin-left: 1.5vw;
+        margin-right: 0;
+    }
+
+    .liberarButton 
+    {
+        min-width: 40px;
+        min-height: 40px;
+        margin: 0 1.5vw;
+    }
+
+    .liberarButton:hover
+    {
+        animation: none;
+    }
+
+    .liberarButton:hover .liberarButtonTitle
+    {
+        animation: none;
+    }
+
+    .liberarButton.mouseleave
+    {
+        animation: none;
+    }
+
+    .liberarButton.mouseleave .liberarButtonTitle
+    {
+        animation: none;
+    }
+
+    .liberarButtonTitle 
+    {
+        font-size: calc(0.4vw + 6px);
+        opacity: 1;
+        bottom: -40%;
+    }
+}

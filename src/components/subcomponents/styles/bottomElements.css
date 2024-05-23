@@ -7,3 +7,21 @@
     justify-content: center;
     margin-left: 1vw;
 }
+
+#navButtonsRuletaStatusContainer.navButtonsCentered
+{
+    position: relative;
+    left: initial;
+    margin: 0;
+}
+
+/* Accciones cuando la anchura es menor a la altura */
+@media (max-aspect-ratio: 1/1) and (min-height: 720px)
+{
+    #navButtonsRuletaStatusContainer
+    {
+        bottom: 0;
+        left: initial;
+        margin: 0;
+    }
+}

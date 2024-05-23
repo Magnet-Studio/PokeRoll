@@ -1,8 +1,3 @@
-/**
- * Contenidos del panel que tiene las diferentes posibilidades
- * de los elementos que hay abajo: botones de navegación, pokeball, botón de Tirar
- */
-
 import React, { useEffect } from "react";
 import { Routes, Route, useNavigate, Link } from "react-router-dom";
 import NavButton from "./sub-bottomElements/NavButton";
@@ -12,14 +7,11 @@ import IntercambioIcon from "@mui/icons-material/Autorenew";
 import MarcadoresIcon from "@mui/icons-material/EmojiEvents";
 import { ReactComponent as PokedexIcon } from '../../images/pokedex.svg';
 import { ReactComponent as RuletaIcon } from '../../images/ruleta.svg';
-import { TirarButton, ChangeTierButtons} from "./sub-bottomElements/ruletaElements";
+import { TirarButton, ChangeTierButtons } from "./sub-bottomElements/ruletaElements";
 import { useLocation } from "react-router-dom";
 import { GetPokemonByID } from "./sub-gameStatus/lib/pokemonList";
 import LiberarButton from "./sub-bottomElements/liberarButton";
 
-/**
- * Rutas de todas las posibilidades del elemento inferior (botones de navegación / pokéball / botón de tirada)
- */
 function BottomElements({
   UserData,
   setUserData,
@@ -55,16 +47,15 @@ function BottomElements({
             changeTierButtonDisable={changeTierButtonDisable}
             setChangeTierButtonDisable={setChangeTierButtonDisable}
             setThreePokemon={setThreePokemon}
-            
           />
         }
       />
 
-      <Route path="/" element={<ButtonsLoginStatus UserData={UserData}  />} />
+      <Route path="/" element={<ButtonsLoginStatus UserData={UserData} />} />
 
       <Route
         path="/almacen/"
-        element={<ButtonsAlmacenStatus UserData={UserData}  />}
+        element={<ButtonsAlmacenStatus UserData={UserData} />}
       />
 
       <Route
@@ -74,39 +65,38 @@ function BottomElements({
             data={pokemon}
             UserData={UserData}
             setUserData={setUserData}
-            
           />
         }
       />
 
       <Route
         path="/pokedex/*"
-        element={<ButtonsPokedexStatus UserData={UserData}  />}
+        element={<ButtonsPokedexStatus UserData={UserData} />}
       />
 
       <Route
         path="/marcadores/*"
-        element={<ButtonsMarcadoresStatus UserData={UserData}  />}
+        element={<ButtonsMarcadoresStatus UserData={UserData} />}
       />
 
       <Route
         path="/intercambio/tipo"
-        element={<ButtonsIntercambioStatus UserData={UserData}  />}
+        element={<ButtonsIntercambioStatus UserData={UserData} />}
       />
 
       <Route
         path="/intercambio"
-        element={<ButtonsIntercambioStatus UserData={UserData}  />}
+        element={<ButtonsIntercambioStatus UserData={UserData} />}
       />
 
       <Route
         path="/intercambio/pantallaCarga"
-        element={<ButtonsIntercambioStatus UserData={UserData}  />}
+        element={<ButtonsIntercambioStatus UserData={UserData} />}
       />
 
       <Route
         path="/intercambio/conexion"
-        element={<ButtonCancelarConexionIntercambio  UserData={UserData}  />}
+        element={<ButtonCancelarConexionIntercambio UserData={UserData} />}
       />
 
       <Route path="*" element={<></>} />
@@ -131,37 +121,35 @@ function ButtonsRuletaStatus({
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (UserData.name === "Iniciar sesión") 
-    {
+    if (UserData.name === "Iniciar sesión") {
       navigate("/");
     }
-    // eslint-disable-next-line
-  }, [UserData]);
+  }, [UserData, navigate]);
 
   return (
     <>
-      <div id="navButtonsRuletaStatusContainer">
+      <div id="navButtonsRuletaStatusContainer" role="navigation" aria-label="Botones de navegación para Ruleta">
         <NavButton
           link="/ruleta"
           selected="selected"
-          icon={<RuletaIcon />}
+          icon={<RuletaIcon aria-label="Ruleta" />}
           title="Ruleta"
         />
-        <NavButton link="/almacen" icon={<AlmacenIcon />} title="Almacén" />
-        <NavButton link="/pokedex" icon={<PokedexIcon />} title="Pokédex" />
+        <NavButton link="/almacen" icon={<AlmacenIcon aria-label="Almacén" />} title="Almacén" />
+        <NavButton link="/pokedex" icon={<PokedexIcon aria-label="Pokédex" />} title="Pokédex" />
         <NavButton
           link="/marcadores"
-          icon={<MarcadoresIcon />}
+          icon={<MarcadoresIcon aria-label="Marcadores" />}
           title="Marcadores"
         />
         <NavButton
           link="/intercambio"
-          icon={<IntercambioIcon />}
+          icon={<IntercambioIcon aria-label="Intercambio" />}
           title="Intercambio"
         />
       </div>
 
-      <div id="ruletaSpecialButtonsContainer">
+      <div id="ruletaSpecialButtonsContainer" aria-live="polite">
         <ChangeTierButtons
           TierRuleta={TierRuleta}
           setTierRuleta={setTierRuleta}
@@ -182,221 +170,212 @@ function ButtonsRuletaStatus({
   );
 }
 
-function ButtonsVerPokemonAlmacenStatus({ data, UserData, setUserData }) 
-{
+function ButtonsVerPokemonAlmacenStatus({ data, UserData, setUserData }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (UserData.name === "Iniciar sesión") 
-    {
+    if (UserData.name === "Iniciar sesión") {
       navigate("/");
     }
-    // eslint-disable-next-line
-  }, [UserData]);
+  }, [UserData, navigate]);
 
   return (
     <>
-      <NavButton link="/ruleta" icon={<RuletaIcon />} title="Ruleta" />
-      <NavButton
-        link="/almacen"
-        selected="selected"
-        icon={<AlmacenIcon />}
-        title="Almacén"
-      />
-      <NavButton link="/pokedex" icon={<PokedexIcon />} title="Pokédex" />
-      <NavButton
-        link="/marcadores"
-        icon={<MarcadoresIcon />}
-        title="Marcadores"
-      />
-      <NavButton
-        link="/intercambio"
-        icon={<IntercambioIcon />}
-        title="Intercambio"
-      />
+    <div id="navButtonsRuletaStatusContainer" className="navButtonsCentered">
+        <NavButton link="/ruleta" icon={<RuletaIcon aria-label="Ruleta" />} title="Ruleta" />
+        <NavButton
+          link="/almacen"
+          selected="selected"
+          icon={<AlmacenIcon aria-label="Almacén" />}
+          title="Almacén"
+        />
+        <NavButton link="/pokedex" icon={<PokedexIcon aria-label="Pokédex" />} title="Pokédex" />
+        <NavButton
+          link="/marcadores"
+          icon={<MarcadoresIcon aria-label="Marcadores" />}
+          title="Marcadores"
+        />
+        <NavButton
+          link="/intercambio"
+          icon={<IntercambioIcon aria-label="Intercambio" />}
+          title="Intercambio"
+        />
+      </div>
       <LiberarButton
-        data={data}
-        setUserData={setUserData}
-        UserData={UserData}
-      />
+          data={data}
+          setUserData={setUserData}
+          UserData={UserData}
+        />
     </>
   );
 }
 
-function ButtonsAlmacenStatus({ UserData }) 
-{
+function ButtonsAlmacenStatus({ UserData }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (UserData.name === "Iniciar sesión") 
-    {
+    if (UserData.name === "Iniciar sesión") {
       navigate("/");
     }
-    // eslint-disable-next-line
-  }, [UserData]);
+  }, [UserData, navigate]);
 
   return (
     <>
-      <NavButton link="/ruleta" icon={<RuletaIcon />} title="Ruleta" />
-      <NavButton
-        link="/almacen"
-        selected="selected"
-        icon={<AlmacenIcon />}
-        title="Almacén"
-      />
-      <NavButton link="/pokedex" icon={<PokedexIcon />} title="Pokédex" />
-      <NavButton
-        link="/marcadores"
-        icon={<MarcadoresIcon />}
-        title="Marcadores"
-      />
-      <NavButton
-        link="/intercambio"
-        icon={<IntercambioIcon />}
-        title="Intercambio"
-      />
+      <div id="navButtonsRuletaStatusContainer" className="navButtonsCentered">
+        <NavButton link="/ruleta" icon={<RuletaIcon aria-label="Ruleta" />} title="Ruleta" />
+        <NavButton
+          link="/almacen"
+          selected="selected"
+          icon={<AlmacenIcon aria-label="Almacén" />}
+          title="Almacén"
+        />
+        <NavButton link="/pokedex" icon={<PokedexIcon aria-label="Pokédex" />} title="Pokédex" />
+        <NavButton
+          link="/marcadores"
+          icon={<MarcadoresIcon aria-label="Marcadores" />}
+          title="Marcadores"
+        />
+        <NavButton
+          link="/intercambio"
+          icon={<IntercambioIcon aria-label="Intercambio" />}
+          title="Intercambio"
+        />
+      </div>
     </>
   );
 }
 
-function ButtonsLoginStatus({ UserData }) 
-{
+function ButtonsLoginStatus({ UserData }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (UserData.name !== "Iniciar sesión") 
-    {
+    if (UserData.name !== "Iniciar sesión") {
       navigate("/ruleta");
     }
-    // eslint-disable-next-line
-  }, [UserData]);
-  
+  }, [UserData, navigate]);
+
   return (
     <>
-      <NavButton link="/login" selected="selected" icon={<RuletaIcon />} />
-      <NavButton link="/login" icon={<AlmacenIcon />} />
-      <NavButton link="/login" icon={<PokedexIcon />} />
-      <NavButton link="/login" icon={<MarcadoresIcon />} />
-      <NavButton link="/login" icon={<IntercambioIcon />} />
+      <div id="navButtonsRuletaStatusContainer" className="navButtonsCentered">
+        <NavButton link="/login" selected="selected" icon={<RuletaIcon aria-label="Login Ruleta" />} />
+        <NavButton link="/login" icon={<AlmacenIcon aria-label="Login Almacén" />} />
+        <NavButton link="/login" icon={<PokedexIcon aria-label="Login Pokédex" />} />
+        <NavButton link="/login" icon={<MarcadoresIcon aria-label="Login Marcadores" />} />
+        <NavButton link="/login" icon={<IntercambioIcon aria-label="Login Intercambio" />} />
+      </div>
     </>
   );
 }
 
-function ButtonsPokedexStatus({ UserData }) 
-{
+function ButtonsPokedexStatus({ UserData }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (UserData.name === "Iniciar sesión") 
-    {
+    if (UserData.name === "Iniciar sesión") {
       navigate("/");
     }
-    // eslint-disable-next-line
-  }, [UserData]);
+  }, [UserData, navigate]);
 
   return (
     <>
-      <NavButton link="/ruleta" icon={<RuletaIcon />} title="Ruleta" />
-      <NavButton link="/almacen" icon={<AlmacenIcon />} title="Almacén" />
-      <NavButton
-        link="/pokedex"
-        selected="selected"
-        icon={<PokedexIcon />}
-        title="Pokédex"
-      />
-      <NavButton
-        link="/marcadores"
-        icon={<MarcadoresIcon />}
-        title="Marcadores"
-      />
-      <NavButton
-        link="/intercambio"
-        icon={<IntercambioIcon />}
-        title="Intercambio"
-      />
+      <div id="navButtonsRuletaStatusContainer" className="navButtonsCentered">
+        <NavButton link="/ruleta" icon={<RuletaIcon aria-label="Ruleta" />} title="Ruleta" />
+        <NavButton link="/almacen" icon={<AlmacenIcon aria-label="Almacén" />} title="Almacén" />
+        <NavButton
+          link="/pokedex"
+          selected="selected"
+          icon={<PokedexIcon aria-label="Pokédex" />}
+          title="Pokédex"
+        />
+        <NavButton
+          link="/marcadores"
+          icon={<MarcadoresIcon aria-label="Marcadores" />}
+          title="Marcadores"
+        />
+        <NavButton
+          link="/intercambio"
+          icon={<IntercambioIcon aria-label="Intercambio" />}
+          title="Intercambio"
+        />
+      </div>
     </>
   );
 }
 
-function ButtonsMarcadoresStatus({ UserData }) 
-{
+function ButtonsMarcadoresStatus({ UserData }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (UserData.name === "Iniciar sesión") 
-    {
+    if (UserData.name === "Iniciar sesión") {
       navigate("/");
     }
-    // eslint-disable-next-line
-  }, [UserData]);
+  }, [UserData, navigate]);
 
   return (
     <>
-      <NavButton link="/ruleta" icon={<RuletaIcon />} title="Ruleta" />
-      <NavButton link="/almacen" icon={<AlmacenIcon />} title="Almacén" />
-      <NavButton link="/pokedex" icon={<PokedexIcon />} title="Pokédex" />
-      <NavButton
-        link="/marcadores"
-        selected="selected"
-        icon={<MarcadoresIcon />}
-        title="Marcadores"
-      />
-      <NavButton
-        link="/intercambio"
-        icon={<IntercambioIcon />}
-        title="Intercambio"
-      />
+      <div id="navButtonsRuletaStatusContainer" className="navButtonsCentered">
+        <NavButton link="/ruleta" icon={<RuletaIcon aria-label="Ruleta" />} title="Ruleta" />
+        <NavButton link="/almacen" icon={<AlmacenIcon aria-label="Almacén" />} title="Almacén" />
+        <NavButton link="/pokedex" icon={<PokedexIcon aria-label="Pokédex" />} title="Pokédex" />
+        <NavButton
+          link="/marcadores"
+          selected="selected"
+          icon={<MarcadoresIcon aria-label="Marcadores" />}
+          title="Marcadores"
+        />
+        <NavButton
+          link="/intercambio"
+          icon={<IntercambioIcon aria-label="Intercambio" />}
+          title="Intercambio"
+        />
+      </div>
     </>
   );
 }
 
-function ButtonsIntercambioStatus({ UserData }) 
-{
+function ButtonsIntercambioStatus({ UserData }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (UserData.name === "Iniciar sesión") 
-    {
+    if (UserData.name === "Iniciar sesión") {
       navigate("/");
     }
-    // eslint-disable-next-line
-  }, [UserData]);
+  }, [UserData, navigate]);
 
   return (
     <>
-      <NavButton link="/ruleta" icon={<RuletaIcon />} title="Ruleta" />
-      <NavButton link="/almacen" icon={<AlmacenIcon />} title="Almacén" />
-      <NavButton link="/pokedex" icon={<PokedexIcon />} title="Pokédex" />
-      <NavButton
-        link="/marcadores"
-        icon={<MarcadoresIcon />}
-        title="Marcadores"
-      />
-      <NavButton
-        link="/intercambio"
-        selected="selected"
-        icon={<IntercambioIcon />}
-        title="Intercambio"
-      />
+      <div id="navButtonsRuletaStatusContainer" className="navButtonsCentered">
+        <NavButton link="/ruleta" icon={<RuletaIcon aria-label="Ruleta" />} title="Ruleta" />
+        <NavButton link="/almacen" icon={<AlmacenIcon aria-label="Almacén" />} title="Almacén" />
+        <NavButton link="/pokedex" icon={<PokedexIcon aria-label="Pokédex" />} title="Pokédex" />
+        <NavButton
+          link="/marcadores"
+          icon={<MarcadoresIcon aria-label="Marcadores" />}
+          title="Marcadores"
+        />
+        <NavButton
+          link="/intercambio"
+          selected="selected"
+          icon={<IntercambioIcon aria-label="Intercambio" />}
+          title="Intercambio"
+        />
+      </div>
     </>
   );
 }
 
-function ButtonCancelarConexionIntercambio({UserData}) 
-{
+function ButtonCancelarConexionIntercambio({ UserData }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (UserData.name === "Iniciar sesión") 
-    {
+    if (UserData.name === "Iniciar sesión") {
       navigate("/");
     }
-    // eslint-disable-next-line
-  }, [UserData]);
+  }, [UserData, navigate]);
 
   return (
     <Link to="/intercambio">
-      <button id="botonCancelarIntercambio">Cancelar</button>
+      <button id="botonCancelarIntercambio" aria-label="Cancelar Intercambio">Cancelar</button>
     </Link>
   );
 }

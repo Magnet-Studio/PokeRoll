@@ -23,7 +23,6 @@ function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, 
     const notPokemon = [(pokeballImage), (pokeballImage), (pokeballImage)];
     const [threePokemonImages, setThreePokemonImages] = useState(notPokemon);
     
-
     useEffect(() => 
     {
         const fetchDataAndUpdateState = async () => 
@@ -40,7 +39,6 @@ function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, 
                 }
                 images[i] = threePokemon[i]?.variant === undefined ? GetImage(data, (threePokemon[i].shiny === "shiny")) : GetVariantImage(threePokemon[i].variant.name, (threePokemon[i].shiny === "shiny"));
                 
-                // images[i] === <></>;
                 if(images[i].props.children.type !== "img")
                 {
                     images[i] = pokeballImage;
@@ -70,9 +68,7 @@ function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, 
             setThreePokemonImages(images);
         };
         
-        
         fetchDataAndUpdateState();
-        
     // eslint-disable-next-line
     }, [threePokemon]);
 
@@ -94,31 +90,19 @@ function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, 
       }
     }
 
-    // Eliminar duplicados usando un Set
     colors = [...new Set(colors)];
 
-    
-  
     return (
         <>
-            
             {shouldShowConfetti && <Confetti width="" height="" colors={colors} numberOfPieces={50} friction={0.97}/>}
-            <div className='externalArrowContainer'>
-                
-            </div>
-        
+            <div className='externalArrowContainer'></div>
             <div className="boxes">
-                <RuletaBox  setThreePokemon={setThreePokemon} UserData={UserData} pokemonImage={threePokemonImages[0]} pokemonData={threePokemon[0]} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>
-                <RuletaBox  setThreePokemon={setThreePokemon} UserData={UserData} pokemonImage={threePokemonImages[1]} pokemonData={threePokemon[1]} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>
-                <RuletaBox  setThreePokemon={setThreePokemon} UserData={UserData} pokemonImage={threePokemonImages[2]} pokemonData={threePokemon[2]} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>
+                <RuletaBox setThreePokemon={setThreePokemon} UserData={UserData} pokemonImage={threePokemonImages[0]} pokemonData={threePokemon[0]} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>
+                <RuletaBox setThreePokemon={setThreePokemon} UserData={UserData} pokemonImage={threePokemonImages[1]} pokemonData={threePokemon[1]} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>
+                <RuletaBox setThreePokemon={setThreePokemon} UserData={UserData} pokemonImage={threePokemonImages[2]} pokemonData={threePokemon[2]} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>
             </div>
-
-            <div className='externalArrowContainer'>
-                
-            </div>
-            
+            <div className='externalArrowContainer'></div>
         </>
-       
     );
 }
 
@@ -167,7 +151,15 @@ function RuletaBox({ setThreePokemon, pokemonImage, tirarButtonDisable, TierRule
     }, [pokemonImage]);
 
     return (
-        <div className={"ruletaBox " + enabled} onClick={handleOpen} >
+        <div 
+            className={"ruletaBox " + enabled} 
+            onClick={handleOpen} 
+            onKeyDown={(e) => { if (e.key === 'Enter') handleOpen(); }} 
+            tabIndex={enabled === "enabled" ? "0" : "-1"} 
+            role={enabled === "enabled" ? "button" : ""}
+            aria-label={enabled === "enabled" ? `Pokémon ${pokemonData.speciesname}` : ""}
+            onBlur={(e) => e.currentTarget.blur()}
+        >
             <div className='RegistradoCheck'>
                 {RegisterCheck ? <CheckIcon style={{ fontSize: '30px' }} /> : <></>}
             </div>
@@ -177,12 +169,11 @@ function RuletaBox({ setThreePokemon, pokemonImage, tirarButtonDisable, TierRule
                 </p>
             </div>
             {pokemonImage}
-
+    
             <ModalConfirmar setThreePokemon={setThreePokemon} UserData={UserData} open={open} setOpen={setOpen} HalfCost={HalfCost} pokemonImage={pokemonImage} pokemonData={pokemonData} setEnabled={setEnabled} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData} />
         </div>
     );
 }
-
 
 function ModalConfirmar({ setThreePokemon, pokemonData, setOpen, open, UserData, HalfCost, pokemonImage, setEnabled, setTirarButtonDisable, setChangeTierButtonDisable, setUserData }) {
     useEffect(() => {
@@ -353,59 +344,43 @@ function ModalConfirmar({ setThreePokemon, pokemonData, setOpen, open, UserData,
     );
 }
 
-/**
- * Reclama tu pokémon
- */
-function Reclamar(pokemonData, UserData, setThreePokemon, setUserData, HalfCost, set) 
-{    
-    // Reinica los datos de los pokemon
+function Reclamar(pokemonData, UserData, setThreePokemon, setUserData, HalfCost) {    
     const notPokemon = [{}, {}, {}];
     setThreePokemon(notPokemon);
 
-    // Añadimos fecha, username e id
     AddLastExtraDetails(pokemonData, UserData); 
 
-  // Añadimos fecha, username e id
-  AddLastExtraDetails(pokemonData, UserData); 
-
-  // Añade el pokémon al data y el dinero 
-  setUserData(prevUserData => {
-    const updatedUserData = { ...prevUserData };
-    updatedUserData.currency += HalfCost;
-    updatedUserData.pokemonList = [...updatedUserData.pokemonList, JSON.stringify(pokemonData)];
-    if(!updatedUserData.registers.includes(pokemonData.name)) updatedUserData.registers = [...updatedUserData.registers, pokemonData.name];
-    
-    if (pokemonData.shiny === "shiny") {
-        if (updatedUserData?.shinycount === undefined) {
-            updatedUserData.shinycount = 1;
-        } else {
-            updatedUserData.shinycount = parseInt(updatedUserData.shinycount) + 1;
+    setUserData(prevUserData => {
+        const updatedUserData = { ...prevUserData };
+        updatedUserData.currency += HalfCost;
+        updatedUserData.pokemonList = [...updatedUserData.pokemonList, JSON.stringify(pokemonData)];
+        if(!updatedUserData.registers.includes(pokemonData.name)) updatedUserData.registers = [...updatedUserData.registers, pokemonData.name];
+        
+        if (pokemonData.shiny === "shiny") {
+            if (updatedUserData?.shinycount === undefined) {
+                updatedUserData.shinycount = 1;
+            } else {
+                updatedUserData.shinycount = parseInt(updatedUserData.shinycount) + 1;
+            }
         }
-    }
 
-    if (pokemonData?.megaevolution === true) {
-        if (updatedUserData?.megacount === undefined) {
-            updatedUserData.megacount = 1;
-        } else {
-            updatedUserData.megacount = parseInt(updatedUserData.megacount) + 1;
+        if (pokemonData?.megaevolution === true) {
+            if (updatedUserData?.megacount === undefined) {
+                updatedUserData.megacount = 1;
+            } else {
+                updatedUserData.megacount = parseInt(updatedUserData.megacount) + 1;
+            }
         }
-    }
 
-    if (pokemonData?.rarespecies === true) {
-        if (updatedUserData?.rarecount === undefined) {
-            updatedUserData.rarecount = 1;
-        } else {
-            updatedUserData.rarecount = parseInt(updatedUserData.rarecount) + 1;
-        }
-    } 
-
-    
-
-    return updatedUserData;
-  });
+        if (pokemonData?.rarespecies === true) {
+            if (updatedUserData?.rarecount === undefined) {
+                updatedUserData.rarecount = 1;
+            } else {
+                updatedUserData.rarecount = parseInt(updatedUserData.rarecount) + 1;
+            }
+        } 
+        return updatedUserData;
+    });
 } 
-
-
-
 
 export default Ruleta;

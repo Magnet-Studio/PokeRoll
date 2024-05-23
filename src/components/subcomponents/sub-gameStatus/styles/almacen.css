@@ -7,11 +7,17 @@
     margin-bottom: 2%;
     grid-column: 2;
     display: grid;
-    grid-template-rows: 20% 80%;
+    grid-template-rows: 25% 75%;
     
     overflow-y:auto;
     pointer-events: all;
     
+}
+
+.filterAlmacen {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
 }
 
 a {
@@ -236,8 +242,10 @@ option
 
 @media screen and (max-width: 700px)
 {
+    
     #pokemon-cards-container
     {
+        margin-top: 2vw;
         grid-template-columns: 16.66vw 16.66vw 16.66vw;
     }
     .entryBox 
@@ -247,17 +255,26 @@ option
     #filtros
     {
         display:grid;
-        width: 100%;
-        grid-template-rows: 20% 26% 26% 26%;
+        width: 90%;
+        
+        margin-left: 5%;
+        margin-right: 5%;
     }
     #filtros > div > .inputElem{
-        width: 55vw;
+        width: 100%;
+    }
+    #filtros > div > input.inputElem{
+        width: 98%;
     }
     #filtros > div > .inputElemSmall {
-        width: 26.5vw;
+        width: 100%;
     }
     #almacenBigBox {
-        grid-template-rows: 40% 60%;
+        grid-template-rows: 90% 10%;
+    }
+
+    #filtros{
+        height: 95%;
     }
 }
 

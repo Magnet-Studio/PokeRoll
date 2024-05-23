@@ -257,11 +257,11 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, se
     return(
         <>
             <div>
-            <FilterAltIcon />
+                <FilterAltIcon />
             </div>
-            <div>
-                
-                <select className="inputElem" name="generalFilter" value={selectedValue} onChange={handleSelectChange}>
+            <div className="filterAlmacen">
+                <label className="filterLabel" htmlFor="ordenacion">Ordenación</label>
+                <select className="inputElem" name="generalFilter" id="ordenacion" value={selectedValue} onChange={handleSelectChange}>
                     <option value="0">Ordenar por más reciente</option>
                     <option value="5">Ordenar por más antiguos</option>
                     <option value="1">Ordenar por Pokémon con más valor</option>
@@ -274,9 +274,10 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, se
                 </select>
             </div>
             
-            <div>
-                <select className="inputElemSmall" name="tier" value={selectedFrequency} onChange={handleSelectTier}>
-                    <option value="0">Filtrar Rareza...</option>
+            <div className="filterAlmacen">
+                <label className="filterLabel" htmlFor="tier">Filtrar rareza</label>
+                <select className="inputElemSmall" name="tier" id="tier" value={selectedFrequency} onChange={handleSelectTier}>
+                    <option value="0">No filtrar</option>
                     <option value="1">Común</option>
                     <option value="2">Infrecuente</option>
                     <option value="3">Peculiar</option>
@@ -284,34 +285,37 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, se
                     <option value="5">Legendario</option>
                     <option value="6">Singular</option>
                 </select>
-
-                <select className="inputElemSmall" name="type" value={selectedType} onChange={handleSelectType}>
-                <option value="0">Filtrar Tipo...</option>
-                <option value="steel">Acero</option>
-                <option value="water">Agua</option>
-                <option value="bug">Bicho</option>
-                <option value="dragon">Dragón</option>
-                <option value="electric">Eléctrico</option>
-                <option value="ghost">Fantasma</option>
-                <option value="fire">Fuego</option>
-                <option value="fairy">Hada</option>
-                <option value="ice">Hielo</option>
-                <option value="fighting">Lucha</option>
-                <option value="normal">Normal</option>
-                <option value="grass">Planta</option>
-                <option value="psychic">Psíquico</option>
-                <option value="rock">Roca</option>
-                <option value="dark">Siniestro</option>
-                <option value="ground">Tierra</option>
-                <option value="poison">Veneno</option>
-                <option value="flying">Volador</option>
-            </select>
+            </div>
+            <div className="filterAlmacen">
+                <label className="filterLabel" htmlFor="filtroTipo">Filtrar tipo</label>
+                <select className="inputElemSmall" name="type" id="filtroTipo" value={selectedType} onChange={handleSelectType}>
+                    <option value="0">No filtrar</option>
+                    <option value="steel">Acero</option>
+                    <option value="water">Agua</option>
+                    <option value="bug">Bicho</option>
+                    <option value="dragon">Dragón</option>
+                    <option value="electric">Eléctrico</option>
+                    <option value="ghost">Fantasma</option>
+                    <option value="fire">Fuego</option>
+                    <option value="fairy">Hada</option>
+                    <option value="ice">Hielo</option>
+                    <option value="fighting">Lucha</option>
+                    <option value="normal">Normal</option>
+                    <option value="grass">Planta</option>
+                    <option value="psychic">Psíquico</option>
+                    <option value="rock">Roca</option>
+                    <option value="dark">Siniestro</option>
+                    <option value="ground">Tierra</option>
+                    <option value="poison">Veneno</option>
+                    <option value="flying">Volador</option>
+                </select>
             </div>
 
             
 
-            <div>
-                <input className="inputElem" placeholder="Filtrar por nombre..." value={Name} onChange={handleName}>
+            <div className="filterAlmacen">  
+                <label htmlFor="filtroNombre">Filtrar por nombre</label>
+                <input className="inputElem" id="filtroNombre" placeholder="Escriba un nombre aquí..." value={Name} onChange={handleName}>
                 
                 </input>
             </div>

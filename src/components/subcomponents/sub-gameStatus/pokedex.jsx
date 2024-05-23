@@ -98,7 +98,7 @@ function CompleteEntryList(props)
 
     return (
         <>
-            <p><label>Registrados: {registeredMons} / 1025 ({percentage}%)</label></p>
+            <p className="yourRegisters"><label>Registrados: {registeredMons} / 1025 ({percentage}%)</label></p>
             <p className="generationTitle inlineContainer">
                 {props.generationNum + "º Generación"} 
                 <MouseOverPopover content={<InfoOutlinedIcon className="infoGenerationIcon"/>} 

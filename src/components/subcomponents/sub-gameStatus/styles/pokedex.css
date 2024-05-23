@@ -159,6 +159,10 @@
     animation-iteration-count: infinite;
 }
 
+.yourRegisters {
+    font-size: 150%;
+}
+
 @media screen and (max-width: 900px)
 {
     #pokedexBigBox
@@ -168,6 +172,9 @@
     .entryBox 
     {
         height: 12.5vw;
+    }
+    .yourRegisters {
+        font-size: 100%;
     }
 }
 
@@ -180,6 +187,9 @@
     .entryBox 
     {
         height: 16.66vw;
+    }
+    .yourRegisters {
+        font-size: 65%;
     }
 }
 

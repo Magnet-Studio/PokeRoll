@@ -16,6 +16,8 @@
     width: 100%;
 }
 
+
+
 .ruletaBox
 {
     background-color: white;
@@ -31,6 +33,11 @@
 
 .ruletaBox.enabled:hover
 {
+    background-color: #fecb02;
+    border-color: #ba9712;
+}
+
+.ruletaBox.enabled:focus {
     background-color: #fecb02;
     border-color: #ba9712;
 }
