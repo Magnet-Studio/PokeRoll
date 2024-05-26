@@ -310,7 +310,6 @@ const pokemonFrequencies = [
         {"name": "Ariados", "dexNum": 168},
         {"name": "Lanturn", "dexNum": 171},
         {"name": "Natu", "dexNum": 177},
-        {"name": "Xatu", "dexNum": 178},
         {"name": "Mareep", "dexNum": 179},
         {"name": "Bellossom", "dexNum": 182},
         {"name": "Marill", "dexNum": 183},
@@ -345,7 +344,6 @@ const pokemonFrequencies = [
         {"name": "Machoke", "dexNum": 67},
         {"name": "Weepinbell", "dexNum": 70},
         {"name": "Graveler", "dexNum": 75},
-        {"name": "Golem", "dexNum": 76},
         {"name": "Chansey", "dexNum": 113},
         {"name": "Porygon", "dexNum": 137},
         {"name": "Pikachu", "dexNum": 25},
@@ -431,6 +429,8 @@ const pokemonFrequencies = [
     ],
     /* Tier 3 */ [
         
+        {"name": "Xatu", "dexNum": 178},
+        {"name": "Golem", "dexNum": 76},
         {"name": "Politoed", "dexNum": 186},
         {"name": "Pyukumuku", "dexNum": 771},
         {"name": "Kangaskhan", "dexNum": 115},
@@ -663,7 +663,6 @@ const pokemonFrequencies = [
         {"name": "Luvdisc", "dexNum": 370},
         {"name": "Togetic", "dexNum": 176},
         {"name": "Flaaffy", "dexNum": 180},
-        {"name": "Ampharos", "dexNum": 181},
         {"name": "Azumarill", "dexNum": 184},
         {"name": "Jumpluff", "dexNum": 189},
         {"name": "Quagsire", "dexNum": 195},
@@ -786,11 +785,11 @@ const pokemonFrequencies = [
         {"name": "Ivysaur", "dexNum": 2},
         {"name": "Charmeleon", "dexNum": 5},
         {"name": "Wartortle", "dexNum": 8},
-        
         {"name": "Ursaring", "dexNum": 217}
     ],
     /* Tier 4 */ [
 
+        {"name": "Ampharos", "dexNum": 181},
         {"name": "Mandibuzz", "dexNum": 630},
         {"name": "Garganacl", "dexNum": 934},
         {"name": "Armarouge", "dexNum": 936},
