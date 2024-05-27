@@ -3,7 +3,7 @@ import './styles/almacen.css';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import { GetSpeciesDataByName, GetSpanishName} from './lib/PokemonSpeciesData';
 import { GetDataByName, GetPrettyTypeNameSpanish, GetImage, GetDexNum, GetVariantImage} from './lib/PokemonData';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { GetRarezaPoints } from "./lib/pokemonRarity";
 import CircularProgress from '@mui/material/CircularProgress';
 import { Button } from "@mui/material";
@@ -66,6 +66,8 @@ const style = {
         setBorradoMultiple(!borradoMultiple);
         setSelectedBorrado([]);
     };
+    
+    const navigate = useNavigate();
 
     const liberarMultiple = () => {
         selectedBorrado.forEach(pokemon => {
@@ -74,6 +76,7 @@ const style = {
         setOpen(false);
         setSelectedBorrado([]);
         toggleBorradoMultiple();
+        navigate("/almacen")
     };
 
     const handleOpen = () => {
@@ -189,25 +192,24 @@ const style = {
                                 <img className="coin" src={CoinImage} alt="coin" /> {"+" + coins}
                             </div>
                             <div className="containerModal">
-                                <Button
-                                    className="cerrarButton"
-                                    onClick={handleClose}
-                                    style={{
-                                        backgroundColor: "#fb6c6c" /* color de fondo */,
-                                        color: "white" /* color del texto */,
-                                        padding: "14px 20px" /* padding */,
-                                        border: "0.2vw solid #9f4949" /* sin borde */,
-                                        borderRadius: "1vw" /* bordes redondeados */,
-                                        cursor: "pointer" /* cursor de mano al pasar por encima */,
-                                        fontSize: "calc(0.5vw + 0.9vh)" /* tamaño de la fuente */,
-                                        width: "8vw",
-                                        pointerEvents: "all",
-                                        fontFamily: "vanilla-regular",
-                                    }}
-                                >
-                                    Cancelar
-                                </Button>
-                                <Link to="/almacen">
+                                    <Button
+                                        className="cerrarButton"
+                                        onClick={handleClose}
+                                        style={{
+                                            backgroundColor: "#fb6c6c" /* color de fondo */,
+                                            color: "white" /* color del texto */,
+                                            padding: "14px 20px" /* padding */,
+                                            border: "0.2vw solid #9f4949" /* sin borde */,
+                                            borderRadius: "1vw" /* bordes redondeados */,
+                                            cursor: "pointer" /* cursor de mano al pasar por encima */,
+                                            fontSize: "calc(0.5vw + 0.9vh)" /* tamaño de la fuente */,
+                                            width: "8vw",
+                                            pointerEvents: "all",
+                                            fontFamily: "vanilla-regular",
+                                        }}
+                                    >
+                                        Cancelar
+                                    </Button>
                                     <Button
                                         className="confirmarButton"
                                         onClick={liberarMultiple}
@@ -227,7 +229,6 @@ const style = {
                                     >
                                         Liberar
                                     </Button>
-                                </Link>
                             </div>
                         </Box>
                     </Modal>
@@ -555,14 +556,16 @@ function PokemonCard({UserData, isAlreadySelected, selectedBorrado, setSelectedB
 
         return (
             borradoMultiple ? (
-                <div 
+                <Link onClick={handleSelectedBorrado}>
+                    <div 
                     className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny + (isSelectedBorrado ? " liberado" : " notLiberado")} 
                     key={`${data.id}-${isAlreadySelected}`}
                     onClick={handleSelectedBorrado}
-                >
+                    >
                     <p className="dexNumber">Nº {dexNum}</p>
                     {content}
-                </div>
+                    </div>
+                </Link>
             ) : (
                 <Link to={"ver-pokemon?id=" + data.id}>
                     <div className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny} key={data.id}>
