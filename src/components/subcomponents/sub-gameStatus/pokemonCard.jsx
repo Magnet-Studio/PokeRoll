@@ -57,6 +57,13 @@ function PokemonCard({data, liberarMenu})
         }
     }
 
+    let event="";
+    if (data?.event !== undefined) {
+        if (data.event === true) {
+            event = "event"
+        }
+    }
+
     let rareData="";
     if (data?.rarespecies !== undefined) {
         if (data.rarespecies === true) {
@@ -72,13 +79,13 @@ function PokemonCard({data, liberarMenu})
     return (
         (!liberar ? 
             <Link to={"ver-pokemon?id=" + data.id}>
-                <div className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny} key={data.id}>
+                <div className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny + " " + event} key={data.id}>
                     <p className="dexNumber">Nº {dexNum}</p>
                     {pokemon}
                 </div>
             </Link>
             :
-            <div className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny} key={data.id}>
+            <div className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny + " " + event} key={data.id}>
                 <p className="dexNumber">Nº {dexNum}</p>
                 {pokemon}
             </div>

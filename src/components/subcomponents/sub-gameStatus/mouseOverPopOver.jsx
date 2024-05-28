@@ -39,11 +39,11 @@ export function MouseOverPopover({ content, shown }) {
             horizontal: 'center',
           }}
           transformOrigin={{
-            vertical: 'top',
             horizontal: 'center',
           }}
+          sx={{width: "80%"}}
         >
-          <Typography sx={{ p: 1 } } >{shown}</Typography>
+          <Typography sx={{ p: 2 } } >{shown}</Typography>
         </Popover>
       </div>
     );

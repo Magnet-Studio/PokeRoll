@@ -76,10 +76,17 @@ function Instrucciones() {
                 </ul>
               </li>
             </ul><br/>
+            A lo largo del tiempo, se han encontrado en las tiradas especies de Pokémon muy raras... Se han encontrado Pokémon variocolores, los cuales tienen 
+            un color muy diferente al Pokémon original; especies raras de Pokémon que no se suelen ver, ¡e incluso Pokémon bajo el poder de la Megaevolución! <br/>
+
+            Cuando hagas alguna tirada, tendrás cierta posibilidad de encontrarte con alguno de estos Pokémon... ¡Y habrá confeti para celebrarlo! ¡Coleccionalos a todos!<br/><br/>
+
             Pese a que por cada Tier de ruleta se obtienen Pokémon más raros, ¡ten en cuenta que cada uno cuesta más que el anterior!
           </li><br/>
           <li><b>POKÉDEX</b>: Con la Pokédex integrada en PokéRoll, podrás consultar todos los Pokémon que has obtenido a través de todas las tiradas
-            que hayas realizado. Ten en cuenta que, incluso liberando a tus Pokémon, ¡el registro no se perderá!
+            que hayas realizado. Ten en cuenta que, incluso liberando a tus Pokémon, ¡el registro no se perderá!<br/><br/>
+
+            Por cierto, puede que si encuentras a todos los Pokémon de la Pokédex, encuentres con mayor facilidad a los anteriormente mencionados Pokémon variocolor...
           </li><br/>
           <li><b>ALMACÉN</b>: En el almacén, se guardarán todos los Pokémon que hayas obtenido. Adicionalmente, podrás consultar los datos de estos Pokémon,
             como pueden ser sus estadísticas, tipos, fecha de obtención, rareza y más.<br/><br/> También tienes una opción de liberar a tus Pokémon a cambio de

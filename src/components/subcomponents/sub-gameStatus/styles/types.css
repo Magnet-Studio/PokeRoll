@@ -179,9 +179,7 @@
     animation: shake 0.5s infinite, shineShinyMega 10s infinite;
 }
 
-#tiposPokemon > .pokemonType {
-    box-shadow: 0 0 5px rgb(40, 40, 40);
-}
+
 
 .entryBox.liberado.rare.shiny
 {
@@ -196,6 +194,11 @@
     pointer-events: all;
     animation: shake 0.5s infinite, shineEvent 5s infinite;
 }
+
+#tiposPokemon > .pokemonType {
+    box-shadow: 0 0 5px rgb(40, 40, 40);
+}
+
 
 
 

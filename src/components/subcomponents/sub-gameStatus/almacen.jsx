@@ -576,7 +576,7 @@ function PokemonCard({UserData, isAlreadySelected, selectedBorrado, setSelectedB
             borradoMultiple ? (
                 <Link onClick={handleSelectedBorrado} aria-label={(isSelectedBorrado ? "Seleccionado para liberar " : " No seleccionado para liberar ") + ":Número de la pokédex :" +dexNum + ": " + data.nametag + ":" + shinyDesc + ":" + megaDesc + ":" + rareDesc}>
                     <div 
-                    className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny + (isSelectedBorrado ? " liberado" : " notLiberado")} 
+                    className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny + " " + event + (isSelectedBorrado ? " liberado" : " notLiberado")} 
                     key={`${data.id}-${isAlreadySelected}`}
                     onClick={handleSelectedBorrado}
                     >

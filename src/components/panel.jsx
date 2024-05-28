@@ -58,37 +58,43 @@ const savedData = () =>
     };
 }
 
-function GetSandyShocksBetaEvent(UserData, setUserData) {
-    console.log(UserData)
-    let eventPokemon =  {
-        "frequency":4,
-        "iv": {
-            "hp":25,
-            "atq":25,
-            "def":25,
-            "spatq":25,
-            "spdef":25,
-            "spe":25
-        },
-        "speciesname":"Pelarena",
-        "name": "989",
-        "nametag":"VMagnet ✰",
-        "shiny": "shiny",
-        "originaltrainer": "PokéROLL", // jsx
-        "type1":"electric",    // jsx hecho
-        "type2":"ground",   // jsx hecho
-        "event": true,
-        "event_desc" : "¡Gracias por participar en la Beta de PokéROLL! Disfruta de este Pelarena variocolor durante tu estancia :)"
-    };
+const CurrentEventPokemon = {
+    "frequency":4,
+    "iv": {
+        "hp":25,
+        "atq":25,
+        "def":25,
+        "spatq":25,
+        "spdef":25,
+        "spe":25
+    },
+    "speciesname":"Pelarena",
+    "name": 989,
+    "nametag":"VMagnet ✰",
+    "shiny": "shiny",
+    "originaltrainer": "PokéROLL", // jsx
+    "type1":"electric",    // jsx hecho
+    "type2":"ground",   // jsx hecho
+    "event": true,
+    "event_desc" : "¡Gracias por participar en la Beta de PokéROLL! Disfruta de este Pelarena variocolor durante tu estancia :)"
+}
+/** Función utilizada para crear eventos de distribución
+ * 
+ * @param {*} UserData Los datos del usuario
+ * @param {*} setUserData La operacion setUserData definida en Panel
+ * @param {string} eventCode El código del evento (Es el parámetro que se pilla en el LocalStorage como clave, ej. "sandyShocksBetaEvent")
+ * @param {Date} startDate Fecha de comienzo (IMPORTANTE: Mes que se quiera + 1)
+ * @param {Date} endDate Fecha de fin (IMPORTANTE: Mes que se quiera + 1)
+ * @param {string | boolean} eventCommand El valor de UserData a comprobar (ej. UserData.sandyShocksBetaEvent)
+ */
+function GetSpecialEvent(UserData, setUserData, eventCode, startDate, endDate, eventCommand) {
+    let eventPokemon = CurrentEventPokemon;
     let fecha = new Date();
-    let dia = (fecha.getDate());
-    let mes = (fecha.getMonth() + 1);
-    let año = fecha.getFullYear();
     
-    if (dia > 27 && dia <= 31 && mes === 5 && año === 2024 && UserData.sandyShocksBetaEvent === "false" && UserData.name !== "Iniciar sesión") {
+    if (fecha <= endDate && fecha >= startDate && eventCommand === "false" && UserData.name !== "Iniciar sesión") {
         console.log(UserData.pokemonList)
         console.log(eventPokemon);
-        ReclamarEvent(eventPokemon, UserData, setUserData, "sandyShocksBetaEvent");
+        ReclamarEvent(eventPokemon, UserData, setUserData, eventCode);
     }
 }
 
@@ -101,7 +107,7 @@ function MainPanel()
     const [UserData, setUserData] = useState(savedData() || initData);
 
     useEffect(() => {
-        
+        console.log(UserData.registers.length)
         localStorage.setItem("username", UserData.name);
         localStorage.setItem("pass", UserData.pass);
         localStorage.setItem("currency", UserData.currency.toString());
@@ -110,7 +116,7 @@ function MainPanel()
         localStorage.setItem("shinycount", UserData.shinycount);
         localStorage.setItem("rarecount", UserData.rarecount);
         localStorage.setItem("megacount", UserData.megacount);
-        localStorage.setItem("shinycharm", (UserData.registers.length-1 === 1025));
+        localStorage.setItem("shinycharm", (UserData.registers.length-1 >= 1025));
         localStorage.setItem("rarecharm", (UserData.rarecount >= 300));
         localStorage.setItem("megacharm", (UserData.megacount >= 100));
         
@@ -122,7 +128,7 @@ function MainPanel()
             setUserData(data);
         }
         
-        GetSandyShocksBetaEvent(UserData, setUserData);
+        GetSpecialEvent(UserData, setUserData, "sandyShocksBetaEvent", new Date(2024, 4, 28), new Date(2024, 4, 31), UserData.sandyShocksBetaEvent);
     }, []);
 
     // El Tier actual seleccionado de la ruleta

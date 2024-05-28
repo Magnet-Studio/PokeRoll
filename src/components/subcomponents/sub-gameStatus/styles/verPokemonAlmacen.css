@@ -4,7 +4,6 @@
     overflow-y: none;
     grid-column: 2;
 }
-
 .MuiTypography-root {
     pointer-events: all;
 }
@@ -200,6 +199,8 @@ p {
     filter: drop-shadow(0 0 10px rgb(255, 109, 109));
 }
 
+
+
 .inlineContainer {
     display: flex;
     align-items: center;
@@ -338,6 +339,9 @@ p {
     animation-duration: 5s; /* Aumenta la duración para hacerla más lenta */
 }
 
+.nombreEO.event {
+    color: rgb(255, 173, 173);
+}
 
 @keyframes rareza5anim {
     0% {
