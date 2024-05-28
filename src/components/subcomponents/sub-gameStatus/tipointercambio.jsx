@@ -7,11 +7,16 @@ import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
 import DoneOutlinedIcon from "@mui/icons-material/DoneOutlined";
 import { Link } from "react-router-dom";
 import PantallaCargaIntercambio from "./pantallaCargaIntercambio";
+import { PlayerList } from "./userdata/rankingList";
 
 export default function TipoIntercambio() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const code = searchParams.get("hasCode");
+
+  const exchangePlayerIndex = Math.floor(Math.random() * PlayerList.length);
+  const exchangeUserName = PlayerList[exchangePlayerIndex].playername;
+  localStorage.setItem("exchangeUser", exchangeUserName);
 
   if (code === "yes") {
     return <IntercambioConCodigo />;
@@ -33,6 +38,7 @@ function IntercambioConCodigo() {
         code={inputValue}
         size="10rem"
         thickness={8}
+        time={5000}
       />
     );
   }
@@ -80,6 +86,7 @@ function IntercambioSinCodigo({ code }) {
         code={code}
         size="10rem"
         thickness={8}
+        time={5000}
       />
     );
   }
