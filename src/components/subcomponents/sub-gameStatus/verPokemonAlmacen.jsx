@@ -14,7 +14,7 @@ import { ReactComponent as SpaIcon } from '../../../images/megaIcon.svg';
 import { useSpring, animated  } from 'react-spring';
 import CountUp from 'react-countup';
 import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
-
+import VerifiedIcon from '@mui/icons-material/Verified';
 
 function VerPokemonAlmacen({UserData, setUserData}) 
 {
@@ -88,6 +88,11 @@ function VerPokemonAlmacen({UserData, setUserData})
                                                                       de Rareza por ello.
                                                                       </span>}/> : <></>; 
 
+    const eventCond = (pokemon?.event === true) ? <MouseOverPopover content={<VerifiedIcon className="eventIcon" />} 
+                                                                      shown={<span> ¡Felicidades! ¡Has conseguido un Pokémon de evento!<br/>
+                                                                      {pokemon.event_desc}
+                                                                      </span>}/> : <></>; 
+
     const rarityMessage = <MouseOverPopover content={<InfoOutlinedIcon />} 
                                             shown={<span>
                                               La rareza de un Pokémon contribuye a su valor final. <br/>
@@ -95,6 +100,7 @@ function VerPokemonAlmacen({UserData, setUserData})
                                               cual obtendrá un bonus de {rarezas[frequency-1]} puntos en el <br/>
                                               cálculo final de Rareza.
                                               </span>} />
+    
     const statMessage = <MouseOverPopover content={<InfoOutlinedIcon />} 
                                           shown={<span>
                                             La gráfica de Estadísticas representa los valores individuales (IVs)<br/>
@@ -127,6 +133,7 @@ function VerPokemonAlmacen({UserData, setUserData})
                     {shinyCond}
                     {megaCond}
                     {rareCond}
+                    {eventCond}
                 </div>
                 <div id="tiposPokemon">
                   {firstTypeContainer}

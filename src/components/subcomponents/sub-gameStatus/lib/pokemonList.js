@@ -70,3 +70,14 @@ export const AddLastExtraDetails = (pokemonData, UserData) =>
     pokemonData.originaltrainer = UserData.name;
     pokemonData.datefound = SetDate();
 }
+
+export const AddLastExtraDetailsEvent = (pokemonData) =>
+    {
+        if(!pokemonData) return;
+        pokemonData.id = nextId;
+        nextId++;
+    
+        localStorage.setItem("nextId", nextId);
+        pokemonData.datefound = SetDate();
+    }
+    

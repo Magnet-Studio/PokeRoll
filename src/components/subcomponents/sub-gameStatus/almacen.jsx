@@ -551,10 +551,19 @@ function PokemonCard({UserData, isAlreadySelected, selectedBorrado, setSelectedB
         }
     }
 
+    let event="";
+    if (data?.event !== undefined) {
+        if (data.event === true) {
+            event = "event";
+        }
+    }
+
     let shinyDesc="";
     if (data.shiny === "shiny") {
         shinyDesc="Variocolor";
     }
+
+    
 
     // Si los datos aún se están cargando, muestra CircularProgress dentro de la tarjeta
     const content = (pokemonData === null || pokemonSpeciesData === null) ? 
@@ -577,7 +586,7 @@ function PokemonCard({UserData, isAlreadySelected, selectedBorrado, setSelectedB
                 </Link>
             ) : (
                 <Link to={"ver-pokemon?id=" + data.id} aria-label={"Número de la pokédex :" +dexNum + ": " + data.nametag + ":" + shinyDesc + ":" + megaDesc + ":" + rareDesc}>
-                    <div className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny} key={data.id}>
+                    <div className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny + " " + event} key={data.id}>
                         <p className="dexNumber" >Nº {dexNum}</p>
                         {content}
                     </div>

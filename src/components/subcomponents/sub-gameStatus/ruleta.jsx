@@ -10,7 +10,7 @@ import CoinImage from "../../../images/coin.png";
 import { GetFrequencyByName } from "./lib/pokemonFrequency";
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import { MouseOverPopover } from './mouseOverPopOver';
-import { AddLastExtraDetails } from './lib/pokemonList';
+import { AddLastExtraDetails, AddLastExtraDetailsEvent } from './lib/pokemonList';
 import {ReactComponent as SpaIcon} from '../../../images/megaIcon.svg';
 import CheckIcon from '@mui/icons-material/Check';
 import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
@@ -382,6 +382,48 @@ function Reclamar(pokemonData, UserData, setThreePokemon, setUserData, HalfCost)
         } 
         return updatedUserData;
     });
-} 
+}
+
+export function ReclamarEvent(pokemonData, UserData, setUserData, event) {
+    AddLastExtraDetailsEvent(pokemonData, UserData); 
+    console.log(pokemonData);
+    setUserData(prevUserData => {
+        console.log(prevUserData.pokemonList)
+        const updatedUserData = { ...prevUserData };
+        updatedUserData.pokemonList = [...updatedUserData.pokemonList, JSON.stringify(pokemonData)];
+        console.log(updatedUserData.pokemonList)
+        if(!updatedUserData.registers.includes(pokemonData.name)) updatedUserData.registers = [...updatedUserData.registers, pokemonData.name];
+        
+        if (pokemonData.shiny === "shiny") {
+            if (updatedUserData?.shinycount === undefined) {
+                updatedUserData.shinycount = 1;
+            } else {
+                updatedUserData.shinycount = parseInt(updatedUserData.shinycount) + 1;
+            }
+        }
+
+        if (pokemonData?.megaevolution === true) {
+            if (updatedUserData?.megacount === undefined) {
+                updatedUserData.megacount = 1;
+            } else {
+                updatedUserData.megacount = parseInt(updatedUserData.megacount) + 1;
+            }
+        }
+
+        if (pokemonData?.rarespecies === true) {
+            if (updatedUserData?.rarecount === undefined) {
+                updatedUserData.rarecount = 1;
+            } else {
+                updatedUserData.rarecount = parseInt(updatedUserData.rarecount) + 1;
+            }
+        } 
+        console.log(updatedUserData);
+        return updatedUserData;
+    });
+    
+    localStorage.setItem(event, true);
+
+    
+}
 
 export default Ruleta;

@@ -129,6 +129,12 @@
     animation-duration: 10s; /* Aumenta la duración para hacerla más lenta */
 }
 
+.entryBox.event {
+    border-color: rgb(170, 164, 255);
+    animation-name: shineEvent;
+    animation-duration: 5s; /* Aumenta la duración para hacerla más lenta */
+}
+
 .notLiberado
 {
     opacity: 0.5;
@@ -184,6 +190,13 @@
     animation: shake 0.5s infinite, shineRareShiny 10s infinite;
 }
 
+.entryBox.liberado.event
+{
+    opacity: 1;
+    pointer-events: all;
+    animation: shake 0.5s infinite, shineEvent 5s infinite;
+}
+
 
 
 @keyframes shake {
@@ -225,6 +238,18 @@
     }
     100% {
         border-color: rgb(251, 255, 0);
+    }
+}
+
+@keyframes shineEvent {
+    0% {
+        border-color: rgb(134, 0, 31);
+    }
+    50% {
+        border-color: rgb(255, 176, 176); /* Color más claro para mayor contraste */
+    }
+    100% {
+        border-color: rgb(134, 0, 31);
     }
 }
 

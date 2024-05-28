@@ -195,6 +195,11 @@ p {
     filter: drop-shadow(0 0 10px rgb(170, 164, 255));
 }
 
+.Typography-hoverContent > .eventIcon {
+    color: rgb(255, 101, 101);
+    filter: drop-shadow(0 0 10px rgb(255, 109, 109));
+}
+
 .inlineContainer {
     display: flex;
     align-items: center;

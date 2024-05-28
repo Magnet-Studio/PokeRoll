@@ -9,6 +9,8 @@ import BottomElements from './subcomponents/bottomElements';
 import { BrowserRouter, Route, Routes, HashRouter } from 'react-router-dom';
 import GameState from './subcomponents/gameState';
 import {useState, useEffect} from 'react';
+import { AddLastExtraDetails, AddLastExtraDetailsEvent } from './subcomponents/sub-gameStatus/lib/pokemonList';
+import { ReclamarEvent } from './subcomponents/sub-gameStatus/ruleta';
 
 const initData = {
     name:"Iniciar sesión",
@@ -22,6 +24,7 @@ const initData = {
     shinycount: 0,
     rarecount: 0,
     megacount: 0,
+    sandyShocksBetaEvent: false
 }
 
 const savedData = () => 
@@ -37,7 +40,7 @@ const savedData = () =>
     const savedShinyCount = localStorage.getItem("shinycount");
     const savedRareCount = localStorage.getItem("rarecount");
     const savedMegaCount = localStorage.getItem("megacount");
-
+    const savedSandyShocksBetaEvent = localStorage.getItem("sandyShocksBetaEvent");
 
     return {
         name: savedName ? savedName : initData.name,
@@ -50,9 +53,43 @@ const savedData = () =>
         megacharm: savedMegaCharm ? savedMegaCharm : initData.megacharm,
         shinycount: savedShinyCount ? savedShinyCount : initData.shinycount,
         rarecount: savedRareCount ? savedRareCount : initData.rarecount,
-        megacount: savedMegaCount ? savedMegaCount : initData.megacount
-
+        megacount: savedMegaCount ? savedMegaCount : initData.megacount,
+        sandyShocksBetaEvent: savedSandyShocksBetaEvent ? savedSandyShocksBetaEvent : initData.sandyShocksBetaEvent
     };
+}
+
+function GetSandyShocksBetaEvent(UserData, setUserData) {
+    console.log(UserData)
+    let eventPokemon =  {
+        "frequency":4,
+        "iv": {
+            "hp":25,
+            "atq":25,
+            "def":25,
+            "spatq":25,
+            "spdef":25,
+            "spe":25
+        },
+        "speciesname":"Pelarena",
+        "name": "989",
+        "nametag":"VMagnet ✰",
+        "shiny": "shiny",
+        "originaltrainer": "PokéROLL", // jsx
+        "type1":"electric",    // jsx hecho
+        "type2":"ground",   // jsx hecho
+        "event": true,
+        "event_desc" : "¡Gracias por participar en la Beta de PokéROLL! Disfruta de este Pelarena variocolor durante tu estancia :)"
+    };
+    let fecha = new Date();
+    let dia = (fecha.getDate());
+    let mes = (fecha.getMonth() + 1);
+    let año = fecha.getFullYear();
+    
+    if (dia > 27 && dia <= 31 && mes === 5 && año === 2024 && UserData.sandyShocksBetaEvent === "false" && UserData.name !== "Iniciar sesión") {
+        console.log(UserData.pokemonList)
+        console.log(eventPokemon);
+        ReclamarEvent(eventPokemon, UserData, setUserData, "sandyShocksBetaEvent");
+    }
 }
 
 /** 
@@ -64,6 +101,7 @@ function MainPanel()
     const [UserData, setUserData] = useState(savedData() || initData);
 
     useEffect(() => {
+        
         localStorage.setItem("username", UserData.name);
         localStorage.setItem("pass", UserData.pass);
         localStorage.setItem("currency", UserData.currency.toString());
@@ -75,6 +113,7 @@ function MainPanel()
         localStorage.setItem("shinycharm", (UserData.registers.length-1 === 1025));
         localStorage.setItem("rarecharm", (UserData.rarecount >= 300));
         localStorage.setItem("megacharm", (UserData.megacount >= 100));
+        
     }, [UserData]);
 
     useEffect(() => {
@@ -82,6 +121,8 @@ function MainPanel()
         if (data !== null) {
             setUserData(data);
         }
+        
+        GetSandyShocksBetaEvent(UserData, setUserData);
     }, []);
 
     // El Tier actual seleccionado de la ruleta
