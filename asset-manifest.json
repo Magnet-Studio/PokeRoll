@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/pokeroll/static/css/main.8d78106c.css",
-    "main.js": "/pokeroll/static/js/main.301c6977.js",
-    "static/media/logo.png": "/pokeroll/static/media/logo.30221ed4618de975b3c9.png",
-    "static/media/bg.jpg": "/pokeroll/static/media/bg.e8eeea2ab98250305201.jpg",
-    "static/media/pokeball.png": "/pokeroll/static/media/pokeball.b5d2808ddddc0f86b5f8.png",
-    "static/media/komikazoom.ttf": "/pokeroll/static/media/komikazoom.36dc0574d712a05771ea.ttf",
-    "static/media/ptarmigan.ttf": "/pokeroll/static/media/ptarmigan.419950e1165da3a4d682.ttf",
-    "static/media/coin.png": "/pokeroll/static/media/coin.e4aebc476003977d9420.png",
-    "static/media/vanilla-regular.ttf": "/pokeroll/static/media/vanilla-regular.8637936c89d4fb7934ad.ttf",
-    "static/media/megaIcon.svg": "/pokeroll/static/media/megaIcon.8a8cf31264fd86c8ffec5163e7d6c346.svg",
-    "static/media/ruleta.svg": "/pokeroll/static/media/ruleta.c04ba6df563392eecf1d892c2a3160dc.svg",
-    "static/media/almacen.svg": "/pokeroll/static/media/almacen.3dce0d648ba68e5d58ad83ce9909c5f8.svg",
-    "index.html": "/pokeroll/index.html",
-    "static/media/pokedex.svg": "/pokeroll/static/media/pokedex.1ace752d6ab39a10bba808e07070b6ca.svg",
-    "main.8d78106c.css.map": "/pokeroll/static/css/main.8d78106c.css.map",
-    "main.301c6977.js.map": "/pokeroll/static/js/main.301c6977.js.map"
+    "main.css": "/static/css/main.ee63c74c.css",
+    "main.js": "/static/js/main.54ed5379.js",
+    "static/media/logo.png": "/static/media/logo.30221ed4618de975b3c9.png",
+    "static/media/bg.jpg": "/static/media/bg.e8eeea2ab98250305201.jpg",
+    "static/media/pokeball.png": "/static/media/pokeball.b5d2808ddddc0f86b5f8.png",
+    "static/media/komikazoom.ttf": "/static/media/komikazoom.36dc0574d712a05771ea.ttf",
+    "static/media/ptarmigan.ttf": "/static/media/ptarmigan.419950e1165da3a4d682.ttf",
+    "static/media/coin.png": "/static/media/coin.e4aebc476003977d9420.png",
+    "static/media/vanilla-regular.ttf": "/static/media/vanilla-regular.8637936c89d4fb7934ad.ttf",
+    "static/media/megaIcon.svg": "/static/media/megaIcon.8a8cf31264fd86c8ffec5163e7d6c346.svg",
+    "static/media/ruleta.svg": "/static/media/ruleta.c04ba6df563392eecf1d892c2a3160dc.svg",
+    "static/media/almacen.svg": "/static/media/almacen.3dce0d648ba68e5d58ad83ce9909c5f8.svg",
+    "index.html": "/index.html",
+    "static/media/pokedex.svg": "/static/media/pokedex.1ace752d6ab39a10bba808e07070b6ca.svg",
+    "main.ee63c74c.css.map": "/static/css/main.ee63c74c.css.map",
+    "main.54ed5379.js.map": "/static/js/main.54ed5379.js.map"
   },
   "entrypoints": [
-    "static/css/main.8d78106c.css",
-    "static/js/main.301c6977.js"
+    "static/css/main.ee63c74c.css",
+    "static/js/main.54ed5379.js"
   ]
 }
