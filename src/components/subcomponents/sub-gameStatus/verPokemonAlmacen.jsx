@@ -27,6 +27,9 @@ function VerPokemonAlmacen({UserData, setUserData})
     const [pokemonSpeciesData, setPokemonSpeciesData] = useState(null);
     const [pokemonData, setPokemonData] = useState(null);
     
+    useEffect(() => {
+      document.title = "PokéROLL (Datos de " + pokemon.nametag + ")"
+    }, [])
 
     useEffect(() => {
         const fetchDataAndUpdateState = async () => 

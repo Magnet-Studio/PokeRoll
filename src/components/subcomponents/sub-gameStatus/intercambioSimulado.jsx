@@ -1,12 +1,16 @@
 import "./styles/intercambio.css";
 import PantallaCargaIntercambio from "./pantallaCargaIntercambio";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ModalSelectPokemon from "./selectPokemonIntercambio";
 
 export default function IntercambioSimulado() {
   const playerUserName = localStorage.username;
   const exchangeUserName = localStorage.getItem("exchangeUser");
+
+  useEffect(() => {
+    document.title = "PokéROLL (Intercambio con " + exchangeUserName + ")"
+  }, [])
   return (
     <div id="conexionIntercambioContainer">
       <ShowHostPlayer host={playerUserName} />
@@ -41,6 +45,8 @@ function PokemonIntercambio({ player }) {
   const handleClick = () => {
     setSelectPokemonButton(true);
   };
+
+  
 
   return (
     <div id="pokemonIntercambioInfoContainer">

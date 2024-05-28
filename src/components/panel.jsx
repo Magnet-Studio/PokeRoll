@@ -96,7 +96,7 @@ function GetSpecialEvent(UserData, setUserData, eventCode, startDate, endDate, e
         eventPokemon.iv = GetIVs(eventPokemon.frequency);
     }
     
-    if (fecha <= endDate && fecha >= startDate && eventCommand === "false" && UserData.name !== "Iniciar sesión") {
+    if (fecha <= endDate && fecha >= startDate && eventCommand !== "true" && UserData.name !== "Iniciar sesión") {
         console.log(UserData.pokemonList)
         console.log(eventPokemon);
         ReclamarEvent(eventPokemon, UserData, setUserData, eventCode);
@@ -133,7 +133,7 @@ function MainPanel()
             setUserData(data);
         }
         
-        GetSpecialEvent(UserData, setUserData, "sandyShocksBetaEvent", new Date(2024, 4, 28), new Date(2024, 4, 31), UserData.sandyShocksBetaEvent);
+        GetSpecialEvent(UserData, setUserData, "sandyShocksBetaEvent", new Date(2024, 4, 31), new Date(2024, 5, 30), UserData.sandyShocksBetaEvent);
     }, []);
 
     // El Tier actual seleccionado de la ruleta

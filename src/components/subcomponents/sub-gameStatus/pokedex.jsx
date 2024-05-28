@@ -24,6 +24,10 @@ function Pokedex({UserData})
         setDexNumbers(MakeDexNumByGeneration(generationNum));
     }, [generationNum]);
 
+    useEffect(() => {
+        document.title = "PokéROLL (Pokédex)"
+      }, [])
+
     return (
         <>
             <div id="previousGenContainer">

@@ -47,6 +47,7 @@ const style = {
         setSelectedFrequency(sessionStorage.getItem('selectedFrequency') || '0');
         setSelectedType(sessionStorage.getItem('selectedType') || '0');
         setName(sessionStorage.getItem('Name') || '');
+        document.title = "PokéROLL (Almacén)"
     }, []);
 
     /*

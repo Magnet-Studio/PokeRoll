@@ -8,6 +8,9 @@ import { GetRarezaPoints, GetRarezaPointsSimplified } from "./lib/pokemonRarity"
 
 
 function Marcadores({UserData}) {
+    useEffect(() => {
+        document.title = "PokéROLL (Clasificación)"
+      }, [])
     const [selectedValueRank, setselectedValueRank] = useState(sessionStorage.getItem('selectedValueRank') || '1');
     
     return(

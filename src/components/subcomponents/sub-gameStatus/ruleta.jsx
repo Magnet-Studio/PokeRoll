@@ -22,7 +22,9 @@ function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, 
 {   
     const notPokemon = [(pokeballImage), (pokeballImage), (pokeballImage)];
     const [threePokemonImages, setThreePokemonImages] = useState(notPokemon);
-    
+    useEffect(() => {
+        document.title = "PokéROLL (Ruleta)"
+      }, [])
     useEffect(() => 
     {
         const fetchDataAndUpdateState = async () => 

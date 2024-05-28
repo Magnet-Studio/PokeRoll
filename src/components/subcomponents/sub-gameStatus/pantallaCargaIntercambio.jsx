@@ -13,12 +13,14 @@ export default function PantallaCargaIntercambio({
 }) {
   const navigate = useNavigate();
   useEffect(() => {
+    document.title = "PokéROLL (Buscando intercambio...)"
     const timer = setTimeout(() => {
       const completePath = path + code;
       if (redirect) navigate(completePath);
     }, time);
     return () => clearTimeout(timer);
   }, []);
+  
   return (
     <div className="formularioContainer">
       <Box>

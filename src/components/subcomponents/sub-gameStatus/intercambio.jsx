@@ -1,7 +1,11 @@
+import { useEffect } from "react";
 import "./styles/intercambio.css";
 import { Link } from "react-router-dom";
 
 export default function Intercambio() {
+  useEffect(() => {
+    document.title = "PokéROLL (Intercambio)"
+  }, [])
   return (
     <>
       <div className="botonesIntercambio">
