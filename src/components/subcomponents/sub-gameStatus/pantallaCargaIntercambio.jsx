@@ -9,13 +9,14 @@ export default function PantallaCargaIntercambio({
   path,
   size,
   thickness,
+  time,
 }) {
   const navigate = useNavigate();
   useEffect(() => {
     const timer = setTimeout(() => {
       const completePath = path + code;
       if (redirect) navigate(completePath);
-    }, 5000);
+    }, time);
     return () => clearTimeout(timer);
   }, []);
   return (
