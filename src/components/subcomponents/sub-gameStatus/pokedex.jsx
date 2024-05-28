@@ -16,11 +16,9 @@ import { Link } from 'react-router-dom';
 function Pokedex({UserData}) 
 {
     const initGenerationNum = sessionStorage.getItem("generationNum");
-    // El número de generación actual
     const [generationNum, setGenerationNum] = useState(initGenerationNum ? parseInt(initGenerationNum) : 1);
-    // La lista de dexNum de la actual generación mostrada
     const [dexNumbers, setDexNumbers] = useState(MakeDexNumByGeneration(generationNum));
-    
+    const [selectedPokemon, setSelectedPokemon] = useState(0);
 
     useEffect(() => {
         setDexNumbers(MakeDexNumByGeneration(generationNum));
@@ -32,8 +30,8 @@ function Pokedex({UserData})
                 <NavGenArrow reversed setGenerationNum={setGenerationNum} generationNum={generationNum}  />
             </div>
 
-            <div id="pokedexBigBox">
-                <CompleteEntryList UserData={UserData} setGenerationNum={setGenerationNum} generationNum={generationNum} setDexNumbers={setDexNumbers} dexNumbers={dexNumbers}  />
+            <div id="pokedexBigBox" tabIndex="1">
+                <CompleteEntryList UserData={UserData} setGenerationNum={setGenerationNum} generationNum={generationNum} setDexNumbers={setDexNumbers} dexNumbers={dexNumbers} selectedPokemon={selectedPokemon} />
             </div>
 
             <div id="nextGenContainer"> 
@@ -42,13 +40,13 @@ function Pokedex({UserData})
         </>
     );
 }
-
-/**
- * Botones de navegación entre generaciones.
- * @param reversed [Boolean] True si es la flecha izquierda
- * @param generationNum [Obligatorio]
- * @param setGenerationNum [Obligatorio]
- */
+    
+    /**
+     * Botones de navegación entre generaciones.
+     * @param reversed [Boolean] True si es la flecha izquierda
+     * @param generationNum [Obligatorio]
+     * @param setGenerationNum [Obligatorio]
+     */
 function NavGenArrow(props)
 {
     const [disabled, setDisabled] = useState(props.reversed ? props.generationNum <= 1 : props.generationNum >= MAX_GENERATION_NUM);
@@ -73,7 +71,7 @@ function NavGenArrow(props)
 
     return (
         <div className={'nextGenArrow ' + (props.reversed ? 'reversed ' : '') + (disabled ? 'disabled' : '')}>
-            <Link onClick={handler}>
+            <Link onClick={handler} aria-label={!props.reversed ? "Avanzar a la siguiente generación" : "Regresar a la anterior generación"}>
                 <ArrowRightIcon />
             </Link>
         </div>
@@ -143,32 +141,32 @@ function PokemonEntry(props)
     }, [props.num]);
 
     let knownCond= '';
-
+    let name = ""; 
     let pokemon, firstType, rarityNum = '0'; 
     if(props.known === 'known')
     {
-        const name = GetSpanishName(pokemonSpeciesData);
+        name = GetSpanishName(pokemonSpeciesData);
         firstType = GetFirstType(pokemonData);
         const secondType = GetSecondType(pokemonData);
 
         let secondTypeContainer = (<></>); 
         if(secondType !== null)
         {
-            secondTypeContainer = (<div className="pokemonType">{GetPrettyTypeNameSpanish(secondType)}</div>);
+            secondTypeContainer = (<div className="pokemonType" tabindex="-1" aria-hidden="true">{GetPrettyTypeNameSpanish(secondType)}</div>);
         }  
         knownCond = props.known + " " + firstType;
         
         pokemon = (
-            <>
+            <div aria-label={"Número " + props.num + ":" +name}>
                 {GetImage(pokemonData, false)}    
 
-                <div className='types'>
+                <div className='types' tabindex="-1" aria-hidden="true">
                     <div className="pokemonType">{GetPrettyTypeNameSpanish(firstType)}</div>
                     {secondTypeContainer}
                 </div>
 
-                <p className='pokemonName'>{(name === undefined ? "Cargando..." : name)}</p>
-            </>
+                <p className='pokemonName' tabindex="-1" aria-hidden="true">{(name === undefined ? "Cargando..." : name)}</p>
+            </div>
         );
     }
     else 
@@ -176,10 +174,10 @@ function PokemonEntry(props)
         // Caso de pokémon desconocido
         rarityNum = GetFrequencyByDexNum(props.num);
 
-        pokemon = <div className='unknownMessageContainer'>
-                    <MouseOverPopover content={<p className="unknownMessage">???</p>} 
+        pokemon = <div className='unknownMessageContainer' aria-label={"Número " + props.num + ':No se ha descubierto todavía'}>
+                    <MouseOverPopover content={<p className="unknownMessage" tabindex="-1" aria-hidden="true">???</p>} 
                         shown={
-                            <span> 
+                            <span > 
                                 Este Pokémon aún no ha sido descubierto.
                             </span>
                         } />
@@ -195,7 +193,7 @@ function PokemonEntry(props)
 
     return (
         <div className={"entryBox " + knownCond + " rarity" + (rarityNum)} key={"pokemon-" + props.num}>
-            <p className="dexNumber">Nº {props.num}</p>
+            <p className="dexNumber" aria-hidden="true" tabindex="-1">Nº {props.num}</p>
             {content}
         </div>
     );

@@ -77,11 +77,11 @@
     pointer-events: all;
 }
 
-#loginPanel p {
+.loginRegisterContainer p {
     font-size: 2vh;
 }
 
-#loginPanel p a {
+.loginRegisterContainer p a {
     color: white;
 }
 
@@ -90,6 +90,25 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+}
+
+.passwordHelpContainer {
+    column-count: 2;
+    margin-top: 1vh;
+}
+
+.passwordHelpContainer > p {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-size: 0.9vw;
+    margin: 0;
+}
+
+.passwordHelpContainer svg {
+    color: white;
+    font-size: 1.5vw;
+    margin-right: 0.5vw;
 }
 
 /* Estilos para pantallas con un ancho de 768px o menos */
@@ -115,8 +134,16 @@
         height: 8vh;
     }
 
-    #loginPanel p {
+    .loginRegisterContainer p {
         font-size: 1.5vh;
+    }
+
+    .passwordHelpContainer > p {
+        font-size: 1.5vh;
+    }
+
+    .passwordHelpContainer svg {
+        font-size: 2vh;
     }
 }
 

@@ -75,6 +75,8 @@
     animation: moveUp 0.5s ease-in-out forwards alternate;
 }
 
+
+
 .navButton:hover .navButtonTitle
 {
     animation: changeOpacity 0.5s ease-in-out forwards alternate, 

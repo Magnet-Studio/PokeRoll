@@ -157,7 +157,8 @@ function RuletaBox({ setThreePokemon, pokemonImage, tirarButtonDisable, TierRule
             onKeyDown={(e) => { if (e.key === 'Enter') handleOpen(); }} 
             tabIndex={enabled === "enabled" ? "0" : "-1"} 
             role={enabled === "enabled" ? "button" : ""}
-            aria-label={enabled === "enabled" ? `Pokémon ${pokemonData.speciesname}` : ""}
+            aria-hidden={enabled === "enabled" ? "false" : "true"}
+            aria-label={enabled === "enabled" ? `Pokémon ${pokemonData.speciesname} , Rareza ${nombresRarezas[GetFrequencyByName(pokemonData.speciesname) - 1]}:${(RegisterCheck == true ? "Ya registrado" : "No registrado")}${(pokemonData.shiny === "shiny" ? ": Variocolor" : "")}${(pokemonData.rarespecies === true ? ": Especie rara" : "")}${(pokemonData.megaevolution === true ? ": Megaevolución" : "")}` : ""}
             onBlur={(e) => e.currentTarget.blur()}
         >
             <div className='RegistradoCheck'>
@@ -211,10 +212,10 @@ function ModalConfirmar({ setThreePokemon, pokemonData, setOpen, open, UserData,
         borderRadius: "2vw",
     };
 
-    let firstTypeContainer = (<div className={"pokemonType " + pokemonData.type1}>{GetPrettyTypeNameSpanish(pokemonData.type1)}</div>);
+    let firstTypeContainer = (<div className={"pokemonType " + pokemonData.type1} aria-description={' del tipo '}><text aria-label=''>{GetPrettyTypeNameSpanish(pokemonData.type1)}</text></div>);
     let secondTypeContainer = (<></>);
     if (pokemonData.type2 !== null) {
-        secondTypeContainer = (<div className={"pokemonType " + pokemonData.type2}>{GetPrettyTypeNameSpanish(pokemonData.type2)}</div>);
+        secondTypeContainer = (<div className={"pokemonType " + pokemonData.type2} aria-description={' y '}><text aria-label="">{GetPrettyTypeNameSpanish(pokemonData.type2)}</text></div>);
     }
 
     const nombresRarezas = ['Común', 'Infrecuente', 'Peculiar', 'Épico', 'Legendario', 'Singular'];
@@ -269,11 +270,11 @@ function ModalConfirmar({ setThreePokemon, pokemonData, setOpen, open, UserData,
                 id='reclamarButtonContainer'
             >
                 <Box sx={style}>
-                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                    <Typography id="modal-modal-title">
                         ¿Quieres reclamar este Pokémon?
                     </Typography>
 
-                    <Typography id="modal-modal-description" variant="h6" component="h2" style={{ fontFamily: "vanilla-regular", margin: "0", textAlign: "center" }}>
+                    <Typography id="modal-modal-description" style={{ fontFamily: "vanilla-regular", margin: "0", textAlign: "center" }}>
                         El Pokémon elegido será guardado en tu Almacén. ¡Recibirás además la mitad de las monedas que gastaste en la tirada!
                     </Typography>
 
@@ -281,7 +282,7 @@ function ModalConfirmar({ setThreePokemon, pokemonData, setOpen, open, UserData,
                         {pokemonImage}
                         <div>
                             <div className='inlineContainer' style={{ color: "black" }}>
-                                <p className='nombrePokemonReclamar'>{pokemonData.speciesname}</p>
+                                <p className='nombrePokemonReclamar' aria-label={pokemonData.speciesname}>{pokemonData.speciesname}</p>
                                 {shinyIndication}
                                 {megaIndication}
                                 {rareIndication}
@@ -295,7 +296,7 @@ function ModalConfirmar({ setThreePokemon, pokemonData, setOpen, open, UserData,
                     </div>
                     {unregisterMessage}
                     <div className="containerModal moneyCount">
-                        <img className="coin" src={CoinImage} alt="coin" /> {"+" + HalfCost}
+                        <img className="coin" src={CoinImage} alt="coin" aria-hidden="true" tabindex="-1"/> {"+" + HalfCost}
                     </div>
 
                     <div className="containerModal">

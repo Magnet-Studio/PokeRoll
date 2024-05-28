@@ -50,12 +50,12 @@ function VerPokemonAlmacen({UserData, setUserData})
     const firstType = pokemon.type1;
     const secondType = pokemon.type2;
     
-    let firstTypeContainer = (<div className={"pokemonType " + firstType}>{GetPrettyTypeNameSpanish(firstType)}</div>)
+    let firstTypeContainer = (<div className={"pokemonType " + firstType} aria-description="Del tipo">{GetPrettyTypeNameSpanish(firstType)}</div>)
 
     let secondTypeContainer = (<></>); 
     if(secondType !== null)
     {
-        secondTypeContainer = (<div className={"pokemonType " + secondType}>{GetPrettyTypeNameSpanish(secondType)}</div>);
+        secondTypeContainer = (<div className={"pokemonType " + secondType}aria-description=" y ">{GetPrettyTypeNameSpanish(secondType)}</div>);
     }
 
     let megaWord = "una Megaevolución";
@@ -115,11 +115,12 @@ function VerPokemonAlmacen({UserData, setUserData})
 
     return (
         <>
-        <div id="verPokemonAlmacenBigBox">
+        <div className="backButton">
+          <Link to="/almacen" aria-label="Volver al almacén"><span className="backArrow"><ForwardIcon fontSize="large"/></span></Link>
+        </div>
+        <div id="verPokemonAlmacenBigBox" tabIndex='0'>
             <div id="infoGeneral">
-                <div className="backButton">
-                  <Link to="/almacen"><span className="backArrow"><ForwardIcon fontSize="large"/></span></Link>
-                </div>
+                
                 {pokemon?.variant === undefined ? GetImage(pokemonData, (pokemon.shiny === "shiny")) : GetVariantImage(pokemon.variant.name, (pokemon.shiny === "shiny"))}
                 <div className="inlineContainer">
                     <p className={rareEffect + " " + megaEffect + " " + shinyEffect}>{nombrePKM}</p>
@@ -135,9 +136,9 @@ function VerPokemonAlmacen({UserData, setUserData})
 
             <div id="infoAdicional">
                 <p className="fechaEncontrado">{"Encontrado el " + pokemon.datefound}</p>
-                <p className="entrenadorOriginal">Entrenador original:</p>
+                <p className="entrenadorOriginal" aria-description=":">Entrenador original:</p>
                 <p className="nombreEO">{pokemon.originaltrainer}</p>
-                <div className="inlineContainer">
+                <div className="inlineContainer" aria-description=":">
                   <p className="rareza">Rareza: </p>
                   <p className={"rareza" + frequency}>{(nombreRareza === undefined ?  " Cargando..." : " " + nombreRareza + " " )}</p>
                   {rarityMessage}
@@ -178,7 +179,7 @@ function GetRarezaValue({ ivs , shiny, frequency, mega, rare})
 
     return (
         <>
-            <p className="ValorRareza">{<CountUp start={0} end={finalValue} duration={0.5} separator=""></CountUp>}<span className="pts"> pts.</span></p>
+            <p className="ValorRareza" aria-description=": Puntuación final: ">{<CountUp start={0} end={finalValue} duration={0.5} separator=""></CountUp>}<span className="pts"> pts.</span></p>
         </>
     )
 }
@@ -222,6 +223,7 @@ const HexagonData = ({ size, fillColor, strokeColor, data}) => {
       width="50vw"
       viewBox={`15 -15 ${size * 2} ${size * Math.sqrt(3) * 2}`}
       style={animatedProps}
+      aria-hidden="true" tabindex="-1"
     >
       <animated.polygon
         points={animatedProps.points}
@@ -257,32 +259,42 @@ const Hexagon = ({ size, fillColor, strokeColor, data }) => {
   const pointsString = points.map(point => point.join(',')).join(' ');
 
   const labels = ['Sp.Def.', 'Sp.Atq.', 'HP', 'Atq.', 'Def.', 'Vel.'];
+  const fullNames = ['Defensa especial', 'Ataque Especial', 'Puntos de salud', 'Ataque', 'Defensa', 'Velocidad'];
   let values = [0,0,0,0,0,0];
-  if(data)
-  {
+  if(data) {
     values = [data.spdef, data.spatq, data.hp, data.atq, data.def, data.spe];
   }
 
   return (
     <svg className="statsTemplate" height="40vh" width="50vw" viewBox={`15 -15 ${size * 2} ${size * Math.sqrt(3) * 2}`}>
-
       {points.map((point, index) => (
-        
         <text
-        key={index}
-        x={(point[0] + parseInt(positionOffset[index][0]))}
-        y={(point[1] + parseInt(positionOffset[index][1]))}
-        dominantBaseline="hanging"
-        textAnchor="middle"
-        fill={(values[index] === 31 ? "rgb(255, 241, 50)" : "white")}
-        fontSize="12"
-        className={"elemTexts"}>
-        {labels[index]}
-      </text>
-      ))};
-
-      <polygon points={pointsString} fill={fillColor} stroke={strokeColor} strokeWidth="2"/>
-
+          key={index}
+          x={(point[0] + parseInt(positionOffset[index][0], 10))}
+          y={(point[1] + parseInt(positionOffset[index][1], 10))}
+          dominantBaseline="hanging"
+          textAnchor="middle"
+          fill={(values[index] === 31 ? "rgb(255, 241, 50)" : "white")}
+          fontSize="12"
+          className={"elemTexts"}
+          aria-hidden="true">
+          {labels[index]}
+        </text>
+      ))}
+      {points.map((point, index) => (
+        <text
+          key={`label-${index}`}
+          x={(point[0] + parseInt(positionOffset[index][0], 10))}
+          y={(point[1] + parseInt(positionOffset[index][1], 10))}
+          dominantBaseline="hanging"
+          textAnchor="middle"
+          fill="none"
+          stroke="none"
+          aria-label={":" + fullNames[index] + ": " + values[index]}>
+          {":" + fullNames[index] + ": " + values[index]}
+        </text>
+      ))}
+      <polygon points={pointsString} fill={fillColor} stroke={strokeColor} strokeWidth="2" aria-hidden="true" tabindex="-1"/>
     </svg>
   );
 };

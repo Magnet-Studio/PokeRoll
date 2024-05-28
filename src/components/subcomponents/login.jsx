@@ -1,28 +1,52 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles/login.css';
 import { Link, useNavigate } from 'react-router-dom';
-import TextField from '@mui/material/TextField';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CancelIcon from '@mui/icons-material/Cancel';
 
-function Login({setUserData}) 
-{
+function Login({ setUserData }) {
     const [isRegistering, setIsRegistering] = useState(false);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState(false);
+    const [error, setError] = useState({
+        length: true,
+        digit: true,
+        specialChar: true,
+        upperCase: true,
+        lowerCase: true
+    });
+    const [liveMessage, setLiveMessage] = useState('');
 
     const toggleRegistering = () => {
         setIsRegistering(!isRegistering);
     };
 
     const validatePassword = (password) => {
-        const regex = /(?=^.{8,}$)(?=.*\d)(?=.*[\W_])(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;
-        return regex.test(password);
+        return {
+            length: password.length >= 8,
+            digit: /\d/.test(password),
+            specialChar: /[\W_]/.test(password),
+            upperCase: /[A-Z]/.test(password),
+            lowerCase: /[a-z]/.test(password)
+        };
     };
 
     const handlePasswordChange = (event) => {
         const newPassword = event.target.value;
         setPassword(newPassword);
-        setError(!validatePassword(newPassword));
+        const validationResults = validatePassword(newPassword);
+        setError(validationResults);
+
+        let message = 'Requisitos de contraseña actualizados: ';
+        if (!validationResults.length) message += 'Debe tener al menos 8 caracteres. ';
+        if (!validationResults.digit) message += 'Debe tener un dígito. ';
+        if (!validationResults.specialChar) message += 'Debe tener un carácter especial. ';
+        if (!validationResults.upperCase) message += 'Debe tener una letra mayúscula. ';
+        if (!validationResults.lowerCase) message += 'Debe tener una letra minúscula. ';
+
+        // Forzar actualización del mensaje del lector de pantalla
+        setLiveMessage('');
+        setTimeout(() => setLiveMessage(message), 100);
     };
 
     const handleUsernameChange = (event) => {
@@ -30,7 +54,8 @@ function Login({setUserData})
     };
 
     const navigate = useNavigate();
-    const UpdateUserDataHandler = () => {
+    const UpdateUserDataHandler = (event) => {
+        event.preventDefault();
         setUserData(prevUserData => {
             return {
                 ...prevUserData,
@@ -44,29 +69,71 @@ function Login({setUserData})
     return (
         <div>
             <h1>{isRegistering ? 'Registro' : 'Iniciar sesión'}</h1>
-            <form method='get'>
-                <label for="usernameInput">Nombre de usuario:</label>
-                <input id="usernameInput" type="text" value={username} onChange={handleUsernameChange}></input><br/>
-                <label for="passwordInput">Contraseña: </label>
-                <TextField
+            <form method='get' onSubmit={UpdateUserDataHandler}>
+                <label htmlFor="usernameInput">Nombre de usuario:</label>
+                <input
+                    id="usernameInput"
+                    type="text"
+                    value={username}
+                    onChange={handleUsernameChange}
+                    aria-label="Nombre de usuario"
+                    tabIndex="1"
+                /><br />
+                <label htmlFor="passwordInput">Contraseña: </label>
+                <input
                     id="passwordInput"
                     type="password"
                     value={password}
                     onChange={handlePasswordChange}
-                    error={error}
-                    helperText={error ? 'La contraseña debe tener al menos 8 caracteres, una letra mayúscula y una letra minúscula, un dígito y un carácter especial.' : ''}
+                    aria-describedby="passwordHelp"
+                    tabIndex="2"
                 />
+                <div id="liveRegion" aria-live="polite" style={{ position: 'absolute', top: '-9999px', left: '-9999px' }}>
+                    {liveMessage}
+                </div>
+                <div className="passwordHelpContainer" id="passwordHelp">
+                    <p>Debe contener:</p>
+                    <p id="lengthReq">
+                        {password && (error.length ? <CheckCircleIcon aria-label="Correcto, al menos 8 caracteres" /> : <CancelIcon aria-label="Incorrecto, necesita al menos 8 caracteres" />)}
+                        Al menos 8 caracteres.
+                    </p>
+                    <p id="digitReq">
+                        {password && (error.digit ? <CheckCircleIcon aria-label="Correcto, contiene un dígito" /> : <CancelIcon aria-label="Incorrecto, necesita un dígito" />)}
+                        Un dígito.
+                    </p>
+                    <p id="specialCharReq">
+                        {password && (error.specialChar ? <CheckCircleIcon aria-label="Correcto, contiene un carácter especial" /> : <CancelIcon aria-label="Incorrecto, necesita un carácter especial" />)}
+                        Un carácter especial.
+                    </p>
+                    <p id="upperCaseReq">
+                        {password && (error.upperCase ? <CheckCircleIcon aria-label="Correcto, contiene una letra mayúscula" /> : <CancelIcon aria-label="Incorrecto, necesita una letra mayúscula" />)}
+                        Una letra mayúscula.
+                    </p>
+                    <p id="lowerCaseReq">
+                        {password && (error.lowerCase ? <CheckCircleIcon aria-label="Correcto, contiene una letra minúscula" /> : <CancelIcon aria-label="Incorrecto, necesita una letra minúscula" />)}
+                        Una letra minúscula.
+                    </p>
+                </div>
                 <div className="loginButtonContainer">
-                    <button id="loginButton" onClick={UpdateUserDataHandler} disabled={username === '' || error}>{isRegistering ? 'Registrarse' : 'Iniciar sesión'}</button>
+                    <button
+                        id="loginButton"
+                        type="submit"
+                        disabled={username === '' || Object.values(error).includes(false)}
+                        tabIndex="3"
+                        aria-disabled={username === '' || Object.values(error).includes(false)}
+                    >
+                        {isRegistering ? 'Registrarse' : 'Iniciar sesión'}
+                    </button>
                 </div>
             </form>
-
-            <p>
-                {isRegistering ? '¿Ya tienes cuenta? ' : '¿No tienes cuenta? '}
-                <Link onClick={toggleRegistering}>
-                    {isRegistering ? 'Iniciar sesión' : 'Regístrate'}
-                </Link>
-            </p>
+            <div className="loginRegisterContainer">
+                <p tabIndex="4">
+                    {isRegistering ? '¿Ya tienes cuenta? ' : '¿No tienes cuenta? '}
+                    <Link onClick={toggleRegistering} tabIndex="5">
+                        {isRegistering ? 'Iniciar sesión' : 'Regístrate'}
+                    </Link>
+                </p>
+            </div>
         </div>
     );
 }

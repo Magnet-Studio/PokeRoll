@@ -152,8 +152,8 @@ const style = {
                     {borradoMultiple ? (
                         <>
                             {multipleBorradoPopover}
-                            <Button id="borradoMultipleCancel" onClick={toggleBorradoMultiple}><CloseIcon style={{ fontSize: '40px' }} /></Button>
-                            <Button 
+                            <Button aria-label="Cancelar borrado múltiple" id="borradoMultipleCancel" onClick={toggleBorradoMultiple}><CloseIcon style={{ fontSize: '40px' }} /></Button>
+                            <Button aria-label="Confirmar selección de borrado múltiple"
                                 id="borradoMultipleConfirm" 
                                 onClick={selectedBorrado.length > 0 ? handleOpen : null}
                                 className={selectedBorrado.length > 0 ? "" : "borradoMultipleConfirmDisabled"}
@@ -164,7 +164,7 @@ const style = {
                     ) : (
                         <>
                              {multipleBorradoPopover}
-                            <Button id="borradoMultipleButton" onClick={toggleBorradoMultiple}><PublishedWithChangesIcon style={{ fontSize: '40px' }} /></Button>
+                            <Button aria-label="Borrar múltiples Pokémon" id="borradoMultipleButton" onClick={toggleBorradoMultiple}><PublishedWithChangesIcon style={{ fontSize: '40px' }} /></Button>
                         </>
                     )}
                     <Modal
@@ -263,12 +263,12 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, se
             <div className="filterAlmacen">
                 <label className="filterLabel" htmlFor="ordenacion">Ordenación</label>
                 <select className="inputElem" name="generalFilter" id="ordenacion" value={selectedValue} onChange={handleSelectChange}>
-                    <option value="0">Ordenar por más reciente</option>
-                    <option value="5">Ordenar por más antiguos</option>
-                    <option value="1">Ordenar por Pokémon con más valor</option>
-                    <option value="6">Ordenar por mejores estadísticas</option>
-                    <option value="2">Ordenar por número de Pokédex</option>
-                    <option value="3">Ordenar por Rareza más alta</option>
+                    <option value="0">Más reciente</option>
+                    <option value="5">Más antiguos</option>
+                    <option value="1">Pokémon con más valor</option>
+                    <option value="6">Mejores estadísticas</option>
+                    <option value="2">Número de Pokédex</option>
+                    <option value="3">Rareza más alta</option>
                     <option value="4">Variocolores primero</option>
                     <option value="7">Megaevoluciones primero</option>
                     <option value="8">Especies raras primero</option>
@@ -534,17 +534,26 @@ function PokemonCard({UserData, isAlreadySelected, selectedBorrado, setSelectedB
     );
 
     let megaData="";
+    let megaDesc="";
     if (data?.megaevolution !== undefined) {
         if (data.megaevolution === true) {
             megaData = "mega"
+            megaDesc = "Megaevolución"
         }
     }
 
     let rareData="";
+    let rareDesc="";
     if (data?.rarespecies !== undefined) {
         if (data.rarespecies === true) {
-            rareData = "rare"
+            rareData = "rare";
+            rareDesc = "Especie rara";
         }
+    }
+
+    let shinyDesc="";
+    if (data.shiny === "shiny") {
+        shinyDesc="Variocolor";
     }
 
     // Si los datos aún se están cargando, muestra CircularProgress dentro de la tarjeta
@@ -556,20 +565,20 @@ function PokemonCard({UserData, isAlreadySelected, selectedBorrado, setSelectedB
 
         return (
             borradoMultiple ? (
-                <Link onClick={handleSelectedBorrado}>
+                <Link onClick={handleSelectedBorrado} aria-label={(isSelectedBorrado ? "Seleccionado para liberar " : " No seleccionado para liberar ") + ":Número de la pokédex :" +dexNum + ": " + data.nametag + ":" + shinyDesc + ":" + megaDesc + ":" + rareDesc}>
                     <div 
                     className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny + (isSelectedBorrado ? " liberado" : " notLiberado")} 
                     key={`${data.id}-${isAlreadySelected}`}
                     onClick={handleSelectedBorrado}
                     >
-                    <p className="dexNumber">Nº {dexNum}</p>
+                    <p className="dexNumber" aria-label={"Número de la pokédex :" +dexNum}>Nº {dexNum}</p>
                     {content}
                     </div>
                 </Link>
             ) : (
-                <Link to={"ver-pokemon?id=" + data.id}>
+                <Link to={"ver-pokemon?id=" + data.id} aria-label={"Número de la pokédex :" +dexNum + ": " + data.nametag + ":" + shinyDesc + ":" + megaDesc + ":" + rareDesc}>
                     <div className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny} key={data.id}>
-                        <p className="dexNumber">Nº {dexNum}</p>
+                        <p className="dexNumber" >Nº {dexNum}</p>
                         {content}
                     </div>
                 </Link>

@@ -36,15 +36,15 @@ function Coins({UserData})
         <div>
             <CountUp start={prevCoinsValue} end={coinsValue} duration={2} separator="" >
                 {({ countUpRef }) => (
-                    <p id={'cifras-' + numCifras} ref={countUpRef} />
+                    <p id={'cifras-' + numCifras} ref={countUpRef} aria-hidden='true' />
                 )}
             </CountUp>
         </div>
     );
 
     return (
-        <div id="coins">
-            <img src={CoinImage} alt={"Coins"} />
+        <div id="coins" tabIndex="0" aria-label={`Tienes ${coinsValue} monedas`}>
+            <img src={CoinImage} alt={"Coins"} aria-hidden='true' />
             {countUp}
         </div>
     );

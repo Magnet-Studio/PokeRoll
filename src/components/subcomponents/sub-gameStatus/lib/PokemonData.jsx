@@ -87,7 +87,7 @@ export function GetImage(data, isShiny)
 
         const url = "https://img.pokemondb.net/sprites/home/" + shiny + "/" + name + ".png";
 
-        image = (<img className={"pokemonImg " + shiny + "Resplandor"} src={url} alt={name}></img>);
+        image = (<img className={"pokemonImg " + shiny + "Resplandor"} aria-hidden="true" tabindex="-1" src={url} alt={name}></img>);
     }
     return (
         <>
@@ -114,7 +114,7 @@ export function GetVariantImage(variant, isShiny)
 
         const url = "https://img.pokemondb.net/sprites/home/" + shiny + "/" + variant + ".png";
 
-        image = (<img className={"pokemonImg " + shiny + "Resplandor"} src={url} alt={variant}></img>);
+        image = (<img className={"pokemonImg " + shiny + "Resplandor"} aria-hidden="true" tabindex="-1" src={url} alt={variant}></img>);
     }
     return (
         <>

@@ -9,6 +9,7 @@ import TipoIntercambio from "./sub-gameStatus/tipointercambio";
 import Intercambio from "./sub-gameStatus/intercambio";
 import PantallaCargaIntercambio from "./sub-gameStatus/pantallaCargaIntercambio";
 import IntercambioSimulado from "./sub-gameStatus/intercambioSimulado";
+import Error404 from "./sub-gameStatus/Error404";
 import { PlayerList } from "./sub-gameStatus/userdata/rankingList";
 
 function GameState({
@@ -92,7 +93,7 @@ function GameState({
         element={<PantallaCargaGameState />}
       />
 
-      <Route path="*" element={<></>} />
+      <Route path="*" element={<Error404GameState/>} />
     </Routes>
   );
 }
@@ -153,6 +154,10 @@ function ConexionIntercambioGameState() {
   const exchangePlayerIndex = Math.floor(Math.random() * PlayerList.length);
   const exchangeUserName = PlayerList[exchangePlayerIndex].playername;
   return <IntercambioSimulado userToExchange={exchangeUserName} />;
+}
+
+function Error404GameState() {
+  return<Error404 />;
 }
 
 export default GameState;

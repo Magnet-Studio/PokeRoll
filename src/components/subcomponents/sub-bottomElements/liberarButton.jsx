@@ -38,6 +38,7 @@ function LiberarButton({data, setUserData, UserData}) {
 
   const LiberarPokemon = () => {
     Liberar(data, setUserData);
+    
     navigate("/almacen")
   }
 
@@ -130,7 +131,7 @@ function LiberarButton({data, setUserData, UserData}) {
 
 export function Liberar(data, setUserData) 
 {
-  DeletePokemon(data.id,Math.floor(coinValues[data.frequency-1] * (data.shiny === "shiny" ? 2 : 1) * (data?.megaevolution === true ? 1.2 : 1) * (data?.rarespecies === true ? 1.1 : 1)), setUserData);
+  DeletePokemon(data.id,GetPrice(data), setUserData);
 }
 
 export function GetPrice(data) {

@@ -12,11 +12,11 @@ function Marcadores({UserData}) {
     
     return(
         <>
-            <div id="marcadoresBigBox">
-                <div id="filtroMarcador">
+            <div id="marcadoresBigBox" tabIndex="0">
+                <div id="filtroMarcador" tabIndex="0">
                     <FiltroMarcador selectedValueRank={selectedValueRank} setselectedValueRank={setselectedValueRank} />
                 </div>
-                <div id="ranking-cards-container">
+                <div id="ranking-cards-container" tabIndex="0">
                     <CompleteRankingList selectedValueRank={selectedValueRank} UserData={UserData}/>
                 </div>
             </div>
@@ -33,13 +33,13 @@ function FiltroMarcador({selectedValueRank, setselectedValueRank}) {
     
     return(
         <>
-            <FilterAltIcon />
-            <select className="inputElemRanking" name="generalFilter" value={selectedValueRank} onChange={handleSelectChange}>
-                <option value="1">Pokémon más raro</option>
-                <option value="2">Más puntos gastados</option>
-                <option value="3">Mayor número de tiradas</option>
-                <option value="4">Más cantidad de registros</option>
-                <option value="5">Mejor Pokémon</option>
+            <FilterAltIcon aria-label="Icono de filtro" />
+            <select className="inputElemRanking" name="generalFilter" value={selectedValueRank} onChange={handleSelectChange} tabIndex="0" aria-label="Filtro de clasificación">
+                <option value="1" tabIndex="0">Pokémon más raro</option>
+                <option value="2" tabIndex="0">Más puntos gastados</option>
+                <option value="3" tabIndex="0">Mayor número de tiradas</option>
+                <option value="4" tabIndex="0">Más cantidad de registros</option>
+                <option value="5" tabIndex="0">Mejor Pokémon</option>
             </select>
         </>
     );
@@ -193,7 +193,7 @@ function RankingCard({data, keyNum, selectedValueRank, UserData})
     }
     return (
         <>
-            <div className={"rankBox " + cosa} key={keyNum} >
+            <div className={"rankBox " + cosa} key={keyNum} tabIndex="0" >
                 <div className="rankContent">
                     <div className="rankTitle">
                             <p>
