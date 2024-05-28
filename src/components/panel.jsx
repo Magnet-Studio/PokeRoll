@@ -11,6 +11,7 @@ import GameState from './subcomponents/gameState';
 import {useState, useEffect} from 'react';
 import { AddLastExtraDetails, AddLastExtraDetailsEvent } from './subcomponents/sub-gameStatus/lib/pokemonList';
 import { ReclamarEvent } from './subcomponents/sub-gameStatus/ruleta';
+import { GetIVs } from './subcomponents/sub-gameStatus/lib/RuletaController';
 
 const initData = {
     name:"Iniciar sesión",
@@ -83,13 +84,17 @@ const CurrentEventPokemon = {
  * @param {*} UserData Los datos del usuario
  * @param {*} setUserData La operacion setUserData definida en Panel
  * @param {string} eventCode El código del evento (Es el parámetro que se pilla en el LocalStorage como clave, ej. "sandyShocksBetaEvent")
- * @param {Date} startDate Fecha de comienzo (IMPORTANTE: Mes que se quiera + 1)
- * @param {Date} endDate Fecha de fin (IMPORTANTE: Mes que se quiera + 1)
+ * @param {Date} startDate Fecha de comienzo (IMPORTANTE: Mes que se quiera - 1)
+ * @param {Date} endDate Fecha de fin (IMPORTANTE: Mes que se quiera - 1)
  * @param {string | boolean} eventCommand El valor de UserData a comprobar (ej. UserData.sandyShocksBetaEvent)
  */
 function GetSpecialEvent(UserData, setUserData, eventCode, startDate, endDate, eventCommand) {
     let eventPokemon = CurrentEventPokemon;
     let fecha = new Date();
+
+    if (eventPokemon?.iv === undefined) {
+        eventPokemon.iv = GetIVs(eventPokemon.frequency);
+    }
     
     if (fecha <= endDate && fecha >= startDate && eventCommand === "false" && UserData.name !== "Iniciar sesión") {
         console.log(UserData.pokemonList)

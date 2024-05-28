@@ -108,7 +108,7 @@ const GetRandomIV = () => {
     return num;
 }
 
-const GetIVs = (frequency) => {
+export const GetIVs = (frequency) => {
 
     let ivs = [0,0,0,0,0,0];
 
