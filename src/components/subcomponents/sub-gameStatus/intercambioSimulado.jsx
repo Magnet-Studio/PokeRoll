@@ -1,12 +1,16 @@
 import "./styles/intercambio.css";
 import PantallaCargaIntercambio from "./pantallaCargaIntercambio";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { useState } from "react";
+import ModalSelectPokemon from "./selectPokemonIntercambio";
 
-export default function IntercambioSimulado({ userToExchange }) {
+export default function IntercambioSimulado() {
   const playerUserName = localStorage.username;
+  const exchangeUserName = localStorage.getItem("exchangeUser");
   return (
     <div id="conexionIntercambioContainer">
       <ShowHostPlayer host={playerUserName} />
-      <ShowGuestPlayer guest={userToExchange} />
+      <ShowGuestPlayer guest={exchangeUserName} />
     </div>
   );
 }
@@ -21,14 +25,30 @@ function ShowHostPlayer({ host }) {
   );
 }
 
+function ShowGuestPlayer({ guest }) {
+  return (
+    <div id="intercambioGuestContainer">
+      <h2>{guest}</h2>
+      <PokemonIntercambio player="guest" />
+      <button id="botonAceptarIntercambio">Aceptar</button>
+    </div>
+  );
+}
+
 function PokemonIntercambio({ player }) {
+  const [selectPokemonButton, setSelectPokemonButton] = useState(false);
+
+  const handleClick = () => {
+    setSelectPokemonButton(true);
+  };
+
   return (
     <div id="pokemonIntercambioInfoContainer">
       {player === "host" ? (
         <>
           <div className="entryBox">
-            <div className="unknownMessageContainer">
-              <p className="unknownMessage">+</p>
+            <div onClick={handleClick} id="exchangePokemonContainer">
+              <AddCircleIcon htmlColor="white" sx={{ fontSize: "5vw" }} />
             </div>
           </div>
           <div id="arrowAnimHost">
@@ -71,16 +91,10 @@ function PokemonIntercambio({ player }) {
           </div>
         </>
       )}
-    </div>
-  );
-}
-
-function ShowGuestPlayer({ guest }) {
-  return (
-    <div id="intercambioGuestContainer">
-      <h2>{guest}</h2>
-      <PokemonIntercambio player="guest" />
-      <button id="botonAceptarIntercambio">Aceptar</button>
+      <ModalSelectPokemon
+        selectPokemon={selectPokemonButton}
+        setSelectPokemon={setSelectPokemonButton}
+      />
     </div>
   );
 }
