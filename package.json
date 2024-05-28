@@ -1,7 +1,7 @@
 {
   "name": "pokeroll",
   "version": "0.2.0",
-  "homepage": "https://pokeroll",
+  "homepage": "https://pokeroll.es",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.4",
