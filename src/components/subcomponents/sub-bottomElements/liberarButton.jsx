@@ -9,7 +9,7 @@ import Modal from "@mui/material/Modal";
 import PokemonCard from "../sub-gameStatus/pokemonCard";
 import CoinImage from "../../../images/coin.png";
 import { DeletePokemon } from "../sub-gameStatus/lib/pokemonList";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const style = {
@@ -34,7 +34,12 @@ function LiberarButton({data, setUserData, UserData}) {
 
   const handleClose = () => setOpen(false);
 
-  const LiberarPokemon = () => Liberar(data, setUserData);
+  const navigate = useNavigate();
+
+  const LiberarPokemon = () => {
+    Liberar(data, setUserData);
+    navigate("/almacen")
+  }
 
   const monedas = Math.floor(coinValues[data.frequency-1] * (data.shiny === "shiny" ? 2 : 1) * (data?.megaevolution === true ? 1.2 : 1) * (data?.rarespecies === true ? 1.1 : 1));
   
@@ -73,7 +78,7 @@ function LiberarButton({data, setUserData, UserData}) {
             Liberar a <i>{data.nametag}</i> supondrá perderlo para siempre, pero recibirás <i>{monedas} monedas</i> a cambio. (No perderás su registro en la Pokédex)
           </Typography>
           <div className="containerModal">
-            <PokemonCard data={data} />
+            <PokemonCard data={data} liberarMenu="true"/>
           </div>
           <div className="containerModal moneyCount">
             <img className="coin" src={CoinImage} alt="coin" /> {"+" + monedas}
@@ -97,27 +102,25 @@ function LiberarButton({data, setUserData, UserData}) {
             >
               Cancelar
             </Button>
-            <Link to="/almacen">
-            <Button
-              className="confirmarButton"
-              onClick={LiberarPokemon}
-              style={{
-                backgroundColor: "#00DF09" /* color de fondo */,
-                color: "#ffffff" /* color del texto */,
-                padding: "14px 20px" /* padding */,
-                border: "0.2vw solid #89ff8e" /* sin borde */,
-                borderRadius: "1vw" /* bordes redondeados */,
-                cursor: "pointer" /* cursor de mano al pasar por encima */,
-                fontSize: "calc(0.5vw + 0.9vh)" /* tamaño de la fuente */,
-                width: "8vw",
-                marginLeft: "1.5vw",
-                pointerEvents: "all",
-                fontFamily: "vanilla-regular",
-              }}
-            >
-              Liberar
-            </Button>
-            </Link>
+              <Button
+                className="confirmarButton"
+                onClick={LiberarPokemon}
+                style={{
+                  backgroundColor: "#00DF09" /* color de fondo */,
+                  color: "#ffffff" /* color del texto */,
+                  padding: "14px 20px" /* padding */,
+                  border: "0.2vw solid #89ff8e" /* sin borde */,
+                  borderRadius: "1vw" /* bordes redondeados */,
+                  cursor: "pointer" /* cursor de mano al pasar por encima */,
+                  fontSize: "calc(0.5vw + 0.9vh)" /* tamaño de la fuente */,
+                  width: "8vw",
+                  marginLeft: "1.5vw",
+                  pointerEvents: "all",
+                  fontFamily: "vanilla-regular",
+                }}
+              >
+                Liberar
+              </Button>
           </div>
         </Box>
       </Modal>

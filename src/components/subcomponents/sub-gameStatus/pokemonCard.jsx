@@ -4,8 +4,9 @@ import { GetSpeciesDataByName, GetSpanishName} from './lib/PokemonSpeciesData';
 import { GetDataByName, GetPrettyTypeNameSpanish, GetImage, GetDexNum, GetVariantImage} from './lib/PokemonData';
 import { Link } from "react-router-dom";
 
+// LiberarMenu SOLO se utiliza en LiberarButton, si se usaba tab, se podia seleccionar
 
-function PokemonCard({data}) 
+function PokemonCard({data, liberarMenu}) 
 {
     /* Esto habria que hacerlo con un array de pokemon? */
     const [pokemonData, setPokemonData] = useState(null);
@@ -63,13 +64,25 @@ function PokemonCard({data})
         }
     }
 
+    let liberar = false;
+    if (liberarMenu === "true") {
+        liberar = true;
+    }
+
     return (
-        <Link to={"ver-pokemon?id=" + data.id}>
+        (!liberar ? 
+            <Link to={"ver-pokemon?id=" + data.id}>
+                <div className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny} key={data.id}>
+                    <p className="dexNumber">Nº {dexNum}</p>
+                    {pokemon}
+                </div>
+            </Link>
+            :
             <div className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny} key={data.id}>
                 <p className="dexNumber">Nº {dexNum}</p>
                 {pokemon}
             </div>
-        </Link>
+        )
     );
 }
 

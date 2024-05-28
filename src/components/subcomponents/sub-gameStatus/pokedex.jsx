@@ -8,6 +8,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { MouseOverPopover } from './mouseOverPopOver';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { GetFrequencyByDexNum } from './lib/pokemonFrequency';
+import { Link } from 'react-router-dom';
 
 /**
  * Función principal que se exporta.
@@ -71,8 +72,10 @@ function NavGenArrow(props)
     };
 
     return (
-        <div className={'nextGenArrow ' + (props.reversed ? 'reversed ' : '') + (disabled ? 'disabled' : '')} onClick={handler}>
-            <ArrowRightIcon />
+        <div className={'nextGenArrow ' + (props.reversed ? 'reversed ' : '') + (disabled ? 'disabled' : '')}>
+            <Link onClick={handler}>
+                <ArrowRightIcon />
+            </Link>
         </div>
     );
 }
