@@ -7,7 +7,6 @@ import Pokedex from "./sub-gameStatus/pokedex";
 import VerPokemonAlmacen from "./sub-gameStatus/verPokemonAlmacen";
 import TipoIntercambio from "./sub-gameStatus/tipointercambio";
 import Intercambio from "./sub-gameStatus/intercambio";
-import PantallaCargaIntercambio from "./sub-gameStatus/pantallaCargaIntercambio";
 import IntercambioSimulado from "./sub-gameStatus/intercambioSimulado";
 import Error404 from "./sub-gameStatus/Error404";
 import { PlayerList } from "./sub-gameStatus/userdata/rankingList";
@@ -77,7 +76,10 @@ function GameState({
         element={<PokedexGameState UserData={UserData} />}
       />
 
-      <Route path="/marcadores" element={<MarcadoresGameState UserData={UserData} />} />
+      <Route
+        path="/marcadores"
+        element={<MarcadoresGameState UserData={UserData} />}
+      />
 
       <Route path="/intercambio/tipo" element={<TipoIntercambioGameState />} />
 
@@ -88,12 +90,7 @@ function GameState({
         element={<ConexionIntercambioGameState />}
       />
 
-      <Route
-        path="/intercambio/pantallaCarga"
-        element={<PantallaCargaGameState />}
-      />
-
-      <Route path="*" element={<Error404GameState/>} />
+      <Route path="*" element={<Error404GameState />} />
     </Routes>
   );
 }
@@ -134,7 +131,7 @@ function PokedexGameState({ UserData }) {
   return <Pokedex UserData={UserData} />;
 }
 
-function MarcadoresGameState({UserData}) {
+function MarcadoresGameState({ UserData }) {
   return <Marcadores UserData={UserData} />;
 }
 
@@ -146,10 +143,6 @@ function IntercambioGameState() {
   return <Intercambio />;
 }
 
-function PantallaCargaGameState() {
-  return <PantallaCargaIntercambio />;
-}
-
 function ConexionIntercambioGameState() {
   const exchangePlayerIndex = Math.floor(Math.random() * PlayerList.length);
   const exchangeUserName = PlayerList[exchangePlayerIndex].playername;
@@ -157,7 +150,7 @@ function ConexionIntercambioGameState() {
 }
 
 function Error404GameState() {
-  return<Error404 />;
+  return <Error404 />;
 }
 
 export default GameState;
