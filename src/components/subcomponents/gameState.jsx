@@ -144,9 +144,7 @@ function IntercambioGameState() {
 }
 
 function ConexionIntercambioGameState() {
-  const exchangePlayerIndex = Math.floor(Math.random() * PlayerList.length);
-  const exchangeUserName = PlayerList[exchangePlayerIndex].playername;
-  return <IntercambioSimulado userToExchange={exchangeUserName} />;
+  return <IntercambioSimulado />;
 }
 
 function Error404GameState() {
