@@ -1430,8 +1430,8 @@ const PokemonVariants = [
         dexnum: 521,
         name: "Unfezant",
         variants: [
-            { name: "unfezant-male" },
-            { name: "unfezant-female" }
+            { name: "unfezant" },
+            { name: "unfezant-f" }
         ]
     },
     
