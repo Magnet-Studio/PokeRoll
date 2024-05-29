@@ -29,6 +29,8 @@ export default function ModalSelectPokemon({
     setName(sessionStorage.getItem("Name") || "");
   }, []);
 
+  
+
   useEffect(() => {
     if (selectPokemon) {
       document.body.classList.add("modal-open");

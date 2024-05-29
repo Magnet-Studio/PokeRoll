@@ -153,8 +153,8 @@ const style = {
                     {borradoMultiple ? (
                         <>
                             {multipleBorradoPopover}
-                            <Button aria-label="Cancelar borrado múltiple" id="borradoMultipleCancel" onClick={toggleBorradoMultiple}><CloseIcon style={{ fontSize: '40px' }} /></Button>
-                            <Button aria-label="Confirmar selección de borrado múltiple"
+                            <Button tabindex="1" aria-label="Cancelar borrado múltiple" id="borradoMultipleCancel" onClick={toggleBorradoMultiple}><CloseIcon style={{ fontSize: '40px' }} /></Button>
+                            <Button tabindex="1" aria-label="Confirmar selección de borrado múltiple"
                                 id="borradoMultipleConfirm" 
                                 onClick={selectedBorrado.length > 0 ? handleOpen : null}
                                 className={selectedBorrado.length > 0 ? "" : "borradoMultipleConfirmDisabled"}
@@ -165,7 +165,7 @@ const style = {
                     ) : (
                         <>
                              {multipleBorradoPopover}
-                            <Button aria-label="Borrar múltiples Pokémon" id="borradoMultipleButton" onClick={toggleBorradoMultiple}><PublishedWithChangesIcon style={{ fontSize: '40px' }} /></Button>
+                            <Button tabindex="1" aria-label="Borrar múltiples Pokémon" id="borradoMultipleButton" onClick={toggleBorradoMultiple}><PublishedWithChangesIcon style={{ fontSize: '40px' }} /></Button>
                         </>
                     )}
                     <Modal
@@ -175,22 +175,22 @@ const style = {
                         aria-describedby="modal-modal-description"
                     >
                         <Box sx={style}>
-                            <Typography id="modal-modal-title" variant="h6" component="h2">
+                            <Typography id="modal-modal-title">
                                 ¿Quieres liberar a los Pokémon seleccionados?
                             </Typography>
-                            <Typography id="modal-modal-description" variant="h6" component="h2">
+                            <Typography id="modal-modal-description">
                                 Estás a punto de liberar {selectedBorrado.length} Pokémon. Entre ellos se encuentran... 
                             </Typography>
                             <div className="containerModal">
                                 {Lista}
                             </div>
                             <br/>
-                            <div className="containerModal warningMessage">
+                            <div aria-description=":    " className="containerModal warningMessage">
                                 {warning}
                             </div>
 
                             <div className="containerModal moneyCount">
-                                <img className="coin" src={CoinImage} alt="coin" /> {"+" + coins}
+                                <img aria-hidden="true" className="coin" src={CoinImage} alt="coin" /> <text aria-description="Obtendrás de vuelta ">{"+" + coins}</text><text aria-label=" monedas:"></text>
                             </div>
                             <div className="containerModal">
                                     <Button
@@ -263,7 +263,7 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, se
             </div>
             <div className="filterAlmacen">
                 <label className="filterLabel" htmlFor="ordenacion">Ordenación</label>
-                <select className="inputElem" name="generalFilter" id="ordenacion" value={selectedValue} onChange={handleSelectChange}>
+                <select tabindex="1" className="inputElem" name="generalFilter" id="ordenacion" value={selectedValue} onChange={handleSelectChange}>
                     <option value="0">Más reciente</option>
                     <option value="5">Más antiguos</option>
                     <option value="1">Pokémon con más valor</option>
@@ -278,7 +278,7 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, se
             
             <div className="filterAlmacen">
                 <label className="filterLabel" htmlFor="tier">Filtrar rareza</label>
-                <select className="inputElemSmall" name="tier" id="tier" value={selectedFrequency} onChange={handleSelectTier}>
+                <select tabindex="1" className="inputElemSmall" name="tier" id="tier" value={selectedFrequency} onChange={handleSelectTier}>
                     <option value="0">No filtrar</option>
                     <option value="1">Común</option>
                     <option value="2">Infrecuente</option>
@@ -290,7 +290,7 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, se
             </div>
             <div className="filterAlmacen">
                 <label className="filterLabel" htmlFor="filtroTipo">Filtrar tipo</label>
-                <select className="inputElemSmall" name="type" id="filtroTipo" value={selectedType} onChange={handleSelectType}>
+                <select tabindex="1" className="inputElemSmall" name="type" id="filtroTipo" value={selectedType} onChange={handleSelectType}>
                     <option value="0">No filtrar</option>
                     <option value="steel">Acero</option>
                     <option value="water">Agua</option>
@@ -317,7 +317,7 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, se
 
             <div className="filterAlmacen">  
                 <label htmlFor="filtroNombre">Filtrar por nombre</label>
-                <input className="inputElem" id="filtroNombre" placeholder="Escriba un nombre aquí..." value={Name} onChange={handleName}>
+                <input tabindex="1" className="inputElem" id="filtroNombre" placeholder="Escriba un nombre aquí..." value={Name} onChange={handleName}>
                 
                 </input>
             </div>
@@ -466,7 +466,7 @@ function CompletePokemonList({selectedBorrado, setSelectedBorrado, borradoMultip
     });
     return (
         <>
-            {list}
+            {list.length === 0 ? (<p id="noPokemonMessage">No se encuentran Pokémon...</p>) : list}
         </>
     );
 
@@ -575,7 +575,7 @@ function PokemonCard({UserData, isAlreadySelected, selectedBorrado, setSelectedB
 
         return (
             borradoMultiple ? (
-                <Link onClick={handleSelectedBorrado} aria-label={(isSelectedBorrado ? "Seleccionado para liberar " : " No seleccionado para liberar ") + ":Número de la pokédex :" +dexNum + ": " + data.nametag + ":" + shinyDesc + ":" + megaDesc + ":" + rareDesc}>
+                <Link tabindex="4" onClick={handleSelectedBorrado} aria-label={(isSelectedBorrado ? "Seleccionado para liberar " : " No seleccionado para liberar ") + ":Número " +dexNum + ": " + data.nametag + ":" + shinyDesc + ":" + megaDesc + ":" + rareDesc}>
                     <div 
                     className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny + " " + event + (isSelectedBorrado ? " liberado" : " notLiberado")} 
                     key={`${data.id}-${isAlreadySelected}`}
@@ -586,7 +586,7 @@ function PokemonCard({UserData, isAlreadySelected, selectedBorrado, setSelectedB
                     </div>
                 </Link>
             ) : (
-                <Link to={"ver-pokemon?id=" + data.id} aria-label={"Número de la pokédex :" +dexNum + ": " + data.nametag + ":" + shinyDesc + ":" + megaDesc + ":" + rareDesc}>
+                <Link tabindex="4" to={"ver-pokemon?id=" + data.id} aria-label={"Número " +dexNum + ": " + data.nametag + ":" + shinyDesc + ":" + megaDesc + ":" + rareDesc}>
                     <div className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny + " " + event} key={data.id}>
                         <p className="dexNumber" >Nº {dexNum}</p>
                         {content}

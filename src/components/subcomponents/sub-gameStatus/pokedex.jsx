@@ -9,6 +9,7 @@ import { MouseOverPopover } from './mouseOverPopOver';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { GetFrequencyByDexNum } from './lib/pokemonFrequency';
 import { Link } from 'react-router-dom';
+import { nombresRarezas } from './verPokemonAlmacen';
 
 /**
  * Función principal que se exporta.
@@ -34,7 +35,7 @@ function Pokedex({UserData})
                 <NavGenArrow reversed setGenerationNum={setGenerationNum} generationNum={generationNum}  />
             </div>
 
-            <div id="pokedexBigBox" tabIndex="1">
+            <div id="pokedexBigBox">
                 <CompleteEntryList UserData={UserData} setGenerationNum={setGenerationNum} generationNum={generationNum} setDexNumbers={setDexNumbers} dexNumbers={dexNumbers} selectedPokemon={selectedPokemon} />
             </div>
 
@@ -75,7 +76,7 @@ function NavGenArrow(props)
 
     return (
         <div className={'nextGenArrow ' + (props.reversed ? 'reversed ' : '') + (disabled ? 'disabled' : '')}>
-            <Link onClick={handler} aria-label={!props.reversed ? "Avanzar a la siguiente generación" : "Regresar a la anterior generación"}>
+            <Link tabindex="3" onClick={handler} aria-label={!props.reversed ? "Avanzar a la siguiente generación:" + (props.generationNum === 9 ? "No disponible" : ordinalNum[(props.generationNum + 1)]) + " generación:" : "Regresar a la anterior generación:" + (props.generationNum === 1 ? "No disponible" : ordinalNum[(props.generationNum - 1)]) + " generación:"}>
                 <ArrowRightIcon />
             </Link>
         </div>
@@ -103,9 +104,9 @@ function CompleteEntryList(props)
 
     return (
         <>
-            <p className="yourRegisters"><label>Registrados: {registeredMons} / 1025 ({percentage}%)</label></p>
-            <p className="generationTitle inlineContainer">
-                {props.generationNum + "º Generación"} 
+            <p className="yourRegisters" tabindex="1"><label>Registrados: {registeredMons} / 1025 ({percentage}%)</label></p>
+            <p className="generationTitle inlineContainer"  tabindex="2" >
+                <text aria-description={"Pokémon desde el número " + generationDexNums[props.generationNum][0] + " hasta el número " + generationDexNums[props.generationNum][1] + ":"}>{ordinalNum[props.generationNum] + " Generación"}</text> 
                 <MouseOverPopover content={<InfoOutlinedIcon className="infoGenerationIcon"/>} 
                                 shown={
                                 <span> 
@@ -161,7 +162,7 @@ function PokemonEntry(props)
         knownCond = props.known + " " + firstType;
         
         pokemon = (
-            <div aria-label={"Número " + props.num + ":" +name}>
+            <div aria-label={"Número " + props.num + ":" +name} tabindex="4">
                 {GetImage(pokemonData, false)}    
 
                 <div className='types' tabindex="-1" aria-hidden="true">
@@ -176,9 +177,9 @@ function PokemonEntry(props)
     else 
     {
         // Caso de pokémon desconocido
-        rarityNum = GetFrequencyByDexNum(props.num);
+        rarityNum = GetFrequencyByDexNum(props.num);    
 
-        pokemon = <div className='unknownMessageContainer' aria-label={"Número " + props.num + ':No se ha descubierto todavía'}>
+        pokemon = <div className='unknownMessageContainer' aria-label={"Número " + props.num + `:No se ha descubierto todavía. Este Pokémon es de la rareza ${nombresRarezas[rarityNum-1]}`} tabindex="4">
                     <MouseOverPopover content={<p className="unknownMessage" tabindex="-1" aria-hidden="true">???</p>} 
                         shown={
                             <span > 
@@ -237,6 +238,18 @@ const generationDexNums = {
     8: [810, 905],
     9: [906, 1025]
 };
+
+const ordinalNum = {
+    1 : "Primera",
+    2 : "Segunda",
+    3 : "Tercera",
+    4 : "Cuarta",
+    5 : "Quinta", 
+    6 : "Sexta", 
+    7 : "Séptima",
+    8 : "Octava",
+    9 : "Novena"
+}
 
 
 

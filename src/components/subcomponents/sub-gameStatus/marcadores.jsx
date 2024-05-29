@@ -15,11 +15,11 @@ function Marcadores({UserData}) {
     
     return(
         <>
-            <div id="marcadoresBigBox" tabIndex="0">
-                <div id="filtroMarcador" tabIndex="0">
+            <div id="marcadoresBigBox" >
+                <div id="filtroMarcador" >
                     <FiltroMarcador selectedValueRank={selectedValueRank} setselectedValueRank={setselectedValueRank} />
                 </div>
-                <div id="ranking-cards-container" tabIndex="0">
+                <div id="ranking-cards-container" >
                     <CompleteRankingList selectedValueRank={selectedValueRank} UserData={UserData}/>
                 </div>
             </div>

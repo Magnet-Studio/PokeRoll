@@ -74,7 +74,7 @@ function VerPokemonAlmacen({UserData, setUserData})
     const rarezas = rarezaExtraPoints;
     const nombrePKM = pokemon.nametag === null ? name : pokemon.nametag;
     const shinyCond = (pokemon.shiny === "shiny") ? <MouseOverPopover content={<AutoAwesomeIcon className="shinyIcon"/>} 
-                                                                      shown={<span> ¡Felicidades! ¡Has conseguido un Pokémon Variocolor!<br/>
+                                                                      shown={<span > ¡Felicidades! ¡Has conseguido un Pokémon Variocolor!<br/>
                                                                       Obtendrás una bonificación de 5000 puntos en el cálculo final
                                                                       de Rareza por ello.
                                                                       </span>}/> : <></>;
@@ -125,14 +125,17 @@ function VerPokemonAlmacen({UserData, setUserData})
     return (
         <>
         <div className="backButton">
-          <Link to="/almacen" aria-label="Volver al almacén"><span className="backArrow"><ForwardIcon fontSize="large"/></span></Link>
+          <Link to="/almacen" aria-label="Volver al almacén"  tabIndex='6'><span className="backArrow"><ForwardIcon fontSize="large"/></span></Link>
         </div>
-        <div id="verPokemonAlmacenBigBox" tabIndex='0'>
+        <div id="verPokemonAlmacenBigBox" tabIndex='7'>
             <div id="infoGeneral">
                 
                 {pokemon?.variant === undefined ? GetImage(pokemonData, (pokemon.shiny === "shiny")) : GetVariantImage(pokemon.variant.name, (pokemon.shiny === "shiny"))}
                 <div className="inlineContainer">
-                    <p className={rareEffect + " " + megaEffect + " " + shinyEffect}>{nombrePKM}</p>
+                    <p className={rareEffect + " " + megaEffect + " " + shinyEffect} >{nombrePKM}</p>
+                    <text aria-label={pokemon.shiny === "shiny" ? " Variocolor:" : ":"}></text>
+                    <text aria-label={pokemon.megaevolution === true ? " Megaevolución:" : ":"}></text>
+                    <text aria-label={pokemon.rarespecies === true ? " Especie rara:" : ":"}></text>
                     {shinyCond}
                     {megaCond}
                     {rareCond}
@@ -166,7 +169,7 @@ function VerPokemonAlmacen({UserData, setUserData})
                 <div id="statsFullStructure">
                   <Hexagon size={100} fillColor="rgba(0,0,0,0.1)" strokeColor="rgba(255,255,255,0.2)" data={pokemon.iv}/>
                   {hexagonData}
-                  <p className={"ivPercentage " + (totalSum === 186 ? "fullivs" : "")}>{calc}%</p>
+                  <p aria-description=": Porcentaje total:"className={"ivPercentage " + (totalSum === 186 ? "fullivs" : "")}>{calc}%</p>
                 </div>
                 
                 
@@ -179,7 +182,7 @@ function VerPokemonAlmacen({UserData, setUserData})
     );
 }
 
-const nombresRarezas = ['Común', 'Infrecuente', 'Peculiar', 'Épico', 'Legendario', 'Singular'];
+export const nombresRarezas = ['Común', 'Infrecuente', 'Peculiar', 'Épico', 'Legendario', 'Singular'];
 
 function GetRarezaValue({ ivs , shiny, frequency, mega, rare}) 
 {

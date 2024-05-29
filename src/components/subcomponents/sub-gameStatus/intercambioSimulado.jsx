@@ -11,6 +11,7 @@ export default function IntercambioSimulado() {
   useEffect(() => {
     document.title = "PokéROLL (Intercambio con " + exchangeUserName + ")"
   }, [])
+  
   return (
     <div id="conexionIntercambioContainer">
       <ShowHostPlayer host={playerUserName} />

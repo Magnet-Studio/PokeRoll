@@ -256,9 +256,9 @@ function ModalConfirmar({ setThreePokemon, pokemonData, setOpen, open, UserData,
     let unregisterMessage = <></>;
     if (UserData?.registers !== undefined) {
         if (!UserData.registers.includes(pokemonData.name)) {
-            unregisterMessage = <p className='unregisterMessage'>¡No registrado!</p>;
+            unregisterMessage = <p aria-description=":" className='unregisterMessage'>¡No registrado!</p>;
         } else {
-            unregisterMessage = <p className='registerMessage'>¡Ya registrado!</p>;
+            unregisterMessage = <p aria-description=":" className='registerMessage'>¡Ya registrado!</p>;
         }
     }
 
@@ -285,6 +285,9 @@ function ModalConfirmar({ setThreePokemon, pokemonData, setOpen, open, UserData,
                         <div>
                             <div className='inlineContainer' style={{ color: "black" }}>
                                 <p className='nombrePokemonReclamar' aria-label={pokemonData.speciesname}>{pokemonData.speciesname}</p>
+                                <text aria-label={pokemonData.shiny === "shiny" ? " Variocolor:" : ":"}></text>
+                                <text aria-label={pokemonData.megaevolution === true ? " Megaevolución:" : ":"}></text>
+                                <text aria-label={pokemonData.rarespecies === true ? " Especie rara:" : ":"}></text>
                                 {shinyIndication}
                                 {megaIndication}
                                 {rareIndication}
@@ -293,12 +296,13 @@ function ModalConfirmar({ setThreePokemon, pokemonData, setOpen, open, UserData,
                                 {firstTypeContainer}
                                 {secondTypeContainer}
                             </div>
-                            <p className="rareza" style={{ color: 'black' }}>Rareza: <span className={"rareza" + frequency}>{(nombreRareza === undefined ? "Cargando..." : nombreRareza + " ")}</span></p>
+                            <p className="rareza" aria-description=':' style={{ color: 'black' }}>Rareza: <span className={"rareza" + frequency}>{(nombreRareza === undefined ? "Cargando..." : nombreRareza + " ")}</span></p>
                         </div>
                     </div>
                     {unregisterMessage}
                     <div className="containerModal moneyCount">
                         <img className="coin" src={CoinImage} alt="coin" aria-hidden="true" tabindex="-1"/> {"+" + HalfCost}
+                        <text aria-label={" monedas de vuelta:"}></text>
                     </div>
 
                     <div className="containerModal">

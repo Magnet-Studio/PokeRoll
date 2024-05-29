@@ -152,6 +152,11 @@ option
     background-color: #7d3939;
 }
 
+#noPokemonMessage {
+    position: absolute;
+    width: 100%;
+}
+
 .borradoMultipleContainer button svg 
 {
     width: 80%;
