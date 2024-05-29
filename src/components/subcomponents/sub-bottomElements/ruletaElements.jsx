@@ -4,7 +4,7 @@ import CoinImage from '../../../images/coin.png';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { GetThreeRandomPokemon } from '../sub-gameStatus/lib/RuletaController';
 
-export function TirarButton({ cost, TierRuleta, setUserData, tirarButtonDisable, setTirarButtonDisable, setChangeTierButtonDisable, UserData, setThreePokemon }) {
+export function TirarButton({ cost, coinsReference, TierRuleta, setUserData, tirarButtonDisable, setTirarButtonDisable, setChangeTierButtonDisable, UserData, setThreePokemon }) {
 
     const [redTirarButton, setRedTirarButton] = useState("");
 
@@ -21,6 +21,12 @@ export function TirarButton({ cost, TierRuleta, setUserData, tirarButtonDisable,
             setChangeTierButtonDisable("disabled");
 
             setThreePokemon(GetThreeRandomPokemon(TierRuleta - 1, UserData));
+
+            // ! IMPLEMENTAR con otra cosa (?)
+            if(coinsReference) 
+            {
+                coinsReference.current.focus(); // Te cambia el tab a las monedas si has reclamado
+            }
         }
     }
 

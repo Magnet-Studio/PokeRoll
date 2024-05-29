@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import './styles/ruleta.css';
 import { GetDataByDexNum, GetImage , GetFirstType, GetSecondType, GetPrettyTypeNameSpanish, GetVariantImage} from './lib/PokemonData';
 import Pokeball from "../../../images/pokeball.png";
@@ -18,13 +18,14 @@ import Confetti from 'react-confetti';
 
 const pokeballImage = (<img src={Pokeball} className="pokeballRotar" alt="Pokéball"/>);
 
-function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, UserData, setTirarButtonDisable, setChangeTierButtonDisable, setUserData})
+function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, UserData, setTirarButtonDisable, setChangeTierButtonDisable, setUserData, coinsReference})
 {   
     const notPokemon = [(pokeballImage), (pokeballImage), (pokeballImage)];
     const [threePokemonImages, setThreePokemonImages] = useState(notPokemon);
     useEffect(() => {
         document.title = "PokéROLL (Ruleta)"
-      }, [])
+    }, []);
+
     useEffect(() => 
     {
         const fetchDataAndUpdateState = async () => 
@@ -99,9 +100,9 @@ function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, 
             {shouldShowConfetti && <Confetti width="" height="" colors={colors} numberOfPieces={50} friction={0.97}/>}
             <div className='externalArrowContainer'></div>
             <div className="boxes">
-                <RuletaBox setThreePokemon={setThreePokemon} UserData={UserData} pokemonImage={threePokemonImages[0]} pokemonData={threePokemon[0]} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>
-                <RuletaBox setThreePokemon={setThreePokemon} UserData={UserData} pokemonImage={threePokemonImages[1]} pokemonData={threePokemon[1]} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>
-                <RuletaBox setThreePokemon={setThreePokemon} UserData={UserData} pokemonImage={threePokemonImages[2]} pokemonData={threePokemon[2]} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>
+                <RuletaBox setThreePokemon={setThreePokemon} coinsReference={coinsReference} UserData={UserData} pokemonImage={threePokemonImages[0]} pokemonData={threePokemon[0]} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>
+                <RuletaBox setThreePokemon={setThreePokemon} coinsReference={coinsReference} UserData={UserData} pokemonImage={threePokemonImages[1]} pokemonData={threePokemon[1]} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>
+                <RuletaBox setThreePokemon={setThreePokemon} coinsReference={coinsReference} UserData={UserData} pokemonImage={threePokemonImages[2]} pokemonData={threePokemon[2]} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>
             </div>
             <div className='externalArrowContainer'></div>
         </>
@@ -110,7 +111,7 @@ function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, 
 
 const TierCosts = [100, 500, 1500, 4000, 10000];
 
-function RuletaBox({ setThreePokemon, pokemonImage, tirarButtonDisable, TierRuleta, pokemonData, UserData, setTirarButtonDisable, setChangeTierButtonDisable, setUserData }) {
+function RuletaBox({ setThreePokemon, pokemonImage, tirarButtonDisable, TierRuleta, pokemonData, UserData, setTirarButtonDisable, setChangeTierButtonDisable, setUserData, coinsReference}) {
   
     const [enabled, setEnabled] = useState("");
     const [loaded, setLoaded] = useState(false);
@@ -173,16 +174,22 @@ function RuletaBox({ setThreePokemon, pokemonImage, tirarButtonDisable, TierRule
             </div>
             {pokemonImage}
     
-            <ModalConfirmar setThreePokemon={setThreePokemon} UserData={UserData} open={open} setOpen={setOpen} HalfCost={HalfCost} pokemonImage={pokemonImage} pokemonData={pokemonData} setEnabled={setEnabled} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData} />
+            <ModalConfirmar tirarButtonDisable={tirarButtonDisable} setThreePokemon={setThreePokemon} UserData={UserData} open={open} setOpen={setOpen} HalfCost={HalfCost} pokemonImage={pokemonImage} coinsReference={coinsReference} pokemonData={pokemonData} setEnabled={setEnabled} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData} />
         </div>
     );
 }
 
-function ModalConfirmar({ setThreePokemon, pokemonData, setOpen, open, UserData, HalfCost, pokemonImage, setEnabled, setTirarButtonDisable, setChangeTierButtonDisable, setUserData }) {
+function ModalConfirmar({ setThreePokemon, tirarButtonDisable, pokemonData, setOpen, open, UserData, HalfCost, pokemonImage, setEnabled, setTirarButtonDisable, setChangeTierButtonDisable, setUserData, coinsReference }) {
+    
     useEffect(() => {
         if (open) {
             document.body.classList.add('modal-open');
-        } else {
+        } else 
+        {
+            if(tirarButtonDisable === "" && coinsReference) 
+            {
+                coinsReference.current.focus(); // Te cambia el tab a las monedas si has reclamado
+            }
             document.body.classList.remove('modal-open');
         }
     }, [open]);
@@ -198,7 +205,7 @@ function ModalConfirmar({ setThreePokemon, pokemonData, setOpen, open, UserData,
         Reclamar(pokemonData, UserData, setThreePokemon, setUserData, HalfCost);
         setChangeTierButtonDisable("");
         setTirarButtonDisable("");
-        setEnabled("enabled");
+        setEnabled("");
         setOpen(false);
     };
 
@@ -301,7 +308,7 @@ function ModalConfirmar({ setThreePokemon, pokemonData, setOpen, open, UserData,
                     </div>
                     {unregisterMessage}
                     <div className="containerModal moneyCount">
-                        <img className="coin" src={CoinImage} alt="coin" aria-hidden="true" tabindex="-1"/> {"+" + HalfCost}
+                        <img className="coin" src={CoinImage} alt="coin" aria-hidden="true" tabIndex="-1"/> {"+" + HalfCost}
                         <text aria-label={" monedas de vuelta:"}></text>
                     </div>
 

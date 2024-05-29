@@ -122,7 +122,7 @@
 }
 
 /* Accciones cuando la anchura es menor a la altura */
-@media (max-aspect-ratio: 1/1) and (min-height: 720px)
+@media (max-aspect-ratio: 1/1)
 {
     .navButton
     {

@@ -7,7 +7,7 @@ import './styles/coins.css';
 import CoinImage from '../../images/coin.png';
 import CountUp from 'react-countup';
 
-function Coins({UserData})
+function Coins({UserData, coinsReference})
 {
     const [coinsValue, setCoinsValue] = useState(UserData.currency);
     const [prevCoinsValue, setPrevCoinsValue] = useState(UserData.currency);
@@ -43,7 +43,7 @@ function Coins({UserData})
     );
 
     return (
-        <div id="coins" tabindex="10" aria-label={`Tienes ${coinsValue} monedas`}>
+        <div id="coins" tabIndex="10" aria-label={`Tienes ${coinsValue} monedas`} ref={coinsReference}>
             <img src={CoinImage} alt={"Coins"} aria-hidden='true' />
             {countUp}
         </div>

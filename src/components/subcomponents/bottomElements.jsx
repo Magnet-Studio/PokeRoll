@@ -12,7 +12,7 @@
   import { GetPokemonByID } from "./sub-gameStatus/lib/pokemonList";
   import LiberarButton from "./sub-bottomElements/liberarButton";
 
-  function BottomElements({
+function BottomElements({
     UserData,
     setUserData,
     TierRuleta,
@@ -22,6 +22,7 @@
     setTirarButtonDisable,
     changeTierButtonDisable,
     setThreePokemon,
+    coinsReference
   }) {
     const location = useLocation();
     let pokemon;
@@ -47,6 +48,7 @@
               changeTierButtonDisable={changeTierButtonDisable}
               setChangeTierButtonDisable={setChangeTierButtonDisable}
               setThreePokemon={setThreePokemon}
+              coinsReference={coinsReference}
             />
           }
         />
@@ -104,7 +106,7 @@
     );
   }
 
-  const TierCosts = [10, 50, 150, 40, 10];
+  const TierCosts = [100, 500, 1500, 4000, 10000];
 
   function ButtonsRuletaStatus({
     TierRuleta,
@@ -115,7 +117,8 @@
     setChangeTierButtonDisable,
     setTirarButtonDisable,
     changeTierButtonDisable,
-    setThreePokemon
+    setThreePokemon,
+    coinsReference
   }) {
     const TierCost = TierCosts[TierRuleta - 1];
     const navigate = useNavigate();
@@ -128,7 +131,7 @@
 
     return (
       <>
-        <div id="navButtonsRuletaStatusContainer" role="navigation" tabindex="-1">
+        <div id="navButtonsRuletaStatusContainer" role="navigation" tabIndex="-1">
           <NavButton
             link="/ruleta"
             selected="selected"
@@ -167,6 +170,7 @@
             setTirarButtonDisable={setTirarButtonDisable}
             setChangeTierButtonDisable={setChangeTierButtonDisable}
             setThreePokemon={setThreePokemon}
+            coinsReference={coinsReference}
           />
         </div>
       </>
@@ -185,32 +189,32 @@
     return (
       <>
       <div id="navButtonsRuletaStatusContainer" className="navButtonsCentered">
-          <NavButton link="/ruleta" icon={<RuletaIcon aria-label="Ruleta" />} title="Ruleta" tabindex="0" />
+          <NavButton link="/ruleta" icon={<RuletaIcon aria-label="Ruleta" />} title="Ruleta" tabIndex="0" />
           <NavButton
             link="/almacen"
             selected="selected"
             icon={<AlmacenIcon aria-label="Almacén" />}
             title="Almacén"
           />
-          <NavButton link="/pokedex" icon={<PokedexIcon aria-label="Pokédex" />} title="Pokédex" tabindex="0"/>
+          <NavButton link="/pokedex" icon={<PokedexIcon aria-label="Pokédex" />} title="Pokédex" tabIndex="0"/>
           <NavButton
             link="/marcadores"
             icon={<MarcadoresIcon aria-label="Marcadores" />}
             title="Marcadores"
-            tabindex="0"
+            tabIndex="0"
           />
           <NavButton
             link="/intercambio"
             icon={<IntercambioIcon aria-label="Intercambio"  />}
             title="Intercambio"
-            tabindex="0"
+            tabIndex="0"
           />
         </div>
         <LiberarButton
             data={data}
             setUserData={setUserData}
             UserData={UserData}
-            tabindex="0"
+            tabIndex="0"
           />
       </>
     );
@@ -228,26 +232,26 @@
     return (
       <>
         <div id="navButtonsRuletaStatusContainer" className="navButtonsCentered">
-          <NavButton link="/ruleta" icon={<RuletaIcon/>} title="Ruleta"  aria-label="Ruleta" tabindex="0" />
+          <NavButton link="/ruleta" icon={<RuletaIcon/>} title="Ruleta"  aria-label="Ruleta" tabIndex="0" />
           <NavButton
             link="/almacen"
             selected="selected"
             icon={<AlmacenIcon/>}
             title="Almacén"
-            tabindex="0"
+            tabIndex="0"
           />
-          <NavButton link="/pokedex" icon={<PokedexIcon aria-label="Pokédex" />} title="Pokédex" tabindex="0"/>
+          <NavButton link="/pokedex" icon={<PokedexIcon aria-label="Pokédex" />} title="Pokédex" tabIndex="0"/>
           <NavButton
             link="/marcadores"
             icon={<MarcadoresIcon aria-label="Marcadores" />}
             title="Marcadores"
-            tabindex="0"
+            tabIndex="0"
           />
           <NavButton
             link="/intercambio"
             icon={<IntercambioIcon aria-label="Intercambio" />}
             title="Intercambio"
-            tabindex="0"
+            tabIndex="0"
           />
         </div>
       </>
@@ -266,11 +270,11 @@
     return (
       <>
         <div id="navButtonsRuletaStatusContainer" className="navButtonsCentered" >
-          <NavButton link="/login" selected="selected" icon={<RuletaIcon aria-label="Ir a"  />} tabindex="0"/>
-          <NavButton link="/login" icon={<AlmacenIcon aria-label="Almacén" />} tabindex="0"/>
-          <NavButton link="/login" icon={<PokedexIcon aria-label="Pokédex" />} tabindex="0"/>
-          <NavButton link="/login" icon={<MarcadoresIcon aria-label="Marcadores" />} tabindex="0"/>
-          <NavButton link="/login" icon={<IntercambioIcon aria-label="Intercambio" />} tabindex="0"/>
+          <NavButton link="/login" selected="selected" icon={<RuletaIcon aria-label="Ir a"  />} tabIndex="0"/>
+          <NavButton link="/login" icon={<AlmacenIcon aria-label="Almacén" />} tabIndex="0"/>
+          <NavButton link="/login" icon={<PokedexIcon aria-label="Pokédex" />} tabIndex="0"/>
+          <NavButton link="/login" icon={<MarcadoresIcon aria-label="Marcadores" />} tabIndex="0"/>
+          <NavButton link="/login" icon={<IntercambioIcon aria-label="Intercambio" />} tabIndex="0"/>
         </div>
       </>
     );
@@ -288,26 +292,26 @@
     return (
       <>
         <div id="navButtonsRuletaStatusContainer" className="navButtonsCentered">
-          <NavButton link="/ruleta" icon={<RuletaIcon aria-label="Ruleta" />} title="Ruleta" tabindex="0"/>
-          <NavButton link="/almacen" icon={<AlmacenIcon aria-label="Almacén" />} title="Almacén" tabindex="0"/>
+          <NavButton link="/ruleta" icon={<RuletaIcon aria-label="Ruleta" />} title="Ruleta" tabIndex="0"/>
+          <NavButton link="/almacen" icon={<AlmacenIcon aria-label="Almacén" />} title="Almacén" tabIndex="0"/>
           <NavButton
             link="/pokedex"
             selected="selected"
             icon={<PokedexIcon aria-label="Pokédex" />}
             title="Pokédex"
-            tabindex="0"
+            tabIndex="0"
           />
           <NavButton
             link="/marcadores"
             icon={<MarcadoresIcon aria-label="Marcadores"/>}
             title="Marcadores"
-            tabindex="0"
+            tabIndex="0"
           />
           <NavButton
             link="/intercambio"
             icon={<IntercambioIcon aria-label="Intercambio"/>}
             title="Intercambio"
-            tabindex="0"
+            tabIndex="0"
           />
         </div>
       </>
@@ -326,21 +330,21 @@
     return (
       <>
         <div id="navButtonsRuletaStatusContainer" className="navButtonsCentered">
-          <NavButton link="/ruleta" icon={<RuletaIcon aria-label="Ruleta" />} title="Ruleta" tabindex="0"/>
-          <NavButton link="/almacen" icon={<AlmacenIcon aria-label="Almacén" />} title="Almacén" tabindex="0"/>
-          <NavButton link="/pokedex" icon={<PokedexIcon aria-label="Pokédex" />} title="Pokédex" tabindex="0"/>
+          <NavButton link="/ruleta" icon={<RuletaIcon aria-label="Ruleta" />} title="Ruleta" tabIndex="0"/>
+          <NavButton link="/almacen" icon={<AlmacenIcon aria-label="Almacén" />} title="Almacén" tabIndex="0"/>
+          <NavButton link="/pokedex" icon={<PokedexIcon aria-label="Pokédex" />} title="Pokédex" tabIndex="0"/>
           <NavButton
             link="/marcadores"
             selected="selected"
             icon={<MarcadoresIcon aria-label="Marcadores" />}
             title="Marcadores"
-            tabindex="0"
+            tabIndex="0"
           />
           <NavButton
             link="/intercambio"
             icon={<IntercambioIcon aria-label="Intercambio" />}
             title="Intercambio"
-            tabindex="0"
+            tabIndex="0"
           />
         </div>
       </>
@@ -359,21 +363,21 @@
     return (
       <>
         <div id="navButtonsRuletaStatusContainer" className="navButtonsCentered">
-          <NavButton link="/ruleta" icon={<RuletaIcon aria-label="Ruleta" />} title="Ruleta" tabindex="0"/>
-          <NavButton link="/almacen" icon={<AlmacenIcon aria-label="Almacén" />} title="Almacén" tabindex="0"/>
-          <NavButton link="/pokedex" icon={<PokedexIcon aria-label="Pokédex" />} title="Pokédex" tabindex="0"/>
+          <NavButton link="/ruleta" icon={<RuletaIcon aria-label="Ruleta" />} title="Ruleta" tabIndex="0"/>
+          <NavButton link="/almacen" icon={<AlmacenIcon aria-label="Almacén" />} title="Almacén" tabIndex="0"/>
+          <NavButton link="/pokedex" icon={<PokedexIcon aria-label="Pokédex" />} title="Pokédex" tabIndex="0"/>
           <NavButton
             link="/marcadores"
             icon={<MarcadoresIcon aria-label="Marcadores" />}
             title="Marcadores"
-            tabindex="0"
+            tabIndex="0"
           />
           <NavButton
             link="/intercambio"
             selected="selected"
             icon={<IntercambioIcon aria-label="Intercambio" />}
             title="Intercambio"
-            tabindex="0"
+            tabIndex="0"
           />
         </div>
       </>

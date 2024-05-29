@@ -20,6 +20,7 @@ function GameState({
   setTirarButtonDisable,
   setChangeTierButtonDisable,
   setUserData,
+  coinsReference
 }) {
   return (
     <Routes>
@@ -50,6 +51,7 @@ function GameState({
             setTirarButtonDisable={setTirarButtonDisable}
             setChangeTierButtonDisable={setChangeTierButtonDisable}
             setUserData={setUserData}
+            coinsReference={coinsReference}
           />
         }
       />
@@ -104,6 +106,7 @@ function RuletaGameState({
   setTirarButtonDisable,
   setChangeTierButtonDisable,
   setUserData,
+  coinsReference
 }) {
   return (
     <Ruleta
@@ -115,6 +118,7 @@ function RuletaGameState({
       setTirarButtonDisable={setTirarButtonDisable}
       setChangeTierButtonDisable={setChangeTierButtonDisable}
       setUserData={setUserData}
+      coinsReference={coinsReference}
     />
   );
 }

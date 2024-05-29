@@ -6,10 +6,9 @@ import Coins from './subcomponents/coins';
 import Username from './subcomponents/username';
 import TopElements from './subcomponents/topElements';
 import BottomElements from './subcomponents/bottomElements';
-import { BrowserRouter, Route, Routes, HashRouter } from 'react-router-dom';
+import {Route, Routes, HashRouter } from 'react-router-dom';
 import GameState from './subcomponents/gameState';
-import {useState, useEffect} from 'react';
-import { AddLastExtraDetails, AddLastExtraDetailsEvent } from './subcomponents/sub-gameStatus/lib/pokemonList';
+import {useState, useEffect, useRef} from 'react';
 import { ReclamarEvent } from './subcomponents/sub-gameStatus/ruleta';
 import { GetIVs } from './subcomponents/sub-gameStatus/lib/RuletaController';
 
@@ -97,8 +96,6 @@ function GetSpecialEvent(UserData, setUserData, eventCode, startDate, endDate, e
     }
     
     if (fecha <= endDate && fecha >= startDate && eventCommand !== "true" && UserData.name !== "Iniciar sesión") {
-        console.log(UserData.pokemonList)
-        console.log(eventPokemon);
         ReclamarEvent(eventPokemon, UserData, setUserData, eventCode);
     }
 }
@@ -112,7 +109,6 @@ function MainPanel()
     const [UserData, setUserData] = useState(savedData() || initData);
 
     useEffect(() => {
-        console.log(UserData.registers.length)
         localStorage.setItem("username", UserData.name);
         localStorage.setItem("pass", UserData.pass);
         localStorage.setItem("currency", UserData.currency.toString());
@@ -157,7 +153,13 @@ function MainPanel()
     // Los tres pokémon que te tocan por tirada
     const [threePokemon, setThreePokemon] = useState([{}, {}, {}]);
 
+    // Referencia a las monedas para el tab
+    const coinsReference = useRef(null);
 
+    useEffect(() => {
+        document.activeElement.blur();
+    }, []);
+    
     return (
         <>
 
@@ -182,7 +184,7 @@ function MainPanel()
                                     <LogoPanel/>
                                 </div>
                                 <div id='coinsPanelContainer' className='subpanelContainer'>
-                                    <CoinsPanel UserData={UserData} />
+                                    <CoinsPanel UserData={UserData} coinsReference={coinsReference} />
                                 </div>
                                 <div id='topelementsPanelContainer' className='subpanelContainer'>
                                     <TopElementsPanel tirarButtonDisable={tirarButtonDisable} UserData={UserData} />
@@ -191,14 +193,14 @@ function MainPanel()
                                     <UsernamePanel UserData={UserData}/>
                                 </div>
                                 <div id='gamestatePanelContainer' className='subpanelContainer'> 
-                                    <GameStatePanel UserData={UserData} setUserData={setUserData} TierRuleta={TierRuleta} threePokemon={threePokemon} tirarButtonDisable={tirarButtonDisable} setThreePokemon={setThreePokemon} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} />
+                                    <GameStatePanel UserData={UserData} setUserData={setUserData} coinsReference={coinsReference} TierRuleta={TierRuleta} threePokemon={threePokemon} tirarButtonDisable={tirarButtonDisable} setThreePokemon={setThreePokemon} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} />
                                 </div>
                                 <div id='bottomelementsPanelContainer' className='subpanelContainer'>
                                     <BottomElementsPanel UserData={UserData} setUserData={setUserData} 
                                                         TierRuleta={TierRuleta} setTierRuleta={setTierRuleta} 
                                                         tirarButtonDisable={tirarButtonDisable} setTirarButtonDisable={setTirarButtonDisable}
                                                         changeTierButtonDisable={changeTierButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable}
-                                                        setThreePokemon={setThreePokemon}/>
+                                                        setThreePokemon={setThreePokemon} coinsReference={coinsReference} />
                                 </div>
                             </>
                         }/>
@@ -238,11 +240,11 @@ function LoginPanel({setUserData})
 /**
  * Este es el panel que contiene el número de monedas
  */
-function CoinsPanel({UserData})
+function CoinsPanel({UserData, coinsReference})
 {
     return (
         <div className='subpanel'>
-            <Coins UserData={UserData}/>
+            <Coins UserData={UserData} coinsReference={coinsReference} />
         </div>
     );
 }
@@ -275,11 +277,11 @@ function UsernamePanel({UserData})
 /**
  * Este es el panel que contiene el estado actual del juego (game state)
  */
-function GameStatePanel({UserData, setUserData, threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, setTirarButtonDisable, setChangeTierButtonDisable})
+function GameStatePanel({UserData, setUserData, threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, setTirarButtonDisable, setChangeTierButtonDisable, coinsReference})
 {
     return (
         <div className='subpanel' id='gamestatePanel'>
-            <GameState UserData={UserData} TierRuleta={TierRuleta} setUserData={setUserData} threePokemon={threePokemon} tirarButtonDisable={tirarButtonDisable} setThreePokemon={setThreePokemon} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable}/>
+            <GameState UserData={UserData} TierRuleta={TierRuleta} setUserData={setUserData} coinsReference={coinsReference} threePokemon={threePokemon} tirarButtonDisable={tirarButtonDisable} setThreePokemon={setThreePokemon} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable}/>
         </div>
     );
 }
@@ -288,14 +290,14 @@ function GameStatePanel({UserData, setUserData, threePokemon, tirarButtonDisable
 /**
  * Este es el panel que contiene los botones de navegación / el botón de Tirar / la pokéball
  */
-function BottomElementsPanel({UserData, setUserData, TierRuleta, setTierRuleta, tirarButtonDisable, setChangeTierButtonDisable, setTirarButtonDisable, changeTierButtonDisable, setThreePokemon})
+function BottomElementsPanel({UserData, coinsReference, setUserData, TierRuleta, setTierRuleta, tirarButtonDisable, setChangeTierButtonDisable, setTirarButtonDisable, changeTierButtonDisable, setThreePokemon})
 {
     return (
         <div className='subpanel' id='bottomelementsPanel'>
             <BottomElements UserData={UserData} setUserData={setUserData} TierRuleta={TierRuleta} setTierRuleta={setTierRuleta} 
                             tirarButtonDisable={tirarButtonDisable} setTirarButtonDisable={setTirarButtonDisable}
                             changeTierButtonDisable={changeTierButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable}
-                            setThreePokemon={setThreePokemon} />
+                            setThreePokemon={setThreePokemon} coinsReference={coinsReference} />
         </div>
     );
 }
