@@ -466,7 +466,7 @@ function CompletePokemonList({selectedBorrado, setSelectedBorrado, borradoMultip
     });
     return (
         <>
-            {list.length === 0 ? (<p id="noPokemonMessage">No se encuentran Pokémon...</p>) : list}
+            {list.length === 0 ? (<p id="noPokemonMessage" tabindex="4">No se encuentran Pokémon...</p>) : list}
         </>
     );
 
