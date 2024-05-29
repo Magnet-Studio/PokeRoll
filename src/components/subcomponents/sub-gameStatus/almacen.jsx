@@ -564,6 +564,11 @@ function PokemonCard({UserData, isAlreadySelected, selectedBorrado, setSelectedB
         shinyDesc="Variocolor";
     }
 
+    let eventDesc="";
+    if (data.event === true) {
+        eventDesc="De evento";
+    }
+
     
 
     // Si los datos aún se están cargando, muestra CircularProgress dentro de la tarjeta
@@ -575,7 +580,7 @@ function PokemonCard({UserData, isAlreadySelected, selectedBorrado, setSelectedB
 
         return (
             borradoMultiple ? (
-                <Link tabindex="4" onClick={handleSelectedBorrado} aria-label={(isSelectedBorrado ? "Seleccionado para liberar " : " No seleccionado para liberar ") + ":Número " +dexNum + ": " + data.nametag + ":" + shinyDesc + ":" + megaDesc + ":" + rareDesc}>
+                <Link tabindex="4" onClick={handleSelectedBorrado} aria-label={(isSelectedBorrado ? "Seleccionado para liberar " : " No seleccionado para liberar ") + ":Número " +dexNum + ": " + data.nametag + ":" + shinyDesc + ":" + megaDesc + ":" + rareDesc + ":" + eventDesc}>
                     <div 
                     className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny + " " + event + (isSelectedBorrado ? " liberado" : " notLiberado")} 
                     key={`${data.id}-${isAlreadySelected}`}
@@ -586,7 +591,7 @@ function PokemonCard({UserData, isAlreadySelected, selectedBorrado, setSelectedB
                     </div>
                 </Link>
             ) : (
-                <Link tabindex="4" to={"ver-pokemon?id=" + data.id} aria-label={"Número " +dexNum + ": " + data.nametag + ":" + shinyDesc + ":" + megaDesc + ":" + rareDesc}>
+                <Link tabindex="4" to={"ver-pokemon?id=" + data.id} aria-label={"Número " +dexNum + ": " + data.nametag + ":" + shinyDesc + ":" + megaDesc + ":" + rareDesc+ ":" + eventDesc}>
                     <div className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny + " " + event} key={data.id}>
                         <p className="dexNumber" >Nº {dexNum}</p>
                         {content}

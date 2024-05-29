@@ -136,6 +136,7 @@ function VerPokemonAlmacen({UserData, setUserData})
                     <text aria-label={pokemon.shiny === "shiny" ? " Variocolor:" : ":"}></text>
                     <text aria-label={pokemon.megaevolution === true ? " Megaevolución:" : ":"}></text>
                     <text aria-label={pokemon.rarespecies === true ? " Especie rara:" : ":"}></text>
+                    <text aria-label={pokemon.event === true ? " De evento:" : ":"}></text>
                     {shinyCond}
                     {megaCond}
                     {rareCond}

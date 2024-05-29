@@ -100,9 +100,9 @@ function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, 
             {shouldShowConfetti && <Confetti width="" height="" colors={colors} numberOfPieces={50} friction={0.97}/>}
             <div className='externalArrowContainer'></div>
             <div className="boxes">
-                <RuletaBox setThreePokemon={setThreePokemon} coinsReference={coinsReference} UserData={UserData} pokemonImage={threePokemonImages[0]} pokemonData={threePokemon[0]} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>
-                <RuletaBox setThreePokemon={setThreePokemon} coinsReference={coinsReference} UserData={UserData} pokemonImage={threePokemonImages[1]} pokemonData={threePokemon[1]} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>
-                <RuletaBox setThreePokemon={setThreePokemon} coinsReference={coinsReference} UserData={UserData} pokemonImage={threePokemonImages[2]} pokemonData={threePokemon[2]} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>
+                <RuletaBox number={"1"} setThreePokemon={setThreePokemon} coinsReference={coinsReference} UserData={UserData} pokemonImage={threePokemonImages[0]} pokemonData={threePokemon[0]} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>
+                <RuletaBox number={"2"} setThreePokemon={setThreePokemon} coinsReference={coinsReference} UserData={UserData} pokemonImage={threePokemonImages[1]} pokemonData={threePokemon[1]} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>
+                <RuletaBox number={"3"} setThreePokemon={setThreePokemon} coinsReference={coinsReference} UserData={UserData} pokemonImage={threePokemonImages[2]} pokemonData={threePokemon[2]} tirarButtonDisable={tirarButtonDisable} TierRuleta={TierRuleta} setTirarButtonDisable={setTirarButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable} setUserData={setUserData}/>
             </div>
             <div className='externalArrowContainer'></div>
         </>
@@ -111,7 +111,7 @@ function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, 
 
 const TierCosts = [100, 500, 1500, 4000, 10000];
 
-function RuletaBox({ setThreePokemon, pokemonImage, tirarButtonDisable, TierRuleta, pokemonData, UserData, setTirarButtonDisable, setChangeTierButtonDisable, setUserData, coinsReference}) {
+function RuletaBox({number, setThreePokemon, pokemonImage, tirarButtonDisable, TierRuleta, pokemonData, UserData, setTirarButtonDisable, setChangeTierButtonDisable, setUserData, coinsReference}) {
   
     const [enabled, setEnabled] = useState("");
     const [loaded, setLoaded] = useState(false);
@@ -161,7 +161,7 @@ function RuletaBox({ setThreePokemon, pokemonImage, tirarButtonDisable, TierRule
             tabIndex={enabled === "enabled" ? "0" : "-1"} 
             role={enabled === "enabled" ? "button" : ""}
             aria-hidden={enabled === "enabled" ? "false" : "true"}
-            aria-label={enabled === "enabled" ? `Pokémon ${pokemonData.speciesname} , Rareza ${nombresRarezas[GetFrequencyByName(pokemonData.speciesname) - 1]}:${(RegisterCheck == true ? "Ya registrado" : "No registrado")}${(pokemonData.shiny === "shiny" ? ": Variocolor" : "")}${(pokemonData.rarespecies === true ? ": Especie rara" : "")}${(pokemonData.megaevolution === true ? ": Megaevolución" : "")}` : ""}
+            aria-label={enabled === "enabled" ? `Caja ${number} de 3: Pokémon ${pokemonData.speciesname} , Rareza ${nombresRarezas[GetFrequencyByName(pokemonData.speciesname) - 1]}:${(RegisterCheck == true ? "Ya registrado" : "No registrado")}${(pokemonData.shiny === "shiny" ? ": Variocolor" : "")}${(pokemonData.rarespecies === true ? ": Especie rara" : "")}${(pokemonData.megaevolution === true ? ": Megaevolución" : "")}` : ""}
             onBlur={(e) => e.currentTarget.blur()}
         >
             <div className='RegistradoCheck'>
