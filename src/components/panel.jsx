@@ -24,7 +24,8 @@ const initData = {
     shinycount: 0,
     rarecount: 0,
     megacount: 0,
-    sandyShocksBetaEvent: false
+    sandyShocksBetaEvent: false,
+    skeledirgeCreatorBeastEvent: false
 }
 
 const savedData = () => 
@@ -41,6 +42,7 @@ const savedData = () =>
     const savedRareCount = localStorage.getItem("rarecount");
     const savedMegaCount = localStorage.getItem("megacount");
     const savedSandyShocksBetaEvent = localStorage.getItem("sandyShocksBetaEvent");
+    const savedSkeledirgeCreatorBeastEvent = localStorage.getItem("skeledirgeCreatorBeastEvent");
 
     return {
         name: savedName ? savedName : initData.name,
@@ -54,30 +56,49 @@ const savedData = () =>
         shinycount: savedShinyCount ? savedShinyCount : initData.shinycount,
         rarecount: savedRareCount ? savedRareCount : initData.rarecount,
         megacount: savedMegaCount ? savedMegaCount : initData.megacount,
-        sandyShocksBetaEvent: savedSandyShocksBetaEvent ? savedSandyShocksBetaEvent : initData.sandyShocksBetaEvent
+        sandyShocksBetaEvent: savedSandyShocksBetaEvent ? savedSandyShocksBetaEvent : initData.sandyShocksBetaEvent,
+        skeledirgeCreatorBeastEvent: savedSkeledirgeCreatorBeastEvent ? savedSkeledirgeCreatorBeastEvent : initData.skeledirgeCreatorBeastEvent
     };
 }
+const EventCodeList = [
+    "sandyShocksBetaEvent",
+    "skeledirgeCreatorBeastEvent"
+]
 
-const CurrentEventPokemon = {
-    "frequency":4,
-    "iv": {
-        "hp":25,
-        "atq":25,
-        "def":25,
-        "spatq":25,
-        "spdef":25,
-        "spe":25
+const EventPokemonList = [
+    {
+        "frequency":4,
+        "iv": {
+            "hp":25,
+            "atq":25,
+            "def":25,
+            "spatq":25,
+            "spdef":25,
+            "spe":25
+        },
+        "speciesname":"Pelarena",
+        "name": 989,
+        "nametag":"VMagnet ✰",
+        "shiny": "shiny",
+        "originaltrainer": "PokéROLL", // jsx
+        "type1":"electric",    // jsx hecho
+        "type2":"ground",   // jsx hecho
+        "event": true,
+        "event_desc" : "¡Gracias por participar en la Beta de PokéROLL! Disfruta de este Pelarena variocolor durante tu estancia :)"
     },
-    "speciesname":"Pelarena",
-    "name": 989,
-    "nametag":"VMagnet ✰",
-    "shiny": "shiny",
-    "originaltrainer": "PokéROLL", // jsx
-    "type1":"electric",    // jsx hecho
-    "type2":"ground",   // jsx hecho
-    "event": true,
-    "event_desc" : "¡Gracias por participar en la Beta de PokéROLL! Disfruta de este Pelarena variocolor durante tu estancia :)"
-}
+    {
+        frequency:4,
+        speciesname:"Skeledirge",
+        name:911,
+        shiny:"shiny",
+        nametag:"Llaminem ✰",
+        originaltrainer:"CreatorBeastGD",
+        type1:"fire",
+        type2:"ghost",
+        event:true,
+        event_desc:"¡Disfruta de este Skeledirge variocolor de parte de uno de los creadores de PokéROLL! ¡Que ojalá quede genial en tu colección!"
+    }
+]
 /** Función utilizada para crear eventos de distribución
  * 
  * @param {*} UserData Los datos del usuario
@@ -87,15 +108,16 @@ const CurrentEventPokemon = {
  * @param {Date} endDate Fecha de fin (IMPORTANTE: Mes que se quiera - 1)
  * @param {string | boolean} eventCommand El valor de UserData a comprobar (ej. UserData.sandyShocksBetaEvent)
  */
-function GetSpecialEvent(UserData, setUserData, eventCode, startDate, endDate, eventCommand) {
-    let eventPokemon = CurrentEventPokemon;
+function GetSpecialEvent(eventIndex, UserData, setUserData, startDate, endDate, eventCommand) {
     let fecha = new Date();
+    if (fecha <= endDate && fecha >= startDate && eventCommand[eventIndex] !== "true" && UserData.name !== "Iniciar sesión") {
+        let eventPokemon = EventPokemonList[eventIndex];
+        let eventCode = EventCodeList[eventIndex]
+        
+        if (eventPokemon?.iv === undefined) {
+            eventPokemon.iv = GetIVs(5);
+        }
 
-    if (eventPokemon?.iv === undefined) {
-        eventPokemon.iv = GetIVs(eventPokemon.frequency);
-    }
-    
-    if (fecha <= endDate && fecha >= startDate && eventCommand !== "true" && UserData.name !== "Iniciar sesión") {
         ReclamarEvent(eventPokemon, UserData, setUserData, eventCode);
     }
 }
@@ -123,13 +145,19 @@ function MainPanel()
         
     }, [UserData]);
 
+    const EventCommandList = [
+        UserData.sandyShocksBetaEvent,
+        UserData.skeledirgeCreatorBeastEvent
+    ];
+
     useEffect(() => {
         const data = savedData();
         if (data !== null) {
             setUserData(data);
         }
         
-        GetSpecialEvent(UserData, setUserData, "sandyShocksBetaEvent", new Date(2024, 4, 31), new Date(2024, 5, 30), UserData.sandyShocksBetaEvent);
+        GetSpecialEvent(0, UserData, setUserData, new Date(2024, 4, 31), new Date(2024, 5, 30), EventCommandList);
+        GetSpecialEvent(1, UserData, setUserData, new Date(2024, 5, 7), new Date(2024, 5, 9), EventCommandList);
     }, []);
 
     // El Tier actual seleccionado de la ruleta
