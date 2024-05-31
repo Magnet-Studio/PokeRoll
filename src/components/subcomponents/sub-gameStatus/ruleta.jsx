@@ -308,7 +308,7 @@ function ModalConfirmar({ setThreePokemon, tirarButtonDisable, pokemonData, setO
                     </div>
                     {unregisterMessage}
                     <div className="containerModal moneyCount">
-                        <img className="coin" src={CoinImage} alt="coin" aria-hidden="true" tabIndex="-1"/> {"+" + HalfCost}
+                        <img className="coin" src={CoinImage} alt="Moneda" aria-hidden="true" tabIndex="-1"/> {"+" + HalfCost}
                         <text aria-label={" monedas de vuelta:"}></text>
                     </div>
 

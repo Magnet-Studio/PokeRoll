@@ -18,6 +18,7 @@
     display: flex;
     flex-direction: column;
     text-align: left;
+    height: 100%;
 }
 
 a {
@@ -42,14 +43,21 @@ a {
     display: flex;
     font-family: vanilla-regular;
     color: white;
-    
+    justify-content: center;
     flex-wrap: wrap;
     flex-direction: column;
 }
 
+.filterAlmacenIcon {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 2vw;
+}
+
 #filtros svg {
     height: 5vh;
-    margin-right: 2vw;
     width: auto;
 }
 
@@ -63,12 +71,9 @@ a {
     text-align: center;
     pointer-events: all;
     width: 15vw;
+    box-sizing: border-box;
     height: 6vh;
     outline: none;
-}
-
-input.inputElem {
-    max-height: 63%;
 }
 
 option 

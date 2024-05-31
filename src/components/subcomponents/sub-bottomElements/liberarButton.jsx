@@ -82,7 +82,7 @@ function LiberarButton({data, setUserData, UserData}) {
             <PokemonCard data={data} liberarMenu="true"/>
           </div>
           <div className="containerModal moneyCount">
-            <img className="coin" src={CoinImage} alt="coin" /> {"+" + monedas}
+            <img className="coin" src={CoinImage} alt="Moneda" /> {"+" + monedas}
           </div>
           <div className="containerModal">
             <Button

@@ -36,12 +36,13 @@ export function MouseOverPopover({ content, shown }) {
           disableRestoreFocus
           anchorOrigin={{
             vertical: 'bottom',
-            horizontal: 'center',
           }}
           transformOrigin={{
+            
             horizontal: 'center',
           }}
-          sx={{width: "80%"}}
+          
+          sx={{maxWidth: "100%"}}
         >
           <Typography sx={{ p: 2 } } >{shown}</Typography>
         </Popover>

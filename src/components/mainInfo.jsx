@@ -81,7 +81,11 @@ function Instrucciones() {
 
             Cuando hagas alguna tirada, tendrás cierta posibilidad de encontrarte con alguno de estos Pokémon... ¡Y habrá confeti para celebrarlo! ¡Coleccionalos a todos!<br/><br/>
 
-            Pese a que por cada Tier de ruleta se obtienen Pokémon más raros, ¡ten en cuenta que cada uno cuesta más que el anterior!
+            Pese a que por cada Tier de ruleta se obtienen Pokémon más raros, ¡ten en cuenta que cada uno cuesta más que el anterior!<br/><br/>
+
+            (Para cambiar el Tier de la ruleta, pulsa sobre los botones ubicados a la izquierda del botón TIRAR, donde adicionalmente podrás ver qué TIER de ruleta has seleccionado)
+          
+
           </li><br/>
           <li><b>POKÉDEX</b>: Con la Pokédex integrada en PokéRoll, podrás consultar todos los Pokémon que has obtenido a través de todas las tiradas
             que hayas realizado. Ten en cuenta que, incluso liberando a tus Pokémon, ¡el registro no se perderá!<br/><br/>
@@ -89,8 +93,12 @@ function Instrucciones() {
             Por cierto, puede que si encuentras a todos los Pokémon de la Pokédex, encuentres con mayor facilidad a los anteriormente mencionados Pokémon variocolor...
           </li><br/>
           <li><b>ALMACÉN</b>: En el almacén, se guardarán todos los Pokémon que hayas obtenido. Adicionalmente, podrás consultar los datos de estos Pokémon,
-            como pueden ser sus estadísticas, tipos, fecha de obtención, rareza y más.<br/><br/> También tienes una opción de liberar a tus Pokémon a cambio de
-            puntos, con los cuales podrás realizar más tiradas en la Ruleta para conseguir más Pokémon.
+            como pueden ser sus estadísticas, tipos, fecha de obtención, rareza y más.<br/><br/>
+            
+            También tienes una opción de liberar a tus Pokémon a cambio de
+            puntos, con los cuales podrás realizar más tiradas en la Ruleta para conseguir más Pokémon.<br/><br/>
+
+            En el almacén, adicionalmente dispondrás de una lista de ordenaciones y de filtros que podrás usar a tu antojo, y los cuales se aplicarán cuando se cambie alguno de los valores.
           </li><br/>
           <li><b>MARCADORES</b>: En esta ventana, podrás ver distintas clasificaciones dentro de la aplicación PokéRoll entre todos los usuarios, en el que podrás
             consultar quiénes son los jugadores que tienen mejores Pokémon, o los más raros, entre otras más opciones.

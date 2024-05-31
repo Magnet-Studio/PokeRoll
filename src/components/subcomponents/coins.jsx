@@ -44,7 +44,7 @@ function Coins({UserData, coinsReference})
 
     return (
         <div id="coins" tabIndex="10" aria-label={`Tienes ${UserData.currency} monedas`} ref={coinsReference}>
-            <img src={CoinImage} alt={"Coins"} aria-hidden='true' />
+            <img src={CoinImage} alt={"Monedas"} aria-hidden='true' />
             {countUp}
         </div>
     );

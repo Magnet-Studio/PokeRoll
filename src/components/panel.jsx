@@ -25,7 +25,9 @@ const initData = {
     rarecount: 0,
     megacount: 0,
     sandyShocksBetaEvent: false,
-    skeledirgeCreatorBeastEvent: false
+    skeledirgeCreatorBeastEvent: false,
+    sawkAndressruiizEvent: false,
+    unownSimulationOfMarioEvent: false
 }
 
 const savedData = () => 
@@ -43,6 +45,8 @@ const savedData = () =>
     const savedMegaCount = localStorage.getItem("megacount");
     const savedSandyShocksBetaEvent = localStorage.getItem("sandyShocksBetaEvent");
     const savedSkeledirgeCreatorBeastEvent = localStorage.getItem("skeledirgeCreatorBeastEvent");
+    const savedSawkAndressRuiizEvent = localStorage.getItem("sawkAndressruiizEvent");
+    const savedUnownSimulationOfMarioEvent = localStorage.getItem("unownSimulationOfMarioEvent");
 
     return {
         name: savedName ? savedName : initData.name,
@@ -57,12 +61,16 @@ const savedData = () =>
         rarecount: savedRareCount ? savedRareCount : initData.rarecount,
         megacount: savedMegaCount ? savedMegaCount : initData.megacount,
         sandyShocksBetaEvent: savedSandyShocksBetaEvent ? savedSandyShocksBetaEvent : initData.sandyShocksBetaEvent,
-        skeledirgeCreatorBeastEvent: savedSkeledirgeCreatorBeastEvent ? savedSkeledirgeCreatorBeastEvent : initData.skeledirgeCreatorBeastEvent
+        skeledirgeCreatorBeastEvent: savedSkeledirgeCreatorBeastEvent ? savedSkeledirgeCreatorBeastEvent : initData.skeledirgeCreatorBeastEvent,
+        sawkAndressruiizEvent: savedSawkAndressRuiizEvent ? savedSawkAndressRuiizEvent : initData.sawkAndressruiizEvent,
+        unownSimulationOfMarioEvent: savedUnownSimulationOfMarioEvent ? savedUnownSimulationOfMarioEvent : initData.unownSimulationOfMarioEvent
     };
 }
 const EventCodeList = [
     "sandyShocksBetaEvent",
-    "skeledirgeCreatorBeastEvent"
+    "skeledirgeCreatorBeastEvent",
+    "sawkAndressruiizEvent",
+    "unownSimulationOfMarioEvent"
 ]
 
 const EventPokemonList = [
@@ -97,7 +105,33 @@ const EventPokemonList = [
         type2:"ghost",
         event:true,
         event_desc:"¡Disfruta de este Skeledirge variocolor de parte de uno de los creadores de PokéROLL! ¡Que ojalá quede genial en tu colección!"
-    }
+    },
+    {
+        frequency:3,
+        speciesname:"Sawk",
+        name:539,
+        shiny:"shiny",
+        nametag:"Llados ✰",
+        originaltrainer:"Andressruiiz",
+        type1:"fighting",
+        type2:null,
+        event:true,
+        event_desc:"¡Disfruta de este Sawk variocolor de parte de uno de los creadores de PokéROLL! ¡Que ojalá quede genial en tu colección!"
+    },
+    {
+        frequency:3,
+        speciesname:"Unown",
+        name:201,
+        shiny:"shiny",
+        nametag:"Unown?",
+        originaltrainer:"SimulationOfMario",
+        type1:"psychic",
+        type2:null,
+        event:true,
+        variant: {name: "unown-qm"},
+        event_desc:"¡Disfruta de este Unown variocolor de parte de uno de los creadores de PokéROLL! ¡Que ojalá quede genial en tu colección!"
+    },
+
 ]
 /** Función utilizada para crear eventos de distribución
  * 
@@ -147,7 +181,9 @@ function MainPanel()
 
     const EventCommandList = [
         UserData.sandyShocksBetaEvent,
-        UserData.skeledirgeCreatorBeastEvent
+        UserData.skeledirgeCreatorBeastEvent,
+        UserData.sawkAndressruiizEvent,
+        UserData.unownSimulationOfMarioEvent
     ];
 
     useEffect(() => {
@@ -155,9 +191,14 @@ function MainPanel()
         if (data !== null) {
             setUserData(data);
         }
-        
+        // Sandy Shocks
         GetSpecialEvent(0, UserData, setUserData, new Date(2024, 4, 31), new Date(2024, 5, 30), EventCommandList);
+        // Sawk
+        GetSpecialEvent(2, UserData, setUserData, new Date(2024, 5, 4), new Date(2024, 5, 6), EventCommandList);
+        // Skeledirge
         GetSpecialEvent(1, UserData, setUserData, new Date(2024, 5, 7), new Date(2024, 5, 9), EventCommandList);
+        // Unown
+        GetSpecialEvent(3, UserData, setUserData, new Date(2024, 5, 10), new Date(2024, 5, 12), EventCommandList);
     }, []);
 
     // El Tier actual seleccionado de la ruleta

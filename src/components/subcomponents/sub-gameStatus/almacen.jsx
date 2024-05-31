@@ -190,7 +190,7 @@ const style = {
                             </div>
 
                             <div className="containerModal moneyCount">
-                                <img aria-hidden="true" className="coin" src={CoinImage} alt="coin" /> <text aria-description="Obtendrás de vuelta ">{"+" + coins}</text><text aria-label=" monedas:"></text>
+                                <img aria-hidden="true" className="coin" src={CoinImage} alt="Moneda" /> <text aria-description="Obtendrás de vuelta ">{"+" + coins}</text><text aria-label=" monedas:"></text>
                             </div>
                             <div className="containerModal">
                                     <Button
@@ -258,7 +258,7 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, se
     };
     return(
         <>
-            <div>
+            <div className="filterAlmacenIcon">
                 <FilterAltIcon />
             </div>
             <div className="filterAlmacen">
