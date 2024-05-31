@@ -26,6 +26,7 @@
     min-width: 30px;
     min-height: 30px;
     right: 0;
+    transition: transform 0.3s ease;
 }
 
 .liberarButton > svg {
@@ -58,6 +59,10 @@
 
 .containerModal > a {
     pointer-events: none;
+}
+
+.containerModal > .entryBox {
+    margin-bottom: 2vw;
 }
 
 .containerModal {
@@ -106,57 +111,22 @@
     color: white;
     font-family: vanilla-regular;
     position: absolute;
-    font-size: 0;
+    font-size: 0.2vw;
     opacity: 0;
     text-transform: none;
-}
-
-/* Animación del title */
-@keyframes moveDown {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(3vw); }
-}
-
-/* Animación del botón */
-@keyframes moveUp {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-0.3vw); }
-}
-
-/* Opacidad del title */
-@keyframes changeOpacity {
-    0% { opacity: 0; }
-    100% { opacity: 100; }
-}
-
-/* Tamaño del title */
-@keyframes changeFontSize {
-    0% { font-size: 0.2vw; }
-    100% { font-size: 0.9vw; }
+    transition: transform 0.3s ease, opacity 0.3s ease, font-size 0.3s ease
 }
 
 .liberarButton:hover
 {
-    animation: moveUp 0.5s ease-in-out forwards alternate;
+    transform: translateY(-0.3vw);
 }
 
 .liberarButton:hover .liberarButtonTitle
 {
-    animation: changeOpacity 0.5s ease-in-out forwards alternate, 
-                moveDown 0.5s ease-in-out forwards alternate,
-                changeFontSize 0.5s ease-in-out forwards alternate;
-}
-
-.liberarButton.mouseleave
-{
-    animation: moveUp-Reverse 0.5s ease-in-out forwards alternate;
-}
-
-.liberarButton.mouseleave .liberarButtonTitle
-{
-    animation: changeOpacity-Reverse 0.5s ease-in-out forwards alternate, 
-                moveDown-Reverse 0.5s ease-in-out forwards alternate,
-                changeFontSize-Reverse 0.5s ease-in-out forwards alternate;;
+    transform: translateY(3vw);
+    opacity: 100%;
+    font-size: 0.9vw;
 }
 
 .modal-open {
@@ -170,31 +140,6 @@
 
 .modal-open .MuiModal-root {
     pointer-events: all;
-}
-
-
-/* Animación del title invertida */
-@keyframes moveDown-Reverse {
-    0% { transform: translateY(3vw); }
-    100% { transform: translateY(0); }
-}
-
-/* Animación del botón */
-@keyframes moveUp-Reverse {
-    0% { transform: translateY(-0.3vw); }
-    100% { transform: translateY(0); }
-}
-
-/* Opacidad del title */
-@keyframes changeOpacity-Reverse {
-    0% { opacity: 100; }
-    100% { opacity: 0; }
-}
-
-/* Tamaño del title */
-@keyframes changeFontSize-Reverse {
-    0% { font-size: 0.9vw; }
-    100% { font-size: 0.2vw; }
 }
 
 /* Accciones cuando la anchura es menor a la altura */
@@ -213,30 +158,25 @@
         margin: 0 1.5vw;
     }
 
-    .liberarButton:hover
-    {
-        animation: none;
-    }
-
-    .liberarButton:hover .liberarButtonTitle
-    {
-        animation: none;
-    }
-
-    .liberarButton.mouseleave
-    {
-        animation: none;
-    }
-
-    .liberarButton.mouseleave .liberarButtonTitle
-    {
-        animation: none;
-    }
-
     .liberarButtonTitle 
     {
         font-size: calc(0.4vw + 6px);
         opacity: 1;
-        bottom: -40%;
+        top: 85%;
     }
+
+    .liberarButton:hover
+    {
+        transform: translateY(0);
+    }
+    
+    
+    
+    .liberarButton:hover .liberarButtonTitle
+    {
+        font-size: calc(0.4vw + 6px);
+        opacity: 1;
+        transform: translateY(-25%);
+    }
+    
 }

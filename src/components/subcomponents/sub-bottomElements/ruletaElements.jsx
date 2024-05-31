@@ -46,7 +46,7 @@ export function TirarButton({ cost, coinsReference, TierRuleta, setUserData, tir
             className={`${tirarButtonDisable} ${redTirarButton}`}
             disabled={tirarButtonDisable === "disabled"}
             aria-disabled={tirarButtonDisable === "disabled"}
-            aria-label={`Tirar por ${cost} monedas`}
+            aria-label={`Tirar por ${cost} monedas` + (redTirarButton==="notEnoughMoney" ? ", No tienes monedas suficientes." : "")}
         >
             <p>TIRAR</p>
             <div>

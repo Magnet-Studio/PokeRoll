@@ -193,6 +193,18 @@
     }
 }
 
+#pokedexBigBox > div {
+    margin-bottom: 2vw;
+    filter: drop-shadow(0 0 2px rgb(0, 0, 0));
+    transition: transform 0.3s ease, filter 0.3s ease; /* Agregamos una transición suave a transform y filter */
+}
+
+#pokedexBigBox > div:hover{
+    transform: scale(1.05); /* Aumentamos el tamaño del elemento en un 5% al pasar el ratón sobre él */
+    filter: drop-shadow(1px 1px 1px rgb(0, 0, 0)); /* Aplicamos una sombra más pronunciada */
+}
+
 @import url("./pokemonCard.css");
 
 @import url("./types.css");
+

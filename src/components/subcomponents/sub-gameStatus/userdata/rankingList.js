@@ -94,8 +94,8 @@ export let PlayerList = [
         'score': 800,
         'bestpokemon': {
             "id":11,
-            "name": "lugia",
-            "nametag":"Lugia",
+            "name": "arcanine",
+            "nametag":"Arcanine",
             "shiny": "normal",
             "originaltrainer": "CreatorBeastGD",
             "datefound":"07/05/2024",
@@ -107,7 +107,7 @@ export let PlayerList = [
                 "spdef":5,
                 "spe":5
             },
-            frequency: 5,
+            frequency: 3,
             rarespecies: false,
             megaevolution: false
         },
@@ -185,20 +185,22 @@ export let PlayerList = [
         'score': 600,
         'bestpokemon': {
             "id":11,
-            "name": "lugia",
-            "nametag":"Lugia",
+            "name": "gengar",
+            "nametag":"Gengar",
             "shiny": "normal",
             "originaltrainer": "CreatorBeastGD",
             "datefound":"07/05/2024",
             "iv": {
-                "hp":5,
-                "atq":5,
-                "def":5,
-                "spatq":5,
-                "spdef":5,
-                "spe":5
+                "hp":20,
+                "atq":20,
+                "def":20,
+                "spatq":20,
+                "spdef":20,
+                "spe":20
             },
-            frequency: 5,
+            megaevolution: true,
+            variant: {name: "gengar-mega", mega:true},
+            frequency: 4,
             rarespecies: false,
             megaevolution: false
         },
@@ -322,8 +324,8 @@ export let PlayerList = [
         'score': 300,
         'bestpokemon': {
             "id":6,
-            "name": "arcanine",
-            "nametag":"Arcanine",
+            "name": "lickitung",
+            "nametag":"Lickitung",
             "shiny": "normal",
             "originaltrainer": "joseCP",
             "datefound":"07/05/2024",
@@ -480,8 +482,8 @@ export let PlayerList = [
         },
         'rarestpokemon': {
             "id":5,
-            "name": "mewtwo",
-            "nametag":"Mewtwo",
+            "name": "naganadel",
+            "nametag":"Naganadel",
             "shiny": "normal",
             "originaltrainer": "CreatorBeastGD",
             "datefound":"07/05/2024",
@@ -493,7 +495,7 @@ export let PlayerList = [
                 "spdef":31,
                 "spe":31
             },
-            frequency: 4,
+            frequency: 5,
             rarespecies: false,
             megaevolution: false
         },

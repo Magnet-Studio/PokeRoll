@@ -144,8 +144,8 @@ function BottomElements({
           <NavButton
             link="/marcadores"
             icon={<MarcadoresIcon/>}
-            title="Marcadores"
-            aria-label="Marcadores" 
+            title="Clasificación"
+            aria-label="Clasificación" 
           />
           <NavButton
             link="/intercambio"
@@ -199,8 +199,8 @@ function BottomElements({
           <NavButton link="/pokedex" icon={<PokedexIcon aria-label="Pokédex" />} title="Pokédex" tabIndex="0"/>
           <NavButton
             link="/marcadores"
-            icon={<MarcadoresIcon aria-label="Marcadores" />}
-            title="Marcadores"
+            icon={<MarcadoresIcon aria-label="Clasificación" />}
+            title="Clasificación"
             tabIndex="0"
           />
           <NavButton
@@ -243,8 +243,8 @@ function BottomElements({
           <NavButton link="/pokedex" icon={<PokedexIcon aria-label="Pokédex" />} title="Pokédex" tabIndex="0"/>
           <NavButton
             link="/marcadores"
-            icon={<MarcadoresIcon aria-label="Marcadores" />}
-            title="Marcadores"
+            icon={<MarcadoresIcon aria-label="Clasificación" />}
+            title="Clasificación"
             tabIndex="0"
           />
           <NavButton
@@ -273,7 +273,7 @@ function BottomElements({
           <NavButton link="/login" selected="selected" icon={<RuletaIcon aria-label="Ir a"  />} tabIndex="0"/>
           <NavButton link="/login" icon={<AlmacenIcon aria-label="Almacén" />} tabIndex="0"/>
           <NavButton link="/login" icon={<PokedexIcon aria-label="Pokédex" />} tabIndex="0"/>
-          <NavButton link="/login" icon={<MarcadoresIcon aria-label="Marcadores" />} tabIndex="0"/>
+          <NavButton link="/login" icon={<MarcadoresIcon aria-label="Clasificación" />} tabIndex="0"/>
           <NavButton link="/login" icon={<IntercambioIcon aria-label="Intercambio" />} tabIndex="0"/>
         </div>
       </>
@@ -303,8 +303,8 @@ function BottomElements({
           />
           <NavButton
             link="/marcadores"
-            icon={<MarcadoresIcon aria-label="Marcadores"/>}
-            title="Marcadores"
+            icon={<MarcadoresIcon aria-label="Clasificación"/>}
+            title="Clasificación"
             tabIndex="0"
           />
           <NavButton
@@ -336,8 +336,8 @@ function BottomElements({
           <NavButton
             link="/marcadores"
             selected="selected"
-            icon={<MarcadoresIcon aria-label="Marcadores" />}
-            title="Marcadores"
+            icon={<MarcadoresIcon aria-label="Clasificación" />}
+            title="Clasificación"
             tabIndex="0"
           />
           <NavButton
@@ -362,14 +362,14 @@ function BottomElements({
 
     return (
       <>
-        <div id="navButtonsRuletaStatusContainer" className="navButtonsCentered">
+        <div id="navButtonsRuletaStatusContainer" className="navButtonsCentered" aria-flowto="">
           <NavButton link="/ruleta" icon={<RuletaIcon aria-label="Ruleta" />} title="Ruleta" tabIndex="0"/>
           <NavButton link="/almacen" icon={<AlmacenIcon aria-label="Almacén" />} title="Almacén" tabIndex="0"/>
           <NavButton link="/pokedex" icon={<PokedexIcon aria-label="Pokédex" />} title="Pokédex" tabIndex="0"/>
           <NavButton
             link="/marcadores"
-            icon={<MarcadoresIcon aria-label="Marcadores" />}
-            title="Marcadores"
+            icon={<MarcadoresIcon aria-label="Clasificación" />}
+            title="Clasificación"
             tabIndex="0"
           />
           <NavButton
@@ -394,7 +394,7 @@ function BottomElements({
     }, [UserData, navigate]);
 
     return (
-      <Link to="/intercambio">
+      <Link  to="/intercambio">
         <button id="botonCancelarIntercambio" aria-label="Cancelar Intercambio">Cancelar</button>
       </Link>
     );
