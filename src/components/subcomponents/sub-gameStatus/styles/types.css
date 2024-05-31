@@ -130,7 +130,11 @@
 }
 
 .entryBox.event {
-    border-color: rgb(170, 164, 255);
+    animation-name: shineEvent;
+    animation-duration: 5s; /* Aumenta la duración para hacerla más lenta */
+}
+
+.entryBox.shiny.mega.event {
     animation-name: shineEvent;
     animation-duration: 5s; /* Aumenta la duración para hacerla más lenta */
 }

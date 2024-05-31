@@ -27,7 +27,9 @@ const initData = {
     sandyShocksBetaEvent: false,
     skeledirgeCreatorBeastEvent: false,
     sawkAndressruiizEvent: false,
-    unownSimulationOfMarioEvent: false
+    unownSimulationOfMarioEvent: false,
+    gengarSparaopEvent: false,
+    arcanineJoseCPEvent: false,
 }
 
 const savedData = () => 
@@ -47,6 +49,8 @@ const savedData = () =>
     const savedSkeledirgeCreatorBeastEvent = localStorage.getItem("skeledirgeCreatorBeastEvent");
     const savedSawkAndressRuiizEvent = localStorage.getItem("sawkAndressruiizEvent");
     const savedUnownSimulationOfMarioEvent = localStorage.getItem("unownSimulationOfMarioEvent");
+    const savedGengarSparaopEvent = localStorage.getItem("gengarSparaopEvent");
+    const savedArcanineJoseCPEvent = localStorage.getItem("arcanineJoseCPEvent");
 
     return {
         name: savedName ? savedName : initData.name,
@@ -63,14 +67,19 @@ const savedData = () =>
         sandyShocksBetaEvent: savedSandyShocksBetaEvent ? savedSandyShocksBetaEvent : initData.sandyShocksBetaEvent,
         skeledirgeCreatorBeastEvent: savedSkeledirgeCreatorBeastEvent ? savedSkeledirgeCreatorBeastEvent : initData.skeledirgeCreatorBeastEvent,
         sawkAndressruiizEvent: savedSawkAndressRuiizEvent ? savedSawkAndressRuiizEvent : initData.sawkAndressruiizEvent,
-        unownSimulationOfMarioEvent: savedUnownSimulationOfMarioEvent ? savedUnownSimulationOfMarioEvent : initData.unownSimulationOfMarioEvent
+        unownSimulationOfMarioEvent: savedUnownSimulationOfMarioEvent ? savedUnownSimulationOfMarioEvent : initData.unownSimulationOfMarioEvent,
+        gengarSparaopEvent: savedGengarSparaopEvent ? savedGengarSparaopEvent : initData.savedGengarSparaopEvent,
+        arcanineJoseCPEvent: savedArcanineJoseCPEvent ? savedArcanineJoseCPEvent : initData.savedArcanineJoseCPEvent,
+
     };
 }
 const EventCodeList = [
     "sandyShocksBetaEvent",
     "skeledirgeCreatorBeastEvent",
     "sawkAndressruiizEvent",
-    "unownSimulationOfMarioEvent"
+    "unownSimulationOfMarioEvent",
+    "gengarSparaopEvent",
+    "arcanineJoseCPEvent",
 ]
 
 const EventPokemonList = [
@@ -104,7 +113,7 @@ const EventPokemonList = [
         type1:"fire",
         type2:"ghost",
         event:true,
-        event_desc:"¡Disfruta de este Skeledirge variocolor de parte de uno de los creadores de PokéROLL! ¡Que ojalá quede genial en tu colección!"
+        event_desc:"¡Disfruta de este Skeledirge variocolor de parte de uno de los creadores de PokéROLL! ¡Que los cantos celestiales de este Pokémon bendigan tus tiradas!"
     },
     {
         frequency:3,
@@ -116,11 +125,11 @@ const EventPokemonList = [
         type1:"fighting",
         type2:null,
         event:true,
-        event_desc:"¡Disfruta de este Sawk variocolor de parte de uno de los creadores de PokéROLL! ¡Que ojalá quede genial en tu colección!"
+        event_desc:"¡Disfruta de este Sawk variocolor de parte de uno de los creadores de PokéROLL! ¡Que este Pokémon te de suerte y dejen de tocarte panzas y mileuristas!"
     },
     {
         frequency:3,
-        speciesname:"Unown",
+        speciesname:"UnowM ✰",
         name:201,
         shiny:"shiny",
         nametag:"Unown?",
@@ -128,8 +137,35 @@ const EventPokemonList = [
         type1:"psychic",
         type2:null,
         event:true,
-        variant: {name: "unown-qm"},
-        event_desc:"¡Disfruta de este Unown variocolor de parte de uno de los creadores de PokéROLL! ¡Que ojalá quede genial en tu colección!"
+        variant: {name: "unown-m"},
+        event_desc:"¡Disfruta de este Unown variocolor de parte de uno de los creadores de PokéROLL! ¡Felicidades Mario, a ver si esto te ayuda a completar tu colección de Unowns!"
+    },
+    {
+        frequency:4,
+        speciesname:"Gengar",
+        name:94,
+        shiny:"shiny",
+        nametag:"Shadow ✰",
+        originaltrainer:"Sparaop",
+        type1:"ghost",
+        type2:"poison",
+        megaevolution:true,
+        variant: {name: "gengar-mega"},
+        event:true,
+        event_desc:"¡Disfruta de este Gengar megaevolucionado variocolor de parte de uno de los creadores de PokéROLL! ¡Que este Gengar te acompañe hasta en los momentos más sombríos!"
+    },
+    {
+        frequency:3,
+        speciesname:"Arcanine",
+        name:59,
+        shiny:"shiny",
+        nametag:"Anubis ✰",
+        originaltrainer:"JoseCP",
+        type1:"fire",
+        type2:"rock",
+        variant: { name: "arcanine-hisuian", types: ["fire", "rock"] },
+        event:true,
+        event_desc:"¡Disfruta de este Arcanine de Hisui variocolor de parte de uno de los creadores de PokéROLL! ¡Felicidades Jose, disfruta de esta leyenda de Pokémon!"
     },
 
 ]
@@ -183,7 +219,9 @@ function MainPanel()
         UserData.sandyShocksBetaEvent,
         UserData.skeledirgeCreatorBeastEvent,
         UserData.sawkAndressruiizEvent,
-        UserData.unownSimulationOfMarioEvent
+        UserData.unownSimulationOfMarioEvent,
+        UserData.gengarSparaopEvent,
+        UserData.arcanineJoseCPEvent
     ];
 
     useEffect(() => {
@@ -191,14 +229,21 @@ function MainPanel()
         if (data !== null) {
             setUserData(data);
         }
+
+        // Ordenados por orden de fecha de inicio
         // Sandy Shocks
         GetSpecialEvent(0, UserData, setUserData, new Date(2024, 4, 31), new Date(2024, 5, 30), EventCommandList);
+        // Arcanine de Hisui
+        GetSpecialEvent(5, UserData, setUserData, new Date(2024, 4, 31), new Date(2024, 5, 3), EventCommandList);
         // Sawk
         GetSpecialEvent(2, UserData, setUserData, new Date(2024, 5, 4), new Date(2024, 5, 6), EventCommandList);
         // Skeledirge
         GetSpecialEvent(1, UserData, setUserData, new Date(2024, 5, 7), new Date(2024, 5, 9), EventCommandList);
+        // Mega Gengar 
+        GetSpecialEvent(4, UserData, setUserData, new Date(2024, 4, 10), new Date(2024, 5, 12), EventCommandList);
         // Unown
-        GetSpecialEvent(3, UserData, setUserData, new Date(2024, 5, 10), new Date(2024, 5, 12), EventCommandList);
+        GetSpecialEvent(3, UserData, setUserData, new Date(2024, 5, 13), new Date(2024, 5, 15), EventCommandList);
+
     }, []);
 
     // El Tier actual seleccionado de la ruleta
