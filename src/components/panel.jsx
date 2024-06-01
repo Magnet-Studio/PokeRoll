@@ -240,7 +240,7 @@ function MainPanel()
         // Skeledirge
         GetSpecialEvent(1, UserData, setUserData, new Date(2024, 5, 7), new Date(2024, 5, 9), EventCommandList);
         // Mega Gengar 
-        GetSpecialEvent(4, UserData, setUserData, new Date(2024, 4, 10), new Date(2024, 5, 12), EventCommandList);
+        GetSpecialEvent(4, UserData, setUserData, new Date(2024, 5, 10), new Date(2024, 5, 12), EventCommandList);
         // Unown
         GetSpecialEvent(3, UserData, setUserData, new Date(2024, 5, 13), new Date(2024, 5, 15), EventCommandList);
 
