@@ -5,7 +5,7 @@
 > This project is in development, we are currently working on it.
 
 > [!IMPORTANT]
-> Actual Version: 0.2.1
+> Actual Version: 0.2.2 (Special Beta Events Update)
 
 ## 📜 Magnet Studio is formed by... 📜
 - [Mario Cortés Herrera](https://github.com/SimulationOfMario)
