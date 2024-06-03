@@ -232,17 +232,17 @@ function MainPanel()
 
         // Ordenados por orden de fecha de inicio
         // Sandy Shocks
-        GetSpecialEvent(0, UserData, setUserData, new Date(2024, 4, 31), new Date(2024, 5, 30), EventCommandList);
+        GetSpecialEvent(0, UserData, setUserData, new Date(2024, 4, 31), new Date(2024, 6, 1), EventCommandList);
         // Arcanine de Hisui
-        GetSpecialEvent(5, UserData, setUserData, new Date(2024, 4, 31), new Date(2024, 5, 3), EventCommandList);
+        GetSpecialEvent(5, UserData, setUserData, new Date(2024, 4, 31), new Date(2024, 5, 4), EventCommandList);
         // Sawk
-        GetSpecialEvent(2, UserData, setUserData, new Date(2024, 5, 4), new Date(2024, 5, 6), EventCommandList);
+        GetSpecialEvent(2, UserData, setUserData, new Date(2024, 5, 4), new Date(2024, 5, 7), EventCommandList);
         // Skeledirge
-        GetSpecialEvent(1, UserData, setUserData, new Date(2024, 5, 7), new Date(2024, 5, 9), EventCommandList);
+        GetSpecialEvent(1, UserData, setUserData, new Date(2024, 5, 7), new Date(2024, 5, 10), EventCommandList);
         // Mega Gengar 
-        GetSpecialEvent(4, UserData, setUserData, new Date(2024, 5, 10), new Date(2024, 5, 12), EventCommandList);
+        GetSpecialEvent(4, UserData, setUserData, new Date(2024, 5, 10), new Date(2024, 5, 13), EventCommandList);
         // Unown
-        GetSpecialEvent(3, UserData, setUserData, new Date(2024, 5, 13), new Date(2024, 5, 15), EventCommandList);
+        GetSpecialEvent(3, UserData, setUserData, new Date(2024, 5, 13), new Date(2024, 5, 16), EventCommandList);
 
     }, []);
 
