@@ -1382,7 +1382,7 @@ const PokemonVariants = [
         name: "Pyroar",
         variants: [
             { name: "pyroar-f" },
-            { name: "pyroar-m" }
+            { name: "pyroar" }
         ]
     },
     {
