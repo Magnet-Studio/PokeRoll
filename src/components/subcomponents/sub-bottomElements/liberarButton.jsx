@@ -32,14 +32,27 @@ function LiberarButton({data, setUserData, UserData}) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => {setOpen(true);}
 
-  const handleClose = () => setOpen(false);
+  const handleClose = (event) => 
+  {
+    event.stopPropagation();
+    setOpen(false);
+  }
+
+  const handleKeyDown = (event) =>
+  {
+    if(event.key === 'Enter')
+    {
+      handleOpen(event);
+    }
+  }
 
   const navigate = useNavigate();
 
-  const LiberarPokemon = () => {
+  const LiberarPokemon = (event) => 
+  {
+    event.stopPropagation();
     Liberar(data, setUserData);
-    
-    navigate("/almacen")
+    navigate("/almacen");
   }
 
   const monedas = Math.floor(coinValues[data.frequency-1] * (data.shiny === "shiny" ? 2 : 1) * (data?.megaevolution === true ? 1.2 : 1) * (data?.rarespecies === true ? 1.1 : 1));
@@ -53,8 +66,8 @@ function LiberarButton({data, setUserData, UserData}) {
   }, [open]);
 
   return (
-    <div id="liberarButtonContainer">
-      <Button onClick={handleOpen}>
+    <div id="liberarButtonContainer" onClick={handleOpen} role="button" tabIndex="0" onKeyDown={handleKeyDown}> 
+      
         <div
           className={"liberarButton " + (isHovered ? "mouseleave" : "")}
           onMouseEnter={() => setIsHovered(false)}
@@ -63,7 +76,7 @@ function LiberarButton({data, setUserData, UserData}) {
           <CurrencyExchangeIcon />
           <p className="liberarButtonTitle">Liberar</p>
         </div>
-      </Button>
+      
       
       <Modal
         open={open}
@@ -75,15 +88,19 @@ function LiberarButton({data, setUserData, UserData}) {
           <Typography id="modal-modal-title" variant="h6" component="h2">
             ¿Quieres liberar a este Pokémon?
           </Typography>
+
           <Typography id="modal-modal-description" variant="h6" component="h2">
             Liberar a <i>{data.nametag}</i> supondrá perderlo para siempre, pero recibirás <i>{monedas} monedas</i> a cambio. (No perderás su registro en la Pokédex)
           </Typography>
+
           <div className="containerModal">
             <PokemonCard data={data} liberarMenu="true"/>
           </div>
+
           <div className="containerModal moneyCount">
             <img className="coin" src={CoinImage} alt="Moneda" /> {"+" + monedas}
           </div>
+
           <div className="containerModal">
             <Button
               className="cerrarButton"
@@ -103,25 +120,26 @@ function LiberarButton({data, setUserData, UserData}) {
             >
               Cancelar
             </Button>
-              <Button
-                className="confirmarButton"
-                onClick={LiberarPokemon}
-                style={{
-                  backgroundColor: "#00DF09" /* color de fondo */,
-                  color: "#ffffff" /* color del texto */,
-                  padding: "14px 20px" /* padding */,
-                  border: "0.2vw solid #89ff8e" /* sin borde */,
-                  borderRadius: "1vw" /* bordes redondeados */,
-                  cursor: "pointer" /* cursor de mano al pasar por encima */,
-                  fontSize: "calc(0.5vw + 0.9vh)" /* tamaño de la fuente */,
-                  width: "8vw",
-                  marginLeft: "1.5vw",
-                  pointerEvents: "all",
-                  fontFamily: "vanilla-regular",
-                }}
-              >
-                Liberar
-              </Button>
+
+            <Button
+              className="confirmarButton"
+              onClick={LiberarPokemon}
+              style={{
+                backgroundColor: "#00DF09" /* color de fondo */,
+                color: "#ffffff" /* color del texto */,
+                padding: "14px 20px" /* padding */,
+                border: "0.2vw solid #89ff8e" /* sin borde */,
+                borderRadius: "1vw" /* bordes redondeados */,
+                cursor: "pointer" /* cursor de mano al pasar por encima */,
+                fontSize: "calc(0.5vw + 0.9vh)" /* tamaño de la fuente */,
+                width: "8vw",
+                marginLeft: "1.5vw",
+                pointerEvents: "all",
+                fontFamily: "vanilla-regular",
+              }}
+            >
+              Liberar
+            </Button>
           </div>
         </Box>
       </Modal>
@@ -131,7 +149,7 @@ function LiberarButton({data, setUserData, UserData}) {
 
 export function Liberar(data, setUserData) 
 {
-  DeletePokemon(data.id,GetPrice(data), setUserData);
+  DeletePokemon(data.id, GetPrice(data), setUserData);
 }
 
 export function GetPrice(data) {

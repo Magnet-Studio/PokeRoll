@@ -153,8 +153,8 @@ const style = {
                     {borradoMultiple ? (
                         <>
                             {multipleBorradoPopover}
-                            <Button tabindex="1" aria-label="Cancelar borrado múltiple" id="borradoMultipleCancel" onClick={toggleBorradoMultiple}><CloseIcon style={{ fontSize: '40px' }} /></Button>
-                            <Button tabindex="1" aria-label="Confirmar selección de borrado múltiple"
+                            <Button tabIndex="1" aria-label="Cancelar borrado múltiple" id="borradoMultipleCancel" onClick={toggleBorradoMultiple}><CloseIcon style={{ fontSize: '40px' }} /></Button>
+                            <Button tabIndex="1" aria-label="Confirmar selección de borrado múltiple"
                                 id="borradoMultipleConfirm" 
                                 onClick={selectedBorrado.length > 0 ? handleOpen : null}
                                 className={selectedBorrado.length > 0 ? "" : "borradoMultipleConfirmDisabled"}
@@ -165,7 +165,7 @@ const style = {
                     ) : (
                         <>
                              {multipleBorradoPopover}
-                            <Button tabindex="1" aria-label="Borrar múltiples Pokémon" id="borradoMultipleButton" onClick={toggleBorradoMultiple}><PublishedWithChangesIcon style={{ fontSize: '40px' }} /></Button>
+                            <Button tabIndex="1" aria-label="Borrar múltiples Pokémon" id="borradoMultipleButton" onClick={toggleBorradoMultiple}><PublishedWithChangesIcon style={{ fontSize: '40px' }} /></Button>
                         </>
                     )}
                     <Modal
@@ -263,7 +263,7 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, se
             </div>
             <div className="filterAlmacen">
                 <label className="filterLabel" htmlFor="ordenacion">Ordenación</label>
-                <select tabindex="1" className="inputElem" name="generalFilter" id="ordenacion" value={selectedValue} onChange={handleSelectChange}>
+                <select tabIndex="1" className="inputElem" name="generalFilter" id="ordenacion" value={selectedValue} onChange={handleSelectChange}>
                     <option value="0">Más reciente</option>
                     <option value="5">Más antiguos</option>
                     <option value="1">Pokémon con más valor</option>
@@ -278,7 +278,7 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, se
             
             <div className="filterAlmacen">
                 <label className="filterLabel" htmlFor="tier">Filtrar rareza</label>
-                <select tabindex="1" className="inputElemSmall" name="tier" id="tier" value={selectedFrequency} onChange={handleSelectTier}>
+                <select tabIndex="1" className="inputElemSmall" name="tier" id="tier" value={selectedFrequency} onChange={handleSelectTier}>
                     <option value="0">No filtrar</option>
                     <option value="1">Común</option>
                     <option value="2">Infrecuente</option>
@@ -290,7 +290,7 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, se
             </div>
             <div className="filterAlmacen">
                 <label className="filterLabel" htmlFor="filtroTipo">Filtrar tipo</label>
-                <select tabindex="1" className="inputElemSmall" name="type" id="filtroTipo" value={selectedType} onChange={handleSelectType}>
+                <select tabIndex="1" className="inputElemSmall" name="type" id="filtroTipo" value={selectedType} onChange={handleSelectType}>
                     <option value="0">No filtrar</option>
                     <option value="steel">Acero</option>
                     <option value="water">Agua</option>
@@ -317,7 +317,7 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, se
 
             <div className="filterAlmacen">  
                 <label htmlFor="filtroNombre">Filtrar por nombre</label>
-                <input tabindex="1" className="inputElem" id="filtroNombre" placeholder="Escriba un nombre aquí..." value={Name} onChange={handleName}>
+                <input tabIndex="1" className="inputElem" id="filtroNombre" placeholder="Escriba un nombre aquí..." value={Name} onChange={handleName}>
                 
                 </input>
             </div>
@@ -466,7 +466,7 @@ function CompletePokemonList({selectedBorrado, setSelectedBorrado, borradoMultip
     });
     return (
         <>
-            {list.length === 0 ? (<p id="noPokemonMessage" tabindex="4">No se encuentran Pokémon...</p>) : list}
+            {list.length === 0 ? (<p id="noPokemonMessage" tabIndex="4">No se encuentran Pokémon...</p>) : list}
         </>
     );
 
@@ -580,7 +580,7 @@ function PokemonCard({UserData, isAlreadySelected, selectedBorrado, setSelectedB
 
         return (
             borradoMultiple ? (
-                <Link tabindex="4" onClick={handleSelectedBorrado} aria-label={(isSelectedBorrado ? "Seleccionado para liberar " : " No seleccionado para liberar ") + ":Número " +dexNum + ": " + data.nametag + ":" + shinyDesc + ":" + megaDesc + ":" + rareDesc + ":" + eventDesc}>
+                <Link tabIndex="4" onClick={handleSelectedBorrado} aria-label={(isSelectedBorrado ? "Seleccionado para liberar " : " No seleccionado para liberar ") + ":Número " +dexNum + ": " + data.nametag + ":" + shinyDesc + ":" + megaDesc + ":" + rareDesc + ":" + eventDesc}>
                     <div 
                     className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny + " " + event + (isSelectedBorrado ? " liberado" : " notLiberado")} 
                     key={`${data.id}-${isAlreadySelected}`}
@@ -591,7 +591,7 @@ function PokemonCard({UserData, isAlreadySelected, selectedBorrado, setSelectedB
                     </div>
                 </Link>
             ) : (
-                <Link tabindex="4" to={"ver-pokemon?id=" + data.id} aria-label={"Número " +dexNum + ": " + data.nametag + ":" + shinyDesc + ":" + megaDesc + ":" + rareDesc+ ":" + eventDesc}>
+                <Link tabIndex="4" to={"ver-pokemon?id=" + data.id} aria-label={"Número " +dexNum + ": " + data.nametag + ":" + shinyDesc + ":" + megaDesc + ":" + rareDesc+ ":" + eventDesc}>
                     <div className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny + " " + event} key={data.id}>
                         <p className="dexNumber" >Nº {dexNum}</p>
                         {content}

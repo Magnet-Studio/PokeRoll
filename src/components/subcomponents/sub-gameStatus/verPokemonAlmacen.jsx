@@ -237,7 +237,7 @@ const HexagonData = ({ size, fillColor, strokeColor, data}) => {
       width="50vw"
       viewBox={`15 -15 ${size * 2} ${size * Math.sqrt(3) * 2}`}
       style={animatedProps}
-      aria-hidden="true" tabindex="-1"
+      aria-hidden="true" tabIndex="-1"
     >
       <animated.polygon
         points={animatedProps.points}
@@ -308,7 +308,7 @@ const Hexagon = ({ size, fillColor, strokeColor, data }) => {
           {":" + fullNames[index] + ": " + values[index]}
         </text>
       ))}
-      <polygon points={pointsString} fill={fillColor} stroke={strokeColor} strokeWidth="2" aria-hidden="true" tabindex="-1"/>
+      <polygon points={pointsString} fill={fillColor} stroke={strokeColor} strokeWidth="2" aria-hidden="true" tabIndex="-1"/>
     </svg>
   );
 };

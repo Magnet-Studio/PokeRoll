@@ -152,6 +152,7 @@
 {
     grid-column: 1 / -1;
     margin: 0 1vw 0 1vw;
+    text-align: center;
 }
 
 /* Game State Panel position */
@@ -206,4 +207,28 @@
     {   
         margin: 0.1vh 0;
     }
+
+
+    @media screen and (max-height: 800px)
+    {
+        #topelementsPanelContainer
+        {
+            height: 70%;
+        }
+
+        #bottomelementsPanelContainer
+        {
+            height: 95%;
+            top: -20%;
+            position: relative;
+        }
+
+        #gamestatePanelContainer
+        {
+            top: -5%;
+            position: relative;
+            height: 75%;
+        }
+    }
+
 }
