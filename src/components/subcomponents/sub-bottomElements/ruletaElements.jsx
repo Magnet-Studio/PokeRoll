@@ -39,25 +39,37 @@ export function TirarButton({ cost, coinsReference, TierRuleta, setUserData, tir
         }
     }, [UserData.currency, cost]);
 
+    const handleKeyDownTirar = (event) =>
+    {
+        if(event.key === 'Enter')
+        {
+            tirarHandler(event);
+        }
+    }
+
     return (
-        <button
+        <div
             id='tirarButton'
             onClick={tirarHandler}
             className={`${tirarButtonDisable} ${redTirarButton}`}
             disabled={tirarButtonDisable === "disabled"}
             aria-disabled={tirarButtonDisable === "disabled"}
             aria-label={`Tirar por ${cost} monedas` + (redTirarButton==="notEnoughMoney" ? ", No tienes monedas suficientes." : "")}
+            tabIndex="0"
+            role="button"
+            onKeyDown={handleKeyDownTirar}
         >
             <p>TIRAR</p>
             <div>
                 <p>{cost}</p>
                 <img src={CoinImage} alt="Monedas" />
             </div>
-        </button>
+        </div>
     );
 }
 
-export function ChangeTierButtons({ TierRuleta, setTierRuleta, changeTierButtonDisable }) {
+export function ChangeTierButtons({ TierRuleta, setTierRuleta, changeTierButtonDisable }) 
+{
     const prevTier = () => {
         setTierRuleta(prevTierRuleta => {
             if (prevTierRuleta <= 1) {
@@ -76,6 +88,22 @@ export function ChangeTierButtons({ TierRuleta, setTierRuleta, changeTierButtonD
         });
     };
 
+    const handleKeyDownPrev = (event) =>
+    {
+        if(event.key === 'Enter')
+        {
+            prevTier();
+        }
+    }
+
+    const handleKeyDownNext = (event) =>
+    {
+        if(event.key === 'Enter')
+        {
+            nextTier();
+        }
+    }
+
     return (
         <>
             <div id="changeTierButtons" role="group" >
@@ -87,29 +115,34 @@ export function ChangeTierButtons({ TierRuleta, setTierRuleta, changeTierButtonD
                     changeTierHandler={prevTier}
                     changeTierButtonDisable={changeTierButtonDisable}
                     ariaLabel="Cambiar al Tier anterior"
+                    onKeyDownHandler={handleKeyDownPrev}
                 />
                 <TierButton
                     TierDir="nextTierButton"
                     changeTierHandler={nextTier}
                     changeTierButtonDisable={changeTierButtonDisable}
                     ariaLabel="Cambiar al siguiente Tier"
+                    onKeyDownHandler={handleKeyDownNext}
                 />
             </div>
         </>
     );
 }
 
-function TierButton({ TierDir, changeTierHandler, changeTierButtonDisable, ariaLabel }) {
+function TierButton({ TierDir, changeTierHandler, changeTierButtonDisable, ariaLabel, onKeyDownHandler }) {
     return (
-        <button
+        <div
             id={TierDir}
             onClick={changeTierHandler}
-            className={changeTierButtonDisable}
+            className={changeTierButtonDisable + " changeTierButton"}
             disabled={changeTierButtonDisable === "disabled"}
             aria-disabled={changeTierButtonDisable === "disabled"}
             aria-label={ariaLabel}
+            tabIndex="0"
+            role="button"
+            onKeyDown={onKeyDownHandler}
         >
             <ArrowRightIcon />
-        </button>
+        </div>
     );
 }

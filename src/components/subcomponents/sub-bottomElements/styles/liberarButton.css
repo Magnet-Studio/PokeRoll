@@ -143,34 +143,33 @@
 }
 
 /* Accciones cuando la anchura es menor a la altura */
-@media (max-aspect-ratio: 1/1) and (min-height: 720px)
+@media (max-aspect-ratio: 1/1)
 {
     #liberarButtonContainer
     {
-        margin-left: 1.5vw;
-        margin-right: 0;
+        margin: 1vh 0 2vh 0;
+        right: initial;
+        top: -80%;
     }
 
     .liberarButton 
     {
         min-width: 40px;
         min-height: 40px;
-        margin: 0 1.5vw;
+        margin: 0;
     }
 
     .liberarButtonTitle 
     {
         font-size: calc(0.4vw + 6px);
         opacity: 1;
-        top: 85%;
+        top: 90%;
     }
 
     .liberarButton:hover
     {
         transform: translateY(0);
     }
-    
-    
     
     .liberarButton:hover .liberarButtonTitle
     {

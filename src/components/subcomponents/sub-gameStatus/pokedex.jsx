@@ -76,7 +76,7 @@ function NavGenArrow(props)
 
     return (
         <div className={'nextGenArrow ' + (props.reversed ? 'reversed ' : '') + (disabled ? 'disabled' : '')}>
-            <Link tabindex="3" onClick={handler} aria-label={!props.reversed ? "Avanzar a la siguiente generación:" + (props.generationNum === 9 ? "No disponible" : ordinalNum[(props.generationNum + 1)]) + " generación:" : "Regresar a la anterior generación:" + (props.generationNum === 1 ? "No disponible" : ordinalNum[(props.generationNum - 1)]) + " generación:"}>
+            <Link tabIndex="3" onClick={handler} aria-label={!props.reversed ? "Avanzar a la siguiente generación:" + (props.generationNum === 9 ? "No disponible" : ordinalNum[(props.generationNum + 1)]) + " generación:" : "Regresar a la anterior generación:" + (props.generationNum === 1 ? "No disponible" : ordinalNum[(props.generationNum - 1)]) + " generación:"}>
                 <ArrowRightIcon />
             </Link>
         </div>
@@ -104,8 +104,8 @@ function CompleteEntryList(props)
 
     return (
         <>
-            <p className="yourRegisters" tabindex="1"><label>Registrados: {registeredMons} / 1025 ({percentage}%)</label></p>
-            <p className="generationTitle inlineContainer"  tabindex="2" >
+            <p className="yourRegisters" tabIndex="1"><label>Registrados: {registeredMons} / 1025 ({percentage}%)</label></p>
+            <p className="generationTitle inlineContainer"  tabIndex="2" >
                 <text aria-description={"Pokémon desde el número " + generationDexNums[props.generationNum][0] + " hasta el número " + generationDexNums[props.generationNum][1] + ":"}>{ordinalNum[props.generationNum] + " Generación"}</text> 
                 <MouseOverPopover content={<InfoOutlinedIcon className="infoGenerationIcon"/>} 
                                 shown={
@@ -157,20 +157,20 @@ function PokemonEntry(props)
         let secondTypeContainer = (<></>); 
         if(secondType !== null)
         {
-            secondTypeContainer = (<div className="pokemonType" tabindex="-1" aria-hidden="true">{GetPrettyTypeNameSpanish(secondType)}</div>);
+            secondTypeContainer = (<div className="pokemonType" tabIndex="-1" aria-hidden="true">{GetPrettyTypeNameSpanish(secondType)}</div>);
         }  
         knownCond = props.known + " " + firstType;
         
         pokemon = (
-            <div aria-label={"Número " + props.num + ":" +name} tabindex="4">
+            <div aria-label={"Número " + props.num + ":" +name} tabIndex="4">
                 {GetImage(pokemonData, false)}    
 
-                <div className='types' tabindex="-1" aria-hidden="true">
+                <div className='types' tabIndex="-1" aria-hidden="true">
                     <div className="pokemonType">{GetPrettyTypeNameSpanish(firstType)}</div>
                     {secondTypeContainer}
                 </div>
 
-                <p className='pokemonName' tabindex="-1" aria-hidden="true">{(name === undefined ? "Cargando..." : name)}</p>
+                <p className='pokemonName' tabIndex="-1" aria-hidden="true">{(name === undefined ? "Cargando..." : name)}</p>
             </div>
         );
     }
@@ -179,8 +179,8 @@ function PokemonEntry(props)
         // Caso de pokémon desconocido
         rarityNum = GetFrequencyByDexNum(props.num);    
 
-        pokemon = <div className='unknownMessageContainer' aria-label={"Número " + props.num + `:No se ha descubierto todavía. Este Pokémon es de la rareza ${nombresRarezas[rarityNum-1]}`} tabindex="4">
-                    <MouseOverPopover content={<p className="unknownMessage" tabindex="-1" aria-hidden="true">???</p>} 
+        pokemon = <div className='unknownMessageContainer' aria-label={"Número " + props.num + `:No se ha descubierto todavía. Este Pokémon es de la rareza ${nombresRarezas[rarityNum-1]}`} tabIndex="4">
+                    <MouseOverPopover content={<p className="unknownMessage" tabIndex="-1" aria-hidden="true">???</p>} 
                         shown={
                             <span > 
                                 Este Pokémon aún no ha sido descubierto.
@@ -198,7 +198,7 @@ function PokemonEntry(props)
 
     return (
         <div className={"entryBox " + knownCond + " rarity" + (rarityNum)} key={"pokemon-" + props.num}>
-            <p className="dexNumber" aria-hidden="true" tabindex="-1">Nº {props.num}</p>
+            <p className="dexNumber" aria-hidden="true" tabIndex="-1">Nº {props.num}</p>
             {content}
         </div>
     );
