@@ -567,6 +567,10 @@ function PokemonCard({UserData, isAlreadySelected, selectedBorrado, setSelectedB
         eventDesc="De evento";
     }
 
+    let tipos = "Del tipo " + GetPrettyTypeNameSpanish(firstType);
+    if (secondType !== null) {
+        tipos = tipos + " y " + GetPrettyTypeNameSpanish(secondType);
+    }
     
 
     // Si los datos aún se están cargando, muestra CircularProgress dentro de la tarjeta
@@ -589,7 +593,7 @@ function PokemonCard({UserData, isAlreadySelected, selectedBorrado, setSelectedB
                     </div>
                 </Link>
             ) : (
-                <Link tabIndex="4" to={"ver-pokemon?id=" + data.id} aria-label={"Número " +dexNum + ": " + data.nametag + ":" + shinyDesc + ":" + megaDesc + ":" + rareDesc+ ":" + eventDesc}>
+                <Link tabIndex="4" to={"ver-pokemon?id=" + data.id} aria-label={"Número " +dexNum + ": " + tipos + " : " + data.nametag + ": " + shinyDesc + ": " + megaDesc + ": " + rareDesc+ ": " + eventDesc}>
                     <div className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny + " " + event} key={data.id}>
                         <p className="dexNumber" >Nº {dexNum}</p>
                         {content}

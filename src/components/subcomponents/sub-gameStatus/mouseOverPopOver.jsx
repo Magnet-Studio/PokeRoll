@@ -32,7 +32,6 @@ export function MouseOverPopover({ content, shown }) {
         <Typography
           className="Typography-hoverContent"
           aria-owns={open ? 'mouse-over-popover' : undefined}
-          aria-haspopup="true"
           onMouseEnter={handlePopoverOpen}
           onMouseLeave={handlePopoverClose}
         >

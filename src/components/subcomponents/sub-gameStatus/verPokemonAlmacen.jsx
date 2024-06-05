@@ -138,7 +138,7 @@ function VerPokemonAlmacen({UserData, setUserData})
                     {rareCond}
                     {eventCond}
                 </div>
-                <div id="tiposPokemon" aria-description={(pokemon.shiny === "shiny" ? " Variocolor:" : "") + (pokemon.megaevolution === true ? " Megaevolución:" : "") + (pokemon.rarespecies === true ? " Especie rara:" : "") + (pokemon.event === true ? " De evento:" : "")}>
+                <div id="tiposPokemon" aria-description={":" + (pokemon.shiny === "shiny" ? " Variocolor:" : "") + (pokemon.megaevolution === true ? " Megaevolución:" : "") + (pokemon.rarespecies === true ? " Especie rara:" : "") + (pokemon.event === true ? " De evento:" : "")}>
                   {firstTypeContainer}
                   {secondTypeContainer}
                 </div>
