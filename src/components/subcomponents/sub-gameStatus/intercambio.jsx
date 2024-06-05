@@ -11,11 +11,13 @@ export default function Intercambio({ UserData }) {
   const noIntercambioMessage =
     almacenPokemonLength === 1 ? (
       <div
-        className="mensajeNoIntercambioPokemon"
+        className="mensajeNoIntercambioPokemonContainer"
         tabIndex="0"
         aria-label="No tienes pokemon para intercambiar"
       >
-        <p>No tienes pokemon para intercambiar</p>
+        <p className="mensajeNoIntercambioPokemon">
+          No tienes pokemon para intercambiar
+        </p>
       </div>
     ) : (
       <></>

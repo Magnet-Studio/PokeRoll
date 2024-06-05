@@ -34,8 +34,6 @@
 }
 
 .intercambioBoton {
-  width: 3wh;
-  height: 1.5wh;
   padding: 10px 20px;
   border: 0.3vw solid #89ff8e;
   background-color: #006400;
@@ -46,8 +44,6 @@
 }
 
 .intercambioBoton:hover {
-  width: 3wh;
-  height: 1.5wh;
   padding: 10px 20px;
   border: 0.3vw solid #333;
   background-color: darkgreen;
@@ -57,8 +53,6 @@
 }
 
 .intercambioBotonConCodigo.enabled {
-  width: 0.5wh;
-  height: 1.5wh;
   padding: 10px 20px;
   border: 0.3vw solid #89ff8e;
   background-color: #006400;
@@ -70,8 +64,6 @@
 }
 
 .intercambioBotonConCodigo.disabled {
-  width: 0.5wh;
-  height: 1.5wh;
   padding: 10px 20px;
   border: 0.3vw solid #89ff8e;
   background-color: #006400;
@@ -84,8 +76,6 @@
 }
 
 .intercambioBotonSinCodigo.enabled {
-  width: 0.5wh;
-  height: 1.5wh;
   padding: 10px 20px;
   border: 0.3vw solid #ba9712;
   background-color: #fecb02;
@@ -97,8 +87,6 @@
 }
 
 .intercambioBotonSinCodigo.disabled {
-  width: 0.5wh;
-  height: 1.5wh;
   padding: 10px 20px;
   border: 0.3vw solid #ba9712;
   background-color: #fecb02;
@@ -110,15 +98,18 @@
   opacity: 0.5;
 }
 
-.mensajeNoIntercambioPokemon {
+.mensajeNoIntercambioPokemonContainer {
   position: absolute;
   top: 5vh;
   margin-top: 5vh;
   justify-content: center;
   align-items: center;
-  left: 25vw;
+  left: 31rem;
   grid-column: 2;
-  font-size: 1.5dvb;
+}
+
+.mensajeNoIntercambioPokemon {
+  font-size: large;
 }
 
 .botonesIntercambio {
@@ -441,4 +432,52 @@
 
 #modalSeleccionIntercambio {
   pointer-events: all;
+}
+
+@media screen and (max-width: 720px) {
+  .intercambioBotonSinCodigo.enabled {
+    width: 50%;
+    font-size: smaller;
+  }
+  .intercambioBotonConCodigo.enabled {
+    width: 50%;
+    font-size: small;
+  }
+  .intercambioBotonSinCodigo.disabled {
+    width: 50%;
+    font-size: smaller;
+  }
+  .intercambioBotonConCodigo.disabled {
+    width: 50%;
+    font-size: small;
+  }
+  .mensajeNoIntercambioPokemonContainer {
+    top: 1.5vh;
+    left: 1rem;
+  }
+  .mensajeNoIntercambioPokemon {
+    font-size: medium;
+  }
+  .intercambioTextoInicio {
+    font-size: small;
+  }
+  #intercambioCodeDisplayed {
+    font-size: large;
+  }
+  .backButtonIntercambio {
+    width: 10vw;
+  }
+  #buttonCopyClipboard > svg {
+    font-size: x-large;
+  }
+  #codeAndButtonContainer {
+    margin-top: 10%;
+  }
+  .intercambioBoton {
+    width: 50%;
+    height: 50%;
+  }
+  #textoBotonIntercambio {
+    font-size: small;
+  }
 }

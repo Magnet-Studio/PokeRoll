@@ -212,7 +212,7 @@ function BotonIntercambio({ text, click }) {
       aria-label="Iniciar Intercambio"
       className="intercambioBoton"
     >
-      <h2>{text}</h2>
+      <h2 id="textoBotonIntercambio">{text}</h2>
     </button>
   );
 }
