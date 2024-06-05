@@ -85,7 +85,7 @@ function GameState({
 
       <Route path="/intercambio/tipo" element={<TipoIntercambioGameState />} />
 
-      <Route path="/intercambio" element={<IntercambioGameState />} />
+      <Route path="/intercambio" element={<IntercambioGameState UserData={UserData}/>} />
 
       <Route
         path="/intercambio/conexion"
@@ -143,8 +143,8 @@ function TipoIntercambioGameState() {
   return <TipoIntercambio />;
 }
 
-function IntercambioGameState() {
-  return <Intercambio />;
+function IntercambioGameState({ UserData }) {
+  return <Intercambio UserData={UserData} />;
 }
 
 function ConexionIntercambioGameState() {
