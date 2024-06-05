@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import { GetRarezaPoints } from "./lib/pokemonRarity";
 import { GetSpeciesDataByName, GetSpanishName } from "./lib/PokemonSpeciesData";
-import { CircularProgress, Modal } from "@mui/material";
+import { CircularProgress } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 import {
   GetDataByName,
   GetPrettyTypeNameSpanish,
@@ -11,7 +12,12 @@ import {
   GetVariantImage,
 } from "./lib/PokemonData";
 import { Box } from "@mui/material";
-import { all } from "axios";
+import { Link } from "react-router-dom";
+import Button from "@mui/material/Button";
+import Modal from "@mui/material/Modal";
+import CheckIcon from "@mui/icons-material/Check";
+import { GetPokemonByID } from "./lib/pokemonList";
+import "./styles/intercambio.css";
 
 export default function ModalSelectPokemon({
   selectPokemon,
@@ -21,6 +27,8 @@ export default function ModalSelectPokemon({
   const [selectedFrequency, setSelectedFrequency] = useState("0");
   const [selectedType, setSelectedType] = useState("0");
   const [Name, setName] = useState("");
+  const [selectedIntercambio, setSelectedIntercambio] = useState([]);
+  const [isSelected, setIsSelected] = useState(false);
 
   useEffect(() => {
     setSelectedValue(sessionStorage.getItem("selectedValue") || "0");
@@ -28,8 +36,6 @@ export default function ModalSelectPokemon({
     setSelectedType(sessionStorage.getItem("selectedType") || "0");
     setName(sessionStorage.getItem("Name") || "");
   }, []);
-
-  
 
   useEffect(() => {
     if (selectPokemon) {
@@ -41,6 +47,10 @@ export default function ModalSelectPokemon({
 
   const handleClose = (event) => {
     event.stopPropagation();
+    setSelectPokemon(false);
+  };
+
+  const handleConfirm = (event) => {
     setSelectPokemon(false);
   };
 
@@ -60,6 +70,7 @@ export default function ModalSelectPokemon({
     boxShadow: 24,
     p: 4,
     borderRadius: "2vw",
+    pointerEvents: "all",
   };
 
   return (
@@ -69,11 +80,16 @@ export default function ModalSelectPokemon({
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
-        id="selectButtonContainer"
+        id="modalSeleccionIntercambio"
       >
         <Box sx={style}>
           <div id="almacenBigBox">
-            <div id="filtros" style={{ pointerEvents: all }}>
+            <div id="filtros">
+              <div className="cerrarModalContainer">
+                <button tabIndex="1" onClick={handleClose}>
+                  <CloseIcon />
+                </button>
+              </div>
               <FiltrosAlmacen
                 selectedValue={selectedValue}
                 setSelectedValue={setSelectedValue}
@@ -86,13 +102,32 @@ export default function ModalSelectPokemon({
               />
             </div>
 
-            <div id="pokemon-cards-container" style={{ pointerEvents: all }}>
+            <div id="pokemon-cards-container">
               <CompletePokemonList
+                selectedIntercambio={selectedIntercambio}
+                setSelectedIntercambio={setSelectedIntercambio}
+                isSelected={isSelected}
+                setIsSelected={setIsSelected}
                 selectedValue={selectedValue}
                 selectedFrequency={selectedFrequency}
                 selectedType={selectedType}
                 Name={Name}
               />
+            </div>
+            <div className="borradoMultipleContainer">
+              <Button
+                tabindex="1"
+                aria-label="Confirmar selección para intercambiar"
+                id="borradoMultipleConfirm"
+                onClick={selectedIntercambio.length > 0 ? handleConfirm : null}
+                className={
+                  selectedIntercambio.length > 0
+                    ? ""
+                    : "borradoMultipleConfirmDisabled"
+                }
+              >
+                <CheckIcon style={{ fontSize: "40px" }} />
+              </Button>
             </div>
           </div>
         </Box>
@@ -227,6 +262,10 @@ const sumIVs = (ivs) => {
 };
 
 function CompletePokemonList({
+  selectedIntercambio,
+  setSelectedIntercambio,
+  isSelected,
+  setIsSelected,
   selectedValue,
   selectedFrequency,
   selectedType,
@@ -435,35 +474,62 @@ function CompletePokemonList({
   );
 
   const list = sortedList.map((datos) => {
-    return <PokemonCard data={datos} key={`${datos.id}`} />;
+    const isAlreadySelected = selectedIntercambio.some(
+      (pokemon) => pokemon.id === datos.id
+    );
+    return (
+      <PokemonCard
+        isAlreadySelected={isAlreadySelected}
+        selectedIntercambio={selectedIntercambio}
+        setSelectedIntercambio={setSelectedIntercambio}
+        isSelected={isSelected}
+        setIsSelected={setIsSelected}
+        data={datos}
+        key={`${datos.id}-${isAlreadySelected}`}
+      />
+    );
   });
-  return <>{list}</>;
+  return (
+    <>
+      {list.length === 0 ? (
+        <p id="noPokemonMessage" tabIndex="4">
+          No se encuentran Pokémon...
+        </p>
+      ) : (
+        list
+      )}
+    </>
+  );
 }
 
-function PokemonCard({ data }) {
+function PokemonCard({
+  isAlreadySelected,
+  selectedIntercambio,
+  setSelectedIntercambio,
+  isSelected,
+  setIsSelected,
+  data,
+}) {
   /* Esto habria que hacerlo con un array de pokemon? */
   const [pokemonData, setPokemonData] = useState(null);
   const [pokemonSpeciesData, setPokemonSpeciesData] = useState(null);
 
-  //const [isSelectedBorrado, setIsSelectedBorrado] = useState(false);
+  const handleSelectedIntercambio = () => {
+    const pokemon = GetPokemonByID(
+      data.id,
+      JSON.parse(localStorage.getItem("pokemonList"))
+    );
 
-  // useEffect(() => {
-  //   setIsSelectedBorrado(isAlreadySelected);
-  // }, [isAlreadySelected]);
-
-  // const handleSelectedBorrado = () => {
-  //   const pokemon = GetPokemonByID(data.id, UserData.pokemonList);
-
-  //   if (isAlreadySelected) {
-  //     setSelectedBorrado(
-  //       selectedBorrado.filter((pokemon) => pokemon.id !== data.id)
-  //     );
-  //     setIsSelectedBorrado(false);
-  //   } else {
-  //     setSelectedBorrado([...selectedBorrado, pokemon]);
-  //     setIsSelectedBorrado(true);
-  //   }
-  // };
+    if (isAlreadySelected) {
+      setSelectedIntercambio(
+        selectedIntercambio.filter((pokemon) => pokemon.id !== data.id)
+      );
+      setIsSelected(false);
+    } else {
+      setSelectedIntercambio(pokemon);
+      setIsSelected(true);
+    }
+  };
 
   useEffect(() => {
     const fetchDataAndUpdateState = async () => {
@@ -506,17 +572,38 @@ function PokemonCard({ data }) {
   );
 
   let megaData = "";
+  let megaDesc = "";
   if (data?.megaevolution !== undefined) {
     if (data.megaevolution === true) {
       megaData = "mega";
+      megaDesc = "Megaevolución";
     }
   }
 
   let rareData = "";
+  let rareDesc = "";
   if (data?.rarespecies !== undefined) {
     if (data.rarespecies === true) {
       rareData = "rare";
+      rareDesc = "Especie rara";
     }
+  }
+
+  let event = "";
+  if (data?.event !== undefined) {
+    if (data.event === true) {
+      event = "event";
+    }
+  }
+
+  let shinyDesc = "";
+  if (data.shiny === "shiny") {
+    shinyDesc = "Variocolor";
+  }
+
+  let eventDesc = "";
+  if (data.event === true) {
+    eventDesc = "De evento";
   }
 
   // Si los datos aún se están cargando, muestra CircularProgress dentro de la tarjeta
@@ -530,43 +617,47 @@ function PokemonCard({ data }) {
     );
 
   return (
-    // borradoMultiple ? (
-    //   <Link onClick={handleSelectedBorrado}>
-    //     <div
-    //       className={
-    //         "entryBox " +
-    //         firstType +
-    //         " " +
-    //         megaData +
-    //         " " +
-    //         rareData +
-    //         " " +
-    //         data.shiny +
-    //         (isSelectedBorrado ? " liberado" : " notLiberado")
-    //       }
-    //       key={`${data.id}-${isAlreadySelected}`}
-    //       onClick={handleSelectedBorrado}
-    //     >
-    //       <p className="dexNumber">Nº {dexNum}</p>
-    //       {content}
-    //     </div>
-    //   </Link>
-    //
-    <div
-      className={
-        "entryBox " +
-        firstType +
-        " " +
-        megaData +
-        " " +
-        rareData +
-        " " +
-        data.shiny
+    <Link
+      tabindex="4"
+      onClick={handleSelectedIntercambio}
+      aria-label={
+        (isSelected
+          ? "Seleccionado para liberar "
+          : " No seleccionado para liberar ") +
+        ":Número " +
+        dexNum +
+        ": " +
+        data.nametag +
+        ":" +
+        shinyDesc +
+        ":" +
+        megaDesc +
+        ":" +
+        rareDesc +
+        ":" +
+        eventDesc
       }
-      key={data.id}
     >
-      <p className="dexNumber">Nº {dexNum}</p>
-      {content}
-    </div>
+      <div
+        className={
+          "entryBox " +
+          firstType +
+          " " +
+          megaData +
+          " " +
+          rareData +
+          " " +
+          data.shiny +
+          " " +
+          event +
+          (isSelected ? " seleccionado" : "")
+        }
+        key={`${data.id}-${isAlreadySelected}`}
+        onClick={handleSelectedIntercambio}
+      >
+        <p className="dexNumber">Nº {dexNum}</p>
+        {content}
+      </div>
+    </Link>
   );
 }

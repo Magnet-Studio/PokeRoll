@@ -1,297 +1,285 @@
-.normal 
-{
-    background-color: #676869;
+.normal {
+  background-color: #676869;
 }
 
-.fire 
-{
-    background-color: rgb(155,60,50);
+.fire {
+  background-color: rgb(155, 60, 50);
 }
 
-.water
-{
-    background-color: rgb(62,116,217);
+.water {
+  background-color: rgb(62, 116, 217);
 }
 
-.grass
-{
-    background-color: rgb(46,163,68);
+.grass {
+  background-color: rgb(46, 163, 68);
 }
 
-.bug
-{
-    background-color: #0B8038;
+.bug {
+  background-color: #0b8038;
 }
 
-.poison 
-{
-    background-color: rgb(111,62,187);
+.poison {
+  background-color: rgb(111, 62, 187);
 }
 
-.electric 
-{
-    background-color: #846E00;
+.electric {
+  background-color: #846e00;
 }
 
-.ground 
-{
-    background-color: rgb(144,123,76)
+.ground {
+  background-color: rgb(144, 123, 76);
 }
 
-.rock 
-{
-    background-color: rgb(115,97,64);
+.rock {
+  background-color: rgb(115, 97, 64);
 }
 
-.fairy 
-{
-    background-color: #876A96;
+.fairy {
+  background-color: #876a96;
 }
 
-.fighting 
-{
-    background-color: rgb(155,73,50);
+.fighting {
+  background-color: rgb(155, 73, 50);
 }
 
-.psychic 
-{
-    background-color: #B12EA6;
+.psychic {
+  background-color: #b12ea6;
 }
 
-.ghost 
-{
-    background-color: rgb(65,26,98);
+.ghost {
+  background-color: rgb(65, 26, 98);
 }
 
-.ice 
-{
-    background-color: rgb(150,207,223);
+.ice {
+  background-color: rgb(150, 207, 223);
 }
 
-.dragon 
-{
-    background-color: rgb(17,22,91);
+.dragon {
+  background-color: rgb(17, 22, 91);
 }
 
-.steel 
-{
-    background-color: #646285;
+.steel {
+  background-color: #646285;
 }
 
-.dark 
-{
-    background-color: rgb(44,48,60);
+.dark {
+  background-color: rgb(44, 48, 60);
 }
 
-.flying 
-{
-    background-color: #1970C7;
+.flying {
+  background-color: #1970c7;
 }
-
-.entryBox 
-{
-    border: 0.3vw solid rgba(255, 255, 255, 0.2);
-}
-
 
 .entryBox {
-    border-width: 0.3vw;
-    border-style: solid;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
+  border: 0.3vw solid rgba(255, 255, 255, 0.2);
+}
+
+.entryBox {
+  border-width: 0.3vw;
+  border-style: solid;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
 .entryBox.rare {
-    border-color: rgb(170, 164, 255);
-    animation-name: shineRare;
-    animation-duration: 5s; /* Aumenta la duración para hacerla más lenta */
+  border-color: rgb(170, 164, 255);
+  animation-name: shineRare;
+  animation-duration: 5s; /* Aumenta la duración para hacerla más lenta */
 }
 
 .entryBox.mega {
-    border-color: rgb(255, 111, 159);
-    animation-name: shineMega;
-    animation-duration: 5s; /* Aumenta la duración para hacerla más lenta */
+  border-color: rgb(255, 111, 159);
+  animation-name: shineMega;
+  animation-duration: 5s; /* Aumenta la duración para hacerla más lenta */
 }
 
 .entryBox.shiny {
-    border-color: rgb(251, 255, 0);
-    animation-name: shineShiny;
-    animation-duration: 5s; /* Aumenta la duración para hacerla más lenta */
+  border-color: rgb(251, 255, 0);
+  animation-name: shineShiny;
+  animation-duration: 5s; /* Aumenta la duración para hacerla más lenta */
 }
 
 .entryBox.shiny.mega {
-    animation-name: shineShinyMega;
-    animation-duration: 10s; /* Aumenta la duración para hacerla más lenta */
+  animation-name: shineShinyMega;
+  animation-duration: 10s; /* Aumenta la duración para hacerla más lenta */
 }
 
 .entryBox.shiny.rare {
-    animation-name: shineShinyRare;
-    animation-duration: 10s; /* Aumenta la duración para hacerla más lenta */
+  animation-name: shineShinyRare;
+  animation-duration: 10s; /* Aumenta la duración para hacerla más lenta */
 }
 
 .entryBox.event {
-    animation-name: shineEvent;
-    animation-duration: 5s; /* Aumenta la duración para hacerla más lenta */
+  animation-name: shineEvent;
+  animation-duration: 5s; /* Aumenta la duración para hacerla más lenta */
 }
 
 .entryBox.shiny.mega.event {
-    animation-name: shineEvent;
-    animation-duration: 5s; /* Aumenta la duración para hacerla más lenta */
+  animation-name: shineEvent;
+  animation-duration: 5s; /* Aumenta la duración para hacerla más lenta */
 }
 
-.notLiberado
-{
-    opacity: 0.5;
-    pointer-events: all;
+.notLiberado {
+  opacity: 0.5;
+  pointer-events: all;
 }
 
-.entryBox.liberado
-{
-    opacity: 1;
-    pointer-events: all;
-    animation: shake 0.5s;
-    animation-iteration-count: infinite;
+.entryBox.liberado {
+  opacity: 1;
+  pointer-events: all;
+  animation: shake 0.5s;
+  animation-iteration-count: infinite;
 }
 
-.entryBox.liberado.shiny
-{
-    opacity: 1;
-    pointer-events: all;
-    animation: shake 0.5s infinite, shineShiny 10s infinite;
-    animation-iteration-count: infinite;
+.entryBox.liberado.shiny {
+  opacity: 1;
+  pointer-events: all;
+  animation: shake 0.5s infinite, shineShiny 10s infinite;
+  animation-iteration-count: infinite;
 }
 
-.entryBox.liberado.rare
-{
-    opacity: 1;
-    pointer-events: all;
-    animation: shake 0.5s infinite, shineRare 10s infinite;
-    animation-iteration-count: infinite;
+.entryBox.liberado.rare {
+  opacity: 1;
+  pointer-events: all;
+  animation: shake 0.5s infinite, shineRare 10s infinite;
+  animation-iteration-count: infinite;
 }
 
-.entryBox.liberado.mega
-{
-    opacity: 1;
-    pointer-events: all;
-    animation: shake 0.5s infinite, shineMega 10s infinite;
+.entryBox.liberado.mega {
+  opacity: 1;
+  pointer-events: all;
+  animation: shake 0.5s infinite, shineMega 10s infinite;
 }
 
-.entryBox.liberado.mega.shiny
-{
-    opacity: 1;
-    pointer-events: all;
-    animation: shake 0.5s infinite, shineShinyMega 10s infinite;
+.entryBox.liberado.mega.shiny {
+  opacity: 1;
+  pointer-events: all;
+  animation: shake 0.5s infinite, shineShinyMega 10s infinite;
 }
 
-
-
-.entryBox.liberado.rare.shiny
-{
-    opacity: 1;
-    pointer-events: all;
-    animation: shake 0.5s infinite, shineRareShiny 10s infinite;
+.entryBox.liberado.rare.shiny {
+  opacity: 1;
+  pointer-events: all;
+  animation: shake 0.5s infinite, shineRareShiny 10s infinite;
 }
 
-.entryBox.liberado.event
-{
-    opacity: 1;
-    pointer-events: all;
-    animation: shake 0.5s infinite, shineEvent 5s infinite;
+.entryBox.liberado.event {
+  opacity: 1;
+  pointer-events: all;
+  animation: shake 0.5s infinite, shineEvent 5s infinite;
+}
+
+.entryBox.seleccionado {
+  opacity: 1;
+  pointer-events: all;
+  animation: shake 0.5s infinite, shineEvent 5s infinite;
+  background-color: #00df09;
 }
 
 #tiposPokemon > .pokemonType {
-    box-shadow: 0 0 5px rgb(40, 40, 40);
+  box-shadow: 0 0 5px rgb(40, 40, 40);
 }
 
-
-
-
 @keyframes shake {
-    0%, 100% { transform: rotate(1deg); }
-    10%, 30%, 50%, 70%, 90% { transform: rotate(-1deg); }
-    20%, 40%, 60%, 80% { transform: rotate(1deg); }
+  0%,
+  100% {
+    transform: rotate(1deg);
   }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: rotate(-1deg);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: rotate(1deg);
+  }
+}
 
 @keyframes shineRare {
-    0% {
-        border-color: rgb(170, 164, 255);
-    }
-    50% {
-        border-color: rgb(241, 240, 255); /* Color más claro para mayor contraste */
-    }
-    100% {
-        border-color: rgb(170, 164, 255);
-    }
+  0% {
+    border-color: rgb(170, 164, 255);
+  }
+  50% {
+    border-color: rgb(241, 240, 255); /* Color más claro para mayor contraste */
+  }
+  100% {
+    border-color: rgb(170, 164, 255);
+  }
 }
 
 @keyframes shineMega {
-    0% {
-        border-color: rgb(255, 111, 159);
-    }
-    50% {
-        border-color: rgb(255, 230, 242); /* Color más claro para mayor contraste */
-    }
-    100% {
-        border-color: rgb(255, 111, 159);
-    }
+  0% {
+    border-color: rgb(255, 111, 159);
+  }
+  50% {
+    border-color: rgb(255, 230, 242); /* Color más claro para mayor contraste */
+  }
+  100% {
+    border-color: rgb(255, 111, 159);
+  }
 }
 
 @keyframes shineShiny {
-    0% {
-        border-color: rgb(251, 255, 0);
-    }
-    50% {
-        border-color: rgb(255, 255, 237); /* Color más claro para mayor contraste */
-    }
-    100% {
-        border-color: rgb(251, 255, 0);
-    }
+  0% {
+    border-color: rgb(251, 255, 0);
+  }
+  50% {
+    border-color: rgb(255, 255, 237); /* Color más claro para mayor contraste */
+  }
+  100% {
+    border-color: rgb(251, 255, 0);
+  }
 }
 
 @keyframes shineEvent {
-    0% {
-        border-color: rgb(134, 0, 31);
-    }
-    50% {
-        border-color: rgb(255, 176, 176); /* Color más claro para mayor contraste */
-    }
-    100% {
-        border-color: rgb(134, 0, 31);
-    }
+  0% {
+    border-color: rgb(134, 0, 31);
+  }
+  50% {
+    border-color: rgb(255, 176, 176); /* Color más claro para mayor contraste */
+  }
+  100% {
+    border-color: rgb(134, 0, 31);
+  }
 }
 
 @keyframes shineShinyRare {
-    0% {
-        border-color: rgb(251, 255, 0);
-    }
-    25% {
-        border-color: rgb(255, 255, 237); /* Color más claro para mayor contraste */
-    }
-    50% {
-        border-color: rgb(170, 164, 255); /* Color más claro para mayor contraste */
-    }
-    75% {
-        border-color: rgb(241, 240, 255); /* Color más claro para mayor contraste */
-    }
-    100% {
-        border-color: rgb(251, 255, 0);
-    }
+  0% {
+    border-color: rgb(251, 255, 0);
+  }
+  25% {
+    border-color: rgb(255, 255, 237); /* Color más claro para mayor contraste */
+  }
+  50% {
+    border-color: rgb(170, 164, 255); /* Color más claro para mayor contraste */
+  }
+  75% {
+    border-color: rgb(241, 240, 255); /* Color más claro para mayor contraste */
+  }
+  100% {
+    border-color: rgb(251, 255, 0);
+  }
 }
 
 @keyframes shineShinyMega {
-    0% {
-        border-color: rgb(251, 255, 0);
-    }
-    25% {
-        border-color: rgb(255, 255, 237); /* Color más claro para mayor contraste */
-    }
-    50% {
-        border-color: rgb(255, 111, 159); /* Color más claro para mayor contraste */
-    }
-    75% {
-        border-color: rgb(255, 230, 242); /* Color más claro para mayor contraste */
-    }
-    100% {
-        border-color: rgb(251, 255, 0);
-    }
+  0% {
+    border-color: rgb(251, 255, 0);
+  }
+  25% {
+    border-color: rgb(255, 255, 237); /* Color más claro para mayor contraste */
+  }
+  50% {
+    border-color: rgb(255, 111, 159); /* Color más claro para mayor contraste */
+  }
+  75% {
+    border-color: rgb(255, 230, 242); /* Color más claro para mayor contraste */
+  }
+  100% {
+    border-color: rgb(251, 255, 0);
+  }
 }
