@@ -19,7 +19,7 @@ function NavButton(props) {
     const [isHovered, setIsHovered] = useState(false);
 
     return (
-        <Link to={props.link} aria-label={props.ariaLabel || title}>
+        <Link to={props.link} aria-label={props.ariaLabel}>
             <div className={"navButton " + selected + ' ' + (isHovered ? 'mouseleave' : '')} 
                 onMouseEnter={() => setIsHovered(false)} 
                 onMouseLeave={() => setIsHovered(true)}>

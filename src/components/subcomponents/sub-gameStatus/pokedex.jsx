@@ -162,7 +162,7 @@ function PokemonEntry(props)
         knownCond = props.known + " " + firstType;
         
         pokemon = (
-            <div aria-label={"Número " + props.num + ":" +name} tabIndex="4">
+            <div aria-label={"Número " + props.num + ":" + name} tabIndex="4" role="contentinfo">
                 {GetImage(pokemonData, false)}    
 
                 <div className='types' tabIndex="-1" aria-hidden="true">
@@ -179,7 +179,7 @@ function PokemonEntry(props)
         // Caso de pokémon desconocido
         rarityNum = GetFrequencyByDexNum(props.num);    
 
-        pokemon = <div className='unknownMessageContainer' aria-label={"Número " + props.num + `:No se ha descubierto todavía. Este Pokémon es de la rareza ${nombresRarezas[rarityNum-1]}`} tabIndex="4">
+        pokemon = <div className='unknownMessageContainer' role="contentinfo" aria-label={"Número " + props.num + `:No se ha descubierto todavía. Este Pokémon es de la rareza ${nombresRarezas[rarityNum-1]}`} tabIndex="4">
                     <MouseOverPopover content={<p className="unknownMessage" tabIndex="-1" aria-hidden="true">???</p>} 
                         shown={
                             <span > 

@@ -110,6 +110,8 @@ function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, 
 }
 
 const TierCosts = [100, 500, 1500, 4000, 10000];
+const nombresRarezas = ['Común', 'Infrecuente', 'Peculiar', 'Épico', 'Legendario', 'Singular'];
+const coloresRareza = ['#424242', '#128700', '#0057AE', '#8725B8', '#897400', '#B60000'];
 
 function RuletaBox({number, setThreePokemon, pokemonImage, tirarButtonDisable, TierRuleta, pokemonData, UserData, setTirarButtonDisable, setChangeTierButtonDisable, setUserData, coinsReference}) {
   
@@ -130,8 +132,7 @@ function RuletaBox({number, setThreePokemon, pokemonImage, tirarButtonDisable, T
         setEnabled("");
     };
 
-    const nombresRarezas = ['Común', 'Infrecuente', 'Peculiar', 'Épico', 'Legendario', 'Singular'];
-    const coloresRareza = ['rgb(190, 190, 190)', 'rgb(145, 255, 184)', 'rgb(142, 198, 255)', 'rgb(216, 139, 255)', 'rgb(255, 223, 39)', 'rgb(255, 100, 100)'];
+    
     const HalfCost = (TierCosts[TierRuleta - 1]) / 2;
 
     let RegisterCheck = false;
@@ -292,9 +293,9 @@ function ModalConfirmar({ setThreePokemon, tirarButtonDisable, pokemonData, setO
                         <div>
                             <div className='inlineContainer' style={{ color: "black" }}>
                                 <p className='nombrePokemonReclamar' aria-label={pokemonData.speciesname}>{pokemonData.speciesname}</p>
-                                <text aria-label={pokemonData.shiny === "shiny" ? " Variocolor:" : ":"}></text>
-                                <text aria-label={pokemonData.megaevolution === true ? " Megaevolución:" : ":"}></text>
-                                <text aria-label={pokemonData.rarespecies === true ? " Especie rara:" : ":"}></text>
+                                <text aria-label={pokemonData.shiny === "shiny" ? " Variocolor:" : ":" } role="contentinfo"></text>
+                                <text aria-label={pokemonData.megaevolution === true ? " Megaevolución:" : ":"} role="contentinfo"></text>
+                                <text aria-label={pokemonData.rarespecies === true ? " Especie rara:" : ":"} role="contentinfo"></text>
                                 {shinyIndication}
                                 {megaIndication}
                                 {rareIndication}
@@ -303,13 +304,13 @@ function ModalConfirmar({ setThreePokemon, tirarButtonDisable, pokemonData, setO
                                 {firstTypeContainer}
                                 {secondTypeContainer}
                             </div>
-                            <p className="rareza" aria-description=':' style={{ color: 'black' }}>Rareza: <span className={"rareza" + frequency}>{(nombreRareza === undefined ? "Cargando..." : nombreRareza + " ")}</span></p>
+                            <p className="rareza" role="contentinfo" aria-description=':' style={{ color: 'black' }}>Rareza: <span style={{ color: coloresRareza[GetFrequencyByName(pokemonData.speciesname) - 1] }}>{(nombreRareza === undefined ? "Cargando..." : nombreRareza + " ")}</span></p>
                         </div>
                     </div>
                     {unregisterMessage}
                     <div className="containerModal moneyCount">
                         <img className="coin" src={CoinImage} alt="Moneda" aria-hidden="true" tabIndex="-1"/> {"+" + HalfCost}
-                        <text aria-label={" monedas de vuelta:"}></text>
+                        <text role="contentinfo" aria-label={" monedas de vuelta:"}></text>
                     </div>
 
                     <div className="containerModal">
@@ -317,7 +318,7 @@ function ModalConfirmar({ setThreePokemon, tirarButtonDisable, pokemonData, setO
                             className="cerrarButton"
                             onClick={HandleClose}
                             style={{
-                                backgroundColor: "#fb6c6c",
+                                backgroundColor: "#8A0000",
                                 color: "white",
                                 padding: "14px 20px",
                                 border: "0.2vw solid #9f4949",
@@ -336,7 +337,7 @@ function ModalConfirmar({ setThreePokemon, tirarButtonDisable, pokemonData, setO
                             className="confirmarButton"
                             onClick={HandleReclamar}
                             style={{
-                                backgroundColor: "#00DF09",
+                                backgroundColor: "#006400",
                                 color: "#ffffff",
                                 padding: "14px 20px",
                                 border: "0.2vw solid #89ff8e",

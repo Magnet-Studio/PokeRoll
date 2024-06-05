@@ -141,7 +141,7 @@ option
 {
     font-family: vanilla-regular;
     color: white;
-    background-color: #fb6c6c;
+    background-color: #8A0000;
     border: 0.3vw solid #9f4949;
     border-radius: 0.8vw;
     height: 100%;
@@ -170,13 +170,13 @@ option
 
 .borradoMultipleContainer #borradoMultipleConfirm
 {
-    background-color: #00df09;
+    background-color: #006400;
     border: 0.3vw solid #89ff8e;
 }
 
 .borradoMultipleContainer #borradoMultipleConfirm:hover 
 {
-    background-color: #006d04;
+    background-color: #006400;
 }
 
 
@@ -187,7 +187,7 @@ option
 
 .borradoMultipleConfirmDisabled:hover
 {
-    background-color: #00df09 !important;
+    background-color: #006400 !important;
 }
 
 .borradoMultipleContainer div 
@@ -235,6 +235,12 @@ option
 
 .modal-open .MuiModal-root {
     pointer-events: all;
+}
+
+.filterAlmacen > select,
+.filterAlmacen > input
+{
+    color: #424242;
 }
 
 @media screen and (max-width: 900px)

@@ -87,7 +87,7 @@ button .cerrarButton {
 }
 
 .unregisterMessage {
-    color: rgb(244, 46, 39);
+    color: #AC0600;
     display:flex;
     justify-content: center;
     margin: 0;
@@ -106,7 +106,7 @@ button .cerrarButton {
     position: absolute;
     top: 0;
     right: 0;
-    color: rgb(0, 255, 0);
+    color: #006400;
     display: flex;
     justify-content: right;
     margin: 0;
@@ -129,8 +129,6 @@ button .cerrarButton {
     display: inline-block;
     /* Ajusta estos valores según sea necesario para la responsividad */
     font-size: 1.5vw; 
-    
-    
 }
 
 .containerModal svg {

@@ -56,7 +56,7 @@ a {
     font-family: vanilla-regular;
     border-radius: 1vw;
     border: 0.2vw solid gray;
-    color: gray;
+    color: #424242;
     text-align: center;
     width: auto;
     pointer-events: all;
@@ -95,6 +95,8 @@ option
         margin-right: 1.5vw;
     }
 }
+
+
 
 @import url("./rankingCard.css");
 
