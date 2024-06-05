@@ -38,7 +38,7 @@
   height: 1.5wh;
   padding: 10px 20px;
   border: 0.3vw solid #89ff8e;
-  background-color: #00df09;
+  background-color: #006400;
   color: white;
   border-radius: 30px;
   cursor: pointer;
@@ -398,9 +398,13 @@
   filter: drop-shadow(0 0 2px rgb(0, 0, 0));
   transition: transform 0.3s ease, filter 0.3s ease; /* Agregamos una transición suave a transform y filter */
 }
-.MuiBox-root #pokemon-cards-container > div:hover{
-  transform: scale(1.05); /* Aumentamos el tamaño del elemento en un 5% al pasar el ratón sobre él */
-  filter: drop-shadow(1px 1px 1px rgb(0, 0, 0)); /* Aplicamos una sombra más pronunciada */
+.MuiBox-root #pokemon-cards-container > div:hover {
+  transform: scale(
+    1.05
+  ); /* Aumentamos el tamaño del elemento en un 5% al pasar el ratón sobre él */
+  filter: drop-shadow(
+    1px 1px 1px rgb(0, 0, 0)
+  ); /* Aplicamos una sombra más pronunciada */
 }
 
 .cerrarModalContainer button {

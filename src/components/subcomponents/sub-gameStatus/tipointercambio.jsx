@@ -54,7 +54,7 @@ function IntercambioConCodigo() {
   return (
     <>
       <div className="backButtonIntercambio">
-        <Link to="/intercambio">
+        <Link to="/intercambio" aria-label="Volver al intercambio" tabIndex="0">
           <span className="backArrowIntercambio">
             <ForwardIcon fontSize="small" />
           </span>
@@ -62,7 +62,10 @@ function IntercambioConCodigo() {
       </div>
       <div className="formularioContainer">
         <div className="formulario">
-          <TextoInformativo text="Introduce el código de intercambio" />
+          <TextoInformativo
+            text="Introduce el código de intercambio"
+            tabIndex="0"
+          />
           <InputCodigoIntercambio
             handleChange={handleChange}
             input={inputValue}
@@ -106,7 +109,7 @@ function IntercambioSinCodigo({ code }) {
   const handleCopyClick = () => {
     copyTextToClipboard(code)
       .then(() => {
-        setIsCopied(true);
+        setIsCopied(!isCopied);
       })
       .catch((err) => {
         //console.log(err);
@@ -116,14 +119,18 @@ function IntercambioSinCodigo({ code }) {
   return (
     <>
       <div className="backButtonIntercambio">
-        <Link to="/intercambio">
+        <Link to="/intercambio" aria-label="Volver al intercambio" tabIndex="0">
           <span className="backArrowIntercambio">
             <ForwardIcon fontSize="small" />
           </span>
         </Link>
       </div>
       <div className="formularioContainer">
-        <div className="formulario">
+        <div
+          className="formulario"
+          tabIndex="0"
+          aria-description="Estas en el menú de intercambio sin código"
+        >
           <TextoInformativo text="Este es tu código de intercambio, compártelo con tus amigos para intercambiar pokemons" />
           <CodigoIntercambio
             code={code}
@@ -159,10 +166,18 @@ function GenerateRandomCode() {
 function CodigoIntercambio({ code, isCopied, handleCopyClick }) {
   return (
     <div id="codeAndButtonContainer">
-      <h1 id="intercambioCodeDisplayed" style={{ color: "white" }}>
+      <h1
+        id="intercambioCodeDisplayed"
+        aria-description={"Este es tu código de intercambio: " + code}
+        style={{ color: "white" }}
+      >
         {code}
       </h1>
-      <button id="buttonCopyClipboard" onClick={handleCopyClick}>
+      <button
+        id="buttonCopyClipboard"
+        onClick={handleCopyClick}
+        aria-label={isCopied ? "copied" : "copy code"}
+      >
         {isCopied ? (
           <DoneOutlinedIcon htmlColor="green" fontSize="large" />
         ) : (
@@ -184,13 +199,19 @@ function InputCodigoIntercambio({ input, handleChange }) {
       value={input}
       onChange={handleChange}
       className="intercambioInputCodigo"
+      tabIndex="0"
+      aria-label="Introduce el código de intercambio"
     ></input>
   );
 }
 
 function BotonIntercambio({ text, click }) {
   return (
-    <button onClick={click} className="intercambioBoton">
+    <button
+      onClick={click}
+      aria-label="Iniciar Intercambio"
+      className="intercambioBoton"
+    >
       <h2>{text}</h2>
     </button>
   );
