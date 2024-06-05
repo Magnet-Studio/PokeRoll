@@ -197,7 +197,7 @@ const style = {
                                         className="cerrarButton"
                                         onClick={handleClose}
                                         style={{
-                                            backgroundColor: "#fb6c6c" /* color de fondo */,
+                                            backgroundColor: "#8A0000" /* color de fondo */,
                                             color: "white" /* color del texto */,
                                             padding: "14px 20px" /* padding */,
                                             border: "0.2vw solid #9f4949" /* sin borde */,
@@ -215,7 +215,7 @@ const style = {
                                         className="confirmarButton"
                                         onClick={liberarMultiple}
                                         style={{
-                                            backgroundColor: "#00DF09" /* color de fondo */,
+                                            backgroundColor: "#006400" /* color de fondo */,
                                             color: "#ffffff" /* color del texto */,
                                             padding: "14px 20px" /* padding */,
                                             border: "0.2vw solid #89ff8e" /* sin borde */,
@@ -317,9 +317,7 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, se
 
             <div className="filterAlmacen">  
                 <label htmlFor="filtroNombre">Filtrar por nombre</label>
-                <input tabIndex="1" className="inputElem" id="filtroNombre" placeholder="Escriba un nombre aquí..." value={Name} onChange={handleName}>
-                
-                </input>
+                <input tabIndex="1" className="inputElem" id="filtroNombre" placeholder="Escriba un nombre aquí..." value={Name} onChange={handleName}/>
             </div>
         </>
     )

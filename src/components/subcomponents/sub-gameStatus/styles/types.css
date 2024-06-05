@@ -1,6 +1,6 @@
 .normal 
 {
-    background-color: rgb(155, 163, 187);
+    background-color: #676869;
 }
 
 .fire 
@@ -20,7 +20,7 @@
 
 .bug
 {
-    background-color: rgb(91,163,117);
+    background-color: #0B8038;
 }
 
 .poison 
@@ -30,7 +30,7 @@
 
 .electric 
 {
-    background-color: rgb(204,178,45);
+    background-color: #846E00;
 }
 
 .ground 
@@ -45,7 +45,7 @@
 
 .fairy 
 {
-    background-color: rgb(184,152,201);
+    background-color: #876A96;
 }
 
 .fighting 
@@ -55,7 +55,7 @@
 
 .psychic 
 {
-    background-color: rgb(152,108,185);
+    background-color: #B12EA6;
 }
 
 .ghost 
@@ -75,7 +75,7 @@
 
 .steel 
 {
-    background-color: rgb(97,101,113);
+    background-color: #646285;
 }
 
 .dark 
@@ -85,7 +85,7 @@
 
 .flying 
 {
-    background-color: rgb(124,162,216);
+    background-color: #1970C7;
 }
 
 .entryBox 

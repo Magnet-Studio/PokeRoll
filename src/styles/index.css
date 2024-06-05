@@ -31,3 +31,29 @@ body
 {
     height: 100%;
 }
+
+::placeholder {
+    color: #424242; 
+    opacity: 1; 
+}
+
+/* Cambiar el color del placeholder en Internet Explorer 10-11 */
+:-ms-input-placeholder {
+    color: #424242; 
+}
+
+/* Cambiar el color del placeholder en Edge */
+::-ms-input-placeholder {
+    color: #424242; 
+}
+
+/* Cambiar el color del placeholder en Mozilla Firefox */
+::-moz-placeholder {
+    color: #424242; 
+    opacity: 1;
+}
+
+/* Cambiar el color del placeholder en Google Chrome */
+::-webkit-input-placeholder {
+    color: #424242; 
+}

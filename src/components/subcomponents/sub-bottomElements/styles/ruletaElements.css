@@ -11,7 +11,7 @@
 
 #tirarButton 
 {
-    background-color: #00DF09;
+    background-color: #006400;
     border-radius: 0.7vw;
     border: 0.3vw solid #89FF8E;
     color: white;
@@ -97,7 +97,7 @@
 {
     width: 5vw;
     height: 4vw;
-    background-color: #00DF09;
+    background-color: #006400;
     border: 0.3vw solid #89FF8E;
     border-radius: 0.7vw;
     display: flex;
