@@ -61,7 +61,7 @@
   height: 1.5wh;
   padding: 10px 20px;
   border: 0.3vw solid #89ff8e;
-  background-color: #00df09;
+  background-color: #006400;
   color: white;
   border-radius: 30px;
   cursor: pointer;
@@ -74,16 +74,13 @@
   height: 1.5wh;
   padding: 10px 20px;
   border: 0.3vw solid #89ff8e;
-  background-color: #00df09;
+  background-color: #006400;
   color: white;
   border-radius: 30px;
+  pointer-events: none;
   margin: 5px;
   font-size: 1.5dvh;
   opacity: 0.5;
-}
-
-.inactiveLink {
-  pointer-events: none;
 }
 
 .intercambioBotonSinCodigo.enabled {
@@ -92,7 +89,6 @@
   padding: 10px 20px;
   border: 0.3vw solid #ba9712;
   background-color: #fecb02;
-  color: white;
   border-radius: 30px;
   cursor: pointer;
   margin: 5px;
@@ -106,7 +102,7 @@
   padding: 10px 20px;
   border: 0.3vw solid #ba9712;
   background-color: #fecb02;
-  color: white;
+  pointer-events: none;
   border-radius: 30px;
   margin: 5px;
   color: #1a437b;
