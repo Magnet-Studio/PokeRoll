@@ -153,8 +153,8 @@ const style = {
                     {borradoMultiple ? (
                         <>
                             {multipleBorradoPopover}
-                            <Button tabIndex="1" aria-label="Cancelar borrado múltiple" id="borradoMultipleCancel" onClick={toggleBorradoMultiple}><CloseIcon style={{ fontSize: '40px' }} /></Button>
-                            <Button tabIndex="1" aria-label="Confirmar selección de borrado múltiple"
+                            <Button tabIndex={1} aria-label="Cancelar borrado múltiple" id="borradoMultipleCancel" onClick={toggleBorradoMultiple}><CloseIcon style={{ fontSize: '40px' }} /></Button>
+                            <Button tabIndex={1} aria-label="Confirmar selección de borrado múltiple"
                                 id="borradoMultipleConfirm" 
                                 onClick={selectedBorrado.length > 0 ? handleOpen : null}
                                 className={selectedBorrado.length > 0 ? "" : "borradoMultipleConfirmDisabled"}
@@ -165,7 +165,7 @@ const style = {
                     ) : (
                         <>
                              {multipleBorradoPopover}
-                            <Button tabIndex="1" aria-label="Borrar múltiples Pokémon" id="borradoMultipleButton" onClick={toggleBorradoMultiple}><PublishedWithChangesIcon style={{ fontSize: '40px' }} /></Button>
+                            <Button tabIndex={1} aria-label="Borrar múltiples Pokémon" id="borradoMultipleButton" onClick={toggleBorradoMultiple}><PublishedWithChangesIcon style={{ fontSize: '40px' }} /></Button>
                         </>
                     )}
                     <Modal

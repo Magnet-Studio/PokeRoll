@@ -101,19 +101,15 @@ function CompleteEntryList(props)
 
     const registeredMons = props.UserData.registers.length - 1;
     const percentage = (100*(registeredMons/1025)).toFixed(2);
-
     return (
         <>
             <p className="yourRegisters" tabIndex="1"><label>Registrados: {registeredMons} / 1025 ({percentage}%)</label></p>
-            <p className="generationTitle inlineContainer"  tabIndex="2" >
-                <text aria-description={"Pokémon desde el número " + generationDexNums[props.generationNum][0] + " hasta el número " + generationDexNums[props.generationNum][1] + ":"}>{ordinalNum[props.generationNum] + " Generación"}</text> 
-                <MouseOverPopover content={<InfoOutlinedIcon className="infoGenerationIcon"/>} 
-                                shown={
-                                <span> 
-                                    La generación de un Pokémon es el grupo de Pokémon que se introdujeron en un mismo juego de la saga.
-                                </span>
-                                } />
+            <p className="generationTitle inlineContainer" tabIndex="2" >
+                
+                <span aria-description={"Pokémon desde el número " + generationDexNums[props.generationNum][0] + " hasta el número " + generationDexNums[props.generationNum][1] + ":"}>{ordinalNum[props.generationNum] + " Generación"}</span> 
+               
             </p>
+            
             {list}
         </>
     );
@@ -180,10 +176,11 @@ function PokemonEntry(props)
         rarityNum = GetFrequencyByDexNum(props.num);    
 
         pokemon = <div className='unknownMessageContainer' role="contentinfo" aria-label={"Número " + props.num + `:No se ha descubierto todavía. Este Pokémon es de la rareza ${nombresRarezas[rarityNum-1]}`} tabIndex="4">
-                    <MouseOverPopover content={<p className="unknownMessage" tabIndex="-1" aria-hidden="true">???</p>} 
+                    <MouseOverPopover content={<span className="unknownMessage" tabIndex="-1" aria-hidden="true">???</span>} 
                         shown={
                             <span > 
-                                Este Pokémon aún no ha sido descubierto.
+                                Este Pokémon aún no ha sido descubierto.<br/>
+                                Este Pokémon es de la rareza {nombresRarezas[rarityNum-1]}.
                             </span>
                         } />
                     </div>

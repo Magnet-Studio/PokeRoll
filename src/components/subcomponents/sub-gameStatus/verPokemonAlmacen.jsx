@@ -133,16 +133,12 @@ function VerPokemonAlmacen({UserData, setUserData})
                 {pokemon?.variant === undefined ? GetImage(pokemonData, (pokemon.shiny === "shiny")) : GetVariantImage(pokemon.variant.name, (pokemon.shiny === "shiny"))}
                 <div className="inlineContainer">
                     <p className={rareEffect + " " + megaEffect + " " + shinyEffect} >{nombrePKM}</p>
-                    <text aria-label={pokemon.shiny === "shiny" ? " Variocolor:" : ":"} role="contentinfo" ></text>
-                    <text aria-label={pokemon.megaevolution === true ? " Megaevolución:" : ":"} role="contentinfo" ></text>
-                    <text aria-label={pokemon.rarespecies === true ? " Especie rara:" : ":"} role="contentinfo" ></text>
-                    <text aria-label={pokemon.event === true ? " De evento:" : ":"} role="contentinfo" ></text>
                     {shinyCond}
                     {megaCond}
                     {rareCond}
                     {eventCond}
                 </div>
-                <div id="tiposPokemon">
+                <div id="tiposPokemon" aria-description={(pokemon.shiny === "shiny" ? " Variocolor:" : "") + (pokemon.megaevolution === true ? " Megaevolución:" : "") + (pokemon.rarespecies === true ? " Especie rara:" : "") + (pokemon.event === true ? " De evento:" : "")}>
                   {firstTypeContainer}
                   {secondTypeContainer}
                 </div>

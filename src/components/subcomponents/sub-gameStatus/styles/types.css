@@ -10,7 +10,7 @@
 
 .water
 {
-    background-color: rgb(62,116,217);
+    background-color: #3068d0;
 }
 
 .grass
@@ -20,7 +20,7 @@
 
 .bug
 {
-    background-color: #0B8038;
+    background-color: #006728;
 }
 
 .poison 
@@ -65,7 +65,7 @@
 
 .ice 
 {
-    background-color: rgb(150,207,223);
+    background-color: #437c8e;
 }
 
 .dragon 
@@ -85,7 +85,7 @@
 
 .flying 
 {
-    background-color: #1970C7;
+    background-color: #61769d;
 }
 
 .entryBox 

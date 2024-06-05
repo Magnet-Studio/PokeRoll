@@ -3,19 +3,30 @@ import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 
 export function MouseOverPopover({ content, shown }) {
-
     const [anchorEl, setAnchorEl] = useState(null);
-  
+    const [isPopoverHovered, setIsPopoverHovered] = useState(false);
+
     const handlePopoverOpen = (event) => {
       setAnchorEl(event.currentTarget);
     };
-  
+
     const handlePopoverClose = () => {
+      if (!isPopoverHovered) {
+        setAnchorEl(null);
+      }
+    };
+
+    const handlePopoverLeave = () => {
+      setIsPopoverHovered(false);
       setAnchorEl(null);
     };
-  
+
+    const handlePopoverEnter = () => {
+      setIsPopoverHovered(true);
+    };
+
     const open = Boolean(anchorEl);
-  
+
     return (
       <div style={{ display: 'inline-block'}}>
         <Typography
@@ -36,15 +47,17 @@ export function MouseOverPopover({ content, shown }) {
           disableRestoreFocus
           anchorOrigin={{
             vertical: 'bottom',
+            horizontal: 'center'
           }}
           transformOrigin={{
-            
             horizontal: 'center',
+            vertical: 'top'
           }}
-          
-          sx={{maxWidth: "100%"}}
+          onMouseEnter={handlePopoverEnter}
+          onMouseLeave={handlePopoverLeave}
+          sx={{ maxWidth: "100%" }}
         >
-          <Typography sx={{ p: 2 } } >{shown}</Typography>
+          <Typography sx={{ p: 2 }}>{shown}</Typography>
         </Popover>
       </div>
     );
