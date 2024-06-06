@@ -1,19 +1,16 @@
 import React from 'react';
 import './styles/pokedex.css'
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useRef} from 'react';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import {GetSpeciesDataByDexNum, GetSpanishName} from './lib/PokemonSpeciesData';
 import {GetDataByDexNum, GetFirstType, GetSecondType, GetPrettyTypeNameSpanish, GetImage} from './lib/PokemonData';
 import CircularProgress from '@mui/material/CircularProgress';
 import { MouseOverPopover } from './mouseOverPopOver';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { GetFrequencyByDexNum } from './lib/pokemonFrequency';
 import { Link } from 'react-router-dom';
 import { nombresRarezas } from './verPokemonAlmacen';
 
-/**
- * Función principal que se exporta.
- */
+
 function Pokedex({UserData}) 
 {
     const initGenerationNum = sessionStorage.getItem("generationNum");
@@ -27,7 +24,9 @@ function Pokedex({UserData})
 
     useEffect(() => {
         document.title = "PokéROLL (Pokédex)"
-      }, [])
+    }, []);
+
+    const nextGenArrowReference = useRef(null);
 
     return (
         <>
@@ -35,12 +34,12 @@ function Pokedex({UserData})
                 <NavGenArrow reversed setGenerationNum={setGenerationNum} generationNum={generationNum}  />
             </div>
 
-            <div id="pokedexBigBox">
-                <CompleteEntryList UserData={UserData} setGenerationNum={setGenerationNum} generationNum={generationNum} setDexNumbers={setDexNumbers} dexNumbers={dexNumbers} selectedPokemon={selectedPokemon} />
+            <div id="pokedexBigBox" tabIndex={-1}>
+                <CompleteEntryList  UserData={UserData} nextGenArrowReference={nextGenArrowReference} setGenerationNum={setGenerationNum} generationNum={generationNum} setDexNumbers={setDexNumbers} dexNumbers={dexNumbers} selectedPokemon={selectedPokemon} />
             </div>
 
             <div id="nextGenContainer"> 
-                <NavGenArrow setGenerationNum={setGenerationNum} generationNum={generationNum}  />
+                <NavGenArrow setGenerationNum={setGenerationNum} generationNum={generationNum} nextGenArrowReference={nextGenArrowReference} />
             </div>
         </>
     );
@@ -76,7 +75,7 @@ function NavGenArrow(props)
 
     return (
         <div className={'nextGenArrow ' + (props.reversed ? 'reversed ' : '') + (disabled ? 'disabled' : '')}>
-            <Link tabIndex="3" onClick={handler} aria-label={!props.reversed ? "Avanzar a la siguiente generación:" + (props.generationNum === 9 ? "No disponible" : ordinalNum[(props.generationNum + 1)][0]) + " generación:" : "Regresar a la anterior generación:" + (props.generationNum === 1 ? "No disponible" : ordinalNum[(props.generationNum - 1)][0]) + " generación:"}>
+            <Link tabIndex="0" ref={props.nextGenArrowReference} onClick={handler} aria-label={!props.reversed ? "Avanzar a la siguiente generación:" + (props.generationNum === 9 ? "No disponible" : ordinalNum[(props.generationNum + 1)][0]) + " generación:" : "Regresar a la anterior generación:" + (props.generationNum === 1 ? "No disponible" : ordinalNum[(props.generationNum - 1)][0]) + " generación:"}>
                 <ArrowRightIcon />
             </Link>
         </div>
@@ -101,14 +100,35 @@ function CompleteEntryList(props)
 
     const registeredMons = props.UserData.registers.length - 1;
     const percentage = (100*(registeredMons/1025)).toFixed(2);
+
+    const skipAllListHandler = (event) => {
+        if(event.key === 'Enter')
+        {
+            event.preventDefault();
+            
+            if(props.nextGenArrowReference)
+            {
+                props.nextGenArrowReference.current.focus();
+            }
+        }
+    }
+
     return (
         <>
-            <p className="yourRegisters" tabIndex="1"><label>Registrados: {registeredMons} / 1025 ({percentage}%)</label></p>
-            <p className="generationTitle inlineContainer" tabIndex="2" >
+            <p className="yourRegisters" tabIndex="0" aria-description={"Registrados: " + registeredMons + " de " + 1025 + ", " + percentage + "%"}>Registrados: {registeredMons} / 1025 ({percentage}%)</p>
+            <p className="generationTitle inlineContainer" tabIndex="0" aria-description={"Pokémon desde el número " + generationDexNums[props.generationNum][0] + " hasta el número " + generationDexNums[props.generationNum][1] + ":"} >
                 
-                <span aria-description={"Pokémon desde el número " + generationDexNums[props.generationNum][0] + " hasta el número " + generationDexNums[props.generationNum][1] + ":"}>{ordinalNum[props.generationNum][0] + " Generación (" + ordinalNum[props.generationNum][1] + ")"}</span> 
+                <span aria-hidden={true}>
+                    {"[" + generationDexNums[props.generationNum][0] +  " - " + generationDexNums[props.generationNum][1] + "]"}
+                </span>
+
+                <span>
+                    {ordinalNum[props.generationNum][0] + " Generación (" + ordinalNum[props.generationNum][1] + ")"}
+                </span> 
                
             </p>
+
+            <div className="skipAllList" onKeyDown={skipAllListHandler} tabIndex="0">Saltar lista de pokémon</div>
             
             {list}
         </>
@@ -158,7 +178,7 @@ function PokemonEntry(props)
         knownCond = props.known + " " + firstType;
         
         pokemon = (
-            <div aria-label={"Número " + props.num + ":" + name} tabIndex="4" role="contentinfo">
+            <div aria-label={"Número " + props.num + ":" + name} tabIndex="0" role="contentinfo">
                 {GetImage(pokemonData, false)}    
 
                 <div className='types' tabIndex="-1" aria-hidden="true">
@@ -175,7 +195,7 @@ function PokemonEntry(props)
         // Caso de pokémon desconocido
         rarityNum = GetFrequencyByDexNum(props.num);    
 
-        pokemon = <div className='unknownMessageContainer' role="contentinfo" aria-label={"Número " + props.num + `:No se ha descubierto todavía. Este Pokémon es de la rareza ${nombresRarezas[rarityNum-1]}`} tabIndex="4">
+        pokemon = <div className='unknownMessageContainer' role="contentinfo" aria-label={"Número " + props.num + `:No se ha descubierto todavía. Este Pokémon es de la rareza ${nombresRarezas[rarityNum-1]}`} tabIndex="0">
                     <MouseOverPopover content={<span className="unknownMessage" tabIndex="-1" aria-hidden="true">???</span>} 
                         shown={
                             <span > 

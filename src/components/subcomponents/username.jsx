@@ -18,11 +18,11 @@ function Username({UserData})
         if(UserData.name.length > 10)
         {
             const newLenght = (15 / UserData.name.length).toFixed(3);
-            nameTag.style.setProperty('font-size', 'calc(0.01vw + ' + newLenght + "vw)");
+            nameTag.style.setProperty('font-size', 'calc(0.02vw + ' + newLenght + "vw)");
         }
         else // Size mínimo
         {
-            nameTag.style.setProperty('font-size', '1.375vw');
+            nameTag.style.setProperty('font-size', '2vw');
         }
         
     }, [UserData.name]);

@@ -194,7 +194,7 @@ const style = {
                             </div>
 
                             <div className="containerModal moneyCount">
-                                <img aria-hidden="true" className="coin" src={CoinImage} alt="Moneda" /> <text aria-description="Obtendrás de vuelta ">{"+" + coins}</text><text aria-label=" monedas:"></text>
+                                <img aria-hidden="true" className="coin" src={CoinImage} alt="Moneda" /> <p aria-description="Obtendrás de vuelta ">{"+" + coins}</p><p aria-label=" monedas:"></p>
                             </div>
                             <div className="containerModal">
                                     <Button
@@ -337,7 +337,7 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, se
                 <input tabIndex="0" className="inputElem" id="filtroNombre" placeholder="Escriba un nombre aquí..." value={Name} onChange={handleName}/>
             </div>
             
-            <div id="skipAllList" onKeyDown={skipAllListHandler} tabIndex="0">Saltar lista de pokémon</div>
+            <div className="skipAllList" onKeyDown={skipAllListHandler} tabIndex="0">Saltar lista de pokémon</div>
         </>
     )
 }

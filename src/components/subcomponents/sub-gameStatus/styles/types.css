@@ -180,8 +180,11 @@
   background-color: #00df09;
 }
 
-#tiposPokemon > .pokemonType {
+#tiposPokemon > .pokemonType 
+{
   box-shadow: 0 0 5px rgb(40, 40, 40);
+  min-width: 40px;
+  font-size: calc(6px + 1vw);
 }
 
 @keyframes shake {

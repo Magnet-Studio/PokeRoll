@@ -222,10 +222,10 @@ function ModalConfirmar({ setThreePokemon, tirarButtonDisable, pokemonData, setO
         borderRadius: "2vw",
     };
 
-    let firstTypeContainer = (<div className={"pokemonType " + pokemonData.type1} aria-description={' del tipo '}><text aria-label=''>{GetPrettyTypeNameSpanish(pokemonData.type1)}</text></div>);
+    let firstTypeContainer = (<div className={"pokemonType " + pokemonData.type1} aria-description={' del tipo '}><span aria-label=''>{GetPrettyTypeNameSpanish(pokemonData.type1)}</span></div>);
     let secondTypeContainer = (<></>);
     if (pokemonData.type2 !== null) {
-        secondTypeContainer = (<div className={"pokemonType " + pokemonData.type2} aria-description={' y '}><text aria-label="">{GetPrettyTypeNameSpanish(pokemonData.type2)}</text></div>);
+        secondTypeContainer = (<div className={"pokemonType " + pokemonData.type2} aria-description={' y '}><span aria-label="">{GetPrettyTypeNameSpanish(pokemonData.type2)}</span></div>);
     }
 
     const nombresRarezas = ['Común', 'Infrecuente', 'Peculiar', 'Épico', 'Legendario', 'Singular'];
@@ -293,9 +293,9 @@ function ModalConfirmar({ setThreePokemon, tirarButtonDisable, pokemonData, setO
                         <div>
                             <div className='inlineContainer' style={{ color: "black" }}>
                                 <p className='nombrePokemonReclamar' aria-label={pokemonData.speciesname}>{pokemonData.speciesname}</p>
-                                <text aria-label={pokemonData.shiny === "shiny" ? " Variocolor:" : ":" } role="contentinfo"></text>
-                                <text aria-label={pokemonData.megaevolution === true ? " Megaevolución:" : ":"} role="contentinfo"></text>
-                                <text aria-label={pokemonData.rarespecies === true ? " Especie rara:" : ":"} role="contentinfo"></text>
+                                <p aria-label={pokemonData.shiny === "shiny" ? " Variocolor:" : ":" } role="contentinfo"></p>
+                                <p aria-label={pokemonData.megaevolution === true ? " Megaevolución:" : ":"} role="contentinfo"></p>
+                                <p aria-label={pokemonData.rarespecies === true ? " Especie rara:" : ":"} role="contentinfo"></p>
                                 {shinyIndication}
                                 {megaIndication}
                                 {rareIndication}
@@ -312,7 +312,7 @@ function ModalConfirmar({ setThreePokemon, tirarButtonDisable, pokemonData, setO
 
                     <div className="containerModal moneyCount">
                         <img className="coin" src={CoinImage} alt="Moneda" aria-hidden="true" tabIndex="-1"/> {"+" + HalfCost}
-                        <text role="contentinfo" aria-label={" monedas de vuelta:"}></text>
+                        <span role="contentinfo" aria-label={" monedas de vuelta:"}></span>
                     </div>
 
                     <div className="containerModal">
