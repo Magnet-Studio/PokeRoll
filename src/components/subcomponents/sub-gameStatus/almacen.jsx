@@ -256,6 +256,13 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, se
         setName(event.target.value);
         sessionStorage.setItem('Name', event.target.value);
     };
+    const skipHandler = (event) => {
+        if(event.key === 'Enter')
+        {
+
+        }
+    }
+
     return(
         <>
             <div className="filterAlmacenIcon">
@@ -319,6 +326,8 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, se
                 <label htmlFor="filtroNombre">Filtrar por nombre</label>
                 <input tabIndex="1" className="inputElem" id="filtroNombre" placeholder="Escriba un nombre aquí..." value={Name} onChange={handleName}/>
             </div>
+            
+            <div id="skipAllList" onKeyDown={skipHandler} tabIndex="1"></div>
         </>
     )
 }

@@ -243,6 +243,15 @@ option
     color: #424242;
 }
 
+#skipAllList
+{
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
 @media screen and (max-width: 900px)
 {
     #pokemon-cards-container
