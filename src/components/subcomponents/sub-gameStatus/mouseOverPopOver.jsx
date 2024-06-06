@@ -30,7 +30,7 @@ export function MouseOverPopover({ content, shown }) {
     return (
       <div style={{ display: 'inline-block'}}>
         <Typography
-          className="Typography-hoverContent"
+          className="Typography-hoverContent infoIcon"
           aria-owns={open ? 'mouse-over-popover' : undefined}
           onMouseEnter={handlePopoverOpen}
           onMouseLeave={handlePopoverClose}

@@ -80,6 +80,7 @@ canvas {
     width: 40%;
     margin-bottom: 2vh;
     pointer-events: none;
+    min-width: 60px;
 }
 
 button .cerrarButton {
@@ -92,6 +93,7 @@ button .cerrarButton {
     justify-content: center;
     margin: 0;
     margin-bottom: 2vh;
+    font-size: calc(8px + 1vw);
 }
 
 .registerMessage {
@@ -138,6 +140,7 @@ button .cerrarButton {
 
 .nombrePokemonReclamar {
     color: black;
+    font-size: calc(10px + 1vw);
 }
 
 .modal-open {

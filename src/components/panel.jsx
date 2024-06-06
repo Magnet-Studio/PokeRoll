@@ -357,7 +357,7 @@ function LoginPanel({setUserData})
 function CoinsPanel({UserData, coinsReference})
 {
     return (
-        <div className='subpanel'>
+        <div className='subpanel' id='coinsPanel'>
             <Coins UserData={UserData} coinsReference={coinsReference} />
         </div>
     );
@@ -382,7 +382,7 @@ function TopElementsPanel({UserData, tirarButtonDisable})
 function UsernamePanel({UserData})
 {
     return (
-        <div className='subpanel'>
+        <div className='subpanel' id="usernamePanel">
             <Username UserData={UserData}/>
         </div>
     );

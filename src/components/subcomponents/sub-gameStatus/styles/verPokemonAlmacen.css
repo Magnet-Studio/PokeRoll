@@ -258,6 +258,7 @@ p {
 
 .rareza {
     margin-right: 0.5vw;
+    font-size: calc(10px + 1vw);
 }
 
 .pts {

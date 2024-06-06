@@ -79,13 +79,23 @@
 }
 
 .moneyCount {
-    font-size: 1.2vw;
+    font-size: calc(7px + 1vw);
     font-family: vanilla-regular;
     color: #82720C;
     display: flex;
-    
     margin-bottom: 2vw;
     align-items: center;
+}
+
+.moneyCount > .coin
+{
+    min-width: 15px;
+    min-height: 15px;
+}
+
+.moneyCount > p 
+{ 
+    color: #82720C;
 }
 
 @media screen and (max-width: 900px)
