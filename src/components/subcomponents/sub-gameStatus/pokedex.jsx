@@ -76,7 +76,7 @@ function NavGenArrow(props)
 
     return (
         <div className={'nextGenArrow ' + (props.reversed ? 'reversed ' : '') + (disabled ? 'disabled' : '')}>
-            <Link tabIndex="3" onClick={handler} aria-label={!props.reversed ? "Avanzar a la siguiente generación:" + (props.generationNum === 9 ? "No disponible" : ordinalNum[(props.generationNum + 1)]) + " generación:" : "Regresar a la anterior generación:" + (props.generationNum === 1 ? "No disponible" : ordinalNum[(props.generationNum - 1)]) + " generación:"}>
+            <Link tabIndex="3" onClick={handler} aria-label={!props.reversed ? "Avanzar a la siguiente generación:" + (props.generationNum === 9 ? "No disponible" : ordinalNum[(props.generationNum + 1)][0]) + " generación:" : "Regresar a la anterior generación:" + (props.generationNum === 1 ? "No disponible" : ordinalNum[(props.generationNum - 1)][0]) + " generación:"}>
                 <ArrowRightIcon />
             </Link>
         </div>
@@ -106,7 +106,7 @@ function CompleteEntryList(props)
             <p className="yourRegisters" tabIndex="1"><label>Registrados: {registeredMons} / 1025 ({percentage}%)</label></p>
             <p className="generationTitle inlineContainer" tabIndex="2" >
                 
-                <span aria-description={"Pokémon desde el número " + generationDexNums[props.generationNum][0] + " hasta el número " + generationDexNums[props.generationNum][1] + ":"}>{ordinalNum[props.generationNum] + " Generación"}</span> 
+                <span aria-description={"Pokémon desde el número " + generationDexNums[props.generationNum][0] + " hasta el número " + generationDexNums[props.generationNum][1] + ":"}>{ordinalNum[props.generationNum][0] + " Generación (" + ordinalNum[props.generationNum][1] + ")"}</span> 
                
             </p>
             
@@ -237,15 +237,15 @@ const generationDexNums = {
 };
 
 const ordinalNum = {
-    1 : "Primera",
-    2 : "Segunda",
-    3 : "Tercera",
-    4 : "Cuarta",
-    5 : "Quinta", 
-    6 : "Sexta", 
-    7 : "Séptima",
-    8 : "Octava",
-    9 : "Novena"
+    1 : ["Primera", "Kanto"],
+    2 : ["Segunda", "Jotho"],
+    3 : ["Tercera", "Hoenn"],
+    4 : ["Cuarta", "Sinnoh"],
+    5 : ["Quinta", "Teselia"], 
+    6 : ["Sexta", "Kalos"], 
+    7 : ["Séptima", "Alola"],
+    8 : ["Octava", "Galar y Hisui"],
+    9 : ["Novena", "Paldea"]
 }
 
 
