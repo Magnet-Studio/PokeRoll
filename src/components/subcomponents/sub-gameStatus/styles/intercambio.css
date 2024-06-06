@@ -393,6 +393,10 @@
   cursor: pointer;
 }
 
+.MuiBox-root #almacenBigBox > #pokemon-cards-container > a{
+  pointer-events: all;
+}
+
 .MuiBox-root #pokemon-cards-container > div {
   margin-bottom: 2vw;
   filter: drop-shadow(0 0 2px rgb(0, 0, 0));
