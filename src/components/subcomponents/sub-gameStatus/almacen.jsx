@@ -153,8 +153,8 @@ const style = {
                     {borradoMultiple ? (
                         <>
                             {multipleBorradoPopover}
-                            <Button tabIndex="1" aria-label="Cancelar borrado múltiple" id="borradoMultipleCancel" onClick={toggleBorradoMultiple}><CloseIcon style={{ fontSize: '40px' }} /></Button>
-                            <Button tabIndex="1" aria-label="Confirmar selección de borrado múltiple"
+                            <Button tabIndex={1} aria-label="Cancelar borrado múltiple" id="borradoMultipleCancel" onClick={toggleBorradoMultiple}><CloseIcon style={{ fontSize: '40px' }} /></Button>
+                            <Button tabIndex={1} aria-label="Confirmar selección de borrado múltiple"
                                 id="borradoMultipleConfirm" 
                                 onClick={selectedBorrado.length > 0 ? handleOpen : null}
                                 className={selectedBorrado.length > 0 ? "" : "borradoMultipleConfirmDisabled"}
@@ -165,7 +165,7 @@ const style = {
                     ) : (
                         <>
                              {multipleBorradoPopover}
-                            <Button tabIndex="1" aria-label="Borrar múltiples Pokémon" id="borradoMultipleButton" onClick={toggleBorradoMultiple}><PublishedWithChangesIcon style={{ fontSize: '40px' }} /></Button>
+                            <Button tabIndex={1} aria-label="Borrar múltiples Pokémon" id="borradoMultipleButton" onClick={toggleBorradoMultiple}><PublishedWithChangesIcon style={{ fontSize: '40px' }} /></Button>
                         </>
                     )}
                     <Modal
@@ -567,6 +567,10 @@ function PokemonCard({UserData, isAlreadySelected, selectedBorrado, setSelectedB
         eventDesc="De evento";
     }
 
+    let tipos = "Del tipo " + GetPrettyTypeNameSpanish(firstType);
+    if (secondType !== null) {
+        tipos = tipos + " y " + GetPrettyTypeNameSpanish(secondType);
+    }
     
 
     // Si los datos aún se están cargando, muestra CircularProgress dentro de la tarjeta
@@ -589,7 +593,7 @@ function PokemonCard({UserData, isAlreadySelected, selectedBorrado, setSelectedB
                     </div>
                 </Link>
             ) : (
-                <Link tabIndex="4" to={"ver-pokemon?id=" + data.id} aria-label={"Número " +dexNum + ": " + data.nametag + ":" + shinyDesc + ":" + megaDesc + ":" + rareDesc+ ":" + eventDesc}>
+                <Link tabIndex="4" to={"ver-pokemon?id=" + data.id} aria-label={"Número " +dexNum + ": " + tipos + " : " + data.nametag + ": " + shinyDesc + ": " + megaDesc + ": " + rareDesc+ ": " + eventDesc}>
                     <div className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny + " " + event} key={data.id}>
                         <p className="dexNumber" >Nº {dexNum}</p>
                         {content}

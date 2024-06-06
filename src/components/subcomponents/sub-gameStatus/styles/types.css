@@ -6,16 +6,18 @@
   background-color: rgb(155, 60, 50);
 }
 
-.water {
-  background-color: rgb(62, 116, 217);
+.water
+{
+    background-color: #3068d0;
 }
 
 .grass {
   background-color: rgb(46, 163, 68);
 }
 
-.bug {
-  background-color: #0b8038;
+.bug
+{
+    background-color: #006728;
 }
 
 .poison {
@@ -27,7 +29,7 @@
 }
 
 .ground {
-  background-color: rgb(144, 123, 76);
+  background-color: #6A5935;
 }
 
 .rock {
@@ -50,8 +52,9 @@
   background-color: rgb(65, 26, 98);
 }
 
-.ice {
-  background-color: rgb(150, 207, 223);
+.ice 
+{
+    background-color: #437c8e;
 }
 
 .dragon {
@@ -66,8 +69,9 @@
   background-color: rgb(44, 48, 60);
 }
 
-.flying {
-  background-color: #1970c7;
+.flying 
+{
+    background-color: #61769d;
 }
 
 .entryBox {

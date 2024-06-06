@@ -153,8 +153,8 @@ button .cerrarButton {
     pointer-events: all;
 }
 
-.modal-open .inlineContainer > div > p{
-    pointer-events:all;
+.modal-open .inlineContainer > div > p {
+    pointer-events: none;
 }
 
 @media screen and (max-width: 900px) {

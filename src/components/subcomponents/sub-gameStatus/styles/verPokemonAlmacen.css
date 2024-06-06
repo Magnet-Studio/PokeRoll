@@ -340,6 +340,10 @@ p {
     animation-duration: 5s; /* Aumenta la duración para hacerla más lenta */
 }
 
+.TypographyText {
+    pointer-events: none;
+}
+
 .nombreEO.event {
     color: rgb(255, 173, 173);
 }
