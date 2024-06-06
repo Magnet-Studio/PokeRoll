@@ -1,4 +1,4 @@
-import React, { useState , useEffect } from "react";
+import React, { useState , useEffect, useRef } from "react";
 import './styles/almacen.css';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import { GetSpeciesDataByName, GetSpanishName} from './lib/PokemonSpeciesData';
@@ -33,7 +33,8 @@ const style = {
 
 
 
-  function Almacen({ UserData, setUserData }) {
+  function Almacen({ UserData, setUserData }) 
+  {
     const [selectedValue, setSelectedValue] = useState('0');
     const [selectedFrequency, setSelectedFrequency] = useState('0');
     const [selectedType, setSelectedType] = useState('0');
@@ -131,9 +132,11 @@ const style = {
 
     const multipleBorradoPopover = (<MouseOverPopover content={<InfoOutlinedIcon />} shown={infoMultipleBorrado} />);
 
+    const borradoMultipleReference = useRef(null);
+
     return (
         <>
-            <div id="almacenBigBox">
+            <div id="almacenBigBox" tabIndex={-1}>
                 <div id="filtros">
                     <FiltrosAlmacen selectedValue={selectedValue} 
                                     setSelectedValue={setSelectedValue} 
@@ -142,7 +145,8 @@ const style = {
                                     selectedType={selectedType}
                                     setSelectedType={setSelectedType}
                                     Name={Name}
-                                    setName={setName}/>
+                                    setName={setName}
+                                    borradoMultipleReference={borradoMultipleReference} />
                 </div>
 
                 <div id="pokemon-cards-container">
@@ -153,8 +157,8 @@ const style = {
                     {borradoMultiple ? (
                         <>
                             {multipleBorradoPopover}
-                            <Button tabIndex={1} aria-label="Cancelar borrado múltiple" id="borradoMultipleCancel" onClick={toggleBorradoMultiple}><CloseIcon style={{ fontSize: '40px' }} /></Button>
-                            <Button tabIndex={1} aria-label="Confirmar selección de borrado múltiple"
+                            <Button tabIndex={0} aria-label="Cancelar borrado múltiple" id="borradoMultipleCancel" onClick={toggleBorradoMultiple}><CloseIcon style={{ fontSize: '40px' }} /></Button>
+                            <Button tabIndex={0} aria-label="Confirmar selección de borrado múltiple"
                                 id="borradoMultipleConfirm" 
                                 onClick={selectedBorrado.length > 0 ? handleOpen : null}
                                 className={selectedBorrado.length > 0 ? "" : "borradoMultipleConfirmDisabled"}
@@ -165,7 +169,7 @@ const style = {
                     ) : (
                         <>
                              {multipleBorradoPopover}
-                            <Button tabIndex={1} aria-label="Borrar múltiples Pokémon" id="borradoMultipleButton" onClick={toggleBorradoMultiple}><PublishedWithChangesIcon style={{ fontSize: '40px' }} /></Button>
+                            <Button tabIndex={0} ref={borradoMultipleReference} aria-label="Borrar múltiples Pokémon" id="borradoMultipleButton" onClick={toggleBorradoMultiple}><PublishedWithChangesIcon style={{ fontSize: '40px' }} /></Button>
                         </>
                     )}
                     <Modal
@@ -239,7 +243,8 @@ const style = {
     );
 }
 
-function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, setSelectedFrequency, selectedType, setSelectedType, Name, setName} ) {
+function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, setSelectedFrequency, selectedType, setSelectedType, Name, setName, borradoMultipleReference} ) 
+{
     const handleSelectChange = (event) => {
         setSelectedValue(event.target.value);
         sessionStorage.setItem('selectedValue', event.target.value);
@@ -256,10 +261,15 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, se
         setName(event.target.value);
         sessionStorage.setItem('Name', event.target.value);
     };
-    const skipHandler = (event) => {
+
+    const skipAllListHandler = (event) => {
         if(event.key === 'Enter')
         {
-
+            event.preventDefault();
+            if(borradoMultipleReference)
+            {
+                borradoMultipleReference.current.focus();
+            }
         }
     }
 
@@ -270,7 +280,7 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, se
             </div>
             <div className="filterAlmacen">
                 <label className="filterLabel" htmlFor="ordenacion">Ordenación</label>
-                <select tabIndex="1" className="inputElem" name="generalFilter" id="ordenacion" value={selectedValue} onChange={handleSelectChange}>
+                <select tabIndex="0" className="inputElem" name="generalFilter" id="ordenacion" value={selectedValue} onChange={handleSelectChange}>
                     <option value="0">Más reciente</option>
                     <option value="5">Más antiguos</option>
                     <option value="1">Pokémon con más valor</option>
@@ -285,7 +295,7 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, se
             
             <div className="filterAlmacen">
                 <label className="filterLabel" htmlFor="tier">Filtrar rareza</label>
-                <select tabIndex="1" className="inputElemSmall" name="tier" id="tier" value={selectedFrequency} onChange={handleSelectTier}>
+                <select tabIndex="0" className="inputElemSmall" name="tier" id="tier" value={selectedFrequency} onChange={handleSelectTier}>
                     <option value="0">No filtrar</option>
                     <option value="1">Común</option>
                     <option value="2">Infrecuente</option>
@@ -297,7 +307,7 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, se
             </div>
             <div className="filterAlmacen">
                 <label className="filterLabel" htmlFor="filtroTipo">Filtrar tipo</label>
-                <select tabIndex="1" className="inputElemSmall" name="type" id="filtroTipo" value={selectedType} onChange={handleSelectType}>
+                <select tabIndex="0" className="inputElemSmall" name="type" id="filtroTipo" value={selectedType} onChange={handleSelectType}>
                     <option value="0">No filtrar</option>
                     <option value="steel">Acero</option>
                     <option value="water">Agua</option>
@@ -324,10 +334,10 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, se
 
             <div className="filterAlmacen">  
                 <label htmlFor="filtroNombre">Filtrar por nombre</label>
-                <input tabIndex="1" className="inputElem" id="filtroNombre" placeholder="Escriba un nombre aquí..." value={Name} onChange={handleName}/>
+                <input tabIndex="0" className="inputElem" id="filtroNombre" placeholder="Escriba un nombre aquí..." value={Name} onChange={handleName}/>
             </div>
             
-            <div id="skipAllList" onKeyDown={skipHandler} tabIndex="1"></div>
+            <div id="skipAllList" onKeyDown={skipAllListHandler} tabIndex="0">Saltar lista de pokémon</div>
         </>
     )
 }
@@ -473,7 +483,7 @@ function CompletePokemonList({selectedBorrado, setSelectedBorrado, borradoMultip
     });
     return (
         <>
-            {list.length === 0 ? (<p id="noPokemonMessage" tabIndex="4">No se encuentran Pokémon...</p>) : list}
+            {list.length === 0 ? (<p id="noPokemonMessage" tabIndex="0">No se encuentran Pokémon...</p>) : list}
         </>
     );
 
@@ -591,7 +601,7 @@ function PokemonCard({UserData, isAlreadySelected, selectedBorrado, setSelectedB
 
         return (
             borradoMultiple ? (
-                <Link tabIndex="4" onClick={handleSelectedBorrado} aria-label={(isSelectedBorrado ? "Seleccionado para liberar " : " No seleccionado para liberar ") + ":Número " +dexNum + ": " + data.nametag + ":" + shinyDesc + ":" + megaDesc + ":" + rareDesc + ":" + eventDesc}>
+                <Link tabIndex="0" onClick={handleSelectedBorrado} aria-label={(isSelectedBorrado ? "Seleccionado para liberar " : " No seleccionado para liberar ") + ":Número " +dexNum + ": " + data.nametag + ":" + shinyDesc + ":" + megaDesc + ":" + rareDesc + ":" + eventDesc}>
                     <div 
                     className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny + " " + event + (isSelectedBorrado ? " liberado" : " notLiberado")} 
                     key={`${data.id}-${isAlreadySelected}`}
@@ -602,7 +612,7 @@ function PokemonCard({UserData, isAlreadySelected, selectedBorrado, setSelectedB
                     </div>
                 </Link>
             ) : (
-                <Link tabIndex="4" to={"ver-pokemon?id=" + data.id} aria-label={"Número " +dexNum + ": " + tipos + " : " + data.nametag + ": " + shinyDesc + ": " + megaDesc + ": " + rareDesc+ ": " + eventDesc}>
+                <Link tabIndex="0" to={"ver-pokemon?id=" + data.id} aria-label={"Número " +dexNum + ": " + tipos + " : " + data.nametag + ": " + shinyDesc + ": " + megaDesc + ": " + rareDesc+ ": " + eventDesc}>
                     <div className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny + " " + event} key={data.id}>
                         <p className="dexNumber" >Nº {dexNum}</p>
                         {content}

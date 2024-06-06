@@ -307,7 +307,9 @@ function ModalConfirmar({ setThreePokemon, tirarButtonDisable, pokemonData, setO
                             <p className="rareza" role="contentinfo" aria-description=':' style={{ color: 'black' }}>Rareza: <span style={{ color: coloresRareza[GetFrequencyByName(pokemonData.speciesname) - 1] }}>{(nombreRareza === undefined ? "Cargando..." : nombreRareza + " ")}</span></p>
                         </div>
                     </div>
+                    
                     {unregisterMessage}
+
                     <div className="containerModal moneyCount">
                         <img className="coin" src={CoinImage} alt="Moneda" aria-hidden="true" tabIndex="-1"/> {"+" + HalfCost}
                         <text role="contentinfo" aria-label={" monedas de vuelta:"}></text>

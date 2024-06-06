@@ -245,11 +245,25 @@ option
 
 #skipAllList
 {
-    width: 0;
-    height: 0;
+    width: 10vw;
+    height: 5vh;
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 1%;
+    left: 0.5%;
+    background: #283a6c;
+    border: 0.2vw solid #5eccfc;
+    border-radius: 1vw;
+    font-size: calc(0.6px + 0.7vw);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+}
+
+#skipAllList:focus
+{
+    opacity: 1;
 }
 
 @media screen and (max-width: 900px)
