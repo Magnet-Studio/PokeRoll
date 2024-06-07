@@ -23,7 +23,7 @@ function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, 
     const notPokemon = [(pokeballImage), (pokeballImage), (pokeballImage)];
     const [threePokemonImages, setThreePokemonImages] = useState(notPokemon);
     useEffect(() => {
-        document.title = "PokéROLL (Ruleta)"
+        document.title = "Ruleta · PokéRoll"
     }, []);
 
     useEffect(() => 
@@ -236,7 +236,7 @@ function ModalConfirmar({ setThreePokemon, tirarButtonDisable, pokemonData, setO
     let megaIndication = (<></>);
     let rareIndication = (<></>);
     if (pokemonData.shiny === "shiny") {
-        const shinyMsg = (<span>¡Felicidades! ¡Has conseguido un Pokémon Variocolor!<br /> Obtendrás una bonificación de 5000 puntos en el cálculo final <br /> de Rareza por ello</span>);
+        const shinyMsg = ("¡Felicidades! ¡Has conseguido un Pokémon Variocolor! Obtendrás una bonificación de 5000 puntos en el cálculo final de Rareza por ello");
         shinyIndication = (<MouseOverPopover className="mop" content={<AutoAwesomeIcon className="shinyIcon" />} shown={shinyMsg} />);
     }
 
@@ -249,14 +249,14 @@ function ModalConfirmar({ setThreePokemon, tirarButtonDisable, pokemonData, setO
 
     if (pokemonData?.megaevolution !== undefined) {
         if (pokemonData.megaevolution === true) {
-            const megaMsg = (<span>¡Felicidades! ¡Has conseguido {megaWord}!<br /> Obtendrás una bonificación de 1500 puntos en el cálculo final <br /> de Rareza por ello</span>);
+            const megaMsg = ("¡Felicidades! ¡Has conseguido {megaWord}! Obtendrás una bonificación de 1500 puntos en el cálculo final de Rareza por ello");
             megaIndication = (<MouseOverPopover className="mop" content={<SpaIcon className="megaIcon" />} shown={megaMsg} />);
         }
     }
 
     if (pokemonData?.rarespecies !== undefined) {
         if (pokemonData.rarespecies === true) {
-            const rareMsg = (<span>¡Felicidades! ¡Has conseguido una especie rara!<br /> Obtendrás una bonificación de 1000 puntos en el cálculo final <br /> de Rareza por ello</span>);
+            const rareMsg = ("¡Felicidades! ¡Has conseguido una especie rara! Obtendrás una bonificación de 1000 puntos en el cálculo final de Rareza por ello");
             rareIndication = (<MouseOverPopover className="mop" content={<MilitaryTechIcon className="rareIcon" />} shown={rareMsg} />);
         }
     }

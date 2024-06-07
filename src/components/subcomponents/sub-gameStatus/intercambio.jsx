@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function Intercambio({ UserData }) {
   useEffect(() => {
-    document.title = "PokéROLL (Intercambio)";
+    document.title = "Intercambio · PokéRoll";
   }, []);
 
   const almacenPokemonLength = [...UserData.pokemonList].length;

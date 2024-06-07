@@ -9,7 +9,7 @@ export default function IntercambioSimulado() {
   const exchangeUserName = localStorage.getItem("exchangeUser");
 
   useEffect(() => {
-    document.title = "PokéROLL (Intercambio con " + exchangeUserName + ")"
+    document.title = "Intercambio con " + exchangeUserName + " · PokéRoll"
   }, [])
   
   return (

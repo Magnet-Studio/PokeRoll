@@ -27,13 +27,13 @@ function Username({UserData})
         
     }, [UserData.name]);
 
-    return(
+    return (
         <div id="username">
-            <AccountCircleIcon id="icon"/>
+            <AccountCircleIcon id="icon" aria-hidden="true"/>
             {
                 UserData.name === "Iniciar sesión" ? 
-                <p><Link to="/login">{UserData.name}</Link></p> : 
-                <p>{UserData.name}</p>
+                <p><Link to="/login"  tabIndex="0" aria-description="Iniciar sesión">{UserData.name}</Link></p> : 
+                <p tabIndex="0" aria-description={"Tu nombre de usuario es: "}>{UserData.name}</p>
             }
         </div>
     );

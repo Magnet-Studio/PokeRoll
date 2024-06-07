@@ -23,7 +23,7 @@ function Pokedex({UserData})
     }, [generationNum]);
 
     useEffect(() => {
-        document.title = "PokéROLL (Pokédex)"
+        document.title = "Pokédex · PokéRoll"
     }, []);
 
     const nextGenArrowReference = useRef(null);
@@ -196,12 +196,9 @@ function PokemonEntry(props)
         rarityNum = GetFrequencyByDexNum(props.num);    
 
         pokemon = <div className='unknownMessageContainer' role="contentinfo" aria-label={"Número " + props.num + `:No se ha descubierto todavía. Este Pokémon es de la rareza ${nombresRarezas[rarityNum-1]}`} tabIndex="0">
-                    <MouseOverPopover content={<span className="unknownMessage" tabIndex="-1" aria-hidden="true">???</span>} 
+                    <MouseOverPopover shouldBeRead={false} notTab content={<span className="unknownMessage" tabIndex="-1" aria-hidden="true">???</span>} 
                         shown={
-                            <span > 
-                                Este Pokémon aún no ha sido descubierto.<br/>
-                                Este Pokémon es de la rareza {nombresRarezas[rarityNum-1]}.
-                            </span>
+                            `Este Pokémon aún no ha sido descubierto. Este Pokémon es de la rareza ${nombresRarezas[rarityNum-1]}.`
                         } />
                     </div>
     }

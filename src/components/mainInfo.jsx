@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./styles/mainInfo.css";
 import HelpIcon from "@mui/icons-material/Help";
 import CloseIcon from '@mui/icons-material/Close';
@@ -10,16 +10,73 @@ function MainInfoButton() {
 
   const [enabled, setEnabled] = useState(false);
 
-  const handleClick = () => {
-    setEnabled(!enabled);
+  const handleClick = () => 
+  {
+    setEnabled((prevEnabled) => !prevEnabled);  
   };
+
+  const mainInfoRef = useRef("mainInfo");
+  const mainInfoButtonRef = useRef("mainInfoButton");
+
+  const setEnabledKeyDownHandler = (event) =>
+  {
+    if(event.key === "Enter")
+    {
+      handleClick();
+    }
+  }
+
+  useEffect(() => {
+    if(enabled)
+    {
+      mainInfoRef.current?.focus();
+    }
+    else
+    {
+      mainInfoButtonRef.current?.focus();
+    }
+  }, [enabled]);
+
+  // Handler del documento para regresarte a la ayuda si te sales de ella tabulando
+  useEffect(() => {
+    const handleTabKey = (event) => {
+      if (enabled && event.key === "Tab") 
+      {
+        const focusableElements = document.querySelectorAll('.infoBox [tabIndex="0"], #exitMainInfoButton');
+        console.log(focusableElements)
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (event.shiftKey) {
+          // Handle backward tab
+          if (document.activeElement === firstElement) {
+            event.preventDefault();
+            lastElement.focus();
+          }
+        } else {
+          // Handle forward tab
+          if (document.activeElement === lastElement) {
+            event.preventDefault();
+            firstElement.focus();
+          }
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleTabKey);
+
+    return () => {
+      document.removeEventListener('keydown', handleTabKey);
+    };
+  }, [enabled]);
+
 
   return (
     <>
-      <div id="mainInfoButtonContainer" className={enabled ? 'disabled' : ''} onClick={handleClick}>
+      <div ref={mainInfoButtonRef} id="mainInfoButtonContainer" className={enabled ? 'disabled' : ''} onClick={handleClick} tabIndex="0" aria-label="Información y ayuda de PokéRoll" onKeyDown={setEnabledKeyDownHandler}>
         <HelpIcon id="mainInfoButton" />
       </div>
-      <MainInfoBox active={enabled} exitHandler={handleClick} />
+      <MainInfoBox active={enabled} exitHandler={handleClick} mainInfoRef={mainInfoRef} />
     </>
   );
 }
@@ -31,9 +88,9 @@ const MainInfoBox = (props) => {
 
   return (
     <div id="mainInfoBG">
-      <div id="mainInfoContainer">
+      <div id="mainInfoContainer" tabIndex="-1">
         <ExitMainInfoButton exitHandler={props.exitHandler} />
-        <Instrucciones />
+        <Instrucciones mainInfoRef={props.mainInfoRef} />
       </div>
     </div>
   );
@@ -41,29 +98,37 @@ const MainInfoBox = (props) => {
 
 function ExitMainInfoButton(props)
 {
+  const keyDownExitHandler = (event) =>
+  {
+    if(event.key === "Enter")
+    {
+      props.exitHandler();
+    }
+  }
+
   return (
     <>
-    <Button variant="outline-light" id="exitMainInfoButton" onClick={props.exitHandler}>{<CloseIcon />}</Button>{' '}
-    
-    {/* <div id="exitMainInfoButton" onClick={props.exitHandler}>
-      <CloseIcon />
-    </div> */}
+      <Button variant="outline-light" id="exitMainInfoButton" onClick={props.exitHandler} tabIndex="0" aria-label="Salir de información y ayuda" onKeyDown={keyDownExitHandler}>{<CloseIcon />}</Button>{' '}
     </>
   );
 }
 
-function Instrucciones() {
+function Instrucciones({mainInfoRef}) {
   return (
     <>
       <div className="infoBox">
-        <h1>Instrucciones de uso de PokéRoll</h1>
-        <h2>¡Bienvenido a PokéRoll!</h2>
-        <p>PokéRoll es un juego en línea de máquinas tragaperras <b>sin ningún gasto de dinero real</b> de Pokémon, en el que podrás competir contra
+
+        <h1 tabIndex="0" ref={mainInfoRef}>Instrucciones de uso de PokéRoll</h1>
+        <h2 tabIndex="0">¡Bienvenido a PokéRoll!</h2>
+
+        <p tabIndex="0">PokéRoll es un juego en línea de máquinas tragaperras <b>sin ningún gasto de dinero real</b> de Pokémon, en el que podrás competir contra
           otros jugadores para encontrar al Pokémon más raro posible
         </p>
-        <p>En PokéRoll, ofrecemos los siguientes servicios para todos los jugadores:</p>
+
+        <p tabIndex="0">En PokéRoll, ofrecemos los siguientes servicios para todos los jugadores:</p>
+
         <ul>
-          <li><b>RULETA</b>: Con la ruleta, ¡podrás conseguir TODOS los Pokémon que tú quieras! Además, tienes distintas ruletas para elegir,
+          <li tabIndex="0"><b>RULETA</b>: Con la ruleta, ¡podrás conseguir TODOS los Pokémon que tú quieras! Además, tienes distintas ruletas para elegir,
             cada una de ellas tiene una mayor probabilidad para obtener mejores Pokémon.
             <ul><br/>
               <li><b>TIER 1</b>: En esta ruleta, encontrarás mayormente Pokémon comunes, como Pidgey o Rattata.</li>
@@ -84,15 +149,15 @@ function Instrucciones() {
             Pese a que por cada Tier de ruleta se obtienen Pokémon más raros, ¡ten en cuenta que cada uno cuesta más que el anterior!<br/><br/>
 
             (Para cambiar el Tier de la ruleta, pulsa sobre los botones ubicados a la izquierda del botón TIRAR, donde adicionalmente podrás ver qué TIER de ruleta has seleccionado)
-          
-
           </li><br/>
-          <li><b>POKÉDEX</b>: Con la Pokédex integrada en PokéRoll, podrás consultar todos los Pokémon que has obtenido a través de todas las tiradas
+
+          <li tabIndex="0" ><b>POKÉDEX</b>: Con la Pokédex integrada en PokéRoll, podrás consultar todos los Pokémon que has obtenido a través de todas las tiradas
             que hayas realizado. Ten en cuenta que, incluso liberando a tus Pokémon, ¡el registro no se perderá!<br/><br/>
 
             Por cierto, puede que si encuentras a todos los Pokémon de la Pokédex, encuentres con mayor facilidad a los anteriormente mencionados Pokémon variocolor...
           </li><br/>
-          <li><b>ALMACÉN</b>: En el almacén, se guardarán todos los Pokémon que hayas obtenido. Adicionalmente, podrás consultar los datos de estos Pokémon,
+
+          <li tabIndex="0"><b>ALMACÉN</b>: En el almacén, se guardarán todos los Pokémon que hayas obtenido. Adicionalmente, podrás consultar los datos de estos Pokémon,
             como pueden ser sus estadísticas, tipos, fecha de obtención, rareza y más.<br/><br/>
             
             También tienes una opción de liberar a tus Pokémon a cambio de
@@ -100,10 +165,12 @@ function Instrucciones() {
 
             En el almacén, adicionalmente dispondrás de una lista de ordenaciones y de filtros que podrás usar a tu antojo, y los cuales se aplicarán cuando se cambie alguno de los valores.
           </li><br/>
-          <li><b>MARCADORES</b>: En esta ventana, podrás ver distintas clasificaciones dentro de la aplicación PokéRoll entre todos los usuarios, en el que podrás
+
+          <li tabIndex="0"><b>MARCADORES</b>: En esta ventana, podrás ver distintas clasificaciones dentro de la aplicación PokéRoll entre todos los usuarios, en el que podrás
             consultar quiénes son los jugadores que tienen mejores Pokémon, o los más raros, entre otras más opciones.
           </li><br/>
-          <li><b>INTERCAMBIO</b>: Con esta función, podrás conectar con otro jugador para poder intercambiar vuestros Pokémon.</li>
+
+          <li tabIndex="0"><b>INTERCAMBIO</b>: Con esta función, podrás conectar con otro jugador para poder intercambiar vuestros Pokémon.</li>
         </ul>
       </div>
     </>
