@@ -22,13 +22,13 @@ import "./styles/intercambio.css";
 export default function ModalSelectPokemon({
   selectPokemon,
   setSelectPokemon,
+  setFinalSelection,
 }) {
   const [selectedValue, setSelectedValue] = useState("0");
   const [selectedFrequency, setSelectedFrequency] = useState("0");
   const [selectedType, setSelectedType] = useState("0");
   const [Name, setName] = useState("");
-  const [selectedIntercambio, setSelectedIntercambio] = useState([]);
-  const [isSelected, setIsSelected] = useState(false);
+  const [selectedIntercambio, setSelectedIntercambio] = useState();
 
   useEffect(() => {
     setSelectedValue(sessionStorage.getItem("selectedValue") || "0");
@@ -48,9 +48,11 @@ export default function ModalSelectPokemon({
   const handleClose = (event) => {
     event.stopPropagation();
     setSelectPokemon(false);
+    setSelectedIntercambio();
   };
 
   const handleConfirm = (event) => {
+    setFinalSelection(selectedIntercambio);
     setSelectPokemon(false);
   };
 
@@ -106,8 +108,6 @@ export default function ModalSelectPokemon({
               <CompletePokemonList
                 selectedIntercambio={selectedIntercambio}
                 setSelectedIntercambio={setSelectedIntercambio}
-                isSelected={isSelected}
-                setIsSelected={setIsSelected}
                 selectedValue={selectedValue}
                 selectedFrequency={selectedFrequency}
                 selectedType={selectedType}
@@ -119,9 +119,11 @@ export default function ModalSelectPokemon({
                 tabindex="1"
                 aria-label="Confirmar selección para intercambiar"
                 id="borradoMultipleConfirm"
-                onClick={selectedIntercambio.length > 0 ? handleConfirm : null}
+                onClick={
+                  selectedIntercambio !== undefined ? handleConfirm : null
+                }
                 className={
-                  selectedIntercambio.length > 0
+                  selectedIntercambio !== undefined
                     ? ""
                     : "borradoMultipleConfirmDisabled"
                 }
@@ -264,8 +266,6 @@ const sumIVs = (ivs) => {
 function CompletePokemonList({
   selectedIntercambio,
   setSelectedIntercambio,
-  isSelected,
-  setIsSelected,
   selectedValue,
   selectedFrequency,
   selectedType,
@@ -474,16 +474,15 @@ function CompletePokemonList({
   );
 
   const list = sortedList.map((datos) => {
-    const isAlreadySelected = selectedIntercambio.some(
-      (pokemon) => pokemon.id === datos.id
-    );
+    const isAlreadySelected =
+      selectedIntercambio !== undefined && selectedIntercambio.id === datos.id
+        ? true
+        : false;
     return (
       <PokemonCard
         isAlreadySelected={isAlreadySelected}
         selectedIntercambio={selectedIntercambio}
         setSelectedIntercambio={setSelectedIntercambio}
-        isSelected={isSelected}
-        setIsSelected={setIsSelected}
         data={datos}
         key={`${datos.id}-${isAlreadySelected}`}
       />
@@ -506,8 +505,6 @@ function PokemonCard({
   isAlreadySelected,
   selectedIntercambio,
   setSelectedIntercambio,
-  isSelected,
-  setIsSelected,
   data,
 }) {
   /* Esto habria que hacerlo con un array de pokemon? */
@@ -521,13 +518,9 @@ function PokemonCard({
     );
 
     if (isAlreadySelected) {
-      setSelectedIntercambio(
-        selectedIntercambio.filter((pokemon) => pokemon.id !== data.id)
-      );
-      setIsSelected(false);
+      setSelectedIntercambio();
     } else {
       setSelectedIntercambio(pokemon);
-      setIsSelected(true);
     }
   };
 
@@ -618,10 +611,10 @@ function PokemonCard({
 
   return (
     <Link
-      tabindex="4"
+      tabindex="0"
       onClick={handleSelectedIntercambio}
       aria-label={
-        (isSelected
+        (isAlreadySelected
           ? "Seleccionado para liberar "
           : " No seleccionado para liberar ") +
         ":Número " +
@@ -650,7 +643,9 @@ function PokemonCard({
           data.shiny +
           " " +
           event +
-          (isSelected ? " seleccionado" : "")
+          (selectedIntercambio !== undefined && isAlreadySelected
+            ? " seleccionado"
+            : "")
         }
         key={`${data.id}-${isAlreadySelected}`}
         onClick={handleSelectedIntercambio}
