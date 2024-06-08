@@ -16,8 +16,8 @@ import {
 export default function IntercambioSimulado() {
   const playerUserName = localStorage.username;
   const exchangeUserName = localStorage.getItem("exchangeUser");
+  const exchangeGuestPokemon = localStorage.getItem("exchangePokemon");
   const [finalSelectionHost, setFinalSelectionHost] = useState();
-  const [finalSelectionGuest, setFinalSelectionGuest] = useState();
 
   useEffect(() => {
     document.title = "Intercambio con " + exchangeUserName + " · PokéRoll";
@@ -32,7 +32,7 @@ export default function IntercambioSimulado() {
       />
       <ShowGuestPlayer
         guest={exchangeUserName}
-        finalSelectionGuest={finalSelectionGuest}
+        finalSelectionGuest={exchangeGuestPokemon}
       />
     </div>
   );
@@ -68,8 +68,6 @@ function PokemonIntercambio({ player, finalSelection, setFinalSelection }) {
   const handleClick = () => {
     setSelectPokemonButton(true);
   };
-
-  console.log(finalSelection);
 
   return (
     <div id="pokemonIntercambioInfoContainer">
@@ -120,7 +118,7 @@ function PokemonIntercambio({ player, finalSelection, setFinalSelection }) {
               <div className="arrow"></div>
             </div>
           </div>
-          {finalSelection !== undefined ? (
+          {finalSelection ? (
             <div style={{ width: "10vw" }}>
               <ShowPokemonIntercambio finalSelection={finalSelection} />
             </div>
