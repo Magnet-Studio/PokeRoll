@@ -37,13 +37,16 @@ function FiltroMarcador({selectedValueRank, setselectedValueRank}) {
     return(
         <>
             <FilterAltIcon aria-label="Icono de filtro" />
-            <select className="inputElemRanking" name="generalFilter" value={selectedValueRank} onChange={handleSelectChange} tabIndex="0" aria-label="Filtro de clasificación">
-                <option value="1" tabIndex="0">Pokémon más raro</option>
-                <option value="2" tabIndex="0">Más puntos gastados</option>
-                <option value="3" tabIndex="0">Mayor número de tiradas</option>
-                <option value="4" tabIndex="0">Más cantidad de registros</option>
-                <option value="5" tabIndex="0">Mejor Pokémon</option>
-            </select>
+            <div className="filterAlmacen">
+                <label className="filterLabel" htmlFor="ordenacion">Elegir clasificación</label>
+                <select className="inputElemRanking" name="generalFilter" id="ordenacion" value={selectedValueRank} onChange={handleSelectChange} tabIndex="0" aria-label="Filtro de clasificación">
+                    <option value="1" tabIndex="0">Pokémon más raro</option>
+                    <option value="2" tabIndex="0">Más puntos gastados</option>
+                    <option value="3" tabIndex="0">Mayor número de tiradas</option>
+                    <option value="4" tabIndex="0">Más cantidad de registros</option>
+                    <option value="5" tabIndex="0">Mejor Pokémon</option>
+                </select>
+            </div>
         </>
     );
 }
