@@ -48,7 +48,7 @@ const style = {
         setSelectedFrequency(sessionStorage.getItem('selectedFrequency') || '0');
         setSelectedType(sessionStorage.getItem('selectedType') || '0');
         setName(sessionStorage.getItem('Name') || '');
-        document.title = "PokéROLL (Almacén)"
+        document.title = "Almacén · PokéRoll"
     }, []);
 
     /*
@@ -123,17 +123,42 @@ const style = {
         </div>
     );
 
-    const infoMultipleBorrado = (<span>
-        Con la herramienta de liberar múltiple puedes liberar<br/>
-        varios Pokémon de tu almacen a la vez.<br/>
-        Selecciona los Pokémon que quieras liberar y pulsa confirmar<br/>
-        para venderlos todos a la vez. ¡Ten cuidado seleccionando!
-    </span>);
+    const [infoPopoverOpen, setInfoPopoverOpen] = useState(false);
 
-    const multipleBorradoPopover = (<MouseOverPopover content={<InfoOutlinedIcon />} shown={infoMultipleBorrado} />);
+    const handleToggleInfoPopover = (event) => {
+        // Verificar si el evento es un evento de teclado y la tecla es Enter
+        if (event.type === 'keydown' && event.key === 'Enter') {
+            // Alternar el estado del popover
+            setInfoPopoverOpen(!infoPopoverOpen);
+        } else if (event.type === 'click') {
+            // Si es un evento de clic, simplemente alternar el estado
+            setInfoPopoverOpen(!infoPopoverOpen);
+        }
+    };
 
-    const borradoMultipleReference = useRef(null);
+    const handleCloseInfoPopover = (event) => {
+        setInfoPopoverOpen(false);
+    };
 
+    const infoMultipleBorrado = (
+        `Con la herramienta de liberar múltiple puedes liberar
+        varios Pokémon de tu almacen a la vez.
+        Selecciona los Pokémon que quieras liberar y pulsa confirmar
+        para venderlos todos a la vez. ¡Ten cuidado seleccionando!`
+    );
+
+    const infoBorradoMultipleReference = useRef(null);
+
+    const multipleBorradoPopover = (<MouseOverPopover 
+        content={<InfoOutlinedIcon onKeyDown={handleToggleInfoPopover} onClick={handleToggleInfoPopover}/>} 
+        shown={infoMultipleBorrado}
+        open={infoPopoverOpen}
+        onOpen={handleToggleInfoPopover}
+        onClose={handleCloseInfoPopover}
+        reference={infoBorradoMultipleReference}
+    />)
+
+   
     return (
         <>
             <div id="almacenBigBox" tabIndex={-1}>
@@ -146,7 +171,7 @@ const style = {
                                     setSelectedType={setSelectedType}
                                     Name={Name}
                                     setName={setName}
-                                    borradoMultipleReference={borradoMultipleReference} />
+                                    infoBorradoMultipleReference={infoBorradoMultipleReference} />
                 </div>
 
                 <div id="pokemon-cards-container">
@@ -169,7 +194,7 @@ const style = {
                     ) : (
                         <>
                              {multipleBorradoPopover}
-                            <Button tabIndex={0} ref={borradoMultipleReference} aria-label="Borrar múltiples Pokémon" id="borradoMultipleButton" onClick={toggleBorradoMultiple}><PublishedWithChangesIcon style={{ fontSize: '40px' }} /></Button>
+                            <Button tabIndex={0} aria-label="Borrar múltiples Pokémon" id="borradoMultipleButton" onClick={toggleBorradoMultiple}><PublishedWithChangesIcon style={{ fontSize: '40px' }} /></Button>
                         </>
                     )}
                     <Modal
@@ -243,7 +268,7 @@ const style = {
     );
 }
 
-function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, setSelectedFrequency, selectedType, setSelectedType, Name, setName, borradoMultipleReference} ) 
+function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, setSelectedFrequency, selectedType, setSelectedType, Name, setName, infoBorradoMultipleReference} ) 
 {
     const handleSelectChange = (event) => {
         setSelectedValue(event.target.value);
@@ -266,9 +291,9 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, se
         if(event.key === 'Enter')
         {
             event.preventDefault();
-            if(borradoMultipleReference)
+            if(infoBorradoMultipleReference)
             {
-                borradoMultipleReference.current.focus();
+                infoBorradoMultipleReference.current.focus();
             }
         }
     }

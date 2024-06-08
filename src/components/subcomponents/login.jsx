@@ -18,12 +18,12 @@ function Login({ setUserData }) {
     const [liveMessage, setLiveMessage] = useState('');
 
     useEffect(() => {
-        document.title = isRegistering ? "PokéROLL (Registro)" : "PokéROLL (Iniciar sesión)"
+        document.title = isRegistering ? "Registro · PokéRoll" : "Iniciar sesión · PokéRoll"
     }, [])
 
     const toggleRegistering = () => {
         setIsRegistering(!isRegistering);
-        document.title = !isRegistering ? "PokéROLL (Registro)" : "PokéROLL (Iniciar sesión)"
+        document.title = !isRegistering ? "Registro · PokéRoll" : "Iniciar sesión · PokéRoll"
     };
 
     const validatePassword = (password) => {
