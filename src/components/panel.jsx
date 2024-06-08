@@ -246,6 +246,7 @@ function MainPanel()
         // Unown
         GetSpecialEvent(3, UserData, setUserData, new Date(2024, 5, 13), new Date(2024, 5, 16), EventCommandList);
 
+    // eslint-disable-next-line
     }, []);
 
     // El Tier actual seleccionado de la ruleta

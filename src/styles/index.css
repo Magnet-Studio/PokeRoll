@@ -57,3 +57,13 @@ body
 ::-webkit-input-placeholder {
     color: #424242; 
 }
+
+
+@media (max-aspect-ratio: 1/1) 
+{
+    #mouse-over-popover
+    {
+        max-width: 120vw !important;
+    }
+}
+

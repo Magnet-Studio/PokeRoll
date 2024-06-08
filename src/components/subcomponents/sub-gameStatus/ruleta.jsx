@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 import './styles/ruleta.css';
 import { GetDataByDexNum, GetImage , GetFirstType, GetSecondType, GetPrettyTypeNameSpanish, GetVariantImage} from './lib/PokemonData';
 import Pokeball from "../../../images/pokeball.png";
@@ -162,7 +162,7 @@ function RuletaBox({number, setThreePokemon, pokemonImage, tirarButtonDisable, T
             tabIndex={enabled === "enabled" ? "0" : "-1"} 
             role={enabled === "enabled" ? "button" : ""}
             aria-hidden={enabled === "enabled" ? "false" : "true"}
-            aria-label={enabled === "enabled" ? `Caja ${number} de 3: Pokémon ${pokemonData.speciesname} , Rareza ${nombresRarezas[GetFrequencyByName(pokemonData.speciesname) - 1]}:${(RegisterCheck == true ? "Ya registrado" : "No registrado")}${(pokemonData.shiny === "shiny" ? ": Variocolor" : "")}${(pokemonData.rarespecies === true ? ": Especie rara" : "")}${(pokemonData.megaevolution === true ? ": Megaevolución" : "")}` : ""}
+            aria-label={enabled === "enabled" ? `Caja ${number} de 3: Pokémon ${pokemonData.speciesname} , Rareza ${nombresRarezas[GetFrequencyByName(pokemonData.speciesname) - 1]}:${(RegisterCheck === true ? "Ya registrado" : "No registrado")}${(pokemonData.shiny === "shiny" ? ": Variocolor" : "")}${(pokemonData.rarespecies === true ? ": Especie rara" : "")}${(pokemonData.megaevolution === true ? ": Megaevolución" : "")}` : ""}
             onBlur={(e) => e.currentTarget.blur()}
         >
             <div className='RegistradoCheck'>
@@ -193,6 +193,7 @@ function ModalConfirmar({ setThreePokemon, tirarButtonDisable, pokemonData, setO
             }
             document.body.classList.remove('modal-open');
         }
+    // eslint-disable-next-line
     }, [open]);
 
     const HandleClose = (event) => {
@@ -240,12 +241,15 @@ function ModalConfirmar({ setThreePokemon, tirarButtonDisable, pokemonData, setO
         shinyIndication = (<MouseOverPopover className="mop" content={<AutoAwesomeIcon className="shinyIcon" />} shown={shinyMsg} />);
     }
 
+    /*
     let megaWord = "una Megaevolución";
     if (pokemonData.name === 382 || pokemonData.name === 383) {
         megaWord = "una Regresión Primigenia";
-    } else if (pokemonData.name === 800) {
+    } 
+    else if (pokemonData.name === 800) {
         megaWord = "a Ultra Necrozma";
     }
+    */
 
     if (pokemonData?.megaevolution !== undefined) {
         if (pokemonData.megaevolution === true) {
@@ -304,7 +308,7 @@ function ModalConfirmar({ setThreePokemon, tirarButtonDisable, pokemonData, setO
                                 {firstTypeContainer}
                                 {secondTypeContainer}
                             </div>
-                            <p className="rareza" role="contentinfo" aria-description=':' style={{ color: 'black' }}>Rareza: <span style={{ color: coloresRareza[GetFrequencyByName(pokemonData.speciesname) - 1] }}>{(nombreRareza === undefined ? "Cargando..." : nombreRareza + " ")}</span></p>
+                            <p className="rareza" aria-description=':' style={{ color: 'black' }}>Rareza: <span style={{ color: coloresRareza[GetFrequencyByName(pokemonData.speciesname) - 1] }}>{(nombreRareza === undefined ? "Cargando..." : nombreRareza + " ")}</span></p>
                         </div>
                     </div>
                     

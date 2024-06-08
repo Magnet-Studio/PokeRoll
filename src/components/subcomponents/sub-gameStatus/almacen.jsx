@@ -315,19 +315,33 @@ function FiltrosAlmacen( {selectedValue, showFilters, setShowFilters, setSelecte
         }
     }
 
-    // haciendose!!!!
     const [tabValue, setTabValue] = useState(-1);
     useEffect(() => {
-        if(window.innerWidth < 700)
-        {
-            setTabValue(0);
-        }
-        else
-        {
-            setTabValue(-1);
-        }
+        // Función para actualizar tabValue según el ancho de la ventana
+        const handleResize = () => {
+            if (window.innerWidth < 700) 
+            {
+                setTabValue(0);
+            } 
+            else 
+            {
+                setTabValue(-1);
+            }
+        };
 
-    }, [window.innerWidth]);
+        // Agrega el event listener para el evento de resize
+        window.addEventListener('resize', handleResize);
+
+        // Llama a handleResize inicialmente para establecer el valor correcto
+        handleResize();
+
+        // Limpia el event listener al desmontar el componente
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+
+        // eslint-disable-next-line
+    }, []);
 
     return(
         <>

@@ -18,7 +18,8 @@ function Login({ setUserData }) {
     const [liveMessage, setLiveMessage] = useState('');
 
     useEffect(() => {
-        document.title = isRegistering ? "Registro · PokéRoll" : "Iniciar sesión · PokéRoll"
+        document.title = isRegistering ? "Registro · PokéRoll" : "Iniciar sesión · PokéRoll";
+        // eslint-disable-next-line
     }, [])
 
     const toggleRegistering = () => {

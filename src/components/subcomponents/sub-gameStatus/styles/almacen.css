@@ -253,7 +253,7 @@ option
     background: #283a6c;
     border: 0.2vw solid #5eccfc;
     border-radius: 1vw;
-    font-size: calc(0.6px + 0.7vw);
+    font-size: calc(3px + 0.7vw);
     text-align: center;
     display: flex;
     align-items: center;
