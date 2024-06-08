@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import "./styles/intercambio.css";
 import "../../styles/panel.css";
@@ -8,15 +8,32 @@ import DoneOutlinedIcon from "@mui/icons-material/DoneOutlined";
 import { Link } from "react-router-dom";
 import PantallaCargaIntercambio from "./pantallaCargaIntercambio";
 import { PlayerList } from "./userdata/rankingList";
+import { GetPokemonArrayByFrequency } from "./lib/pokemonFrequency";
+import { GetDataByDexNum } from "./lib/PokemonData";
 
 export default function TipoIntercambio() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const code = searchParams.get("hasCode");
+  const [GuestSelection, setGuestSelection] = useState();
+
+  useEffect(() => {
+    const GetOneRandomPokemonData = async () => {
+      const pokemonArray = GetPokemonArrayByFrequency(
+        Math.floor(Math.random() * (5 - 1 + 1)) + 1
+      );
+      const array =
+        pokemonArray[Math.floor(Math.random() * pokemonArray.length)];
+      const pokemon = await GetDataByDexNum(array.dexNum);
+      setGuestSelection(pokemon);
+    };
+    GetOneRandomPokemonData();
+  }, []);
 
   const exchangePlayerIndex = Math.floor(Math.random() * PlayerList.length);
   const exchangeUserName = PlayerList[exchangePlayerIndex].playername;
   localStorage.setItem("exchangeUser", exchangeUserName);
+  localStorage.setItem("exchangePokemon", GuestSelection);
 
   if (code === "yes") {
     return <IntercambioConCodigo />;
