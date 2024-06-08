@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import './styles/marcadores.css'
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import { PlayerList } from './userdata/rankingList';
@@ -7,20 +7,38 @@ import { sumIVs } from "./almacen";
 import { GetRarezaPoints, GetRarezaPointsSimplified } from "./lib/pokemonRarity";
 
 
-function Marcadores({UserData}) {
+function Marcadores({UserData}) 
+{
     useEffect(() => {
         document.title = "Clasificación · PokéRoll"
-      }, [])
+    }, []);
+
     const [selectedValueRank, setselectedValueRank] = useState(sessionStorage.getItem('selectedValueRank') || '1');
-    
+
+    const lastPlayerReference = useRef("lastPlayerReference");
+
+    const skipAllListHandler = (event) => {
+        if(event.key === 'Enter')
+        {
+            event.preventDefault();
+            if(lastPlayerReference)
+            {
+                lastPlayerReference.current.focus();
+            }
+        }
+    };
+
     return(
         <>
-            <div id="marcadoresBigBox" >
+            <div id="marcadoresBigBox" tabIndex={-1}>
                 <div id="filtroMarcador" >
                     <FiltroMarcador selectedValueRank={selectedValueRank} setselectedValueRank={setselectedValueRank} />
                 </div>
+
+                <div className="skipAllList" onKeyDown={skipAllListHandler} tabIndex="0">Ir al final de la lista</div>
+
                 <div id="ranking-cards-container" >
-                    <CompleteRankingList selectedValueRank={selectedValueRank} UserData={UserData}/>
+                    <CompleteRankingList selectedValueRank={selectedValueRank} UserData={UserData} lastPlayerReference={lastPlayerReference} />
                 </div>
             </div>
         </>
@@ -69,7 +87,7 @@ const GetRarestPokemon = (pokemonList) => {
 }
 
 
-function CompleteRankingList({selectedValueRank, UserData}) 
+function CompleteRankingList({selectedValueRank, UserData, lastPlayerReference}) 
 {
 
     let sortedList = [...PlayerList];
@@ -125,9 +143,15 @@ function CompleteRankingList({selectedValueRank, UserData})
     }
 
 
-    const list = sortedList.map((datos, index) => (
-        <RankingCard  data={datos} key={index} keyNum={index} selectedValueRank={selectedValueRank} UserData={UserData}/>
-    ));
+    const list = sortedList.map((datos, index) =>
+    {
+        if(index === sortedList.length - 1)
+        {
+            return (<RankingCard  data={datos} key={index} keyNum={index} selectedValueRank={selectedValueRank} UserData={UserData} lastPlayerReference={lastPlayerReference} />);
+        }
+        return (<RankingCard  data={datos} key={index} keyNum={index} selectedValueRank={selectedValueRank} UserData={UserData}/>);
+            
+    });
 
     return (
         <>
@@ -138,7 +162,7 @@ function CompleteRankingList({selectedValueRank, UserData})
 }
 
 
-function RankingCard({data, keyNum, selectedValueRank, UserData})
+function RankingCard({data, keyNum, selectedValueRank, UserData, lastPlayerReference})
 {
     const position = <span className={keyNum + 1 === 1 ? "firstPosition" : keyNum + 1 === 2 ? "secondPosition" : keyNum + 1 === 3 ? "thirdPosition" : ""}>{keyNum + 1} </span>;
     let title = "";
@@ -193,13 +217,21 @@ function RankingCard({data, keyNum, selectedValueRank, UserData})
         default:
             // No debe pasar por aquí
     }
-    let cosa = "";
+
+    let you = "";
     if (data.playername === UserData.name) {
-        cosa = "yourself";
+        you = "yourself";
     }
+
+    let ref = null;
+    if(lastPlayerReference)
+    {
+        ref = lastPlayerReference;
+    }
+
     return (
         <>
-            <div className={"rankBox " + cosa} key={keyNum} tabIndex="0" >
+            <div className={"rankBox " + you} key={keyNum} tabIndex="0" ref={ref}>
                 <div className="rankContent">
                     <div className="rankTitle">
                             <p>

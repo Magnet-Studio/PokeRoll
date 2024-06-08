@@ -9,7 +9,6 @@ import TipoIntercambio from "./sub-gameStatus/tipointercambio";
 import Intercambio from "./sub-gameStatus/intercambio";
 import IntercambioSimulado from "./sub-gameStatus/intercambioSimulado";
 import Error404 from "./sub-gameStatus/Error404";
-import { PlayerList } from "./sub-gameStatus/userdata/rankingList";
 
 function GameState({
   UserData,
@@ -21,7 +20,8 @@ function GameState({
   setChangeTierButtonDisable,
   setUserData,
   coinsReference
-}) {
+}) 
+{
   return (
     <Routes>
       <Route
@@ -136,7 +136,7 @@ function PokedexGameState({ UserData }) {
 }
 
 function MarcadoresGameState({ UserData }) {
-  return <Marcadores UserData={UserData} />;
+  return <Marcadores UserData={UserData}/>;
 }
 
 function TipoIntercambioGameState() {

@@ -23,88 +23,89 @@ function BottomElements({
     changeTierButtonDisable,
     setThreePokemon,
     coinsReference
-  }) {
-    const location = useLocation();
-    let pokemon;
+}) 
+{
+  const location = useLocation();
+  let pokemon;
 
-    if (location.pathname === "/almacen/ver-pokemon") {
-      const searchParams = new URLSearchParams(location.search);
-      const id = searchParams.get("id");
-      pokemon = GetPokemonByID(id, UserData.pokemonList);
-    }
-
-    return (
-      <Routes>
-        <Route
-          path="/ruleta"
-          element={
-            <ButtonsRuletaStatus
-              TierRuleta={TierRuleta}
-              setTierRuleta={setTierRuleta}
-              UserData={UserData}
-              setUserData={setUserData}
-              tirarButtonDisable={tirarButtonDisable}
-              setTirarButtonDisable={setTirarButtonDisable}
-              changeTierButtonDisable={changeTierButtonDisable}
-              setChangeTierButtonDisable={setChangeTierButtonDisable}
-              setThreePokemon={setThreePokemon}
-              coinsReference={coinsReference}
-            />
-          }
-        />
-
-        <Route path="/" element={<ButtonsLoginStatus UserData={UserData} />} />
-
-        <Route
-          path="/almacen/"
-          element={<ButtonsAlmacenStatus UserData={UserData} />}
-        />
-
-        <Route
-          path="/almacen/ver-pokemon"
-          element={
-            <ButtonsVerPokemonAlmacenStatus
-              data={pokemon}
-              UserData={UserData}
-              setUserData={setUserData}
-            />
-          }
-        />
-
-        <Route
-          path="/pokedex/*"
-          element={<ButtonsPokedexStatus UserData={UserData} />}
-        />
-
-        <Route
-          path="/marcadores/*"
-          element={<ButtonsMarcadoresStatus UserData={UserData} />}
-        />
-
-        <Route
-          path="/intercambio/tipo"
-          element={<ButtonsIntercambioStatus UserData={UserData} />}
-        />
-
-        <Route
-          path="/intercambio"
-          element={<ButtonsIntercambioStatus UserData={UserData} />}
-        />
-
-        <Route
-          path="/intercambio/pantallaCarga"
-          element={<ButtonsIntercambioStatus UserData={UserData} />}
-        />
-
-        <Route
-          path="/intercambio/conexion"
-          element={<ButtonCancelarConexionIntercambio UserData={UserData} />}
-        />
-
-        <Route path="*" element={<></>} />
-      </Routes>
-    );
+  if (location.pathname === "/almacen/ver-pokemon") {
+    const searchParams = new URLSearchParams(location.search);
+    const id = searchParams.get("id");
+    pokemon = GetPokemonByID(id, UserData.pokemonList);
   }
+
+  return (
+    <Routes>
+      <Route
+        path="/ruleta"
+        element={
+          <ButtonsRuletaStatus
+            TierRuleta={TierRuleta}
+            setTierRuleta={setTierRuleta}
+            UserData={UserData}
+            setUserData={setUserData}
+            tirarButtonDisable={tirarButtonDisable}
+            setTirarButtonDisable={setTirarButtonDisable}
+            changeTierButtonDisable={changeTierButtonDisable}
+            setChangeTierButtonDisable={setChangeTierButtonDisable}
+            setThreePokemon={setThreePokemon}
+            coinsReference={coinsReference}
+          />
+        }
+      />
+
+      <Route path="/" element={<ButtonsLoginStatus UserData={UserData} />} />
+
+      <Route
+        path="/almacen/"
+        element={<ButtonsAlmacenStatus UserData={UserData} />}
+      />
+
+      <Route
+        path="/almacen/ver-pokemon"
+        element={
+          <ButtonsVerPokemonAlmacenStatus
+            data={pokemon}
+            UserData={UserData}
+            setUserData={setUserData}
+          />
+        }
+      />
+
+      <Route
+        path="/pokedex/*"
+        element={<ButtonsPokedexStatus UserData={UserData} />}
+      />
+
+      <Route
+        path="/marcadores/*"
+        element={<ButtonsMarcadoresStatus UserData={UserData}/>}
+      />
+
+      <Route
+        path="/intercambio/tipo"
+        element={<ButtonsIntercambioStatus UserData={UserData} />}
+      />
+
+      <Route
+        path="/intercambio"
+        element={<ButtonsIntercambioStatus UserData={UserData} />}
+      />
+
+      <Route
+        path="/intercambio/pantallaCarga"
+        element={<ButtonsIntercambioStatus UserData={UserData} />}
+      />
+
+      <Route
+        path="/intercambio/conexion"
+        element={<ButtonCancelarConexionIntercambio UserData={UserData} />}
+      />
+
+      <Route path="*" element={<></>} />
+    </Routes>
+  );
+}
 
   const TierCosts = [100, 500, 1500, 4000, 10000];
 

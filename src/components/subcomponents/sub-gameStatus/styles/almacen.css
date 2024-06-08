@@ -273,11 +273,11 @@ option
     {
         grid-template-columns: 12.5vw 12.5vw 12.5vw 12.5vw;
     }
+
     .entryBox 
     {
         height: 12.5vw;
     }
-
 }
 
 @media screen and (max-width: 700px)
@@ -288,10 +288,12 @@ option
         margin-top: 2vw;
         grid-template-columns: 16.66vw 16.66vw 16.66vw;
     }
+    
     .entryBox 
     {
         height: 16.66vw;
     }
+
     #filtros
     {
         display:grid;
@@ -300,21 +302,46 @@ option
         margin-left: 5%;
         margin-right: 5%;
     }
+
     #filtros > div > .inputElem{
         width: 100%;
     }
+
     #filtros > div > input.inputElem{
         width: 98%;
     }
+
     #filtros > div > .inputElemSmall {
         width: 100%;
     }
+
     #almacenBigBox {
-        grid-template-rows: 90% 10%;
+        grid-template-rows: 10% 90%;
     }
 
     #filtros{
         height: 95%;
+    }
+
+    .filterAlmacen
+    {
+        display: none;
+    }
+
+    #filterAlmacenIcon
+    {
+        pointer-events: all !important;
+        cursor: pointer !important;
+    }
+
+    .filterAlmacen.showedFilters
+    {
+        display: flex;
+    }
+
+    #almacenBigBox.showedFilters
+    {
+        grid-template-rows: 90% 90%;
     }
 }
 

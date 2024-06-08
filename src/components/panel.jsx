@@ -73,6 +73,7 @@ const savedData = () =>
 
     };
 }
+
 const EventCodeList = [
     "sandyShocksBetaEvent",
     "skeledirgeCreatorBeastEvent",
@@ -169,6 +170,7 @@ const EventPokemonList = [
     },
 
 ]
+
 /** Función utilizada para crear eventos de distribución
  * 
  * @param {*} UserData Los datos del usuario
@@ -268,7 +270,7 @@ function MainPanel()
     const [threePokemon, setThreePokemon] = useState([{}, {}, {}]);
 
     // Referencia a las monedas para el tab
-    const coinsReference = useRef(null);
+    const coinsReference = useRef("coinsReference");
 
     useEffect(() => {
         document.activeElement.blur();
@@ -292,6 +294,7 @@ function MainPanel()
                                 </div>
                             </>
                         }/>
+
                         <Route path="*" element={
                             <>
                                 <div id='logoContainer' className='subpanelContainer'>
@@ -314,7 +317,7 @@ function MainPanel()
                                                         TierRuleta={TierRuleta} setTierRuleta={setTierRuleta} 
                                                         tirarButtonDisable={tirarButtonDisable} setTirarButtonDisable={setTirarButtonDisable}
                                                         changeTierButtonDisable={changeTierButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable}
-                                                        setThreePokemon={setThreePokemon} coinsReference={coinsReference} />
+                                                        setThreePokemon={setThreePokemon} coinsReference={coinsReference}/>
                                 </div>
                             </>
                         }/>
@@ -411,7 +414,7 @@ function BottomElementsPanel({UserData, coinsReference, setUserData, TierRuleta,
             <BottomElements UserData={UserData} setUserData={setUserData} TierRuleta={TierRuleta} setTierRuleta={setTierRuleta} 
                             tirarButtonDisable={tirarButtonDisable} setTirarButtonDisable={setTirarButtonDisable}
                             changeTierButtonDisable={changeTierButtonDisable} setChangeTierButtonDisable={setChangeTierButtonDisable}
-                            setThreePokemon={setThreePokemon} coinsReference={coinsReference} />
+                            setThreePokemon={setThreePokemon} coinsReference={coinsReference}/>
         </div>
     );
 }

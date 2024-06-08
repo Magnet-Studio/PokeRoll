@@ -158,10 +158,11 @@ const style = {
         reference={infoBorradoMultipleReference}
     />)
 
+    const [showFilters, setShowFilters] = useState("");
    
     return (
         <>
-            <div id="almacenBigBox" tabIndex={-1}>
+            <div id="almacenBigBox" className={showFilters} tabIndex={-1}>
                 <div id="filtros">
                     <FiltrosAlmacen selectedValue={selectedValue} 
                                     setSelectedValue={setSelectedValue} 
@@ -171,7 +172,8 @@ const style = {
                                     setSelectedType={setSelectedType}
                                     Name={Name}
                                     setName={setName}
-                                    infoBorradoMultipleReference={infoBorradoMultipleReference} />
+                                    infoBorradoMultipleReference={infoBorradoMultipleReference} 
+                                    showFilters={showFilters} setShowFilters={setShowFilters} />
                 </div>
 
                 <div id="pokemon-cards-container">
@@ -268,7 +270,7 @@ const style = {
     );
 }
 
-function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, setSelectedFrequency, selectedType, setSelectedType, Name, setName, infoBorradoMultipleReference} ) 
+function FiltrosAlmacen( {selectedValue, showFilters, setShowFilters, setSelectedValue, selectedFrequency, setSelectedFrequency, selectedType, setSelectedType, Name, setName, infoBorradoMultipleReference} ) 
 {
     const handleSelectChange = (event) => {
         setSelectedValue(event.target.value);
@@ -298,12 +300,42 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, se
         }
     }
 
+    const showFiltersHandler = () =>
+    {
+        setShowFilters(prev => 
+            prev === "" ? "showedFilters" : ""
+        );
+    }
+
+    const keyDownFilterHandler = (event) => 
+    {
+        if(event.key === "Enter")
+        {
+            showFiltersHandler();
+        }
+    }
+
+    // haciendose!!!!
+    const [tabValue, setTabValue] = useState(-1);
+    useEffect(() => {
+        if(window.innerWidth < 700)
+        {
+            setTabValue(0);
+        }
+        else
+        {
+            setTabValue(-1);
+        }
+
+    }, [window.innerWidth]);
+
     return(
         <>
-            <div className="filterAlmacenIcon">
+            <div className={"filterAlmacenIcon"} tabIndex={tabValue} onClick={showFiltersHandler} onKeyDown={keyDownFilterHandler} aria-label={showFilters === "" ? "Abrir filtros botón" : "Cerrar filtros botón"}>
                 <FilterAltIcon />
             </div>
-            <div className="filterAlmacen">
+
+            <div className={"filterAlmacen "  + showFilters}>
                 <label className="filterLabel" htmlFor="ordenacion">Ordenación</label>
                 <select tabIndex="0" className="inputElem" name="generalFilter" id="ordenacion" value={selectedValue} onChange={handleSelectChange}>
                     <option value="0">Más reciente</option>
@@ -318,7 +350,7 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, se
                 </select>
             </div>
             
-            <div className="filterAlmacen">
+            <div className={"filterAlmacen "  + showFilters}>
                 <label className="filterLabel" htmlFor="tier">Filtrar rareza</label>
                 <select tabIndex="0" className="inputElemSmall" name="tier" id="tier" value={selectedFrequency} onChange={handleSelectTier}>
                     <option value="0">No filtrar</option>
@@ -330,7 +362,8 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, se
                     <option value="6">Singular</option>
                 </select>
             </div>
-            <div className="filterAlmacen">
+
+            <div className={"filterAlmacen "  + showFilters}>
                 <label className="filterLabel" htmlFor="filtroTipo">Filtrar tipo</label>
                 <select tabIndex="0" className="inputElemSmall" name="type" id="filtroTipo" value={selectedType} onChange={handleSelectType}>
                     <option value="0">No filtrar</option>
@@ -355,9 +388,7 @@ function FiltrosAlmacen( {selectedValue, setSelectedValue, selectedFrequency, se
                 </select>
             </div>
 
-            
-
-            <div className="filterAlmacen">  
+            <div className={"filterAlmacen "  + showFilters}>  
                 <label htmlFor="filtroNombre">Filtrar por nombre</label>
                 <input tabIndex="0" className="inputElem" id="filtroNombre" placeholder="Escriba un nombre aquí..." value={Name} onChange={handleName}/>
             </div>
