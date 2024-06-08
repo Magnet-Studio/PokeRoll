@@ -20,7 +20,7 @@ export default function IntercambioSimulado() {
   const [finalSelectionGuest, setFinalSelectionGuest] = useState();
 
   useEffect(() => {
-    document.title = "PokéROLL (Intercambio con " + exchangeUserName + ")";
+    document.title = "Intercambio con " + exchangeUserName + " · PokéRoll";
   }, []);
 
   return (
