@@ -10,7 +10,7 @@ function Logo()
 {
     return (
         
-        <img id='logoImage' src={LogoImage} alt={"Logo de PokéROLL"} />
+        <img id='logoImage' src={LogoImage} alt={"Logo de PokéRoll"} />
 
     );
 }

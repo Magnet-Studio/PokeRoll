@@ -8,12 +8,22 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 function TitleGameStatus(props)
 {
 
-    let content = <h1 id='topElementTitle'>{props.titleName}</h1>;
+    let content = (
+        <h1 id='topElementTitle' tabIndex="0" role="heading" aria-level="1" aria-label={`Estás en la página: ${props.titleName}`}>
+            {props.titleName}
+        </h1>
+    );
 
-    const info = (<MouseOverPopover content={<InfoOutlinedIcon />} shown={RuletaDescription} />);
+    const info = (
+        <MouseOverPopover content={<InfoOutlinedIcon />} shown={RuletaDescription} />
+    );
 
     if(props.titleName === 'Ruleta') {
-        content = (<h1 id='topElementTitle'>{props.titleName} {info}</h1>);
+        content = (
+            <h1 id='topElementTitle' tabIndex="0" role="heading" aria-level="1" aria-label={`Estás en la página: ${props.titleName}`}>
+                {props.titleName} {info}
+            </h1>
+        );
     }
 
     return (
@@ -23,14 +33,11 @@ function TitleGameStatus(props)
     );
 }
 
-const RuletaDescription = (<span>
-    ¡Con la ruleta, podrás conseguir todos los Pokémon que TÚ quieras!<br/>
-    Dependiendo del TIER que elijas para la tirada, te saldrán Pokémon<br/>
-    con una rareza acorde a ese TIER. En el menú de Ayuda (?), podrás<br/>
-    encontrar información sobre cada una de las tiradas.
-
-</span>);
-
-
+const RuletaDescription = (
+    `¡Con la ruleta, podrás conseguir todos los Pokémon que TÚ quieras!
+    Dependiendo del TIER que elijas para la tirada, te saldrán Pokémon
+    con una rareza acorde a ese TIER. En el menú de Ayuda (?), podrás
+    encontrar información sobre cada una de las tiradas.`
+);
 
 export default TitleGameStatus;

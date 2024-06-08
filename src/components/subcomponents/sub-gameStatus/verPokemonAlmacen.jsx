@@ -28,7 +28,7 @@ function VerPokemonAlmacen({UserData, setUserData})
     const [pokemonData, setPokemonData] = useState(null);
     
     useEffect(() => {
-      document.title = "PokéROLL (Datos de " + pokemon.nametag + ")"
+      document.title = "Datos de " + pokemon.nametag + " · PokéRoll"
     }, [])
 
     useEffect(() => {
@@ -74,45 +74,23 @@ function VerPokemonAlmacen({UserData, setUserData})
     const rarezas = rarezaExtraPoints;
     const nombrePKM = pokemon.nametag === null ? name : pokemon.nametag;
     const shinyCond = (pokemon.shiny === "shiny") ? <MouseOverPopover content={<AutoAwesomeIcon className="shinyIcon"/>} 
-                                                                      shown={<span > ¡Felicidades! ¡Has conseguido un Pokémon Variocolor!<br/>
-                                                                      Obtendrás una bonificación de 5000 puntos en el cálculo final
-                                                                      de Rareza por ello.
-                                                                      </span>}/> : <></>;
+                                                                      shown={` ¡Felicidades! ¡Has conseguido un Pokémon Variocolor! Obtendrás una bonificación de 5000 puntos en el cálculo final de Rareza por ello.`}/> : <></>;
                                                                       
     const megaCond = (pokemon?.megaevolution === true) ? <MouseOverPopover content={<SpaIcon className="megaIcon" />} 
-                                                                      shown={<span> ¡Felicidades! ¡Has conseguido {megaWord}!<br/>
-                                                                      Obtendrás una bonificación de 1500 puntos en el cálculo final
-                                                                      de Rareza por ello.
-                                                                      </span>}/> : <></>;
+                                                                      shown={`¡Felicidades! ¡Has conseguido ${megaWord}! Obtendrás una bonificación de 1500 puntos en el cálculo final de Rareza por ello.`}/> : <></>;
     
     const rareCond = (pokemon?.rarespecies === true) ? <MouseOverPopover content={<MilitaryTechIcon className="rareIcon" />} 
-                                                                      shown={<span> ¡Felicidades! ¡Has conseguido una especie rara!<br/>
-                                                                      Obtendrás una bonificación de 1000 puntos en el cálculo final
-                                                                      de Rareza por ello.
-                                                                      </span>}/> : <></>; 
+                                                                      shown={"¡Felicidades! ¡Has conseguido una especie rara! Obtendrás una bonificación de 1000 puntos en el cálculo final de Rareza por ello."}/> : <></>; 
 
     const eventCond = (pokemon?.event === true) ? <MouseOverPopover content={<VerifiedIcon className="eventIcon" />} 
-                                                                      shown={<span> ¡Felicidades! ¡Has conseguido un Pokémon de evento!<br/>
-                                                                      {pokemon.event_desc}
-                                                                      </span>}/> : <></>; 
+                                                                      shown={`¡Felicidades! ¡Has conseguido un Pokémon de evento! ${pokemon.event_desc}`}/> : <></>; 
 
     const rarityMessage = <MouseOverPopover content={<InfoOutlinedIcon />} 
-                                            shown={<span>
-                                              La rareza de un Pokémon contribuye a su valor final. 
-                                              Este Pokémon posee la rareza "{nombreRareza}", por lo 
-                                              cual obtendrá un bonus de {rarezas[frequency-1]} puntos en el 
-                                              cálculo final de Rareza.
-                                              </span>} />
+                                            shown={`La rareza de un Pokémon contribuye a su valor final. Este Pokémon posee la rareza "${nombreRareza}", por lo cual obtendrá un bonus de ${rarezas[frequency-1]} puntos en el cálculo final de Rareza.`} />
     
     const statMessage = <MouseOverPopover content={<InfoOutlinedIcon />} 
-                                          shown={<span>
-                                            La gráfica de Estadísticas representa los valores individuales (IVs)
-                                            para cada una de sus estadísticas, definiendo genéticamente a un Pokémon
-                                            para que este sea único. 
-                                            Cuanto mayores sean estos valores para cada característica, mejor será 
-                                            este Pokémon y, en consecuencia, poseerá mayor puntuación en el cálculo.
-                                            final de Rareza.
-                                            </span>} />;
+                                          shown={`La gráfica de Estadísticas representa los valores individuales (IVs) para cada una de sus estadísticas, definiendo genéticamente a un Pokémon para que este sea único. Cuanto mayores sean estos valores para cada característica, mejor será este Pokémon y, en consecuencia, poseerá mayor puntuación en el cálculo final de Rareza.`} />;
+
     const totalSum = pokemon.iv ? (pokemon.iv.atq + pokemon.iv.def + pokemon.iv.spatq + pokemon.iv.spdef + pokemon.iv.spe + pokemon.iv.hp) : 0;
     const calc = ((totalSum / 186) * 100).toFixed(2);
      
@@ -125,9 +103,9 @@ function VerPokemonAlmacen({UserData, setUserData})
     return (
         <>
         <div className="backButton">
-          <Link to="/almacen" aria-label="Volver al almacén"  tabIndex='6'><span className="backArrow"><ForwardIcon fontSize="large"/></span></Link>
+          <Link to="/almacen" aria-label="Volver al almacén"  tabIndex='0'><span className="backArrow"><ForwardIcon fontSize="large"/></span></Link>
         </div>
-        <div id="verPokemonAlmacenBigBox" tabIndex='7'>
+        <div id="verPokemonAlmacenBigBox" tabIndex='0'>
             <div id="infoGeneral">
                 
                 {pokemon?.variant === undefined ? GetImage(pokemonData, (pokemon.shiny === "shiny")) : GetVariantImage(pokemon.variant.name, (pokemon.shiny === "shiny"))}

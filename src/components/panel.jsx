@@ -97,11 +97,11 @@ const EventPokemonList = [
         "name": 989,
         "nametag":"VMagnet ✰",
         "shiny": "shiny",
-        "originaltrainer": "PokéROLL", // jsx
+        "originaltrainer": "PokéRoll", // jsx
         "type1":"electric",    // jsx hecho
         "type2":"ground",   // jsx hecho
         "event": true,
-        "event_desc" : "¡Gracias por participar en la Beta de PokéROLL! Disfruta de este Pelarena variocolor durante tu estancia :)"
+        "event_desc" : "¡Gracias por participar en la Beta de PokéRoll! Disfruta de este Pelarena variocolor durante tu estancia :)"
     },
     {
         frequency:4,
@@ -113,7 +113,7 @@ const EventPokemonList = [
         type1:"fire",
         type2:"ghost",
         event:true,
-        event_desc:"¡Disfruta de este Skeledirge variocolor de parte de uno de los creadores de PokéROLL! ¡Que los cantos celestiales de este Pokémon bendigan tus tiradas!"
+        event_desc:"¡Disfruta de este Skeledirge variocolor de parte de uno de los creadores de PokéRoll! ¡Que los cantos celestiales de este Pokémon bendigan tus tiradas!"
     },
     {
         frequency:3,
@@ -125,7 +125,7 @@ const EventPokemonList = [
         type1:"fighting",
         type2:null,
         event:true,
-        event_desc:"¡Disfruta de este Sawk variocolor de parte de uno de los creadores de PokéROLL! ¡Que este Pokémon te de suerte y dejen de tocarte panzas y mileuristas!"
+        event_desc:"¡Disfruta de este Sawk variocolor de parte de uno de los creadores de PokéRoll! ¡Que este Pokémon te de suerte y dejen de tocarte panzas y mileuristas!"
     },
     {
         frequency:3,
@@ -138,7 +138,7 @@ const EventPokemonList = [
         type2:null,
         event:true,
         variant: {name: "unown-m"},
-        event_desc:"¡Disfruta de este Unown variocolor de parte de uno de los creadores de PokéROLL! ¡Felicidades Mario, a ver si esto te ayuda a completar tu colección de Unowns!"
+        event_desc:"¡Disfruta de este Unown variocolor de parte de uno de los creadores de PokéRoll! ¡Felicidades Mario, a ver si esto te ayuda a completar tu colección de Unowns!"
     },
     {
         frequency:4,
@@ -152,7 +152,7 @@ const EventPokemonList = [
         megaevolution:true,
         variant: {name: "gengar-mega"},
         event:true,
-        event_desc:"¡Disfruta de este Gengar megaevolucionado variocolor de parte de uno de los creadores de PokéROLL! ¡Que este Gengar te acompañe hasta en los momentos más sombríos!"
+        event_desc:"¡Disfruta de este Gengar megaevolucionado variocolor de parte de uno de los creadores de PokéRoll! ¡Que este Gengar te acompañe hasta en los momentos más sombríos!"
     },
     {
         frequency:3,
@@ -165,7 +165,7 @@ const EventPokemonList = [
         type2:"rock",
         variant: { name: "arcanine-hisuian", types: ["fire", "rock"] },
         event:true,
-        event_desc:"¡Disfruta de este Arcanine de Hisui variocolor de parte de uno de los creadores de PokéROLL! ¡Felicidades Jose, disfruta de esta leyenda de Pokémon!"
+        event_desc:"¡Disfruta de este Arcanine de Hisui variocolor de parte de uno de los creadores de PokéRoll! ¡Felicidades Jose, disfruta de esta leyenda de Pokémon!"
     },
 
 ]

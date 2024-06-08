@@ -13,7 +13,7 @@ export default function PantallaCargaIntercambio({
 }) {
   const navigate = useNavigate();
   useEffect(() => {
-    document.title = "PokéROLL (Buscando intercambio...)"
+    document.title = "Buscando intercambio... · PokéRoll"
     const timer = setTimeout(() => {
       const completePath = path + code;
       if (redirect) navigate(completePath);
