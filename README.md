@@ -11,10 +11,7 @@
 - [Andrés Ruiz Sánchez](https://github.com/andresruiiz)
 - [Jose Canto Peral](https://github.com/Anon2148)
 
-> [!WARNING]
-> - Use ```npm install``` to install all the project libraries
-
-### Additional React Libraries Used:
+## ⚛️ Additional React Libraries Used ⚛️
 - React Router Dom: ```npm install react-router-dom```
 - MUI Core: ```npm install @mui/material @emotion/react @emotion/styled```
 - MUI Icons: ```npm install @mui/icons-material```
@@ -23,14 +20,19 @@
 - React Spring: ```npm install react-spring```
 - React Confetti: ```npm install react-confetti```
 
+> [!NOTE]
+> - Use ```npm install``` to install all the project libraries
+
 ## 🚀 Deployment Instructions 🚀
 
-To deploy the PokeRoll Project locally, follow these steps:
-
-### Prerequisites
+### ☝️ Prerequisites ☝️
 - Ensure you have Node.js and npm installed. You can download them from the [official Node.js website](https://nodejs.org/).
 
-### Steps
+---
+
+### 🖥️ Run on your local machine 🖥️
+
+To deploy the PokeRoll Project locally, follow these steps:
 
 1. **Clone the repository:**
     ```sh
@@ -60,7 +62,9 @@ To deploy the PokeRoll Project locally, follow these steps:
 
 Now you should see the PokeRoll Project running on your local machine.
 
-### Deployment to Production
+---
+
+### 🔨 Deployment to Production 🔨
 
 For deploying to a production environment, you can build the app and serve it using a web server of your choice:
 
@@ -73,7 +77,9 @@ For deploying to a production environment, you can build the app and serve it us
 
 You can use services like Netlify, Vercel, or GitHub Pages for an easy deployment process. Refer to their documentation for specific deployment steps.
 
-### Deployment to GitHub Pages
+---
+
+### 🌐 Deployment to GitHub Pages 🌐
 
 If not already set up, follow these steps to deploy the PokeRoll Project on GitHub Pages:
 
