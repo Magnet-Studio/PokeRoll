@@ -75,6 +75,11 @@
   margin-bottom: 5vh;
 }
 
+#mainInfoContainer > .infoBox > h2 
+{
+  color: black;
+}
+
 #mainInfoContainer > p
 {
   font-size: 1.5vw;
