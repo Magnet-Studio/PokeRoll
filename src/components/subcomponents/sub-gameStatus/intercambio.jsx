@@ -25,8 +25,8 @@ export default function Intercambio({ UserData }) {
   const linkClass = almacenPokemonLength === 1 ? "disabled" : "enabled";
   return (
     <>
-      {noIntercambioMessage}
       <div className="botonesIntercambio">
+        {noIntercambioMessage}
         <Link
           to="tipo?hasCode=no"
           className={linkClass + " intercambioBotonSinCodigo"}
