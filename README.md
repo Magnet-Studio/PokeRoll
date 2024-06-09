@@ -109,3 +109,7 @@ If not already set up, follow these steps to deploy the PokeRoll Project on GitH
 5. **Go to your repository settings on GitHub and ensure GitHub Pages is set to use the `gh-pages` branch.**
 
 Now your PokeRoll Project should be live on GitHub Pages at `https://simulationofmario.github.io/pokeroll`.
+
+---
+
+🐹🧲
