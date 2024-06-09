@@ -10,14 +10,14 @@
     padding: 0 5vw;
 }
 
-h1 {
+#errorContainer > h1 {
     color: #fecb02;
     margin: 0;
     font-size: 3em;
     text-align: center;
 }
 
-h2 {
+#errorContainer > h2 {
     color: white;
     text-align: center;
 }
