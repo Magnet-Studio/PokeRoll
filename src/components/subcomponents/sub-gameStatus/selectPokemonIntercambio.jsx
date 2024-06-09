@@ -75,6 +75,8 @@ export default function ModalSelectPokemon({
     pointerEvents: "all",
   };
 
+  const [showFilters, setShowFilters] = useState("");
+
   return (
     <>
       <Modal
@@ -83,12 +85,22 @@ export default function ModalSelectPokemon({
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         id="modalSeleccionIntercambio"
+        style={{ pointerEvents: "all" }}
       >
         <Box sx={style}>
-          <div id="almacenBigBox">
-            <div id="filtros">
+          <div
+            id="almacenBigBox"
+            className={showFilters}
+            tabIndex={-1}
+            style={{ pointerEvents: "all" }}
+          >
+            <div id="filtros" style={{ pointerEvents: "all" }}>
               <div className="cerrarModalContainer">
-                <button tabIndex="1" onClick={handleClose}>
+                <button
+                  tabIndex="0"
+                  aria-label="Cerrar menu para seleccionar pokemon para intercambiar"
+                  onClick={handleClose}
+                >
                   <CloseIcon />
                 </button>
               </div>
@@ -101,6 +113,8 @@ export default function ModalSelectPokemon({
                 setSelectedType={setSelectedType}
                 Name={Name}
                 setName={setName}
+                showFilters={showFilters}
+                setShowFilters={setShowFilters}
               />
             </div>
 
@@ -116,7 +130,7 @@ export default function ModalSelectPokemon({
             </div>
             <div className="borradoMultipleContainer">
               <Button
-                tabindex="1"
+                tabindex={selectedIntercambio ? "0" : "-1"}
                 aria-label="Confirmar selección para intercambiar"
                 id="borradoMultipleConfirm"
                 onClick={
@@ -147,6 +161,8 @@ function FiltrosAlmacen({
   setSelectedType,
   Name,
   setName,
+  showFilters,
+  setShowFilters,
 }) {
   const handleSelectChange = (event) => {
     setSelectedValue(event.target.value);
@@ -164,39 +180,92 @@ function FiltrosAlmacen({
     setName(event.target.value);
     sessionStorage.setItem("Name", event.target.value);
   };
+
+  const showFiltersHandler = () => {
+    setShowFilters((prev) => (prev === "" ? "showedFilters" : ""));
+  };
+
+  const keyDownFilterHandler = (event) => {
+    if (event.key === "Enter") {
+      showFiltersHandler();
+    }
+  };
+
+  const [tabValue, setTabValue] = useState(-1);
+  useEffect(() => {
+    // Función para actualizar tabValue según el ancho de la ventana
+    const handleResize = () => {
+      if (window.innerWidth < 700) {
+        setTabValue(0);
+      } else {
+        setTabValue(-1);
+      }
+    };
+
+    // Agrega el event listener para el evento de resize
+    window.addEventListener("resize", handleResize);
+
+    // Llama a handleResize inicialmente para establecer el valor correcto
+    handleResize();
+
+    // Limpia el event listener al desmontar el componente
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+
+    // eslint-disable-next-line
+  }, []);
   return (
     <>
-      <div>
+      <div
+        className={"filterAlmacenIcon"}
+        tabIndex={tabValue}
+        onClick={showFiltersHandler}
+        onKeyDown={keyDownFilterHandler}
+        aria-label={
+          showFilters === "" ? "Abrir filtros botón" : "Cerrar filtros botón"
+        }
+        style={{ pointerEvents: "all" }}
+      >
         <FilterAltIcon />
       </div>
-      <div className="filterAlmacen">
+
+      <div
+        className={"filterAlmacen " + showFilters}
+        style={{ pointerEvents: "all" }}
+      >
         <label className="filterLabel" htmlFor="ordenacion">
           Ordenación
         </label>
         <select
+          tabIndex="0"
           className="inputElem"
           name="generalFilter"
           id="ordenacion"
           value={selectedValue}
           onChange={handleSelectChange}
         >
-          <option value="0">Ordenar por más reciente</option>
-          <option value="5">Ordenar por más antiguos</option>
-          <option value="1">Ordenar por Pokémon con más valor</option>
-          <option value="6">Ordenar por mejores estadísticas</option>
-          <option value="2">Ordenar por número de Pokédex</option>
-          <option value="3">Ordenar por Rareza más alta</option>
+          <option value="0">Más reciente</option>
+          <option value="5">Más antiguos</option>
+          <option value="1">Pokémon con más valor</option>
+          <option value="6">Mejores estadísticas</option>
+          <option value="2">Número de Pokédex</option>
+          <option value="3">Rareza más alta</option>
           <option value="4">Variocolores primero</option>
           <option value="7">Megaevoluciones primero</option>
           <option value="8">Especies raras primero</option>
         </select>
       </div>
 
-      <div className="filterAlmacen">
+      <div
+        className={"filterAlmacen " + showFilters}
+        style={{ pointerEvents: "all" }}
+      >
         <label className="filterLabel" htmlFor="tier">
           Filtrar rareza
         </label>
         <select
+          tabIndex="0"
           className="inputElemSmall"
           name="tier"
           id="tier"
@@ -212,11 +281,16 @@ function FiltrosAlmacen({
           <option value="6">Singular</option>
         </select>
       </div>
-      <div className="filterAlmacen">
+
+      <div
+        className={"filterAlmacen " + showFilters}
+        style={{ pointerEvents: "all" }}
+      >
         <label className="filterLabel" htmlFor="filtroTipo">
           Filtrar tipo
         </label>
         <select
+          tabIndex="0"
           className="inputElemSmall"
           name="type"
           id="filtroTipo"
@@ -245,15 +319,19 @@ function FiltrosAlmacen({
         </select>
       </div>
 
-      <div className="filterAlmacen">
+      <div
+        className={"filterAlmacen " + showFilters}
+        style={{ pointerEvents: "all" }}
+      >
         <label htmlFor="filtroNombre">Filtrar por nombre</label>
         <input
+          tabIndex="0"
           className="inputElem"
           id="filtroNombre"
           placeholder="Escriba un nombre aquí..."
           value={Name}
           onChange={handleName}
-        ></input>
+        />
       </div>
     </>
   );
@@ -599,6 +677,11 @@ function PokemonCard({
     eventDesc = "De evento";
   }
 
+  let tipos = "Del tipo " + GetPrettyTypeNameSpanish(firstType);
+  if (secondType !== null) {
+    tipos = tipos + " y " + GetPrettyTypeNameSpanish(secondType);
+  }
+
   // Si los datos aún se están cargando, muestra CircularProgress dentro de la tarjeta
   const content =
     pokemonData === null || pokemonSpeciesData === null ? (
@@ -615,11 +698,13 @@ function PokemonCard({
       onClick={handleSelectedIntercambio}
       aria-label={
         (isAlreadySelected
-          ? "Seleccionado para liberar "
-          : " No seleccionado para liberar ") +
-        ":Número " +
+          ? "Seleccionado para intercambiar "
+          : " No seleccionado para intercambiar ") +
+        "Número " +
         dexNum +
         ": " +
+        tipos +
+        " : " +
         data.nametag +
         ":" +
         shinyDesc +

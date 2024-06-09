@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./styles/intercambio.css";
 import "../../styles/panel.css";
@@ -8,8 +8,6 @@ import DoneOutlinedIcon from "@mui/icons-material/DoneOutlined";
 import { Link } from "react-router-dom";
 import PantallaCargaIntercambio from "./pantallaCargaIntercambio";
 import { PlayerList } from "./userdata/rankingList";
-import { GetPokemonArrayByFrequency } from "./lib/pokemonFrequency";
-import { GetDataByDexNum } from "./lib/PokemonData";
 
 export default function TipoIntercambio() {
   const location = useLocation();
@@ -17,18 +15,18 @@ export default function TipoIntercambio() {
   const code = searchParams.get("hasCode");
   const [GuestSelection, setGuestSelection] = useState();
 
-  useEffect(() => {
-    const GetOneRandomPokemonData = async () => {
-      const pokemonArray = GetPokemonArrayByFrequency(
-        Math.floor(Math.random() * (5 - 1 + 1)) + 1
-      );
-      const array =
-        pokemonArray[Math.floor(Math.random() * pokemonArray.length)];
-      const pokemon = await GetDataByDexNum(array.dexNum);
-      setGuestSelection(pokemon);
-    };
-    GetOneRandomPokemonData();
-  }, []);
+  // useEffect(() => {
+  //   const GetOneRandomPokemonData = async () => {
+  //     const pokemonArray = GetPokemonArrayByFrequency(
+  //       Math.floor(Math.random() * (5 - 1 + 1)) + 1
+  //     );
+  //     const array =
+  //       pokemonArray[Math.floor(Math.random() * pokemonArray.length)];
+  //     const pokemon = await GetDataByDexNum(array.dexNum);
+  //     setGuestSelection(pokemon);
+  //   };
+  //   GetOneRandomPokemonData();
+  // }, []);
 
   const exchangePlayerIndex = Math.floor(Math.random() * PlayerList.length);
   const exchangeUserName = PlayerList[exchangePlayerIndex].playername;
@@ -71,7 +69,11 @@ function IntercambioConCodigo() {
   return (
     <>
       <div className="backButtonIntercambio">
-        <Link to="/intercambio" aria-label="Volver al intercambio" tabIndex="0">
+        <Link
+          to="/intercambio"
+          aria-label="Volver al menu inicial de intercambio"
+          tabIndex="0"
+        >
           <span className="backArrowIntercambio">
             <ForwardIcon fontSize="small" />
           </span>
@@ -136,7 +138,11 @@ function IntercambioSinCodigo({ code }) {
   return (
     <>
       <div className="backButtonIntercambio">
-        <Link to="/intercambio" aria-label="Volver al intercambio" tabIndex="0">
+        <Link
+          to="/intercambio"
+          aria-label="Volver al menu inicial de intercambio"
+          tabIndex="0"
+        >
           <span className="backArrowIntercambio">
             <ForwardIcon fontSize="small" />
           </span>
@@ -146,7 +152,7 @@ function IntercambioSinCodigo({ code }) {
         <div
           className="formulario"
           tabIndex="0"
-          aria-description="Estas en el menú de intercambio sin código"
+          aria-description="Estas en el menú de intercambio sin código, tabula para saber tu código, compártelo con tus amigos para intercambiar pokemons"
         >
           <TextoInformativo text="Este es tu código de intercambio, compártelo con tus amigos para intercambiar pokemons" />
           <CodigoIntercambio
@@ -182,12 +188,12 @@ function GenerateRandomCode() {
 
 function CodigoIntercambio({ code, isCopied, handleCopyClick }) {
   return (
-    <div id="codeAndButtonContainer">
-      <h1
-        id="intercambioCodeDisplayed"
-        aria-description={"Este es tu código de intercambio: " + code}
-        style={{ color: "white" }}
-      >
+    <div
+      tabIndex="0"
+      aria-label={"Este es tu código de intercambio: " + code}
+      id="codeAndButtonContainer"
+    >
+      <h1 id="intercambioCodeDisplayed" style={{ color: "white" }}>
         {code}
       </h1>
       <button
