@@ -1,0 +1,34 @@
+#errorContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    grid-column: 1 / -1;
+}
+
+h1 {
+    color:#fecb02;
+    margin: 0;
+    font-size: 3em;
+}
+
+h2 {
+    color: white;
+}
+
+.error404Button {
+    background-color: #fecb02;
+    border: 0.3vw solid #ba9712;
+    color: #1a437b;
+    border-radius: 0.7vw;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 2.5vh;
+}
+
+.error404Button:hover {
+    background-color: #ba9712;
+}
