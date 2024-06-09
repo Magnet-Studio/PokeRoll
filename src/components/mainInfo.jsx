@@ -9,6 +9,7 @@ import Button from 'react-bootstrap/Button';
 function MainInfoButton() {
 
   const [enabled, setEnabled] = useState(false);
+  const [firstTime, setFirstTime] = useState(true);
 
   const handleClick = () => 
   {
@@ -31,10 +32,16 @@ function MainInfoButton() {
     {
       mainInfoRef.current?.focus();
     }
-    else
+    else if (!firstTime)
     {
       mainInfoButtonRef.current?.focus();
     }
+    else
+    {
+      setFirstTime(false);
+    }
+  
+  // eslint-disable-next-line
   }, [enabled]);
 
   // Handler del documento para regresarte a la ayuda si te sales de ella tabulando
