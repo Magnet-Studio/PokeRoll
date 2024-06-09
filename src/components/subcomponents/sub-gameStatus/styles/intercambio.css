@@ -99,12 +99,10 @@
 }
 
 .mensajeNoIntercambioPokemonContainer {
-  position: absolute;
-  top: 5vh;
-  margin-top: 5vh;
+  display: flex;
+  width: 100%;
   justify-content: center;
   align-items: center;
-  left: 31rem;
   grid-column: 2;
 }
 
@@ -208,6 +206,8 @@
   justify-content: center;
   text-align: center;
   gap: 5vw;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
 }
 
 #conexionIntercambioContainer h2 {
@@ -222,7 +222,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 7vh;
+  margin-bottom: auto;
 }
 
 #arrowAnim {
@@ -231,7 +231,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 7vh;
+  margin-top: auto;
 }
 
 .arrow {
@@ -384,7 +384,7 @@
   cursor: pointer;
 }
 
-.MuiBox-root #almacenBigBox > #pokemon-cards-container > a{
+.MuiBox-root #almacenBigBox > #pokemon-cards-container > a {
   pointer-events: all;
 }
 
@@ -414,6 +414,7 @@
   pointer-events: all;
   font-size: calc(2px + 0.8vw);
   min-width: 0;
+  cursor: pointer;
 }
 
 .cerrarModalContainer button:hover {
@@ -438,7 +439,29 @@
   pointer-events: all;
 }
 
+@media screen and (max-width: 940px) {
+  .intercambioTextoInicio {
+    font-size: medium;
+  }
+}
+
 @media screen and (max-width: 720px) {
+  .arrow {
+    width: 3vw;
+    height: 3vw;
+  }
+  .arrowHost {
+    width: 3vw;
+    height: 3vw;
+  }
+  #conexionIntercambioContainer h2 {
+    font-size: large;
+  }
+  #botonAceptarIntercambio {
+    height: auto;
+    width: auto;
+    font-size: calc(3vw);
+  }
   .intercambioBotonSinCodigo.enabled {
     width: 50%;
     font-size: smaller;
@@ -455,18 +478,14 @@
     width: 50%;
     font-size: small;
   }
-  .mensajeNoIntercambioPokemonContainer {
-    top: 1.5vh;
-    left: 1rem;
-  }
-  .mensajeNoIntercambioPokemon {
-    font-size: medium;
-  }
   .intercambioTextoInicio {
     font-size: small;
   }
+  .mensajeNoIntercambioPokemon {
+    font-size: small;
+  }
   #intercambioCodeDisplayed {
-    font-size: large;
+    font-size: x-large;
   }
   .backButtonIntercambio {
     width: 10vw;
@@ -483,5 +502,8 @@
   }
   #textoBotonIntercambio {
     font-size: small;
+  }
+  #textFromCircularProgress {
+    font-size: medium;
   }
 }
