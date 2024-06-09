@@ -61,6 +61,7 @@
   cursor: pointer;
   margin: 5px;
   font-size: 1.5dvh;
+  text-decoration: none;
 }
 
 .intercambioBotonConCodigo.disabled {
@@ -84,6 +85,7 @@
   margin: 5px;
   color: #1a437b;
   font-size: 1.5dvh;
+  text-decoration: none;
 }
 
 .intercambioBotonSinCodigo.disabled {
@@ -96,6 +98,10 @@
   color: #1a437b;
   font-size: 1.5dvh;
   opacity: 0.5;
+}
+
+.intercambioBotonSinCodigo > h2 {
+  color: #1a437b;
 }
 
 .mensajeNoIntercambioPokemonContainer {
