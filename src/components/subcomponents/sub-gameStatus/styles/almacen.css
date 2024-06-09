@@ -25,14 +25,15 @@ a {
     pointer-events: all;
 }
 
-#pokemon-cards-container {
+#pokemon-cards-container 
+{
     width: 100%;
     height: 96%;
     display: grid;
     justify-content: center;
-    grid-template-columns: 10vw 10vw 10vw 10vw 10vw;
-    grid-column-gap: 2vw;
-    
+    grid-template-columns: repeat(5, auto);
+    grid-column-gap: 3%;
+    grid-row-gap: 8%;
 }
 
 #filtros {
@@ -271,12 +272,15 @@ option
 {
     #pokemon-cards-container
     {
-        grid-template-columns: 12.5vw 12.5vw 12.5vw 12.5vw;
+        grid-template-columns: repeat(4, auto);
+        grid-column-gap: 2.5%;
+        grid-row-gap: 4%;
     }
 
     .entryBox 
     {
         height: 12.5vw;
+        width: 12.5vw;
     }
 }
 
@@ -286,12 +290,15 @@ option
     #pokemon-cards-container
     {
         margin-top: 2vw;
-        grid-template-columns: 16.66vw 16.66vw 16.66vw;
+        grid-template-columns: repeat(3, auto);
+        grid-column-gap: 2.5%;
+        grid-row-gap: 1%;
     }
     
     .entryBox 
     {
         height: 16.66vw;
+        width: 16.66vw;
     }
 
     #filtros
@@ -319,24 +326,24 @@ option
         grid-template-rows: 10% 90%;
     }
 
-    #filtros{
+    #filtros { 
         height: 95%;
     }
 
-    .filterAlmacen
+    #filtros > .filterAlmacen
     {
         display: none;
     }
 
-    #filterAlmacenIcon
+    .filterAlmacenIcon
     {
-        pointer-events: all !important;
-        cursor: pointer !important;
+        pointer-events: all;
+        cursor: pointer;
     }
 
     .filterAlmacen.showedFilters
     {
-        display: flex;
+        display: flex !important;
     }
 
     #almacenBigBox.showedFilters

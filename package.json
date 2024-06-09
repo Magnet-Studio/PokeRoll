@@ -1,6 +1,6 @@
 {
   "name": "pokeroll",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "homepage": "https://SimulationOfMario.github.io/",
   "private": true,
   "dependencies": {

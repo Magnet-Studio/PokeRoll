@@ -1,6 +1,7 @@
 .entryBox {
     width: 100%;
     height: 10vw;
+    width: 10vw;
     background-color: rgba(0, 0, 0, 1);
     border-radius: 2vw;
     position: relative;
@@ -8,10 +9,11 @@
   
 
 
-#pokemon-cards-container > a {
-    margin-bottom: 2vw;
+#pokemon-cards-container > a 
+{
     filter: drop-shadow(0 0 2px rgb(0, 0, 0));
     transition: transform 0.3s ease, filter 0.3s ease; /* Agregamos una transición suave a transform y filter */
+    height: fit-content;
 }
 
 #pokemon-cards-container > a:hover {
@@ -58,7 +60,7 @@
     .entryBox 
     {
         height: 12.5vw;
-        
+        width: 12.5vw;
     }
 }
 
@@ -71,6 +73,7 @@
     .entryBox 
     {
         height: 16.66vw;
+        width: 16.66vw;
     }
 }
 

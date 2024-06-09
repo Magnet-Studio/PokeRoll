@@ -213,6 +213,11 @@
         margin: 0.1vh 0;
     }
 
+    #coinsPanelContainer
+    {
+        top: 3%;
+    }
+
     #coinsPanel
     {
         min-width: 90px;
@@ -225,6 +230,7 @@
         align-items: center;
         justify-content: center;
         right: 0;
+        top: 3%;
     }
 
     #usernamePanel

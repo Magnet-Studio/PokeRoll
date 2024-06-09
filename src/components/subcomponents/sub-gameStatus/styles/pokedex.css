@@ -173,6 +173,7 @@
     .entryBox 
     {
         height: 12.5vw;
+        width: 12.5vw;
     }
     .yourRegisters {
         font-size: 100%;
@@ -188,6 +189,7 @@
     .entryBox 
     {
         height: 16.66vw;
+        width: 16.66vw;
     }
     .yourRegisters {
         font-size: 65%;
