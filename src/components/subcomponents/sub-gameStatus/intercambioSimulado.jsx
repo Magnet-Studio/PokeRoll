@@ -18,10 +18,29 @@ export default function IntercambioSimulado() {
   const exchangeUserName = localStorage.getItem("exchangeUser");
   const exchangeGuestPokemon = localStorage.getItem("exchangePokemon");
   const [finalSelectionHost, setFinalSelectionHost] = useState();
+  const [aceptarIntercambio, setAceptarIntercambio] = useState(false);
 
   useEffect(() => {
     document.title = "Intercambio con " + exchangeUserName + " · PokéRoll";
   }, []);
+
+  if (aceptarIntercambio) {
+    return (
+      <PantallaCargaIntercambio
+        redirect={true}
+        path="/intercambio"
+        size="10rem"
+        thickness={8}
+        time={5000}
+        textoInformativo="Intercambio realizado... Volviendo al inicio..."
+        code=""
+      />
+    );
+  }
+
+  const handleClick = () => {
+    setAceptarIntercambio(true);
+  };
 
   return (
     <div id="conexionIntercambioContainer">
@@ -29,6 +48,7 @@ export default function IntercambioSimulado() {
         host={playerUserName}
         finalSelectionHost={finalSelectionHost}
         setFinalSelectionHost={setFinalSelectionHost}
+        handleClick={handleClick}
       />
       <ShowGuestPlayer
         guest={exchangeUserName}
@@ -38,7 +58,12 @@ export default function IntercambioSimulado() {
   );
 }
 
-function ShowHostPlayer({ host, finalSelectionHost, setFinalSelectionHost }) {
+function ShowHostPlayer({
+  host,
+  finalSelectionHost,
+  setFinalSelectionHost,
+  handleClick,
+}) {
   return (
     <div id="intercambioHostContainer">
       <h2>{host}</h2>
@@ -47,7 +72,15 @@ function ShowHostPlayer({ host, finalSelectionHost, setFinalSelectionHost }) {
         finalSelection={finalSelectionHost}
         setFinalSelection={setFinalSelectionHost}
       />
-      <button id="botonAceptarIntercambio">Aceptar</button>
+      <button
+        onClick={handleClick}
+        style={
+          !finalSelectionHost ? { pointerEvents: "none", opacity: "50%" } : {}
+        }
+        id="botonAceptarIntercambio"
+      >
+        Aceptar
+      </button>
     </div>
   );
 }
@@ -57,7 +90,14 @@ function ShowGuestPlayer({ guest, finalSelectionGuest }) {
     <div id="intercambioGuestContainer">
       <h2>{guest}</h2>
       <PokemonIntercambio player="guest" finalSelection={finalSelectionGuest} />
-      <button id="botonAceptarIntercambio">Aceptado</button>
+      <button
+        id="botonAceptarIntercambio"
+        style={
+          finalSelectionGuest ? { pointerEvents: "none", opacity: "50%" } : {}
+        }
+      >
+        Aceptado
+      </button>
     </div>
   );
 }
