@@ -6,16 +6,20 @@
     height: 100%;
     width: 100%;
     grid-column: 1 / -1;
+    box-sizing: border-box;
+    padding: 0 5vw;
 }
 
 h1 {
-    color:#fecb02;
+    color: #fecb02;
     margin: 0;
     font-size: 3em;
+    text-align: center;
 }
 
 h2 {
     color: white;
+    text-align: center;
 }
 
 .error404Button {
