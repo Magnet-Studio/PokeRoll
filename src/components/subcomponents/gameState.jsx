@@ -19,9 +19,8 @@ function GameState({
   setTirarButtonDisable,
   setChangeTierButtonDisable,
   setUserData,
-  coinsReference
-}) 
-{
+  coinsReference,
+}) {
   return (
     <Routes>
       <Route
@@ -85,11 +84,14 @@ function GameState({
 
       <Route path="/intercambio/tipo" element={<TipoIntercambioGameState />} />
 
-      <Route path="/intercambio" element={<IntercambioGameState UserData={UserData}/>} />
+      <Route
+        path="/intercambio"
+        element={<IntercambioGameState UserData={UserData} />}
+      />
 
       <Route
         path="/intercambio/conexion"
-        element={<ConexionIntercambioGameState />}
+        element={<ConexionIntercambioGameState setUserData={setUserData} />}
       />
 
       <Route path="*" element={<Error404GameState />} />
@@ -106,7 +108,7 @@ function RuletaGameState({
   setTirarButtonDisable,
   setChangeTierButtonDisable,
   setUserData,
-  coinsReference
+  coinsReference,
 }) {
   return (
     <Ruleta
@@ -136,7 +138,7 @@ function PokedexGameState({ UserData }) {
 }
 
 function MarcadoresGameState({ UserData }) {
-  return <Marcadores UserData={UserData}/>;
+  return <Marcadores UserData={UserData} />;
 }
 
 function TipoIntercambioGameState() {
@@ -147,8 +149,8 @@ function IntercambioGameState({ UserData }) {
   return <Intercambio UserData={UserData} />;
 }
 
-function ConexionIntercambioGameState() {
-  return <IntercambioSimulado />;
+function ConexionIntercambioGameState({ setUserData }) {
+  return <IntercambioSimulado setUserData={setUserData} />;
 }
 
 function Error404GameState() {
