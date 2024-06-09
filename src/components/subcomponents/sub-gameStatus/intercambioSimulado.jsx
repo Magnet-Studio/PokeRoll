@@ -13,18 +13,19 @@ import {
   GetVariantImage,
 } from "./lib/PokemonData";
 
-export default function IntercambioSimulado() {
+export default function IntercambioSimulado({ setUserData }) {
   const playerUserName = localStorage.username;
   const exchangeUserName = localStorage.getItem("exchangeUser");
   const exchangeGuestPokemon = localStorage.getItem("exchangePokemon");
   const [finalSelectionHost, setFinalSelectionHost] = useState();
   const [aceptarIntercambio, setAceptarIntercambio] = useState(false);
+  const [eliminated, setEliminated] = useState(false);
 
   useEffect(() => {
     document.title = "Intercambio con " + exchangeUserName + " · PokéRoll";
   }, []);
 
-  if (aceptarIntercambio) {
+  if (aceptarIntercambio && eliminated) {
     return (
       <PantallaCargaIntercambio
         redirect={true}
@@ -36,6 +37,21 @@ export default function IntercambioSimulado() {
         code=""
       />
     );
+  }
+
+  if (aceptarIntercambio) {
+    setUserData((prevUserData) => {
+      const updatedUserData = { ...prevUserData };
+      updatedUserData.pokemonList = updatedUserData.pokemonList.filter(
+        (data) => {
+          const parsedData = JSON.parse(data);
+          return parseInt(parsedData.id) !== parseInt(finalSelectionHost.id);
+        }
+      );
+      return updatedUserData;
+    });
+    console.log(exchangeGuestPokemon);
+    setEliminated(true);
   }
 
   const handleClick = () => {
@@ -78,6 +94,8 @@ function ShowHostPlayer({
           !finalSelectionHost ? { pointerEvents: "none", opacity: "50%" } : {}
         }
         id="botonAceptarIntercambio"
+        tabIndex={!finalSelectionHost ? "-1" : "0"}
+        aria-label="Botón aceptar intercambio"
       >
         Aceptar
       </button>
@@ -95,6 +113,7 @@ function ShowGuestPlayer({ guest, finalSelectionGuest }) {
         style={
           finalSelectionGuest ? { pointerEvents: "none", opacity: "50%" } : {}
         }
+        tabIndex="-1"
       >
         Aceptado
       </button>
@@ -114,16 +133,25 @@ function PokemonIntercambio({ player, finalSelection, setFinalSelection }) {
       {player === "host" ? (
         <>
           {finalSelection !== undefined ? (
-            <div style={{ width: "10vw" }}>
-              <ShowPokemonIntercambio finalSelection={finalSelection} />
+            <div>
+              <ShowPokemonIntercambio
+                player={player}
+                finalSelection={finalSelection}
+              />
             </div>
           ) : (
             <div className="entryBox">
               <div onClick={handleClick} id="exchangePokemonContainer">
-                <AddCircleIcon
-                  htmlColor="white"
-                  sx={{ fontSize: "5vw", width: "8vw" }}
-                />
+                <button
+                  style={{ background: "transparent", border: "transparent" }}
+                  tabIndex="0"
+                  aria-label="Botón para seleccionar un pokemon para intercambiar"
+                >
+                  <AddCircleIcon
+                    htmlColor="white"
+                    sx={{ fontSize: "5vw", width: "8vw" }}
+                  />
+                </button>
               </div>
             </div>
           )}
@@ -154,13 +182,16 @@ function PokemonIntercambio({ player, finalSelection, setFinalSelection }) {
             <div className="arrowSliding delay2">
               <div className="arrow"></div>
             </div>
-            <div class="arrowSliding delay3">
+            <div className="arrowSliding delay3">
               <div className="arrow"></div>
             </div>
           </div>
           {finalSelection ? (
             <div style={{ width: "10vw" }}>
-              <ShowPokemonIntercambio finalSelection={finalSelection} />
+              <ShowPokemonIntercambio
+                player={player}
+                finalSelection={finalSelection}
+              />
             </div>
           ) : (
             <div className="entryBox" style={{ width: "10vw" }}>
@@ -182,7 +213,7 @@ function PokemonIntercambio({ player, finalSelection, setFinalSelection }) {
   );
 }
 
-function ShowPokemonIntercambio({ finalSelection }) {
+function ShowPokemonIntercambio({ player, finalSelection }) {
   const [pokemonData, setPokemonData] = useState(null);
   const [pokemonSpeciesData, setPokemonSpeciesData] = useState(null);
 
@@ -283,6 +314,40 @@ function ShowPokemonIntercambio({ finalSelection }) {
 
   return (
     <div
+      tabIndex="0"
+      aria-label={
+        player === "host"
+          ? "Este es el pokemon que vas a intercambiar: " +
+            "Número " +
+            dexNum +
+            ": " +
+            tipos +
+            " : " +
+            finalSelection.nametag +
+            ":" +
+            shinyDesc +
+            ":" +
+            megaDesc +
+            ":" +
+            rareDesc +
+            ":" +
+            eventDesc
+          : "Este es el pokemon que vas a recibir: " +
+            "Número " +
+            dexNum +
+            ": " +
+            tipos +
+            " : " +
+            finalSelection.nametag +
+            ":" +
+            shinyDesc +
+            ":" +
+            megaDesc +
+            ":" +
+            rareDesc +
+            ":" +
+            eventDesc
+      }
       className={
         "entryBox " +
         firstType +
