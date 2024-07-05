@@ -266,8 +266,14 @@ const PokemonVariants = [
         dexnum: 849,
         name: "Toxtricity",
         variants: [
-            { name: "toxtricity-amped" },
-            { name: "toxtricity-low-key" }
+            { megaevolution: [
+                { name: "toxtricity-low-key" },
+                { name: "toxtricity-gigantamax", gmax: true}
+            ]},
+            { megaevolution: [
+                { name: "toxtricity-amped" },
+                { name: "toxtricity-gigantamax", gmax: true}
+            ]}
         ]
     },
     {
@@ -371,8 +377,14 @@ const PokemonVariants = [
         dexnum: 892,
         name: "Urshifu",
         variants: [
-            { name: "urshifu-single-strike", types: ["fighting", "dark"] },
-            { name: "urshifu-rapid-strike", types: ["fighting", "water"] },
+            { megaevolution: [
+                { name: "urshifu-single-strike", types: ["fighting", "dark"] },
+                { name: "urshifu-single-strike-gigantamax", types: ["fighting", "dark"], gmax: true},
+            ]},
+            { megaevolution: [
+                { name: "urshifu-rapid-strike", types: ["fighting", "water"] },
+                { name: "urshifu-rapid-strike-gigantamax", types: ["fighting", "water"], gmax: true},
+            ]}
         ]
     },
     {
@@ -461,7 +473,8 @@ const PokemonVariants = [
         variants: [
             { megaevolution: [
                 { name: "venusaur", types: ["grass", "poison"], mega: false },
-                { name: "venusaur-mega", types: ["grass", "poison"], mega: true }
+                { name: "venusaur-mega", types: ["grass", "poison"], mega: true },
+                { name: "venusaur-gigantamax", types: ["grass", "poison"], gmax: true }
             ] }
         ]
     },
@@ -472,7 +485,8 @@ const PokemonVariants = [
             { megaevolution: [
                 { name: "charizard", types: ["fire", "flying"], mega: false },
                 { name: "charizard-mega-x", types: ["fire", "dragon"], mega: true },
-                { name: "charizard-mega-y", types: ["fire", "flying"], mega: true }
+                { name: "charizard-mega-y", types: ["fire", "flying"], mega: true },
+                { name: "charizard-gigantamax", types: ["fire", "flying"], gmax: true }
             ] }
         ]
     },
@@ -482,7 +496,8 @@ const PokemonVariants = [
         variants: [
             { megaevolution: [
                 { name: "blastoise", types: ["water", null], mega: false },
-                { name: "blastoise-mega", types: ["water", null], mega: true }
+                { name: "blastoise-mega", types: ["water", null], mega: true },
+                { name: "blastoise-gigantamax", types: ["water", null], gmax: true }
             ] }
         ]
     },
@@ -533,7 +548,8 @@ const PokemonVariants = [
         variants: [
             { megaevolution: [
                 { name: "gengar", types: ["ghost", "poison"], mega: false },
-                { name: "gengar-mega", types: ["ghost", "poison"], mega: true }
+                { name: "gengar-mega", types: ["ghost", "poison"], mega: true },
+                { name: "gengar-gigantamax", types: ["ghost", "poison"], gmax: true }
             ] }
         ]
     },
@@ -938,6 +954,246 @@ const PokemonVariants = [
             ] }
         ]
     },
+    // Especies Gigamax
+    {
+        dexnum: 812,
+        name: "Rillaboom",
+        variants: [
+            { megaevolution: [
+                { name: "rillaboom" },
+                { name: "rillaboom-gigantamax", gmax: true }
+            ]}
+        ]
+    },
+    {
+        dexnum: 815,
+        name: "Cinderace",
+        variants: [
+            { megaevolution: [
+                { name: "cinderace" },
+                { name: "cinderace-gigantamax", gmax: true }
+            ]}
+        ]
+    },
+    {
+        dexnum: 818,
+        name: "Inteleon",
+        variants: [
+            { megaevolution: [
+                { name: "inteleon" },
+                { name: "inteleon-gigantamax", gmax: true }
+            ]}
+        ]
+    },
+    {
+        dexnum: 12,
+        name: "Butterfree",
+        variants: [
+            { megaevolution: [
+                { name: "butterfree" },
+                { name: "butterfree-gigantamax", gmax: true }
+            ]}
+        ]
+    },
+    {
+        dexnum: 68,
+        name: "Machamp",
+        variants: [
+            { megaevolution: [
+                { name: "machamp" },
+                { name: "machamp-gigantamax", gmax: true }
+            ]}
+        ]
+    },
+    {
+        dexnum: 99,
+        name: "Kingler",
+        variants: [
+            { megaevolution: [
+                { name: "kingler" },
+                { name: "kingler-gigantamax", gmax: true }
+            ]}
+        ]
+    },
+    {
+        dexnum: 131,
+        name: "Lapras",
+        variants: [
+            { megaevolution: [
+                { name: "lapras" },
+                { name: "lapras-gigantamax", gmax: true }
+            ]}
+        ]
+    },
+    {
+        dexnum: 133,
+        name: "Eevee",
+        variants: [
+            { megaevolution: [
+                { name: "eevee" },
+                { name: "eevee-gigantamax", gmax: true }
+            ]}
+        ]
+    },
+    {
+        dexnum: 143,
+        name: "Snorlax",
+        variants: [
+            { megaevolution: [
+                { name: "snorlax" },
+                { name: "snorlax-gigantamax", gmax: true }
+            ]}
+        ]
+    },
+    {
+        dexnum: 569,
+        name: "Garbodor",
+        variants: [
+            { megaevolution: [
+                { name: "garbodor" },
+                { name: "garbodor-gigantamax", gmax: true }
+            ]}
+        ]
+    },
+    {
+        dexnum: 809,
+        name: "Melmetal",
+        variants: [
+            { megaevolution: [
+                { name: "melmetal" },
+                { name: "melmetal-gigantamax", gmax: true }
+            ]}
+        ]
+    },
+    {
+        dexnum: 823,
+        name: "Corviknight",
+        variants: [
+            { megaevolution: [
+                { name: "corviknight"},
+                { name: "corviknight-gigantamax", gmax: true}
+            ]}
+        ]
+    },
+    {
+        dexnum: 826,
+        name: "Orbeetle",
+        variants: [
+            { megaevolution: [
+                { name: "orbeetle" },
+                { name: "orbeetle-gigantamax", gmax: true }
+            ]}
+        ]
+    },
+    {
+        dexnum: 834,
+        name: "Drednaw",
+        variants: [
+            { megaevolution: [
+                { name: "drednaw" },
+                { name: "drednaw-gigantamax", gmax: true }
+            ]}
+        ]
+    },
+    {
+        dexnum: 839,
+        name: "Coalossal",
+        variants: [
+            { megaevolution: [
+                { name: "coalossal" },
+                { name: "coalossal-gigantamax", gmax: true }
+            ]}
+        ]
+    },
+    {
+        dexnum: 841,
+        name: "Flapple",
+        variants: [
+            { megaevolution: [
+                { name: "flapple" },
+                { name: "flapple-gigantamax", gmax: true }
+            ]}
+        ]
+    },
+    {
+        dexnum: 842,
+        name: "Appletun",
+        variants: [
+            { megaevolution: [
+                { name: "appletun" },
+                { name: "appletun-gigantamax", gmax: true }
+            ]}
+        ]
+    },
+    {
+        dexnum: 844,
+        name: "Sandaconda",
+        variants: [
+            { megaevolution: [
+                { name: "sandaconda" },
+                { name: "sandaconda-gigantamax", gmax: true }
+            ]}
+        ]
+    },{
+        dexnum: 851,
+        name: "Centiskorch",
+        variants: [
+            { megaevolution: [
+                { name: "centiskorch"},
+                { name: "centiskorch-gigantamax", gmax: true}
+            ]}
+        ]
+    },
+    {
+        dexnum: 858,
+        name: "Hatterene",
+        variants: [
+            { megaevolution: [
+                { name: "hatterene" },
+                { name: "hatterene-gigantamax", gmax: true }
+            ]}
+        ]
+    },
+    {
+        dexnum: 861,
+        name: "Grimmsnarl",
+        variants: [
+            { megaevolution: [
+                { name: "grimmsnarl" },
+                { name: "grimmsnarl-gigantamax", gmax: true }
+            ]}
+        ]
+    },
+    {
+        dexnum: 869,
+        name: "Alcremie",
+        variants: [
+            { megaevolution: [
+                { name: "alcremie" },
+                { name: "alcremie-gigantamax", gmax: true }
+            ]}
+        ]
+    },
+    {
+        dexnum: 879,
+        name: "Copperajah",
+        variants: [
+            { megaevolution: [
+                { name: "copperajah" },
+                { name: "copperajah-gigantamax", gmax: true }
+            ]}
+        ]
+    },
+    {
+        dexnum: 884,
+        name: "Duraludon",
+        variants: [
+            { megaevolution: [
+                { name: "duraludon" },
+                { name: "duraludon-gigantamax", gmax: true }
+            ]}
+        ]
+    },
     // Especies raras
     {
         dexnum: 718,
@@ -966,10 +1222,23 @@ const PokemonVariants = [
         dexnum: 25,
         name: "Pikachu",
         variants: [
-           { rarespecies: [
+            { rarespecies: [
                 { name: "pikachu" },
                 { name: "pikachu-world-cap", rare: true },
+            ]},
+            { megaevolution: [
+                { name: "pikachu" },
+                { name: "pikachu-gigantamax", gmax: true}
             ]}
+        ]
+    },
+    {
+        dexnum: 26,
+        name: "Raichu",
+        variants: [
+            { name: "raichu" },
+            { name: "raichu-alolan", types: ["electric", "psychic"] },
+            
         ]
     },
     {
@@ -1218,7 +1487,10 @@ const PokemonVariants = [
         dexnum: 52,
         name: "Meowth",
         variants: [
-            { name: "meowth", types: ["normal", null] },
+            { megaevolution: [
+                { name: "meowth", types: ["normal", null] },
+                { name: "meowth-gigantamax", types: ["normal", null], gmax: true }
+            ]},
             { name: "meowth-alolan", types: ["dark", null] },
             { name: "meowth-galarian", types: ["steel", null] }
         ]

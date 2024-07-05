@@ -328,6 +328,12 @@ p {
     animation-duration: 5s; /* Aumenta la duración para hacerla más lenta */
 }
 
+.gmaxEffect {
+    text-shadow: 0 0 10px rgb(255, 111, 159), 0 0 1px rgb(255, 111, 159);
+    animation-name: shineRare;
+    animation-duration: 5s; /* Aumenta la duración para hacerla más lenta */
+}
+
 .shinyEffect {
     text-shadow: 0 0 10px rgb(251, 255, 0), 0 0 1px rgb(251, 255, 0);
     animation-name: shineMega;

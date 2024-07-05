@@ -83,7 +83,7 @@ function Ruleta({threePokemon, tirarButtonDisable, TierRuleta, setThreePokemon, 
         shouldShowConfetti = true;
         colors = colors.concat(['#ffff00', '#ffff99', '#cccc00']);
       }
-      if (threePokemon[i]?.megaevolution === true) {
+      if (threePokemon[i]?.megaevolution === true || threePokemon[i]?.gigantamax === true) {
         shouldShowConfetti = true;
         colors = colors.concat(['#ff0066', '#ff0000', '#ff6699']);
       }
@@ -234,14 +234,14 @@ function ModalConfirmar({ setThreePokemon, tirarButtonDisable, pokemonData, setO
     const nombreRareza = nombresRarezas[frequency - 1];
 
     let shinyIndication = (<></>);
-    let megaIndication = (<></>);
+    let megaIndication = (<></>); // Se usa tambien para indicación de Gigamax !!!
     let rareIndication = (<></>);
     if (pokemonData.shiny === "shiny") {
         const shinyMsg = ("¡Felicidades! ¡Has conseguido un Pokémon Variocolor! Obtendrás una bonificación de 5000 puntos en el cálculo final de Rareza por ello");
         shinyIndication = (<MouseOverPopover className="mop" content={<AutoAwesomeIcon className="shinyIcon" />} shown={shinyMsg} />);
     }
 
-    /*
+    
     let megaWord = "una Megaevolución";
     if (pokemonData.name === 382 || pokemonData.name === 383) {
         megaWord = "una Regresión Primigenia";
@@ -249,11 +249,18 @@ function ModalConfirmar({ setThreePokemon, tirarButtonDisable, pokemonData, setO
     else if (pokemonData.name === 800) {
         megaWord = "a Ultra Necrozma";
     }
-    */
+    
 
     if (pokemonData?.megaevolution !== undefined) {
         if (pokemonData.megaevolution === true) {
-            const megaMsg = ("¡Felicidades! ¡Has conseguido {megaWord}! Obtendrás una bonificación de 1500 puntos en el cálculo final de Rareza por ello");
+            const megaMsg = ("¡Felicidades! ¡Has conseguido" + megaWord + "! Obtendrás una bonificación de 1500 puntos en el cálculo final de Rareza por ello");
+            megaIndication = (<MouseOverPopover className="mop" content={<SpaIcon className="megaIcon" />} shown={megaMsg} />);
+        }
+    }
+
+    if (pokemonData?.gigantamax !== undefined) {
+        if (pokemonData.gigantamax === true) {
+            const megaMsg = ("¡Felicidades! ¡Has conseguido una especie Gigamax! Obtendrás una bonificación de 1500 puntos en el cálculo final de Rareza por ello");
             megaIndication = (<MouseOverPopover className="mop" content={<SpaIcon className="megaIcon" />} shown={megaMsg} />);
         }
     }
@@ -406,12 +413,10 @@ function Reclamar(pokemonData, UserData, setThreePokemon, setUserData, HalfCost)
 
 export function ReclamarEvent(pokemonData, UserData, setUserData, event) {
     AddLastExtraDetailsEvent(pokemonData, UserData); 
-    console.log(pokemonData);
+    //console.log(pokemonData);
     setUserData(prevUserData => {
-        console.log(prevUserData.pokemonList)
         const updatedUserData = { ...prevUserData };
         updatedUserData.pokemonList = [...updatedUserData.pokemonList, JSON.stringify(pokemonData)];
-        console.log(updatedUserData.pokemonList)
         if(!updatedUserData.registers.includes(pokemonData.name)) updatedUserData.registers = [...updatedUserData.registers, pokemonData.name];
         
         if (pokemonData.shiny === "shiny") {
@@ -437,7 +442,6 @@ export function ReclamarEvent(pokemonData, UserData, setUserData, event) {
                 updatedUserData.rarecount = parseInt(updatedUserData.rarecount) + 1;
             }
         } 
-        console.log(updatedUserData);
         return updatedUserData;
     });
     

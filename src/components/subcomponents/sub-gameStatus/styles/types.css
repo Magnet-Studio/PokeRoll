@@ -97,6 +97,15 @@
   animation-duration: 5s; /* Aumenta la duración para hacerla más lenta */
 }
 
+.entryBox.gmax {
+  box-shadow: 0 0px 1vw 0 rgb(255, 111, 159), 
+  0px -30px 40px rgba(255, 111, 159, 0.5) inset,
+  0px 30px 20px rgba(0, 0, 0, 0.3) inset;
+  border-color: rgb(255, 111, 159);
+  animation-name: shineMega;
+  animation-duration: 5s; /* Aumenta la duración para hacerla más lenta */
+}
+
 .entryBox.shiny {
   border-color: rgb(251, 255, 0);
   animation-name: shineShiny;
@@ -104,6 +113,11 @@
 }
 
 .entryBox.shiny.mega {
+  animation-name: shineShinyMega;
+  animation-duration: 10s; /* Aumenta la duración para hacerla más lenta */
+}
+
+.entryBox.shiny.gmax {
   animation-name: shineShinyMega;
   animation-duration: 10s; /* Aumenta la duración para hacerla más lenta */
 }
@@ -119,6 +133,11 @@
 }
 
 .entryBox.shiny.mega.event {
+  animation-name: shineEvent;
+  animation-duration: 5s; /* Aumenta la duración para hacerla más lenta */
+}
+
+.entryBox.shiny.gmax.event {
   animation-name: shineEvent;
   animation-duration: 5s; /* Aumenta la duración para hacerla más lenta */
 }
@@ -155,7 +174,19 @@
   animation: shake 0.5s infinite, shineMega 10s infinite;
 }
 
+.entryBox.liberado.gmax {
+  opacity: 1;
+  pointer-events: all;
+  animation: shake 0.5s infinite, shineMega 10s infinite;
+}
+
 .entryBox.liberado.mega.shiny {
+  opacity: 1;
+  pointer-events: all;
+  animation: shake 0.5s infinite, shineShinyMega 10s infinite;
+}
+
+.entryBox.liberado.gmax.shiny {
   opacity: 1;
   pointer-events: all;
   animation: shake 0.5s infinite, shineShinyMega 10s infinite;

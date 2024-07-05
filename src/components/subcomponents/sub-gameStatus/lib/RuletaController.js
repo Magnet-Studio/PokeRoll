@@ -63,6 +63,8 @@ export const GetThreeRandomPokemon = (TierRuleta, UserData) =>
                 pokemon.megaevolution = pokemon.variant.mega;
             } if (pokemon.variant?.rare !== undefined) {
                 pokemon.rarespecies = pokemon.variant.rare;
+            } if (pokemon.variant?.gmax !== undefined) {
+                pokemon.gigantamax = pokemon.variant.gmax;
             }
         }
         
@@ -95,7 +97,7 @@ const GetShinyValue = (UserData) =>
     const SHINY_BONUS = (UserData.shinycharm === "true" ? 2 : 1);
     const num = Math.floor(Math.random() * (SHINY_PROBABILITY / SHINY_BONUS));
 
-    if(num === 33)
+    if(num === 0)
     {
         return "shiny";
     }

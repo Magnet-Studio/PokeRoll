@@ -221,6 +221,10 @@ option
     color: rgb(255, 111, 159);
 }
 
+.gmaxFound {
+    color: rgb(255, 111, 159);
+}
+
 .shinyFound {
     color: rgb(225, 227, 104);
 }

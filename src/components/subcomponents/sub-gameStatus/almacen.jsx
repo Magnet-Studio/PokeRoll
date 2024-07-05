@@ -97,12 +97,14 @@ const style = {
         coins += GetPrice(pokemon);
         let tag = "";
 
-        if (pokemon.shiny === 'shiny' || pokemon?.rarespecies === true || pokemon.megaevolution === true) {
+        if (pokemon.shiny === 'shiny' || pokemon?.rarespecies === true || pokemon?.megaevolution === true || pokemon?.gigantamax === true) {
             warning = <>¡CUIDADO! Hay Pokémon especiales en la selección.</>;
             if (pokemon.rarespecies === true) {
                 tag = "rareSpeciesFound";
             } else if (pokemon.megaevolution === true) {
                 tag = "megaFound";
+            } else if (pokemon.gigantamax === true) {
+                tag = "gmaxFound";
             } else {
                 tag = "shinyFound";
             }
@@ -360,6 +362,7 @@ function FiltrosAlmacen( {selectedValue, showFilters, setShowFilters, setSelecte
                     <option value="3">Rareza más alta</option>
                     <option value="4">Variocolores primero</option>
                     <option value="7">Megaevoluciones primero</option>
+                    <option value="9">Especies Gigamax primero</option>
                     <option value="8">Especies raras primero</option>
                 </select>
             </div>
@@ -433,18 +436,32 @@ function CompletePokemonList({selectedBorrado, setSelectedBorrado, borradoMultip
         case '0':
             sortedList.sort((a, b) => b.id - a.id)
             break;
+        case '9':
+            sortedList.sort((a, b) => {
+                let rarezaA = GetRarezaPoints(a.iv, a.shiny, parseInt(a.frequency), (a?.megaevolution !== undefined ? a.megaevolution : false), (a?.gigantamax !== undefined ? a.gigantamax : false), (a?.rarespecies !== undefined ? a.rarespecies : false));
+                let rarezaB = GetRarezaPoints(b.iv, b.shiny, parseInt(b.frequency), (b?.megaevolution !== undefined ? b.megaevolution : false), (b?.gigantamax !== undefined ? b.gigantamax : false), (b?.rarespecies !== undefined ? b.rarespecies : false));
+                
+                if (a.gigantamax === true && b.gigantamax !== true) {
+                    return -1; // a viene antes que b
+                } else if (a.gigantamax !== true && b.gigantamax === true) {
+                    return 1; // b viene antes que a
+                } else {
+                    return (rarezaB - rarezaA); // ordena por rareza
+                }
+            })
+            break;
         case '1':
             sortedList.sort((a, b) => {
-                let rarezaA = GetRarezaPoints(a.iv, a.shiny, parseInt(a.frequency), (a?.megaevolution !== undefined ? a.megaevolution : false), (a?.rarespecies !== undefined ? a.rarespecies : false));
-                let rarezaB = GetRarezaPoints(b.iv, b.shiny, parseInt(b.frequency), (b?.megaevolution !== undefined ? b.megaevolution : false), (b?.rarespecies !== undefined ? b.rarespecies : false));
+                let rarezaA = GetRarezaPoints(a.iv, a.shiny, parseInt(a.frequency), (a?.megaevolution !== undefined ? a.megaevolution : false),(a?.gigantamax !== undefined ? a.gigantamax : false), (a?.rarespecies !== undefined ? a.rarespecies : false));
+                let rarezaB = GetRarezaPoints(b.iv, b.shiny, parseInt(b.frequency), (b?.megaevolution !== undefined ? b.megaevolution : false),(b?.gigantamax !== undefined ? b.gigantamax : false), (b?.rarespecies !== undefined ? b.rarespecies : false));
                 
                 return (rarezaB - rarezaA);
             });
             break;
         case '2':
             sortedList.sort((a,b) => {
-                let rarezaA = GetRarezaPoints(a.iv, a.shiny, parseInt(a.frequency), (a?.megaevolution !== undefined ? a.megaevolution : false), (a?.rarespecies !== undefined ? a.rarespecies : false));
-                let rarezaB = GetRarezaPoints(b.iv, b.shiny, parseInt(b.frequency), (b?.megaevolution !== undefined ? b.megaevolution : false), (b?.rarespecies !== undefined ? b.rarespecies : false));
+                let rarezaA = GetRarezaPoints(a.iv, a.shiny, parseInt(a.frequency), (a?.megaevolution !== undefined ? a.megaevolution : false),(a?.gigantamax !== undefined ? a.gigantamax : false), (a?.rarespecies !== undefined ? a.rarespecies : false));
+                let rarezaB = GetRarezaPoints(b.iv, b.shiny, parseInt(b.frequency), (b?.megaevolution !== undefined ? b.megaevolution : false),(b?.gigantamax !== undefined ? b.gigantamax : false), (b?.rarespecies !== undefined ? b.rarespecies : false));
                 if (a.name === b.name) {
                     return (rarezaB - rarezaA);
                 } else {
@@ -459,8 +476,8 @@ function CompletePokemonList({selectedBorrado, setSelectedBorrado, borradoMultip
             break;
         case '4':
             sortedList.sort((a, b) => {
-                let rarezaA = GetRarezaPoints(a.iv, a.shiny, parseInt(a.frequency), (a?.megaevolution !== undefined ? a.megaevolution : false), (a?.rarespecies !== undefined ? a.rarespecies : false));
-                let rarezaB = GetRarezaPoints(b.iv, b.shiny, parseInt(b.frequency), (b?.megaevolution !== undefined ? b.megaevolution : false), (b?.rarespecies !== undefined ? b.rarespecies : false));
+                let rarezaA = GetRarezaPoints(a.iv, a.shiny, parseInt(a.frequency), (a?.megaevolution !== undefined ? a.megaevolution : false), (a?.gigantamax !== undefined ? a.gigantamax : false), (a?.rarespecies !== undefined ? a.rarespecies : false));
+                let rarezaB = GetRarezaPoints(b.iv, b.shiny, parseInt(b.frequency), (b?.megaevolution !== undefined ? b.megaevolution : false), (b?.gigantamax !== undefined ? b.gigantamax : false), (b?.rarespecies !== undefined ? b.rarespecies : false));
                 
                 if (a.shiny === "shiny" && b.shiny !== "shiny") {
                     return -1; // a viene antes que b
@@ -630,6 +647,15 @@ function PokemonCard({UserData, isAlreadySelected, selectedBorrado, setSelectedB
         }
     }
 
+    let gmaxData="";
+    let gmaxDesc="";
+    if (data?.gigantamax !== undefined) {
+        if (data.gigantamax === true) {
+            gmaxData = "gmax"
+            gmaxDesc = "Especie Gigamax"
+        }
+    }
+
     let rareData="";
     let rareDesc="";
     if (data?.rarespecies !== undefined) {
@@ -673,7 +699,7 @@ function PokemonCard({UserData, isAlreadySelected, selectedBorrado, setSelectedB
             borradoMultiple ? (
                 <Link tabIndex="0" onClick={handleSelectedBorrado} aria-label={(isSelectedBorrado ? "Seleccionado para liberar " : " No seleccionado para liberar ") + ":Número " +dexNum + ": " + data.nametag + ":" + shinyDesc + ":" + megaDesc + ":" + rareDesc + ":" + eventDesc}>
                     <div 
-                    className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny + " " + event + (isSelectedBorrado ? " liberado" : " notLiberado")} 
+                    className={"entryBox " + firstType + " " + megaData + " " + gmaxData + " " + rareData + " " + data.shiny + " " + event + (isSelectedBorrado ? " liberado" : " notLiberado")} 
                     key={`${data.id}-${isAlreadySelected}`}
                     onClick={handleSelectedBorrado}
                     >
@@ -683,7 +709,7 @@ function PokemonCard({UserData, isAlreadySelected, selectedBorrado, setSelectedB
                 </Link>
             ) : (
                 <Link tabIndex="0" to={"ver-pokemon?id=" + data.id} aria-label={"Número " +dexNum + ": " + tipos + " : " + data.nametag + ": " + shinyDesc + ": " + megaDesc + ": " + rareDesc+ ": " + eventDesc}>
-                    <div className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny + " " + event} key={data.id}>
+                    <div className={"entryBox " + firstType + " " + megaData + " " + gmaxData +  " " + rareData + " " + data.shiny + " " + event} key={data.id}>
                         <p className="dexNumber" >Nº {dexNum}</p>
                         {content}
                     </div>
