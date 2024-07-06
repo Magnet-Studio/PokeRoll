@@ -12,6 +12,7 @@ import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import { MouseOverPopover } from './mouseOverPopOver';
 import { AddLastExtraDetails, AddLastExtraDetailsEvent } from './lib/pokemonList';
 import {ReactComponent as SpaIcon} from '../../../images/megaIcon.svg';
+import {ReactComponent as GmaxIcon} from '../../../images/gmaxIcon.svg';
 import CheckIcon from '@mui/icons-material/Check';
 import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
 import Confetti from 'react-confetti';
@@ -261,7 +262,7 @@ function ModalConfirmar({ setThreePokemon, tirarButtonDisable, pokemonData, setO
     if (pokemonData?.gigantamax !== undefined) {
         if (pokemonData.gigantamax === true) {
             const megaMsg = ("¡Felicidades! ¡Has conseguido una especie Gigamax! Obtendrás una bonificación de 1500 puntos en el cálculo final de Rareza por ello");
-            megaIndication = (<MouseOverPopover className="mop" content={<SpaIcon className="megaIcon" />} shown={megaMsg} />);
+            megaIndication = (<MouseOverPopover className="mop" content={<GmaxIcon className="megaIcon" />} shown={megaMsg} />);
         }
     }
 
@@ -392,7 +393,7 @@ function Reclamar(pokemonData, UserData, setThreePokemon, setUserData, HalfCost)
             }
         }
 
-        if (pokemonData?.megaevolution === true) {
+        if (pokemonData?.megaevolution === true || pokemonData?.gigantamax == true) {
             if (updatedUserData?.megacount === undefined) {
                 updatedUserData.megacount = 1;
             } else {
@@ -427,7 +428,7 @@ export function ReclamarEvent(pokemonData, UserData, setUserData, event) {
             }
         }
 
-        if (pokemonData?.megaevolution === true) {
+        if (pokemonData?.megaevolution === true || pokemonData?.gigantamax === true) {
             if (updatedUserData?.megacount === undefined) {
                 updatedUserData.megacount = 1;
             } else {

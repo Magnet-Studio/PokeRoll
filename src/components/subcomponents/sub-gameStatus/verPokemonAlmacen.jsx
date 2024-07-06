@@ -11,6 +11,7 @@ import { MouseOverPopover } from "./mouseOverPopOver";
 import ForwardIcon from '@mui/icons-material/Forward';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { ReactComponent as SpaIcon } from '../../../images/megaIcon.svg';
+import { ReactComponent as GmaxIcon} from '../../../images/gmaxIcon.svg';
 import { useSpring, animated  } from 'react-spring';
 import CountUp from 'react-countup';
 import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
@@ -80,7 +81,7 @@ function VerPokemonAlmacen({UserData, setUserData})
     const megaCond = (pokemon?.megaevolution === true) ? <MouseOverPopover content={<SpaIcon className="megaIcon" />} 
                                                                       shown={`¡Felicidades! ¡Has conseguido ${megaWord}! Obtendrás una bonificación de 2500 puntos en el cálculo final de Rareza por ello.`}/> : <></>;
     
-    const gmaxCond = (pokemon?.gigantamax === true) ? <MouseOverPopover content={<SpaIcon className="megaIcon" />} 
+    const gmaxCond = (pokemon?.gigantamax === true) ? <MouseOverPopover content={<GmaxIcon className="megaIcon" />} 
                                                                       shown={`¡Felicidades! ¡Has conseguido una especie Gigamax! Obtendrás una bonificación de 2500 puntos en el cálculo final de Rareza por ello.`}/> : <></>;
     
     const rareCond = (pokemon?.rarespecies === true) ? <MouseOverPopover content={<MilitaryTechIcon className="rareIcon" />} 
