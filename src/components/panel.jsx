@@ -178,7 +178,7 @@ const EventPokemonList = [
         name: 851,
         shiny: "shiny",
         nametag: "El bicho ✰",
-        originaltrainer: "PokéRoll",
+        originaltrainer: "PokéROLL",
         type1:"fire",
         type2:"bug",
         variant: { name: "centiskorch-gigantamax", gmax: true},
