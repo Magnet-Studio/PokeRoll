@@ -43,6 +43,25 @@ const style = {
     const [selectedBorrado, setSelectedBorrado] = useState([]);
     const [open, setOpen] = useState(false);
 
+    const [elements, setElements] = useState([]);
+
+    const fetchAlmacen = async () => {
+        try {
+            const response = await fetch('http://localhost:3306/almacen');
+            if (!response.ok) {
+                throw new Error('Error al obtener datos del servidor (ALMACEN)');
+            }
+            const data = await response.json();
+            setElements(data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        fetchAlmacen()
+    }, []);
+
     useEffect(() => {
         setSelectedValue(sessionStorage.getItem('selectedValue') || '0');
         setSelectedFrequency(sessionStorage.getItem('selectedFrequency') || '0');
