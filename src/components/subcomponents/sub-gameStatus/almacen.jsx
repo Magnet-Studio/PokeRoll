@@ -47,12 +47,14 @@ const style = {
 
     const fetchAlmacen = async () => {
         try {
-            const response = await fetch('http://localhost:3306/almacen');
+            const response = await fetch('http://127.0.0.1:3306/almacen');
             if (!response.ok) {
                 throw new Error('Error al obtener datos del servidor (ALMACEN)');
             }
             const data = await response.json();
             setElements(data);
+
+            console.log(data);
         } catch (error) {
             console.log(error);
         }
