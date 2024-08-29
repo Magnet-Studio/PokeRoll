@@ -11,6 +11,7 @@ import { MouseOverPopover } from "./mouseOverPopOver";
 import ForwardIcon from '@mui/icons-material/Forward';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { ReactComponent as SpaIcon } from '../../../images/megaIcon.svg';
+import { ReactComponent as GmaxIcon} from '../../../images/gmaxIcon.svg';
 import { useSpring, animated  } from 'react-spring';
 import CountUp from 'react-countup';
 import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
@@ -69,7 +70,8 @@ function VerPokemonAlmacen({UserData, setUserData})
     }
     const shinyEffect = (pokemon.shiny === "shiny") ? "shinyEffect" : "";
     const megaEffect = (pokemon?.megaevolution === true) ? "megaEffect" : "";
-    const rareEffect = (pokemon?.rarespecies === true) ? "rareEffect" : ""
+    const rareEffect = (pokemon?.rarespecies === true) ? "rareEffect" : "";
+    const gmaxEffect = (pokemon?.gigantamax === true) ? "gmaxEffect" : "";
     
     const rarezas = rarezaExtraPoints;
     const nombrePKM = pokemon.nametag === null ? name : pokemon.nametag;
@@ -77,7 +79,10 @@ function VerPokemonAlmacen({UserData, setUserData})
                                                                       shown={` ¡Felicidades! ¡Has conseguido un Pokémon Variocolor! Obtendrás una bonificación de 5000 puntos en el cálculo final de Rareza por ello.`}/> : <></>;
                                                                       
     const megaCond = (pokemon?.megaevolution === true) ? <MouseOverPopover content={<SpaIcon className="megaIcon" />} 
-                                                                      shown={`¡Felicidades! ¡Has conseguido ${megaWord}! Obtendrás una bonificación de 1500 puntos en el cálculo final de Rareza por ello.`}/> : <></>;
+                                                                      shown={`¡Felicidades! ¡Has conseguido ${megaWord}! Obtendrás una bonificación de 2500 puntos en el cálculo final de Rareza por ello.`}/> : <></>;
+    
+    const gmaxCond = (pokemon?.gigantamax === true) ? <MouseOverPopover content={<GmaxIcon className="megaIcon" />} 
+                                                                      shown={`¡Felicidades! ¡Has conseguido una especie Gigamax! Obtendrás una bonificación de 2500 puntos en el cálculo final de Rareza por ello.`}/> : <></>;
     
     const rareCond = (pokemon?.rarespecies === true) ? <MouseOverPopover content={<MilitaryTechIcon className="rareIcon" />} 
                                                                       shown={"¡Felicidades! ¡Has conseguido una especie rara! Obtendrás una bonificación de 1000 puntos en el cálculo final de Rareza por ello."}/> : <></>; 
@@ -110,9 +115,10 @@ function VerPokemonAlmacen({UserData, setUserData})
                 
                 {pokemon?.variant === undefined ? GetImage(pokemonData, (pokemon.shiny === "shiny")) : GetVariantImage(pokemon.variant.name, (pokemon.shiny === "shiny"))}
                 <div className="inlineContainer">
-                    <p className={rareEffect + " " + megaEffect + " " + shinyEffect} >{nombrePKM}</p>
+                    <p className={rareEffect + " " + megaEffect + " " + shinyEffect + " " + gmaxEffect} >{nombrePKM}</p>
                     {shinyCond}
                     {megaCond}
+                    {gmaxCond}
                     {rareCond}
                     {eventCond}
                 </div>
@@ -131,7 +137,7 @@ function VerPokemonAlmacen({UserData, setUserData})
                   <p className={"rareza" + frequency}>{(nombreRareza === undefined ?  " Cargando..." : " " + nombreRareza + " " )}</p>
                   {rarityMessage}
                 </div>
-                <GetRarezaValue ivs={pokemon.iv} shiny={pokemon.shiny} frequency={frequency} mega={(pokemon?.megaevolution !== undefined ? pokemon.megaevolution : false)} rare={(pokemon?.rarespecies !== undefined ? pokemon.rarespecies : false)}/>
+                <GetRarezaValue ivs={pokemon.iv} shiny={pokemon.shiny} frequency={frequency} mega={(pokemon?.megaevolution !== undefined ? pokemon.megaevolution : false)} gmax={(pokemon?.gigantamax !== undefined ? pokemon.gigantamax : false)} rare={(pokemon?.rarespecies !== undefined ? pokemon.rarespecies : false)}/>
             </div>
 
             <div id="statsDiv">
@@ -159,10 +165,10 @@ function VerPokemonAlmacen({UserData, setUserData})
 
 export const nombresRarezas = ['Común', 'Infrecuente', 'Peculiar', 'Épico', 'Legendario', 'Singular'];
 
-function GetRarezaValue({ ivs , shiny, frequency, mega, rare}) 
+function GetRarezaValue({ ivs , shiny, frequency, mega, gmax, rare}) 
 {
     
-    const finalValue = GetRarezaPoints(ivs, shiny, frequency, mega, rare);
+    const finalValue = GetRarezaPoints(ivs, shiny, frequency, mega, gmax, rare);
 
 
     return (

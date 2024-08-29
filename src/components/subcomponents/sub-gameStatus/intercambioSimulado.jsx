@@ -50,7 +50,7 @@ export default function IntercambioSimulado({ setUserData }) {
       );
       return updatedUserData;
     });
-    console.log(exchangeGuestPokemon);
+    //console.log(exchangeGuestPokemon);
     setEliminated(true);
   }
 
@@ -271,6 +271,15 @@ function ShowPokemonIntercambio({ player, finalSelection }) {
     }
   }
 
+  let gmaxData="";
+    let gmaxDesc="";
+    if (finalSelection?.gigantamax !== undefined) {
+        if (finalSelection.gigantamax === true) {
+          gmaxData = "gmax"
+          gmaxDesc = "Especie Gigamax"
+        }
+    }
+
   let rareData = "";
   let rareDesc = "";
   if (finalSelection?.rarespecies !== undefined) {
@@ -329,6 +338,8 @@ function ShowPokemonIntercambio({ player, finalSelection }) {
             ":" +
             megaDesc +
             ":" +
+            gmaxDesc +
+            ":" +
             rareDesc +
             ":" +
             eventDesc
@@ -344,6 +355,8 @@ function ShowPokemonIntercambio({ player, finalSelection }) {
             ":" +
             megaDesc +
             ":" +
+            gmaxDesc +
+            ":" +
             rareDesc +
             ":" +
             eventDesc
@@ -353,6 +366,8 @@ function ShowPokemonIntercambio({ player, finalSelection }) {
         firstType +
         " " +
         megaData +
+        " " +
+        gmaxData +
         " " +
         rareData +
         " " +

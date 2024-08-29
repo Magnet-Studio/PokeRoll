@@ -30,6 +30,7 @@ const initData = {
     unownSimulationOfMarioEvent: false,
     gengarSparaopEvent: false,
     arcanineJoseCPEvent: false,
+    centiskorchGmaxEvent: false
 }
 
 const savedData = () => 
@@ -51,6 +52,7 @@ const savedData = () =>
     const savedUnownSimulationOfMarioEvent = localStorage.getItem("unownSimulationOfMarioEvent");
     const savedGengarSparaopEvent = localStorage.getItem("gengarSparaopEvent");
     const savedArcanineJoseCPEvent = localStorage.getItem("arcanineJoseCPEvent");
+    const savedCentiskorchGmaxEvent = localStorage.getItem("centiskorchGmaxEvent");
 
     return {
         name: savedName ? savedName : initData.name,
@@ -68,8 +70,9 @@ const savedData = () =>
         skeledirgeCreatorBeastEvent: savedSkeledirgeCreatorBeastEvent ? savedSkeledirgeCreatorBeastEvent : initData.skeledirgeCreatorBeastEvent,
         sawkAndressruiizEvent: savedSawkAndressRuiizEvent ? savedSawkAndressRuiizEvent : initData.sawkAndressruiizEvent,
         unownSimulationOfMarioEvent: savedUnownSimulationOfMarioEvent ? savedUnownSimulationOfMarioEvent : initData.unownSimulationOfMarioEvent,
-        gengarSparaopEvent: savedGengarSparaopEvent ? savedGengarSparaopEvent : initData.savedGengarSparaopEvent,
-        arcanineJoseCPEvent: savedArcanineJoseCPEvent ? savedArcanineJoseCPEvent : initData.savedArcanineJoseCPEvent,
+        gengarSparaopEvent: savedGengarSparaopEvent ? savedGengarSparaopEvent : initData.gengarSparaopEvent,
+        arcanineJoseCPEvent: savedArcanineJoseCPEvent ? savedArcanineJoseCPEvent : initData.arcanineJoseCPEvent,
+        centiskorchGmaxEvent: savedCentiskorchGmaxEvent ? savedCentiskorchGmaxEvent : initData.centiskorchGmaxEvent,
 
     };
 }
@@ -81,6 +84,7 @@ const EventCodeList = [
     "unownSimulationOfMarioEvent",
     "gengarSparaopEvent",
     "arcanineJoseCPEvent",
+    "centiskorchGmaxEvent",
 ]
 
 const EventPokemonList = [
@@ -168,6 +172,20 @@ const EventPokemonList = [
         event:true,
         event_desc:"¡Disfruta de este Arcanine de Hisui variocolor de parte de uno de los creadores de PokéRoll! ¡Felicidades Jose, disfruta de esta leyenda de Pokémon!"
     },
+    {
+        frequency: 4,
+        speciesname:"Centiskorch",
+        name: 851,
+        shiny: "shiny",
+        nametag: "El bicho ✰",
+        originaltrainer: "PokéROLL",
+        type1:"fire",
+        type2:"bug",
+        variant: { name: "centiskorch-gigantamax", gmax: true},
+        gigantamax: true,
+        event: true,
+        event_desc: "Como inauguración de las especies Gigamax, ¡llévate a este Centiskorch Gigamax variocolor de regalo!"
+    }
 
 ]
 
@@ -176,12 +194,13 @@ const EventPokemonList = [
  * @param {*} UserData Los datos del usuario
  * @param {*} setUserData La operacion setUserData definida en Panel
  * @param {string} eventCode El código del evento (Es el parámetro que se pilla en el LocalStorage como clave, ej. "sandyShocksBetaEvent")
- * @param {Date} startDate Fecha de comienzo (IMPORTANTE: Mes que se quiera - 1)
- * @param {Date} endDate Fecha de fin (IMPORTANTE: Mes que se quiera - 1)
+ * @param {Date} startDate Fecha de comienzo INCLUSIVE (IMPORTANTE: Mes que se quiera - 1)
+ * @param {Date} endDate Fecha de fin EXCLUSIVE (IMPORTANTE: Mes que se quiera - 1)
  * @param {string | boolean} eventCommand El valor de UserData a comprobar (ej. UserData.sandyShocksBetaEvent)
  */
 function GetSpecialEvent(eventIndex, UserData, setUserData, startDate, endDate, eventCommand) {
     let fecha = new Date();
+    //console.log(fecha <= endDate && fecha >= startDate)
     if (fecha <= endDate && fecha >= startDate && eventCommand[eventIndex] !== "true" && UserData.name !== "Iniciar sesión") {
         let eventPokemon = EventPokemonList[eventIndex];
         let eventCode = EventCodeList[eventIndex]
@@ -223,7 +242,8 @@ function MainPanel()
         UserData.sawkAndressruiizEvent,
         UserData.unownSimulationOfMarioEvent,
         UserData.gengarSparaopEvent,
-        UserData.arcanineJoseCPEvent
+        UserData.arcanineJoseCPEvent,
+        UserData.centiskorchGmaxEvent
     ];
 
     useEffect(() => {
@@ -245,6 +265,8 @@ function MainPanel()
         GetSpecialEvent(4, UserData, setUserData, new Date(2024, 5, 10), new Date(2024, 5, 13), EventCommandList);
         // Unown
         GetSpecialEvent(3, UserData, setUserData, new Date(2024, 5, 13), new Date(2024, 5, 16), EventCommandList);
+        // Centiskorch Gigantamax
+        GetSpecialEvent(6, UserData, setUserData, new Date(2024, 6, 5), new Date(2025, 10, 1), EventCommandList);
 
     // eslint-disable-next-line
     }, []);

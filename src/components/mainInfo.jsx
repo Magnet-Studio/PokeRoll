@@ -50,7 +50,7 @@ function MainInfoButton() {
       if (enabled && event.key === "Tab") 
       {
         const focusableElements = document.querySelectorAll('.infoBox [tabIndex="0"], #exitMainInfoButton');
-        console.log(focusableElements)
+        //console.log(focusableElements)
         const firstElement = focusableElements[0];
         const lastElement = focusableElements[focusableElements.length - 1];
 

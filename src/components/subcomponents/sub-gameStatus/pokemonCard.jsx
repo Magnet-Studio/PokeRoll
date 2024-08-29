@@ -57,6 +57,13 @@ function PokemonCard({data, liberarMenu})
         }
     }
 
+    let gmaxData="";
+    if (data?.gigantamax !== undefined) {
+        if (data.gigantamax === true) {
+            gmaxData = "gmax"
+        }
+    }
+
     let event="";
     if (data?.event !== undefined) {
         if (data.event === true) {
@@ -79,13 +86,13 @@ function PokemonCard({data, liberarMenu})
     return (
         (!liberar ? 
             <Link to={"ver-pokemon?id=" + data.id}>
-                <div className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny + " " + event} key={data.id}>
+                <div className={"entryBox " + firstType + " " + megaData + " " + gmaxData +  " " + rareData + " " + data.shiny + " " + event} key={data.id}>
                     <p className="dexNumber">Nº {dexNum}</p>
                     {pokemon}
                 </div>
             </Link>
             :
-            <div className={"entryBox " + firstType + " " + megaData + " " + rareData + " " + data.shiny + " " + event} key={data.id}>
+            <div className={"entryBox " + firstType + " " + megaData + " " + gmaxData +  " " + rareData + " " + data.shiny + " " + event} key={data.id}>
                 <p className="dexNumber">Nº {dexNum}</p>
                 {pokemon}
             </div>

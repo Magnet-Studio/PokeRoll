@@ -78,8 +78,8 @@ const GetBestPokemon = (pokemonList) => {
 
 const GetRarestPokemon = (pokemonList) => {
     pokemonList.sort((a, b) => {
-        let rarezaA = GetRarezaPoints(a.iv, a.shiny, parseInt(a.frequency), (a?.megaevolution !== undefined ? a.megaevolution : false), (a?.rarespecies !== undefined ? a.rarespecies : false));
-        let rarezaB = GetRarezaPoints(b.iv, b.shiny, parseInt(b.frequency), (b?.megaevolution !== undefined ? b.megaevolution : false), (b?.rarespecies !== undefined ? b.rarespecies : false));
+        let rarezaA = GetRarezaPoints(a.iv, a.shiny, parseInt(a.frequency), (a?.megaevolution !== undefined ? a.megaevolution : false), (a?.gigantamax !== undefined ? a.gigantamax : false), (a?.rarespecies !== undefined ? a.rarespecies : false));
+        let rarezaB = GetRarezaPoints(b.iv, b.shiny, parseInt(b.frequency), (b?.megaevolution !== undefined ? b.megaevolution : false), (b?.gigantamax !== undefined ? b.gigantamax : false), (b?.rarespecies !== undefined ? b.rarespecies : false));
         
         return rarezaB - rarezaA;
     })

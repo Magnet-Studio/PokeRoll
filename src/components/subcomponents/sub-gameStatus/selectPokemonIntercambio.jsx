@@ -651,6 +651,15 @@ function PokemonCard({
     }
   }
 
+  let gmaxData = "";
+  let gmaxDesc = "";
+  if (data?.gigantamax !== undefined) {
+    if (data.gigantamax === true) {
+      gmaxData = "gmax";
+      gmaxDesc = "Especie Gigamax";
+    }
+  }
+
   let rareData = "";
   let rareDesc = "";
   if (data?.rarespecies !== undefined) {
@@ -711,6 +720,8 @@ function PokemonCard({
         ":" +
         megaDesc +
         ":" +
+        gmaxDesc +
+        ":" +
         rareDesc +
         ":" +
         eventDesc
@@ -723,6 +734,8 @@ function PokemonCard({
           " " +
           megaData +
           " " +
+          gmaxData +
+          ":" +
           rareData +
           " " +
           data.shiny +
