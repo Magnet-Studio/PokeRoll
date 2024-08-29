@@ -266,7 +266,7 @@ function MainPanel()
         // Unown
         GetSpecialEvent(3, UserData, setUserData, new Date(2024, 5, 13), new Date(2024, 5, 16), EventCommandList);
         // Centiskorch Gigantamax
-        GetSpecialEvent(6, UserData, setUserData, new Date(2024, 6, 5), new Date(2025, 11, 1), EventCommandList);
+        GetSpecialEvent(6, UserData, setUserData, new Date(2024, 6, 5), new Date(2024, 11, 1), EventCommandList);
 
     // eslint-disable-next-line
     }, []);
