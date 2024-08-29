@@ -2,7 +2,7 @@
 ### 🧲 Created by Magnet Studio 🧲
 
 > [!IMPORTANT]
-> Current version: 0.2.3 (Still Special Beta Events Update)
+> Current version: 0.2.4 (GigaMax Species Update)
 
 ## 📜 Magnet Studio is formed by... 📜
 - [Mario Cortés Herrera](https://github.com/SimulationOfMario)
