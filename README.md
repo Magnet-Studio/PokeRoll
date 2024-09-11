@@ -1,4 +1,4 @@
-# 🟥⚫⬜ PokeRoll Project 🟥⚫⬜
+# 🟥⚫⬜ PokéRoll Project 🟥⚫⬜
 ### 🧲 Created by Magnet Studio 🧲
 
 > [!IMPORTANT]
