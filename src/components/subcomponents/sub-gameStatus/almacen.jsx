@@ -47,7 +47,7 @@ const style = {
 
     const fetchAlmacen = async () => {
         try {
-            const response = await fetch('http://127.0.0.1:3306/almacen');
+            const response = await fetch(`http://${process.env.REACT_APP_BACKEND_URL}/pokemon/user/${process.env.REACT_APP_TEST_USER}`);
             if (!response.ok) {
                 throw new Error('Error al obtener datos del servidor (ALMACEN)');
             }
