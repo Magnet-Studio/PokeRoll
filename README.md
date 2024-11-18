@@ -6,7 +6,7 @@
 > Copying, modifying or redistributing is not permitted without the explicit permission of the author.
 
 > [!NOTE]
-> Current version: 0.2.4 (GigaMax Species Update)
+> Current version: 0.2.4 (Gigantamax Species Update)
 
 >[!IMPORTANT]
 > PokéRoll is currently in development to have a user account system so you can keep track of your progress on any device.
